@@ -37,7 +37,7 @@ public class UserController {
 	public ResponseEntity<ApiResponse<Object>> addUser(@RequestBody UserDto userDto) {
 
 		userService.addUser(userDto);
-		
+		logger.info(userDto.toString());
 		return ResponseEntity.ok(ApiResponse.success("新增成功", null));
 	}
 

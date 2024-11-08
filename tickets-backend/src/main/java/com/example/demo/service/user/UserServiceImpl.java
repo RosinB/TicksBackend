@@ -33,10 +33,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addUser(UserDto userDto) {
+		
+		
 		User user=userMapper.toEnity(userDto);
 		user.setSalt(Hash.getSalt());
-		user.setUserPwdHash(Hash.getHash(user.getUserPwdHash(), user.getSalt()));
-		userRepositoryJdbc.addUser(user);
-		
+		user.setUserPwdHash(Hash.getHash(userDto.getPassword(), user.getSalt()));
+		int a=userRepositoryJdbc.addUser(user);
+		System.out.println(a);
 		
 	}}
