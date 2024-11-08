@@ -12,6 +12,7 @@ public interface UserRepositoryJdbc {
 	List<User> findAll();
 	//查單個
 	Optional<User> findUserById(Integer userId);
+	
 	//新增一個
 	int addUser(User user);
 

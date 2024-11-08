@@ -23,21 +23,22 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	
 	@GetMapping("/all")
-	public ResponseEntity<ApiResponse<Object>> getAllUser(){
-		
+	public ResponseEntity<ApiResponse<Object>> getAllUser() {
+
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", userService.getAllUser()));
 	}
+
+	
 	@PostMapping("/register")
-    public ResponseEntity<ApiResponse<Object>> addUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<ApiResponse<Object>> addUser(@RequestBody UserDto userDto) {
+
+		userService.addUser(userDto);
 		
-		logger.info(userDto.toString());
 		return ResponseEntity.ok(ApiResponse.success("新增成功", null));
 	}
-	
-	
+
 }
