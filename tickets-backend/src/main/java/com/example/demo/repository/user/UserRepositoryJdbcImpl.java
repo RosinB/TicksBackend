@@ -7,6 +7,7 @@ import org.apache.logging.log4j.message.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -17,6 +18,7 @@ import com.example.demo.model.entity.user.User;
 import com.example.demo.util.Hash;
 
 @Repository
+@Qualifier("userJDBC")
 @PropertySource("classpath:sql.properties") // 自動到 src/main/resources 找到 sql.properties
 
 public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
