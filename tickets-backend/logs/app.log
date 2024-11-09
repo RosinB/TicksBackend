@@ -26,3 +26,553 @@
 2024-11-09T09:22:52.723+08:00  INFO 61176 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2024-11-09T09:22:52.910+08:00  INFO 61176 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : UserDto(userId=null, userName=pony, password=1234, userPhone=0978945612, userEmail=apple@gmail.com, userIdCard=q987456123, userIsVerified=null)
 2024-11-09T09:24:52.838+08:00  INFO 61176 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : UserDto(userId=null, userName=topy, password=1234, userPhone=0987655222, userEmail=pony@gmail.com, userIdCard=f13987512, userIsVerified=null)
+2024-11-09T19:01:12.938+08:00  INFO 7684 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 7684 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:01:12.941+08:00  INFO 7684 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:01:13.710+08:00  INFO 7684 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:01:13.779+08:00  INFO 7684 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 1 JPA repository interface.
+2024-11-09T19:01:14.378+08:00  INFO 7684 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:01:14.399+08:00  INFO 7684 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:01:14.399+08:00  INFO 7684 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:01:14.641+08:00  INFO 7684 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:01:14.647+08:00  INFO 7684 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:01:14.647+08:00  INFO 7684 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1651 ms
+2024-11-09T19:01:14.817+08:00  INFO 7684 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:01:14.898+08:00  INFO 7684 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:01:14.943+08:00  INFO 7684 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:01:15.342+08:00  INFO 7684 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:01:15.382+08:00  INFO 7684 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:01:15.571+08:00  INFO 7684 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42b4df5a
+2024-11-09T19:01:15.575+08:00  INFO 7684 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:01:16.592+08:00  INFO 7684 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:01:16.649+08:00  INFO 7684 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:01:17.099+08:00  WARN 7684 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:01:17.122+08:00  INFO 7684 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:01:17.516+08:00  INFO 7684 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:01:17.525+08:00  INFO 7684 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.993 seconds (process running for 5.666)
+2024-11-09T19:01:21.478+08:00  INFO 7684 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:01:21.478+08:00  INFO 7684 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:01:21.479+08:00  INFO 7684 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T19:03:38.348+08:00  INFO 7684 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:03:38.361+08:00  INFO 7684 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:03:38.364+08:00  INFO 7684 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:03:38.374+08:00  INFO 7684 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:03:45.046+08:00  INFO 56964 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 56964 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:03:45.049+08:00  INFO 56964 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:03:45.708+08:00  INFO 56964 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:03:45.775+08:00  INFO 56964 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 1 JPA repository interface.
+2024-11-09T19:03:46.303+08:00  INFO 56964 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:03:46.319+08:00  INFO 56964 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:03:46.319+08:00  INFO 56964 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:03:46.527+08:00  INFO 56964 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:03:46.534+08:00  INFO 56964 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:03:46.534+08:00  INFO 56964 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1439 ms
+2024-11-09T19:03:46.689+08:00  INFO 56964 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:03:46.741+08:00  INFO 56964 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:03:46.773+08:00  INFO 56964 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:03:47.089+08:00  INFO 56964 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:03:47.119+08:00  INFO 56964 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:03:47.284+08:00  INFO 56964 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1008df1e
+2024-11-09T19:03:47.287+08:00  INFO 56964 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:03:48.216+08:00  INFO 56964 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:03:48.263+08:00  INFO 56964 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:03:48.658+08:00  WARN 56964 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:03:48.679+08:00  INFO 56964 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:03:49.032+08:00  INFO 56964 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:03:49.040+08:00  INFO 56964 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.388 seconds (process running for 6.342)
+2024-11-09T19:04:10.515+08:00  INFO 56964 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:04:10.516+08:00  INFO 56964 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:04:10.517+08:00  INFO 56964 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T19:05:02.727+08:00  INFO 56964 --- [tickets-backend] [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:05:02.736+08:00  INFO 56964 --- [tickets-backend] [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:05:02.738+08:00  INFO 56964 --- [tickets-backend] [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:05:02.744+08:00  INFO 56964 --- [tickets-backend] [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:05:04.755+08:00  INFO 47076 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 47076 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:05:04.758+08:00  INFO 47076 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:05:05.417+08:00  INFO 47076 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:05:05.484+08:00  INFO 47076 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 1 JPA repository interface.
+2024-11-09T19:05:06.011+08:00  INFO 47076 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:05:06.028+08:00  INFO 47076 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:05:06.029+08:00  INFO 47076 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:05:06.245+08:00  INFO 47076 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:05:06.250+08:00  INFO 47076 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:05:06.251+08:00  INFO 47076 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1448 ms
+2024-11-09T19:05:06.418+08:00  INFO 47076 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:05:06.469+08:00  INFO 47076 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:05:06.503+08:00  INFO 47076 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:05:06.816+08:00  INFO 47076 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:05:06.848+08:00  INFO 47076 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:05:07.015+08:00  INFO 47076 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@26101efc
+2024-11-09T19:05:07.018+08:00  INFO 47076 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:05:07.947+08:00  INFO 47076 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:05:07.997+08:00  INFO 47076 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:05:08.394+08:00  WARN 47076 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:05:08.415+08:00  INFO 47076 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:05:08.755+08:00  INFO 47076 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:05:08.763+08:00  INFO 47076 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.413 seconds (process running for 5.051)
+2024-11-09T19:05:13.414+08:00  INFO 47076 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:05:13.415+08:00  INFO 47076 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:05:13.416+08:00  INFO 47076 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T19:05:43.857+08:00  INFO 47076 --- [tickets-backend] [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:05:43.869+08:00  INFO 47076 --- [tickets-backend] [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:05:43.870+08:00  INFO 47076 --- [tickets-backend] [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:05:43.877+08:00  INFO 47076 --- [tickets-backend] [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:05:45.925+08:00  INFO 43892 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 43892 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:05:45.926+08:00  INFO 43892 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:05:46.581+08:00  INFO 43892 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:05:46.651+08:00  INFO 43892 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 1 JPA repository interface.
+2024-11-09T19:05:47.186+08:00  INFO 43892 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:05:47.203+08:00  INFO 43892 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:05:47.204+08:00  INFO 43892 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:05:47.417+08:00  INFO 43892 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:05:47.423+08:00  INFO 43892 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:05:47.423+08:00  INFO 43892 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1450 ms
+2024-11-09T19:05:47.590+08:00  INFO 43892 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:05:47.645+08:00  INFO 43892 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:05:47.681+08:00  INFO 43892 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:05:47.994+08:00  INFO 43892 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:05:48.025+08:00  INFO 43892 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:05:48.197+08:00  INFO 43892 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@70a24f9
+2024-11-09T19:05:48.199+08:00  INFO 43892 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:05:49.117+08:00  INFO 43892 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:05:49.167+08:00  INFO 43892 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:05:49.562+08:00  WARN 43892 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:05:49.583+08:00  INFO 43892 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:05:49.916+08:00  INFO 43892 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:05:49.923+08:00  INFO 43892 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.394 seconds (process running for 5.031)
+2024-11-09T19:05:59.824+08:00  INFO 43892 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:05:59.825+08:00  INFO 43892 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:05:59.826+08:00  INFO 43892 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T19:06:20.433+08:00  INFO 43892 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:06:20.444+08:00  INFO 43892 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:06:20.446+08:00  INFO 43892 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:06:20.451+08:00  INFO 43892 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:06:22.448+08:00  INFO 10568 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 10568 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:06:22.451+08:00  INFO 10568 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:06:23.150+08:00  INFO 10568 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:06:23.220+08:00  INFO 10568 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 1 JPA repository interface.
+2024-11-09T19:06:23.761+08:00  INFO 10568 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:06:23.777+08:00  INFO 10568 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:06:23.777+08:00  INFO 10568 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:06:23.996+08:00  INFO 10568 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:06:24.002+08:00  INFO 10568 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:06:24.003+08:00  INFO 10568 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1507 ms
+2024-11-09T19:06:24.159+08:00  INFO 10568 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:06:24.214+08:00  INFO 10568 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:06:24.248+08:00  INFO 10568 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:06:24.574+08:00  INFO 10568 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:06:24.605+08:00  INFO 10568 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:06:24.768+08:00  INFO 10568 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78bad03b
+2024-11-09T19:06:24.771+08:00  INFO 10568 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:06:25.682+08:00  INFO 10568 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:06:25.734+08:00  INFO 10568 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:06:26.166+08:00  WARN 10568 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:06:26.188+08:00  INFO 10568 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:06:26.549+08:00  INFO 10568 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:06:26.556+08:00  INFO 10568 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.51 seconds (process running for 5.148)
+2024-11-09T19:06:31.829+08:00  INFO 10568 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:06:31.830+08:00  INFO 10568 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:06:31.832+08:00  INFO 10568 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-11-09T19:06:49.002+08:00  INFO 10568 --- [tickets-backend] [RMI TCP Connection(7)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:06:49.011+08:00  INFO 10568 --- [tickets-backend] [RMI TCP Connection(7)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:06:49.013+08:00  INFO 10568 --- [tickets-backend] [RMI TCP Connection(7)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:06:49.020+08:00  INFO 10568 --- [tickets-backend] [RMI TCP Connection(7)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:06:51.002+08:00  INFO 52428 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 52428 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:06:51.005+08:00  INFO 52428 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:06:51.680+08:00  INFO 52428 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:06:51.750+08:00  INFO 52428 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 1 JPA repository interface.
+2024-11-09T19:06:52.285+08:00  INFO 52428 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:06:52.304+08:00  INFO 52428 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:06:52.304+08:00  INFO 52428 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:06:52.525+08:00  INFO 52428 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:06:52.531+08:00  INFO 52428 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:06:52.531+08:00  INFO 52428 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1477 ms
+2024-11-09T19:06:52.696+08:00  INFO 52428 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:06:52.749+08:00  INFO 52428 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:06:52.784+08:00  INFO 52428 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:06:53.103+08:00  INFO 52428 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:06:53.136+08:00  INFO 52428 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:06:53.303+08:00  INFO 52428 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e2109fe
+2024-11-09T19:06:53.306+08:00  INFO 52428 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:06:54.234+08:00  INFO 52428 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:06:54.284+08:00  INFO 52428 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:06:54.678+08:00  WARN 52428 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:06:54.699+08:00  INFO 52428 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:06:55.058+08:00  INFO 52428 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:06:55.067+08:00  INFO 52428 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.465 seconds (process running for 5.099)
+2024-11-09T19:07:19.268+08:00  INFO 52428 --- [tickets-backend] [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:07:19.278+08:00  INFO 52428 --- [tickets-backend] [RMI TCP Connection(8)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:07:19.280+08:00  INFO 52428 --- [tickets-backend] [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:07:19.288+08:00  INFO 52428 --- [tickets-backend] [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:07:21.353+08:00  INFO 55076 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 55076 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:07:21.356+08:00  INFO 55076 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:07:22.036+08:00  INFO 55076 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:07:22.104+08:00  INFO 55076 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 1 JPA repository interface.
+2024-11-09T19:07:22.639+08:00  INFO 55076 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:07:22.655+08:00  INFO 55076 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:07:22.655+08:00  INFO 55076 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:07:22.874+08:00  INFO 55076 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:07:22.881+08:00  INFO 55076 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:07:22.881+08:00  INFO 55076 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1478 ms
+2024-11-09T19:07:23.047+08:00  INFO 55076 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:07:23.101+08:00  INFO 55076 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:07:23.136+08:00  INFO 55076 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:07:23.460+08:00  INFO 55076 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:07:23.491+08:00  INFO 55076 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:07:23.666+08:00  INFO 55076 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1857fe6c
+2024-11-09T19:07:23.668+08:00  INFO 55076 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:07:24.576+08:00  INFO 55076 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:07:24.623+08:00  INFO 55076 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:07:25.003+08:00  WARN 55076 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:07:25.024+08:00  INFO 55076 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:07:25.376+08:00  INFO 55076 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:07:25.384+08:00  INFO 55076 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.433 seconds (process running for 5.072)
+2024-11-09T19:07:27.765+08:00  INFO 55076 --- [tickets-backend] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:07:27.766+08:00  INFO 55076 --- [tickets-backend] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:07:27.767+08:00  INFO 55076 --- [tickets-backend] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T19:09:30.963+08:00  INFO 55076 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:09:30.972+08:00  INFO 55076 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:09:30.974+08:00  INFO 55076 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:09:30.980+08:00  INFO 55076 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:09:32.952+08:00  INFO 20128 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 20128 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:09:32.956+08:00  INFO 20128 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:09:33.665+08:00  INFO 20128 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:09:33.731+08:00  INFO 20128 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 1 JPA repository interface.
+2024-11-09T19:09:34.261+08:00  INFO 20128 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:09:34.278+08:00  INFO 20128 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:09:34.278+08:00  INFO 20128 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:09:34.497+08:00  INFO 20128 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:09:34.504+08:00  INFO 20128 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:09:34.505+08:00  INFO 20128 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1497 ms
+2024-11-09T19:09:34.662+08:00  INFO 20128 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:09:34.718+08:00  INFO 20128 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:09:34.751+08:00  INFO 20128 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:09:35.073+08:00  INFO 20128 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:09:35.103+08:00  INFO 20128 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:09:35.273+08:00  INFO 20128 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@761f234c
+2024-11-09T19:09:35.276+08:00  INFO 20128 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:09:36.183+08:00  INFO 20128 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:09:36.236+08:00  INFO 20128 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:09:36.623+08:00  WARN 20128 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:09:36.646+08:00  INFO 20128 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:09:36.992+08:00  INFO 20128 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:09:37.000+08:00  INFO 20128 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.451 seconds (process running for 5.09)
+2024-11-09T19:09:39.035+08:00  INFO 20128 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:09:39.036+08:00  INFO 20128 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:09:39.037+08:00  INFO 20128 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T19:11:37.697+08:00  INFO 20128 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:11:37.706+08:00  INFO 20128 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:11:37.708+08:00  INFO 20128 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:11:37.714+08:00  INFO 20128 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:11:39.638+08:00  INFO 63224 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 63224 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:11:39.640+08:00  INFO 63224 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:11:40.323+08:00  INFO 63224 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:11:40.390+08:00  INFO 63224 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 1 JPA repository interface.
+2024-11-09T19:11:40.914+08:00  INFO 63224 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:11:40.930+08:00  INFO 63224 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:11:40.932+08:00  INFO 63224 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:11:41.161+08:00  INFO 63224 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:11:41.167+08:00  INFO 63224 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:11:41.168+08:00  INFO 63224 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1478 ms
+2024-11-09T19:11:41.325+08:00  INFO 63224 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:11:41.379+08:00  INFO 63224 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:11:41.412+08:00  INFO 63224 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:11:41.752+08:00  INFO 63224 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:11:41.786+08:00  INFO 63224 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:11:41.954+08:00  INFO 63224 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@18dac12f
+2024-11-09T19:11:41.957+08:00  INFO 63224 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:11:42.887+08:00  INFO 63224 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:11:42.936+08:00  INFO 63224 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:11:43.350+08:00  WARN 63224 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:11:43.373+08:00  INFO 63224 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:11:43.725+08:00  INFO 63224 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:11:43.732+08:00  INFO 63224 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.478 seconds (process running for 5.102)
+2024-11-09T19:11:54.243+08:00  INFO 63224 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:11:54.244+08:00  INFO 63224 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:11:54.245+08:00  INFO 63224 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T19:11:54.402+08:00  INFO 63224 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : UserDto(userId=null, userName=poe, password=1234, userPhone=9851152, userEmail=sda@gmail.ocm, userBirthDate=2024-11-07, userIdCard=f46231, userIsVerified=null)
+2024-11-09T19:24:15.706+08:00  INFO 63224 --- [tickets-backend] [RMI TCP Connection(21)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T19:24:15.715+08:00  INFO 63224 --- [tickets-backend] [RMI TCP Connection(21)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:24:15.718+08:00  INFO 63224 --- [tickets-backend] [RMI TCP Connection(21)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T19:24:15.726+08:00  INFO 63224 --- [tickets-backend] [RMI TCP Connection(21)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T19:24:17.522+08:00  INFO 59932 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 59932 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T19:24:17.525+08:00  INFO 59932 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T19:24:18.207+08:00  INFO 59932 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T19:24:18.274+08:00  INFO 59932 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 1 JPA repository interface.
+2024-11-09T19:24:18.813+08:00  INFO 59932 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T19:24:18.829+08:00  INFO 59932 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T19:24:18.829+08:00  INFO 59932 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T19:24:19.047+08:00  INFO 59932 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T19:24:19.052+08:00  INFO 59932 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T19:24:19.053+08:00  INFO 59932 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1481 ms
+2024-11-09T19:24:19.210+08:00  INFO 59932 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T19:24:19.265+08:00  INFO 59932 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T19:24:19.301+08:00  INFO 59932 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T19:24:19.624+08:00  INFO 59932 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T19:24:19.652+08:00  INFO 59932 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T19:24:19.826+08:00  INFO 59932 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53b7bf01
+2024-11-09T19:24:19.828+08:00  INFO 59932 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T19:24:20.754+08:00  INFO 59932 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T19:24:20.805+08:00  INFO 59932 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T19:24:21.210+08:00  WARN 59932 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T19:24:21.231+08:00  INFO 59932 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T19:24:21.585+08:00  INFO 59932 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T19:24:21.593+08:00  INFO 59932 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.475 seconds (process running for 5.105)
+2024-11-09T19:24:37.993+08:00  INFO 59932 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T19:24:37.994+08:00  INFO 59932 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T19:24:37.995+08:00  INFO 59932 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T20:23:18.901+08:00  WARN 59932 --- [tickets-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m28s169ms918µs800ns).
+2024-11-09T20:27:38.123+08:00  INFO 59932 --- [tickets-backend] [RMI TCP Connection(66)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T20:27:38.133+08:00  INFO 59932 --- [tickets-backend] [RMI TCP Connection(66)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:27:38.136+08:00  INFO 59932 --- [tickets-backend] [RMI TCP Connection(66)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T20:27:38.138+08:00  INFO 59932 --- [tickets-backend] [RMI TCP Connection(66)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T20:27:40.156+08:00  INFO 63892 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 63892 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T20:27:40.159+08:00  INFO 63892 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T20:27:40.850+08:00  INFO 63892 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T20:27:40.921+08:00  INFO 63892 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 1 JPA repository interface.
+2024-11-09T20:27:41.459+08:00  INFO 63892 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T20:27:41.476+08:00  INFO 63892 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T20:27:41.477+08:00  INFO 63892 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T20:27:41.701+08:00  INFO 63892 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T20:27:41.708+08:00  INFO 63892 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T20:27:41.708+08:00  INFO 63892 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1502 ms
+2024-11-09T20:27:41.868+08:00  INFO 63892 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T20:27:41.922+08:00  INFO 63892 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T20:27:41.954+08:00  INFO 63892 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T20:27:42.279+08:00  INFO 63892 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T20:27:42.309+08:00  INFO 63892 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T20:27:42.487+08:00  INFO 63892 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a6e9289
+2024-11-09T20:27:42.490+08:00  INFO 63892 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T20:27:43.415+08:00  INFO 63892 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T20:27:43.467+08:00  INFO 63892 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:27:43.760+08:00  INFO 63892 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-09T20:27:44.301+08:00  WARN 63892 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T20:27:44.322+08:00  INFO 63892 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T20:27:44.665+08:00  INFO 63892 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T20:27:44.674+08:00  INFO 63892 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.923 seconds (process running for 5.555)
+2024-11-09T20:27:57.419+08:00  INFO 63892 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T20:27:57.419+08:00  INFO 63892 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T20:27:57.421+08:00  INFO 63892 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-11-09T20:30:11.475+08:00  INFO 63892 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T20:30:11.484+08:00  INFO 63892 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:30:11.486+08:00  INFO 63892 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T20:30:11.494+08:00  INFO 63892 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T20:30:13.459+08:00  INFO 57896 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 57896 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T20:30:13.461+08:00  INFO 57896 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T20:30:14.157+08:00  INFO 57896 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T20:30:14.227+08:00  INFO 57896 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 1 JPA repository interface.
+2024-11-09T20:30:14.743+08:00  INFO 57896 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T20:30:14.761+08:00  INFO 57896 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T20:30:14.761+08:00  INFO 57896 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T20:30:14.996+08:00  INFO 57896 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T20:30:15.003+08:00  INFO 57896 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T20:30:15.004+08:00  INFO 57896 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1491 ms
+2024-11-09T20:30:15.153+08:00  INFO 57896 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T20:30:15.208+08:00  INFO 57896 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T20:30:15.242+08:00  INFO 57896 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T20:30:15.564+08:00  INFO 57896 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T20:30:15.597+08:00  INFO 57896 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T20:30:15.761+08:00  INFO 57896 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@18bb1b88
+2024-11-09T20:30:15.763+08:00  INFO 57896 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T20:30:16.663+08:00  INFO 57896 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T20:30:16.712+08:00  INFO 57896 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:30:16.976+08:00  INFO 57896 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-09T20:30:17.478+08:00  WARN 57896 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T20:30:17.498+08:00  INFO 57896 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T20:30:17.841+08:00  INFO 57896 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T20:30:17.849+08:00  INFO 57896 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.792 seconds (process running for 5.422)
+2024-11-09T20:35:08.183+08:00  INFO 57896 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T20:35:08.183+08:00  INFO 57896 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T20:35:08.185+08:00  INFO 57896 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-11-09T20:39:13.585+08:00  INFO 57896 --- [tickets-backend] [RMI TCP Connection(17)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T20:39:13.595+08:00  INFO 57896 --- [tickets-backend] [RMI TCP Connection(17)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:39:13.597+08:00  INFO 57896 --- [tickets-backend] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T20:39:13.605+08:00  INFO 57896 --- [tickets-backend] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T20:39:15.659+08:00  INFO 63148 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 63148 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T20:39:15.662+08:00  INFO 63148 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T20:39:16.326+08:00  INFO 63148 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T20:39:16.392+08:00  INFO 63148 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 1 JPA repository interface.
+2024-11-09T20:39:16.909+08:00  INFO 63148 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T20:39:16.926+08:00  INFO 63148 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T20:39:16.926+08:00  INFO 63148 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T20:39:17.143+08:00  INFO 63148 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T20:39:17.150+08:00  INFO 63148 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T20:39:17.150+08:00  INFO 63148 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1436 ms
+2024-11-09T20:39:17.310+08:00  INFO 63148 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T20:39:17.364+08:00  INFO 63148 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T20:39:17.398+08:00  INFO 63148 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T20:39:17.724+08:00  INFO 63148 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T20:39:17.754+08:00  INFO 63148 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T20:39:17.916+08:00  INFO 63148 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1008df1e
+2024-11-09T20:39:17.918+08:00  INFO 63148 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T20:39:18.822+08:00  INFO 63148 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T20:39:18.872+08:00  INFO 63148 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:39:19.136+08:00  INFO 63148 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-09T20:39:19.636+08:00  WARN 63148 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T20:39:19.657+08:00  INFO 63148 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T20:39:19.990+08:00  INFO 63148 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T20:39:19.998+08:00  INFO 63148 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.766 seconds (process running for 5.461)
+2024-11-09T20:39:28.228+08:00  INFO 63148 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T20:39:28.228+08:00  INFO 63148 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T20:39:28.230+08:00  INFO 63148 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T20:44:14.589+08:00  INFO 63148 --- [tickets-backend] [RMI TCP Connection(14)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T20:44:14.599+08:00  INFO 63148 --- [tickets-backend] [RMI TCP Connection(14)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:44:14.602+08:00  INFO 63148 --- [tickets-backend] [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T20:44:14.610+08:00  INFO 63148 --- [tickets-backend] [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T20:44:16.562+08:00  INFO 58720 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 58720 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T20:44:16.565+08:00  INFO 58720 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T20:44:17.182+08:00  INFO 58720 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T20:44:17.252+08:00  INFO 58720 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 1 JPA repository interface.
+2024-11-09T20:44:17.756+08:00  INFO 58720 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T20:44:17.773+08:00  INFO 58720 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T20:44:17.773+08:00  INFO 58720 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T20:44:17.974+08:00  INFO 58720 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T20:44:17.980+08:00  INFO 58720 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T20:44:17.980+08:00  INFO 58720 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1370 ms
+2024-11-09T20:44:18.136+08:00  INFO 58720 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T20:44:18.190+08:00  INFO 58720 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T20:44:18.225+08:00  INFO 58720 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T20:44:18.554+08:00  INFO 58720 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T20:44:18.585+08:00  INFO 58720 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T20:44:18.746+08:00  INFO 58720 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53b7bf01
+2024-11-09T20:44:18.749+08:00  INFO 58720 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T20:44:19.634+08:00  INFO 58720 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T20:44:19.681+08:00  INFO 58720 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:44:19.966+08:00  INFO 58720 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-09T20:44:20.445+08:00  WARN 58720 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T20:44:20.465+08:00  INFO 58720 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T20:44:20.788+08:00  INFO 58720 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T20:44:20.796+08:00  INFO 58720 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.632 seconds (process running for 5.266)
+2024-11-09T20:44:23.604+08:00  INFO 58720 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T20:44:23.604+08:00  INFO 58720 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T20:44:23.605+08:00  INFO 58720 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T20:44:23.822+08:00  INFO 58720 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=abc123, userPhone=954, userEmail=aps@gmail, userBirthDate=2024-11-12, userIdCard=f31212, userIsVerified=null)
+2024-11-09T20:47:20.384+08:00  INFO 58720 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : UserDto(userId=null, userName=ppa, password=1234, userPhone=092062551, userEmail=we@gmail.com, userBirthDate=2024-11-15, userIdCard=f848512, userIsVerified=null)
+2024-11-09T20:47:20.420+08:00  INFO 58720 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : register新增成功
+2024-11-09T20:49:13.030+08:00  INFO 58720 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=abc123, userPhone=954, userEmail=aps@gmail, userBirthDate=2024-11-12, userIdCard=f31212, userIsVerified=null)
+2024-11-09T20:49:26.555+08:00  INFO 58720 --- [tickets-backend] [RMI TCP Connection(14)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T20:49:26.567+08:00  INFO 58720 --- [tickets-backend] [RMI TCP Connection(14)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:49:26.570+08:00  INFO 58720 --- [tickets-backend] [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T20:49:26.578+08:00  INFO 58720 --- [tickets-backend] [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T20:49:28.624+08:00  INFO 61796 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 61796 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T20:49:28.629+08:00  INFO 61796 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T20:49:29.275+08:00  INFO 61796 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T20:49:29.344+08:00  INFO 61796 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 1 JPA repository interface.
+2024-11-09T20:49:29.859+08:00  INFO 61796 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T20:49:29.875+08:00  INFO 61796 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T20:49:29.875+08:00  INFO 61796 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T20:49:30.090+08:00  INFO 61796 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T20:49:30.097+08:00  INFO 61796 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T20:49:30.097+08:00  INFO 61796 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1424 ms
+2024-11-09T20:49:30.272+08:00  INFO 61796 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T20:49:30.326+08:00  INFO 61796 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T20:49:30.359+08:00  INFO 61796 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T20:49:30.677+08:00  INFO 61796 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T20:49:30.706+08:00  INFO 61796 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T20:49:30.867+08:00  INFO 61796 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@52f43225
+2024-11-09T20:49:30.870+08:00  INFO 61796 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T20:49:31.766+08:00  INFO 61796 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T20:49:31.818+08:00  INFO 61796 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T20:49:32.085+08:00  INFO 61796 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-09T20:49:32.568+08:00  WARN 61796 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T20:49:32.590+08:00  INFO 61796 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T20:49:32.917+08:00  INFO 61796 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T20:49:32.925+08:00  INFO 61796 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.707 seconds (process running for 5.345)
+2024-11-09T20:49:53.012+08:00  INFO 61796 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T20:49:53.012+08:00  INFO 61796 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T20:49:53.014+08:00  INFO 61796 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T20:49:53.312+08:00  INFO 61796 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=sad, userPhone=244, userEmail=sda@sdada, userBirthDate=2024-11-14, userIdCard=f1231, userIsVerified=null)
+2024-11-09T20:53:58.796+08:00  INFO 61796 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=sad, userPhone=244, userEmail=sda@sdada, userBirthDate=2024-11-14, userIdCard=f1231, userIsVerified=null)
+2024-11-09T21:00:48.847+08:00  INFO 61796 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=09542542, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f13013484, userIsVerified=null)
+2024-11-09T21:05:09.969+08:00  INFO 61796 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=09542542, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f13013484, userIsVerified=null)
+2024-11-09T21:05:15.110+08:00  INFO 61796 --- [tickets-backend] [RMI TCP Connection(25)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T21:05:15.121+08:00  INFO 61796 --- [tickets-backend] [RMI TCP Connection(25)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T21:05:15.124+08:00  INFO 61796 --- [tickets-backend] [RMI TCP Connection(25)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T21:05:15.131+08:00  INFO 61796 --- [tickets-backend] [RMI TCP Connection(25)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T21:05:17.091+08:00  INFO 59892 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 59892 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T21:05:17.093+08:00  INFO 59892 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T21:05:17.788+08:00  INFO 59892 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T21:05:17.854+08:00  INFO 59892 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 1 JPA repository interface.
+2024-11-09T21:05:18.385+08:00  INFO 59892 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T21:05:18.403+08:00  INFO 59892 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T21:05:18.403+08:00  INFO 59892 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T21:05:18.623+08:00  INFO 59892 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T21:05:18.629+08:00  INFO 59892 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T21:05:18.629+08:00  INFO 59892 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1486 ms
+2024-11-09T21:05:18.782+08:00  INFO 59892 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T21:05:18.836+08:00  INFO 59892 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T21:05:18.868+08:00  INFO 59892 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T21:05:19.191+08:00  INFO 59892 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T21:05:19.222+08:00  INFO 59892 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T21:05:19.392+08:00  INFO 59892 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f9a5e3f
+2024-11-09T21:05:19.395+08:00  INFO 59892 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T21:05:20.313+08:00  INFO 59892 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T21:05:20.361+08:00  INFO 59892 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T21:05:20.630+08:00  INFO 59892 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-09T21:05:21.133+08:00  WARN 59892 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T21:05:21.154+08:00  INFO 59892 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T21:05:21.487+08:00  INFO 59892 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T21:05:21.494+08:00  INFO 59892 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.809 seconds (process running for 5.442)
+2024-11-09T21:05:26.745+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T21:05:26.745+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T21:05:26.747+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T21:05:26.965+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=09542542, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f13013484, userIsVerified=null)
+2024-11-09T21:07:38.070+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : UserDto(userId=null, userName=pppas, password=541132132, userPhone=09542542, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f13013484, userIsVerified=null)
+2024-11-09T21:07:38.107+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : register新增成功
+2024-11-09T21:09:14.348+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=0943, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f13013484, userIsVerified=null)
+2024-11-09T21:10:30.833+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=9851152, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:14:21.306+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=9851152, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:14:26.326+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=9851152, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:14:47.815+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=9851152, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:14:51.279+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=9851152, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:14:51.475+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=9851152, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:14:59.134+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=541132132, userPhone=9851152, userEmail=sd@gmail.com, userBirthDate=2024-11-07, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:18:16.216+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=1, userPhone=5, userEmail=5@gmail, userBirthDate=2024-11-22, userIdCard=sda, userIsVerified=null)
+2024-11-09T21:18:27.584+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=1, userPhone=5, userEmail=5@gmail, userBirthDate=2024-11-22, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:18:34.102+08:00  INFO 59892 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=1, userPhone=5, userEmail=sda@gmail.ocm, userBirthDate=2024-11-22, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:19:23.971+08:00  INFO 59892 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-09T21:19:23.981+08:00  INFO 59892 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T21:19:23.983+08:00  INFO 59892 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T21:19:23.990+08:00  INFO 59892 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T21:19:25.954+08:00  INFO 51616 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 51616 (C:\Users\karta\git\TicksBackend\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend\tickets-backend)
+2024-11-09T21:19:25.959+08:00  INFO 51616 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-09T21:19:26.649+08:00  INFO 51616 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T21:19:26.715+08:00  INFO 51616 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 1 JPA repository interface.
+2024-11-09T21:19:27.250+08:00  INFO 51616 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-09T21:19:27.267+08:00  INFO 51616 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T21:19:27.268+08:00  INFO 51616 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T21:19:27.487+08:00  INFO 51616 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-09T21:19:27.492+08:00  INFO 51616 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T21:19:27.493+08:00  INFO 51616 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1483 ms
+2024-11-09T21:19:27.653+08:00  INFO 51616 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T21:19:27.707+08:00  INFO 51616 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T21:19:27.741+08:00  INFO 51616 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T21:19:28.058+08:00  INFO 51616 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T21:19:28.089+08:00  INFO 51616 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T21:19:28.253+08:00  INFO 51616 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@393ae7a0
+2024-11-09T21:19:28.255+08:00  INFO 51616 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T21:19:29.157+08:00  INFO 51616 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T21:19:29.207+08:00  INFO 51616 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T21:19:29.473+08:00  INFO 51616 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-09T21:19:29.982+08:00  WARN 51616 --- [tickets-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T21:19:30.004+08:00  INFO 51616 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-09T21:19:30.339+08:00  INFO 51616 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-09T21:19:30.347+08:00  INFO 51616 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.788 seconds (process running for 5.427)
+2024-11-09T21:19:33.779+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T21:19:33.780+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T21:19:33.781+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-09T21:19:33.999+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : UserDto(userId=null, userName=nick, password=1, userPhone=5, userEmail=sda@gmail.ocm, userBirthDate=2024-11-22, userIdCard=f46231, userIsVerified=null)
+2024-11-09T21:25:01.181+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : UserDto(userId=null, userName=abcd, password=1234, userPhone=09124, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425453, userIsVerified=null)
+2024-11-09T21:25:01.220+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : register新增成功
+2024-11-09T21:31:03.522+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425453, userIsVerified=null)
+2024-11-09T21:31:08.240+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425459, userIsVerified=null)
+2024-11-09T21:32:11.151+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425459, userIsVerified=null)
+2024-11-09T21:32:13.019+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425459, userIsVerified=null)
+2024-11-09T21:32:14.486+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425459, userIsVerified=null)
+2024-11-09T21:32:14.635+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425459, userIsVerified=null)
+2024-11-09T21:32:14.802+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425459, userIsVerified=null)
+2024-11-09T21:32:15.108+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425459, userIsVerified=null)
+2024-11-09T21:32:15.266+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadas, password=1234, userPhone=0955, userEmail=F1242325435434534@sdasd, userBirthDate=2024-11-20, userIdCard=F425459, userIsVerified=null)
+2024-11-09T21:32:32.787+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : UserDto(userId=null, userName=asas, password=as, userPhone=524, userEmail=da@sd, userBirthDate=2024-11-11, userIdCard=ASD, userIsVerified=null)
+2024-11-09T21:32:32.792+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : register新增成功
+2024-11-09T21:33:09.517+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadsa, password=as, userPhone=48115, userEmail=da@sd, userBirthDate=2024-11-11, userIdCard=ASD, userIsVerified=null)
+2024-11-09T21:33:54.444+08:00  INFO 51616 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : UserDto(userId=null, userName=sadsa, password=as, userPhone=48115, userEmail=da@sd, userBirthDate=2024-11-11, userIdCard=ASD, userIsVerified=null)

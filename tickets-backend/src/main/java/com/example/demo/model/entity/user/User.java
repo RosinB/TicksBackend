@@ -1,6 +1,7 @@
 package com.example.demo.model.entity.user;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,6 +39,10 @@ public class User {
 
 	@Column(name = "user_idcard")
 	private String userIdCard;
+	
+	@Column(name ="user_birth_date")
+	private LocalDate userBirthDate;
+	
 
 	@Column(name = "user_regdate" ,insertable = false, updatable = false)
 	private Timestamp userRegdate;

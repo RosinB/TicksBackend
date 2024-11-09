@@ -20,8 +20,8 @@ public class ApiResponse<T> {
 		return new ApiResponse<T>(200,message,data);
 	}
 	// 失敗回應
-	public static <T> ApiResponse<T> error(int status,String message){
-		return new ApiResponse<T>(status,message,null);
+	public static <T> ApiResponse<T> error(int status,String message,T data){
+		return new ApiResponse<T>(status,message,data);
 	}
 
 	

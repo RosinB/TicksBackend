@@ -1,6 +1,7 @@
 package com.example.demo.model.dto.user;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -18,6 +19,8 @@ public class UserDto {
 	private String userPhone;
 
 	private String userEmail;
+
+	private LocalDate userBirthDate;
 
 	private String userIdCard;
 

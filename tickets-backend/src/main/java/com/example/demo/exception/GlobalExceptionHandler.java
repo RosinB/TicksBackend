@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(NumberFormatException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ApiResponse<Object>> handleNumberFormatException(NumberFormatException e) {
-		ApiResponse<Object> apiResponse = ApiResponse.error(HttpStatus.BAD_REQUEST.value(), "無效的數據格式" + e);
+		ApiResponse<Object> apiResponse = ApiResponse.error(HttpStatus.BAD_REQUEST.value(), "無效的數據格式" + e,null);
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
 
 	}
@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
 	// 當系統發生 RuntimeException
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<ApiResponse<Object>> handleRuntimeNumberFormatException(RuntimeException e) {
-		ApiResponse<Object> apiResponse = ApiResponse.error(HttpStatus.FORBIDDEN.value(), "執行時期錯誤, " + e);
+		ApiResponse<Object> apiResponse = ApiResponse.error(HttpStatus.FORBIDDEN.value(), "執行時期錯誤, " + e,null);
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
 	}
 
@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public ResponseEntity<ApiResponse<Object>> handleException(Exception e) {
-		ApiResponse<Object> apiResponse = ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "伺服器內部錯誤, " + e);
+		ApiResponse<Object> apiResponse = ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "伺服器內部錯誤, " + e,null);
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
 	}
 }

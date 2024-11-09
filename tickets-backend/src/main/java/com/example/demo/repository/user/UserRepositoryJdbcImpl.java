@@ -62,10 +62,11 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 		if(user==null) {
 			System.out.println("addUser這裡的user是空值");
 		}
-
+		
 		return jdbcTemplate.update(saveSql,user.getUserName() ,user.getUserPwdHash(),
 										   user.getSalt()	  ,user.getUserPhone(),
-										   user.getUserEmail(),user.getUserIdCard());
+										   user.getUserEmail(),user.getUserIdCard()
+										   ,user.getUserBirthDate());
 		
 	}
 

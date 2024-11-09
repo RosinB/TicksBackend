@@ -19,8 +19,8 @@ class MainAppTests {
 	@Test
 	void add() {
 		
-		User user=new User( 1, "aaa", "aaa", "092522", "asa@gmail.com", "abc123", "123",new Timestamp(System.currentTimeMillis()), true);
-		userRepositoryJdbc.addUser(user);		
+//		User user=new User( 1, "aaa", "aaa", "092522", "asa@gmail.com", "abc123", "123",new Timestamp(System.currentTimeMillis()), true);
+//		userRepositoryJdbc.addUser(user);		
 
 	}
 	

@@ -36,25 +36,23 @@ public class UserController {
 
 	
 	@PostMapping("/register")
-	public ResponseEntity<ApiResponse<Object>> addUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<ApiResponse<Object>> addUser(@RequestBody  UserDto userDto) {
 
 		
 	    Map<String, String> errors = userService.validateUserInput(userDto);
-
+	    logger.info(userDto.toString());
+	    
 		if(!errors.isEmpty()) {
+			System.out.println(ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	                .body(ApiResponse.error(400, "註冊失敗", errors)));
 			
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-								 .body(ApiResponse
-								 .error(400, "註冊失敗"));
-
-			
+			 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+		                .body(ApiResponse.error(400, "註冊失敗", errors));
 		}
-	    
-	    
-	
+		System.out.println(userDto);
+
 		userService.addUser(userDto);
-		
-		logger.info(userDto.toString());
+		logger.info("register新增成功");
 		return ResponseEntity.ok(ApiResponse.success("新增成功", null));
 	}
 
