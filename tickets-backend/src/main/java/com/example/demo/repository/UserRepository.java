@@ -14,11 +14,20 @@ import com.example.demo.model.entity.user.User;
 @Qualifier("userJPA")
 public interface UserRepository  extends JpaRepository<User, Integer>{
 
+	//檢查user資料是否和資料庫重複
 	@Query("SELECT u FROM User u WHERE u.userName = :userName OR u.userPhone = :userPhone OR u.userEmail = :userEmail OR u.userIdCard = :userIdCard")
-	List<User> findConflictingUsers(@Param("userName") String userName,
+	List<User> findDuplicatesUsers(@Param("userName") String userName,
 	                                 @Param("userPhone") String userPhone,
 	                                 @Param("userEmail") String userEmail,
 	                                 @Param("userIdCard") String userIdCard);
 	
 	
+	Boolean existsByUserName(String userName);
+	
+	
+	@Query("select u.salt from User u where u.userName=:userName")
+	String findSaltByUserName(@Param("userName") String userName);
+	
+	@Query("select u.userPwdHash from User u where u.userName=:userName")
+	String findHashPasswordByUserName(@Param("userName") String userName);
 }

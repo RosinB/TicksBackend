@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.UserMapper;
+import com.example.demo.model.dto.login.LoginDto;
 import com.example.demo.model.dto.user.UserDto;
 import com.example.demo.model.entity.user.User;
 import com.example.demo.repository.UserRepository;
@@ -31,13 +32,36 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserMapper userMapper;
-
+	
+//查全部使用者
 	public List<UserDto> getAllUser() {
 
 		return userRepositoryJdbc.findAll().stream().map(userMapper::toDto).collect(Collectors.toList());
 
 	}
 
+
+	@Override
+	public LoginDto checkUserLogin(LoginDto loginDto) {
+		
+		if(userRepository.existsByUserName(loginDto.getUserName())) {
+			
+			String salt=userRepository.findSaltByUserName(loginDto.getUserName());
+			String HashPassword=Hash.getHash(loginDto.getPassword(), salt);		
+			if(userRepository.findHashPasswordByUserName(loginDto.getUserName()).equals(HashPassword))
+			{		
+				return loginDto;
+			}	
+		}
+		
+		return null;
+	}
+
+
+
+
+
+	//新增使用者
 	@Override
 	public void addUser(UserDto userDto) {
 
@@ -47,7 +71,7 @@ public class UserServiceImpl implements UserService {
 		int a = userRepositoryJdbc.addUser(user);
 		System.out.println(a);
 	}
-
+//檢查註冊使用者資料是否重複
 	@Override
 	public Map<String, String> validateUserInput(UserDto userDto) {
 		// 用MAP去存重複資訊
@@ -55,10 +79,10 @@ public class UserServiceImpl implements UserService {
 
 		
 		
-		List<User> conflictingUsers = userRepository.findConflictingUsers(userDto.getUserName(), userDto.getUserPhone(),
+		List<User> conDuplicatesUsers = userRepository.findDuplicatesUsers(userDto.getUserName(), userDto.getUserPhone(),
 				userDto.getUserEmail(), userDto.getUserIdCard());
 
-		for (User user : conflictingUsers) {
+		for (User user : conDuplicatesUsers) {
 			if (user.getUserName().equals(userDto.getUserName())) {
 				errors.put("userName", "帳號重複");
 			}
