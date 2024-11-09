@@ -2,6 +2,7 @@ package com.example.demo.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -33,12 +34,25 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addUser(UserDto userDto) {
-		
-		
+
 		User user=userMapper.toEnity(userDto);
 		user.setSalt(Hash.getSalt());
 		user.setUserPwdHash(Hash.getHash(userDto.getPassword(), user.getSalt()));
 		int a=userRepositoryJdbc.addUser(user);
-		System.out.println(a);
+		System.out.println(a);	
+	}
+
+	@Override
+	public Map<String, String> validateUserInput(UserDto userDto) {
+
 		
-	}}
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+}
