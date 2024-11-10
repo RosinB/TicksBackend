@@ -64,9 +64,8 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 		}
 		
 		return jdbcTemplate.update(saveSql,user.getUserName() ,user.getUserPwdHash(),
-										   user.getSalt()	  ,user.getUserPhone(),
-										   user.getUserEmail(),user.getUserIdCard()
-										   ,user.getUserBirthDate());
+										   user.getUserPhone(),user.getUserEmail()
+										   ,user.getUserIdCard(),user.getUserBirthDate());
 		
 	}
 

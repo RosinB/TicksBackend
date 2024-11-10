@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.dto.login.LoginDto;
+import com.example.demo.model.dto.login.LoginResultDto;
 import com.example.demo.model.dto.user.UserDto;
 import com.example.demo.model.entity.user.User;
 import com.example.demo.repository.UserRepository;
@@ -29,7 +32,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	@Qualifier("userJPA")
 	UserRepository userRepository;
-
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@Autowired
 	UserMapper userMapper;
 	
@@ -42,19 +47,27 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public LoginDto checkUserLogin(LoginDto loginDto) {
-		
-		if(userRepository.existsByUserName(loginDto.getUserName())) {
-			
-			String salt=userRepository.findSaltByUserName(loginDto.getUserName());
-			String HashPassword=Hash.getHash(loginDto.getPassword(), salt);		
-			if(userRepository.findHashPasswordByUserName(loginDto.getUserName()).equals(HashPassword))
-			{		
-				return loginDto;
-			}	
+	public  LoginResultDto checkUserLogin(LoginDto loginDto) {
+	
+		if(!userRepository.existsByUserName(loginDto.getUserName())) {
+			//找到salt
+			return new LoginResultDto(false,"帳號不存在",null);	
 		}
 		
-		return null;
+		
+		String storeHashPassword=userRepository.findHashPasswordByUserName(loginDto.getUserName());
+		
+		
+		if(!passwordEncoder.matches(loginDto.getPassword(), storeHashPassword))
+		{		
+			return new LoginResultDto(false,"密碼錯誤",null);
+		}
+		
+		loginDto.setUserId(userRepository.findIdByUserName(loginDto.getUserName()));
+		
+		
+		
+		return new LoginResultDto(true,"登入正確",loginDto);
 	}
 
 
@@ -65,11 +78,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addUser(UserDto userDto) {
 
+		
+		
+		
 		User user = userMapper.toEnity(userDto);
-		user.setSalt(Hash.getSalt());
-		user.setUserPwdHash(Hash.getHash(userDto.getPassword(), user.getSalt()));
+		user.setUserPwdHash(passwordEncoder.encode(userDto.getPassword()));
 		int a = userRepositoryJdbc.addUser(user);
-		System.out.println(a);
+		System.out.println("在addUser新增:"+a+"筆。");
 	}
 //檢查註冊使用者資料是否重複
 	@Override

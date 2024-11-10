@@ -28,8 +28,6 @@ public class User {
 	@Column(name = "user_pswd_hash")
 	private String userPwdHash;
 
-	@Column(name = "user_salt")
-	private String salt;
 
 	@Column(name = "user_phone")
 	private String userPhone;
