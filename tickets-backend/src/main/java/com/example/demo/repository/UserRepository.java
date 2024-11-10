@@ -24,6 +24,10 @@ public interface UserRepository  extends JpaRepository<User, Integer>{
 	
 	Boolean existsByUserName(String userName);
 	
+	@Query("select u from User u where u.userName = :userName")
+	User findUserByUserName(@Param("userName")String userName);
+	
+	
 	
 	@Query("select u.userPwdHash from User u where u.userName=:userName")
 	String findHashPasswordByUserName(@Param("userName") String userName);

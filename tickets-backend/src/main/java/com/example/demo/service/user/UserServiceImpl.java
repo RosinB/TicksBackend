@@ -45,7 +45,27 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
+@Override
+	public UserDto getUser(String userName) {
 
+	User user=userRepository.findUserByUserName(userName);
+	
+	
+	UserDto userDto=userMapper.toDto(user);
+	System.out.println(userDto);
+	
+	
+	return userDto;
+	}
+
+
+
+
+
+
+
+	//登入驗證
 	@Override
 	public  LoginResultDto checkUserLogin(LoginDto loginDto) {
 	

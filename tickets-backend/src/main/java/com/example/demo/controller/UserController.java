@@ -13,15 +13,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.filter.JwtUtil;
 import com.example.demo.model.dto.login.LoginDto;
 import com.example.demo.model.dto.login.LoginResultDto;
 import com.example.demo.model.dto.user.UserDto;
 import com.example.demo.service.user.UserService;
 import com.example.demo.util.ApiResponse;
-import com.example.demo.util.JwtUtil;
 
 @RestController
 @RequestMapping("/user")
@@ -33,7 +34,7 @@ public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-//登入查詢
+	//登入查詢
 	@PostMapping("/login")
 	public ResponseEntity<ApiResponse<Object>> loginUser(@RequestBody LoginDto loginDto) {
 
@@ -64,13 +65,25 @@ public class UserController {
 	    return ResponseEntity.ok(ApiResponse.success("登入成功", responseBody));
 	}
 
-//	列印出全部User
+	//	列印出全部User
 	@GetMapping("/all")
 	public ResponseEntity<ApiResponse<Object>> getAllUser() {
 
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", userService.getAllUser()));
 	}
 
+	@GetMapping("/userUpdate")
+	public ResponseEntity<ApiResponse<Object>> getUser(@RequestHeader("Authorization") String token){
+		token=token.replace("Bearer ", "");
+		String userName = JwtUtil.validateToken(token);
+		UserDto userDto=userService.getUser(userName);
+
+		return ResponseEntity.ok(ApiResponse.success("查詢單筆成功", userDto));
+	}
+	
+	
+	
+	
 	// User註冊和檢查是否重複
 	@PostMapping("/register")
 	public ResponseEntity<ApiResponse<Object>> addUser(@RequestBody UserDto userDto) {
@@ -88,4 +101,5 @@ public class UserController {
 		return ResponseEntity.ok(ApiResponse.success("新增成功", userDto));
 	}
 
+	
 }

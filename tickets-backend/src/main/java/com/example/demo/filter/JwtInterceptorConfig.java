@@ -17,6 +17,7 @@ public class JwtInterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
                 .addPathPatterns("/user/all") // 攔截的路徑
+                .addPathPatterns("/user/userUpdate")
                 .excludePathPatterns("/login", "/public/**"); // 排除不需要攔截的路徑
     }
 }

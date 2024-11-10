@@ -5,8 +5,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.example.demo.util.JwtUtil;
-
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
 

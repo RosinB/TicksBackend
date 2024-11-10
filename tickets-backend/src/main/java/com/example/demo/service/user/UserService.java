@@ -16,6 +16,7 @@ public interface UserService {
 	
 	LoginResultDto checkUserLogin(LoginDto loginDto);
 
+	UserDto getUser(String userName);
 	
 	Map<String,String> validateUserInput(UserDto userDto);
 	
