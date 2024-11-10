@@ -2,6 +2,7 @@ package com.example.demo.util;
 
 import java.util.Date;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,6 +13,7 @@ public class JwtUtil {
 
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); // 密鑰
     private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24; // 1天
+
 
     // 生成 Token
     public static String generateToken(String username) {
@@ -31,5 +33,20 @@ public class JwtUtil {
                 .parseClaimsJws(token) //如果 Token 無效（例如簽名錯誤、過期等），會拋出 JwtException
                 .getBody() //提取 Token 的主體部分（Payload），其中包含設置的數據，例如用戶名、過期時間等
                 .getSubject(); // 返回用戶名
+        
     }
-}
+ // 驗證 Token 是否有效
+    public static boolean isTokenValid(String token) {
+        try {
+            Jwts.parserBuilder() // 使用新的解析器
+                .setSigningKey(key) // 設置簽名密鑰
+                .build() // 構建解析器
+                .parseClaimsJws(token); // 驗證簽名並解析
+            return true; // 驗證通過，返回 true
+        } catch (ExpiredJwtException e) {
+            System.out.println("Token 已過期");
+        } catch (Exception e) {
+            System.out.println("Token 無效");
+        }
+        return false; // 驗證失敗，返回 false
+    }}
