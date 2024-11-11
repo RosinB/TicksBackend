@@ -20,7 +20,7 @@ public class UserDto {
 
 	private String password;
 	
-	@Pattern(regexp = "^[+]?\\d{1,15}$", message = "電話號碼格式無效")
+	@Pattern(regexp = "^[+]?\\d{10}$", message = "電話號碼必須是 10 位數字")
 	private String userPhone;
    
 	@Email(message = "郵箱格式不正確")
