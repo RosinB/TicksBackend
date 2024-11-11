@@ -13,7 +13,6 @@ public class JwtInterceptor implements HandlerInterceptor {
             throws Exception {
         // 從 Header 中獲取 Token
         String token = request.getHeader("Authorization");
-        System.out.println("這是token的標頭"+token);
         // 檢查 Token 是否存在
         if (token == null || !token.startsWith("Bearer")) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

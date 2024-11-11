@@ -21,8 +21,11 @@ import com.example.demo.filter.JwtUtil;
 import com.example.demo.model.dto.login.LoginDto;
 import com.example.demo.model.dto.login.LoginResultDto;
 import com.example.demo.model.dto.user.UserDto;
+import com.example.demo.model.dto.user.UserUpdateDto;
 import com.example.demo.service.user.UserService;
 import com.example.demo.util.ApiResponse;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
@@ -65,13 +68,14 @@ public class UserController {
 	    return ResponseEntity.ok(ApiResponse.success("登入成功", responseBody));
 	}
 
-	//	列印出全部User
+	//列印出全部User
 	@GetMapping("/all")
 	public ResponseEntity<ApiResponse<Object>> getAllUser() {
 
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", userService.getAllUser()));
 	}
 
+	//透過token拿取userName去查詢userDto資料
 	@GetMapping("/userUpdate")
 	public ResponseEntity<ApiResponse<Object>> getUser(@RequestHeader("Authorization") String token){
 		token=token.replace("Bearer ", "");
@@ -84,12 +88,27 @@ public class UserController {
 	
 	
 	
+	@PostMapping("/userUpdate")
+	public ResponseEntity<ApiResponse<Object>> updateUser( @RequestBody UserUpdateDto userUpdateDto){
+		
+		String message=userService.updateUser(userUpdateDto);
+		
+		logger.info(message);
+		
+		return ResponseEntity.ok(ApiResponse.success("收到", message));
+	}
+	
+	
+	
+	
+	
+	
 	// User註冊和檢查是否重複
 	@PostMapping("/register")
-	public ResponseEntity<ApiResponse<Object>> addUser(@RequestBody UserDto userDto) {
-	    System.out.println("請求已進入控制器");
-
-		System.out.println(userDto);
+	public ResponseEntity<ApiResponse<Object>> addUser(@Valid @RequestBody UserDto userDto) {
+		
+		
+		System.out.println(userDto.getUserName());
 		Map<String, String> errors = userService.validateUserInput(userDto);
 
 		if (!errors.isEmpty()) {
