@@ -24,9 +24,6 @@ public class UserMapper {
 //		Dto轉Enity
 		return modelMapper.map(userdto,User.class);
 	}
-	
-	
-	
-	
+
 	
 }
