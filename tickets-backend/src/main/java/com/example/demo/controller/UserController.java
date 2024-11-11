@@ -89,7 +89,7 @@ public class UserController {
 	
 	
 	@PostMapping("/userUpdate")
-	public ResponseEntity<ApiResponse<Object>> updateUser( @RequestBody UserUpdateDto userUpdateDto){
+	public ResponseEntity<ApiResponse<Object>> updateUser(@Valid @RequestBody UserUpdateDto userUpdateDto){
 		
 		String message=userService.updateUser(userUpdateDto);
 		
