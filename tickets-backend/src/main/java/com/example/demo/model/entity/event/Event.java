@@ -45,7 +45,7 @@ public class Event {
 	private String eventType;
 
 	@Column(name = "event_total_tickets")
-	private Integer eventTotalTckets;
+	private Integer eventTotalTickets;
 
 	@Column(name = "event_status")
 	private String eventStatus;
