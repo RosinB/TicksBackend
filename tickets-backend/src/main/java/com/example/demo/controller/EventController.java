@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.event.EventDto;
@@ -13,13 +14,13 @@ import com.example.demo.service.event.EventService;
 import com.example.demo.util.ApiResponse;
 
 @RestController
-@Controller
+@RequestMapping("/event")
 public class EventController {
 
 	@Autowired
 	EventService eventService;
 	
-	@GetMapping 
+	@GetMapping("/all")
 	ResponseEntity<ApiResponse<Object>> getEvent(){
 		
 		List<EventDto> eventDto=eventService.findAllEvent();
