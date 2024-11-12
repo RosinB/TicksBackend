@@ -14,8 +14,9 @@ import com.example.demo.model.dto.event.*;
 @Qualifier("eventJPA")
 public interface EventRepository extends JpaRepository<Event, Integer>{
 	
-//	@Query("select e from Event e ")
-//	List<EventDto> findAllEvent();
+
+	
+	
 	
 
 }

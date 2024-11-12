@@ -1,7 +1,8 @@
 package com.example.demo.model.entity.event;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.persistence.Id;
 
@@ -33,8 +34,11 @@ public class Event {
 	private String eventDescription;
 
 	@Column(name = "event_date")
-	private LocalDateTime eventDate;
+	private LocalDate eventDate;
 
+	@Column(name="event_time")
+	private LocalTime eventTime;
+	
 	@Column(name = "event_price")
 	private BigDecimal eventPrice;
 
