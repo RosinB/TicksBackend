@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
+
+//用於列印首頁和index的圖片
 public class EventPicDto {
 
 

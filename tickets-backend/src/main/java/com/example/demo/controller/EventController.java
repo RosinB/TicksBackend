@@ -34,10 +34,11 @@ public class EventController {
 		logger.info("進入到/event/all，並查詢到:"+eventDto);
 		return ResponseEntity.ok(ApiResponse.success("查詢所有活動成功", eventDto));
 	}
+
 	
+	//主要列印首頁和List的圖片
 	@GetMapping("/ticketAllPic")
 	ResponseEntity<ApiResponse<Object>> getEventPic(){
-		System.out.println("進到Pic");
 		List<EventPicDto> eventPicDtos=eventService.findAllEventPic();
 		
 		return ResponseEntity.ok(ApiResponse.success("查詢圖片成功", eventPicDtos));

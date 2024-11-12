@@ -50,7 +50,7 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 	        eventPicDto.setEventTicketList(rs.getString("eventTicketList"));
 	        eventPicDto.setEventDate(rs.getObject("eventDate", LocalDate.class)); // 手動映射 LocalDate
 	        eventPicDto.setEventName(rs.getString("eventName"));
-	        return eventPicDto;  
+	        return eventPicDto;  //這一行會自己加到List query是回傳一個list
 	    });
 	    
 	}
