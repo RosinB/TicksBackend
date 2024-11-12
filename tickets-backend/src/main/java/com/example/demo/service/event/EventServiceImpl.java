@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.EventMapper;
 import com.example.demo.model.dto.event.EventDto;
+import com.example.demo.model.dto.event.EventPicDto;
 import com.example.demo.repository.EventRepository;
 import com.example.demo.repository.event.EventRespositoryJdbc;
 
@@ -47,6 +48,15 @@ public class EventServiceImpl implements EventService {
 		
 		logger.info("在service層，找到"+eventRespositoryJdbc.findEventDetail(eventName));
 		return eventRespositoryJdbc.findEventDetail(eventName);
+
+	}
+
+
+
+	@Override
+	public List<EventPicDto> findAllEventPic() {
+		
+		return 	eventRespositoryJdbc.findAllEventPics();
 
 	}
 	

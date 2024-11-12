@@ -1,5 +1,8 @@
 package com.example.demo.repository.event;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -11,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.dto.event.EventDto;
+import com.example.demo.model.dto.event.EventPicDto;
 
 @Repository
 @Qualifier("eventJDBC")
@@ -20,6 +24,41 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+
+	
+	
+	
+	
+	
+	@Override
+	public List<EventPicDto> findAllEventPics() {
+	    String sql = """
+	        select p.pic_event_ticket as eventTicketPic,
+	               p.pic_event_list as eventTicketList,
+	               e.event_date as eventDate,
+	               p.event_name as eventName
+	        from pic p
+	        join event e
+	        on p.event_name = e.event_name
+	    """.trim();
+	    
+	    
+	    return jdbcTemplate.query(sql, (rs, rowNum) -> 
+	    {
+	        EventPicDto eventPicDto = new EventPicDto();
+	        eventPicDto.setEventTicketPic(rs.getString("eventTicketPic"));
+	        eventPicDto.setEventTicketList(rs.getString("eventTicketList"));
+	        eventPicDto.setEventDate(rs.getObject("eventDate", LocalDate.class)); // 手動映射 LocalDate
+	        eventPicDto.setEventName(rs.getString("eventName"));
+	        return eventPicDto;  
+	    });
+	    
+	}
+
+
+
+
+
 
 	@Override
 	public Optional<EventDto> findEventDetail(String eventName) {

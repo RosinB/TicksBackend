@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.event.EventDto;
+import com.example.demo.model.dto.event.EventPicDto;
 import com.example.demo.service.event.EventService;
 import com.example.demo.util.ApiResponse;
 
@@ -32,6 +33,17 @@ public class EventController {
 		List<EventDto> eventDto=eventService.findAllEvent();
 		logger.info("進入到/event/all，並查詢到:"+eventDto);
 		return ResponseEntity.ok(ApiResponse.success("查詢所有活動成功", eventDto));
+	}
+	
+	@GetMapping("/ticketAllPic")
+	ResponseEntity<ApiResponse<Object>> getEventPic(){
+		System.out.println("進到Pic");
+		List<EventPicDto> eventPicDtos=eventService.findAllEventPic();
+		
+		return ResponseEntity.ok(ApiResponse.success("查詢圖片成功", eventPicDtos));
+		
+		
+		
 	}
 	
 	
