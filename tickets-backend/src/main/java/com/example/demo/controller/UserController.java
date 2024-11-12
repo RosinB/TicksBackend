@@ -39,7 +39,7 @@ public class UserController {
 
 	//登入查詢
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<Object>> loginUser(@RequestBody LoginDto loginDto) {
+	public ResponseEntity<ApiResponse<Object>> postLoginUser(@RequestBody LoginDto loginDto) {
 
 		LoginResultDto loginSessionDto = userService.checkUserLogin(loginDto);
 
@@ -89,7 +89,7 @@ public class UserController {
 	
 	
 	@PostMapping("/userUpdate")
-	public ResponseEntity<ApiResponse<Object>> updateUser(@Valid @RequestBody UserUpdateDto userUpdateDto){
+	public ResponseEntity<ApiResponse<Object>> postUpdateUser(@Valid @RequestBody UserUpdateDto userUpdateDto){
 		
 		String message=userService.updateUser(userUpdateDto);
 		
@@ -105,7 +105,7 @@ public class UserController {
 	
 	// User註冊和檢查是否重複
 	@PostMapping("/register")
-	public ResponseEntity<ApiResponse<Object>> addUser(@Valid @RequestBody UserDto userDto) {
+	public ResponseEntity<ApiResponse<Object>> postAddUser(@Valid @RequestBody UserDto userDto) {
 		
 		
 		System.out.println(userDto.getUserName());

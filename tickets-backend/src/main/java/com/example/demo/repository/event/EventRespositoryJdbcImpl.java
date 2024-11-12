@@ -61,7 +61,7 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 
 
 	@Override
-	public Optional<EventDto> findEventDetail(String eventName) {
+	public Optional<EventDto> findEventDetailByEventName(String eventName) {
 		String sql = """
 				SELECT
 				    e.event_id AS eventId,

@@ -11,7 +11,7 @@ public interface EventService {
 	//查詢全部活動
 	List<EventDto> findAllEvent();
 
-	Optional<EventDto> getEventDetailsByName(String eventName);
+	Optional<EventDto>findEventDetails(String eventName);
 
 	List<EventPicDto> findAllEventPic();
 	
