@@ -50,9 +50,8 @@ public class EventController {
 	
 	
 	//獲得演唱會資訊
-	@GetMapping("/ticket")
-	ResponseEntity<ApiResponse<Object>> getEventDetails(@RequestParam("eventName") String eventName){
-		System.out.println(eventName);
+	@GetMapping("/ticket/{eventId}")
+	ResponseEntity<ApiResponse<Object>> getEventDetails(@PathVariable("eventId") String eventName){
 		Optional<EventDto> eventDto=eventService.findEventDetails(eventName);
 		logger.info("登入到/event/ticket， 並查詢到:"+eventDto);
 		if(eventDto.isEmpty())

@@ -43,11 +43,35 @@ public class EventServiceImpl implements EventService {
 
 
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
-	public Optional<EventDto> findEventDetails(String eventName) {
+	public Integer findEventId(String Name) {
 		
-		logger.info("在service層，找到"+eventRespositoryJdbc.findEventDetailByEventName(eventName));
-		return eventRespositoryJdbc.findEventDetailByEventName(eventName);
+		return eventRepository.findEventIdByEventName(Name);
+	}
+
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public Optional<EventDto> findEventDetails(String eventId) {
+		
+		logger.info("在service層，找到"+eventRespositoryJdbc.findEventDetailByEventId(eventId));
+		return eventRespositoryJdbc.findEventDetailByEventId(eventId);
 
 	}
 

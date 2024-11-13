@@ -9,8 +9,10 @@ import lombok.Data;
 //用於列印首頁和index的圖片
 public class EventPicDto {
 
-
+	private Integer eventId;
+	
 	private String eventName;
+	
 	private LocalDate eventDate;
 	//售票網站圖片和首頁圖片
 	private String eventTicketPic;

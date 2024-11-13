@@ -9,7 +9,7 @@ import com.example.demo.model.dto.event.EventPicDto;
 public interface EventRespositoryJdbc {
 	
 	
-	Optional<EventDto> findEventDetailByEventName(String eventName);
+	Optional<EventDto> findEventDetailByEventId(String eventId);
 	
 	List<EventPicDto> findAllEventPics();
 }

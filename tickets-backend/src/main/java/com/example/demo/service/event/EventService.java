@@ -3,6 +3,8 @@ package com.example.demo.service.event;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Query;
+
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.event.EventPicDto;
 
@@ -12,6 +14,9 @@ public interface EventService {
 	List<EventDto> findAllEvent();
 
 	Optional<EventDto>findEventDetails(String eventName);
+	
+	Integer findEventId(String Name);
+
 
 	List<EventPicDto> findAllEventPic();
 	

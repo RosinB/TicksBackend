@@ -16,7 +16,8 @@ public interface EventRepository extends JpaRepository<Event, Integer>{
 	
 
 	
-	
+	Integer findEventIdByEventName(String Name);
+
 	
 
 }

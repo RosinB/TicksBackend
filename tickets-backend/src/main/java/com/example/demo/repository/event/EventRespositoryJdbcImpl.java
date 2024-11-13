@@ -33,19 +33,21 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 	@Override
 	public List<EventPicDto> findAllEventPics() {
 	    String sql = """
-	        select p.pic_event_ticket as eventTicketPic,
+	        select p.pic_id as eventId,
+	    		   p.pic_event_ticket as eventTicketPic,
 	               p.pic_event_list as eventTicketList,
 	               e.event_date as eventDate,
-	               p.event_name as eventName
+	               e.event_name as eventName
 	        from pic p
 	        join event e
-	        on p.event_name = e.event_name
+	        on p.event_id = e.event_id
 	    """.trim();
 	    
 	    
 	    return jdbcTemplate.query(sql, (rs, rowNum) -> 
 	    {
 	        EventPicDto eventPicDto = new EventPicDto();
+	        eventPicDto.setEventId(rs.getInt("eventId"));
 	        eventPicDto.setEventTicketPic(rs.getString("eventTicketPic"));
 	        eventPicDto.setEventTicketList(rs.getString("eventTicketList"));
 	        eventPicDto.setEventDate(rs.getObject("eventDate", LocalDate.class)); // 手動映射 LocalDate
@@ -61,7 +63,7 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 
 
 	@Override
-	public Optional<EventDto> findEventDetailByEventName(String eventName) {
+	public Optional<EventDto> findEventDetailByEventId(String eventId) {
 		String sql = """
 				SELECT
 				    e.event_id AS eventId,
@@ -84,13 +86,13 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 				JOIN
 				    pic p
 				ON
-				    e.event_name = p.event_name -- 連接 pic 表和 event 表
+				    e.event_id = p.event_id -- 連接 pic 表和 event 表
 				WHERE
-				    e.event_name = ?;
+				    e.event_id = ?;
 								""".trim();
 		try {
 			EventDto eventDto = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(EventDto.class),
-					eventName);
+					eventId);
 			return Optional.of(eventDto);
 		} catch (Exception e) {
 			logger.info(e.toString());
