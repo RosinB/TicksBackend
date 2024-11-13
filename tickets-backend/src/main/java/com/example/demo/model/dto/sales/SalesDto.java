@@ -21,7 +21,7 @@ public class SalesDto {
 	//活動總票數
 	private Integer eventTotalTickets;
 	
-	//剩餘的票
+	//銷售票數
 	private Integer salesSold;
 	
 }

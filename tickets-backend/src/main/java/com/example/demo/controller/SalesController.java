@@ -23,7 +23,7 @@ public class SalesController {
 	
 	
 	
-	
+	//獲取演唱會的銷售資訊
 	@GetMapping("/goticket/{eventId}")
 	ResponseEntity<ApiResponse<Object>> getAllTickets(@PathVariable("eventId") Integer eventId){
 		
@@ -36,4 +36,14 @@ public class SalesController {
 		
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", salesDto));
 	}
+
+	
+	ResponseEntity<ApiResponse<Object>> postButTicket(Integer tickets){
+		
+		
+		return null;
+	}
+	
+
+
 }
