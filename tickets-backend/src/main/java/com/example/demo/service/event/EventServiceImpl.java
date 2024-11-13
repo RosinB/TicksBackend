@@ -70,7 +70,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public Optional<EventDto> findEventDetails(String eventId) {
 		
-		logger.info("在service層，找到"+eventRespositoryJdbc.findEventDetailByEventId(eventId));
+	//	logger.info("在service層，找到"+eventRespositoryJdbc.findEventDetailByEventId(eventId));
 		return eventRespositoryJdbc.findEventDetailByEventId(eventId);
 
 	}

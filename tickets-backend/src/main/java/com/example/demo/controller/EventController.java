@@ -31,7 +31,7 @@ public class EventController {
 	@GetMapping("/all")
 	ResponseEntity<ApiResponse<Object>> getEvent(){		
 		List<EventDto> eventDto=eventService.findAllEvent();
-		logger.info("進入到/event/all，並查詢到:"+eventDto);
+//		logger.info("進入到/event/all，並查詢到:"+eventDto);
 		return ResponseEntity.ok(ApiResponse.success("查詢所有活動成功", eventDto));
 	}
 
@@ -53,7 +53,6 @@ public class EventController {
 	@GetMapping("/ticket/{eventId}")
 	ResponseEntity<ApiResponse<Object>> getEventDetails(@PathVariable("eventId") String eventName){
 		Optional<EventDto> eventDto=eventService.findEventDetails(eventName);
-		logger.info("登入到/event/ticket， 並查詢到:"+eventDto);
 		if(eventDto.isEmpty())
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.error(404, eventName, null));
 
