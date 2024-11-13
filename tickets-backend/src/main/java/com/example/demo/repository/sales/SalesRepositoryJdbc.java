@@ -6,7 +6,7 @@ import com.example.demo.model.dto.sales.SalesDto;
 
 public interface SalesRepositoryJdbc {
 
-	Optional<SalesDto> findSalesDetailByEventId(Integer eventId);
+	SalesDto findSalesDetailByEventId(Integer eventId);
 	
 	
 }
