@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.dto.sales.BuyTicketDto;
+import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.model.dto.sales.SalesDto;
 import com.example.demo.model.dto.ticket.TicketSectionDto;
 import com.example.demo.service.sales.SalesService;
@@ -37,18 +36,18 @@ public class SalesController {
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", salesDto));
 	}
 
-	
-	@PostMapping("/goticket/buy")
-	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody BuyTicketDto buyTicketDto) {
-	    System.out.println("接收到的數據: " + buyTicketDto);
+//處理售票狀況 這在tiecketsales
+	@PostMapping("/goticket/area/buy")
+	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody PostTicketSalesDto postTicketSalesDto) {
+	    System.out.println("接收到的數據: " + postTicketSalesDto);
 
-	    return ResponseEntity.ok(ApiResponse.success("傳遞成功", buyTicketDto));
+	    return ResponseEntity.ok(ApiResponse.success("傳遞成功", postTicketSalesDto));
 	}
 	
 	
 	
 	
-	//獲得演唱會區域價錢
+	//獲得演唱會區域價錢 這是在ticketSection那頁
     @GetMapping("/goticket/area/{eventId}") 
     public ResponseEntity<ApiResponse<Object>> getTicketSection(@PathVariable("eventId") Integer eventId) {
     	TicketSectionDto ticketSectionDto=salesService.getTicketSection(eventId);
