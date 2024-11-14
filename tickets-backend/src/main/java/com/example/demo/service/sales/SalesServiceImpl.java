@@ -52,7 +52,6 @@ public class SalesServiceImpl  implements SalesService{
 		PicDto picDto = eventRespositoryJdbc.findPicByEventId(eventId);
 		
 		//三次查詢
-		System.out.println("//三次查詢");
 		Optional<EventDto> eventDtos =eventRespositoryJdbc.findEventDetailByEventId(eventId);
 		
 		EventDto eventDto = eventDtos.get();
@@ -68,12 +67,15 @@ public class SalesServiceImpl  implements SalesService{
 		
 		//演唱會日期
 		ticketSectionDto.setEventDate(eventDto.getEventDate());
+	
 		
 		//演唱會時間
-		ticketSectionDto.setEvetTime(eventDto.getEvenTime());
-
+		ticketSectionDto.setEventTime(eventDto.getEventTime());
+		System.out.println(eventDto.getEventTime());
 		//地點
 		ticketSectionDto.setEventLoaction(eventDto.getEventLocation());
+		
+		ticketSectionDto.setHostName(eventDto.getHostName());
 		
 		//票價資訊
 		ticketSectionDto.setTicketDto(ticketDto);

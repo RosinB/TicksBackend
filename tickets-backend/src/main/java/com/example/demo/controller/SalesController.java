@@ -37,6 +37,7 @@ public class SalesController {
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", salesDto));
 	}
 
+	
 	@PostMapping("/goticket/buy")
 	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody BuyTicketDto buyTicketDto) {
 	    System.out.println("接收到的數據: " + buyTicketDto);

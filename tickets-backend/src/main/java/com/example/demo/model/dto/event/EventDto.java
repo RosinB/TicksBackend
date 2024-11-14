@@ -29,7 +29,7 @@ public class EventDto {
 	private LocalDate eventDate;
 
 	//演唱會時間
-	private LocalTime evenTime;
+	private LocalTime eventTime;
 	
 	//演唱會地點
 	private String eventLocation;

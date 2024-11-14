@@ -23,13 +23,13 @@ public class TicketSectionDto {
 	private String eventName;
 	
 	//主辦名字
-	private Integer hostName;
+	private String hostName;
 	
 	//舉辦日期
 	private LocalDate eventDate;
 	
 	//舉辦時間
-	private LocalTime evetTime;
+	private LocalTime eventTime;
 	
 	//活動地點
 	private String eventLoaction;
@@ -40,6 +40,9 @@ public class TicketSectionDto {
 	
 	//座位圖
 	private String ticketPicSet;
+	
+	//判斷
+	private Boolean ticketIsAvailable;
 	
 	
 	//票價訊息
