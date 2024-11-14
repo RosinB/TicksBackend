@@ -39,17 +39,11 @@ public class Event {
 	@Column(name="event_time")
 	private LocalTime eventTime;
 	
-	@Column(name = "event_price")
-	private BigDecimal eventPrice;
-
 	@Column(name = "event_location")
 	private String eventLocation;
 
 	@Column(name = "event_type")
 	private String eventType;
-
-	@Column(name = "event_total_tickets")
-	private Integer eventTotalTickets;
 
 	@Column(name = "event_status")
 	private String eventStatus;
@@ -57,4 +51,6 @@ public class Event {
 	@Column(name = "host_id")
 	private Integer hostId;
 
+	
+	
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.event.EventPicDto;
+import com.example.demo.model.dto.pic.PicDto;
 
 @Repository
 @Qualifier("eventJDBC")
@@ -58,12 +59,32 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 	}
 
 
+	@Override
+	public PicDto findPicByEventId(Integer eventId) {
+		String sql="""
+				select 	p.pic_id as picId,
+						p.pic_event_ticket as picEventTicket,
+						p.pic_event_list as picEventList,
+						p.pic_index as picIndex
+				from pic p
+				where p.event_id=?
+	
+				
+				""".trim();
+
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(PicDto.class),eventId);
+	}
+	
+	
+	
+	
+
 
 
 
 
 	@Override
-	public Optional<EventDto> findEventDetailByEventId(String eventId) {
+	public Optional<EventDto> findEventDetailByEventId(Integer eventId) {
 		String sql = """
 				SELECT
 				    e.event_id AS eventId,
@@ -73,8 +94,6 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 				    e.event_description AS eventDescription,
 				    e.event_date AS eventDate,
 				    e.event_time AS eventTime,
-				    e.event_price AS eventPrice,
-				    e.host_id AS hostId,
 				    h.host_name AS hostName,
 				    p.pic_event_ticket AS eventTicketPic
 				FROM

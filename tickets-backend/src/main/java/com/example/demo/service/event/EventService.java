@@ -13,7 +13,7 @@ public interface EventService {
 	//查詢全部活動
 	List<EventDto> findAllEvent();
 
-	Optional<EventDto>findEventDetails(String eventName);
+	Optional<EventDto>findEventDetails(Integer eventId);
 	
 	Integer findEventId(String Name);
 

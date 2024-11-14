@@ -20,13 +20,13 @@ public class Sales {
 	@Column(name="sales_id")
 	private Integer salesId;
 	
-	@Column(name="sales_remaining")
-	private Integer salesRemaining;
 
 	@Column(name ="sales_status")
 	private String salesStatus;
 	
 	@Column(name ="event_id")
 	private Integer eventId;
+	
+
 	
 }

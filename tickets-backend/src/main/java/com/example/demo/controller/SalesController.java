@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.sales.BuyTicketDto;
 import com.example.demo.model.dto.sales.SalesDto;
+import com.example.demo.model.dto.ticket.TicketSectionDto;
 import com.example.demo.service.sales.SalesService;
 import com.example.demo.util.ApiResponse;
 
@@ -24,18 +25,15 @@ public class SalesController {
 
 	@Autowired
 	SalesService salesService;
-	
-	
-	
 	//獲取演唱會的銷售資訊
 	@GetMapping("/goticket/{eventId}")
-	ResponseEntity<ApiResponse<Object>> getAllTickets(@PathVariable("eventId") Integer eventId){		
+	public ResponseEntity<ApiResponse<Object>> getAllTickets(@PathVariable("eventId") Integer eventId){	
 		SalesDto salesDto=salesService.getTickets(eventId);
-		
+		System.out.println("這是salesDTo"+salesDto);
+
 		if(Optional.of(salesDto).isEmpty()) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error(400, "查詢失敗 Saels查詢不到", null));	
 		}
-		
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", salesDto));
 	}
 
@@ -46,6 +44,19 @@ public class SalesController {
 	    return ResponseEntity.ok(ApiResponse.success("傳遞成功", buyTicketDto));
 	}
 	
+	
+	
+	
+	//獲得演唱會區域價錢
+    @GetMapping("/goticket/area/{eventId}") 
+    public ResponseEntity<ApiResponse<Object>> getTicketSection(@PathVariable("eventId") Integer eventId) {
+    	TicketSectionDto ticketSectionDto=salesService.getTicketSection(eventId);
+    	System.out.println("進入到getticketsection"+ticketSectionDto);
 
-
+		return ResponseEntity.ok(ApiResponse.success("票價區位獲取成功", ticketSectionDto));
+		
+	}
+	
+	
+	
 }

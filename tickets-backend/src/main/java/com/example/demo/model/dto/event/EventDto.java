@@ -31,23 +31,12 @@ public class EventDto {
 	//演唱會時間
 	private LocalTime evenTime;
 	
-	//演唱會票價
-	private BigDecimal eventPrice;
-
 	//演唱會地點
 	private String eventLocation;
 
 	//演唱會網站圖片
 	private String eventTicketPic;
 	
-	//演唱會種類
-	//private String eventType;
-
-	//演唱會人數
-	//private Integer eventTotalTickets;
-
-	//演唱會狀態
-	//private String eventStatus;
 
 	
 	//主辦id

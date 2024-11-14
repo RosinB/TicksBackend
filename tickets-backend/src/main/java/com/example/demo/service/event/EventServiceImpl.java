@@ -39,17 +39,7 @@ public class EventServiceImpl implements EventService {
 		return eventRepository.findAll().stream()
 							  .map(eventMapper::toDto)
 							  .collect(Collectors.toList());
-	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 	
 	@Override
 	public Integer findEventId(String Name) {
@@ -59,16 +49,8 @@ public class EventServiceImpl implements EventService {
 
 
 
-
-
-
-
-
-
-
-
 	@Override
-	public Optional<EventDto> findEventDetails(String eventId) {
+	public Optional<EventDto> findEventDetails(Integer eventId) {
 		
 	//	logger.info("在service層，找到"+eventRespositoryJdbc.findEventDetailByEventId(eventId));
 		return eventRespositoryJdbc.findEventDetailByEventId(eventId);

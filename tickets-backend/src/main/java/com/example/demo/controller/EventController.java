@@ -51,10 +51,10 @@ public class EventController {
 	
 	//獲得演唱會資訊
 	@GetMapping("/ticket/{eventId}")
-	ResponseEntity<ApiResponse<Object>> getEventDetails(@PathVariable("eventId") String eventName){
-		Optional<EventDto> eventDto=eventService.findEventDetails(eventName);
+	ResponseEntity<ApiResponse<Object>> getEventDetails(@PathVariable("eventId") Integer eventId){
+		Optional<EventDto> eventDto=eventService.findEventDetails(eventId);
 		if(eventDto.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.error(404, eventName, null));
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.error(404, "傳送失敗", null));
 
 		
 		return ResponseEntity.ok(ApiResponse.success("活動查詢成功", eventDto.get()));
