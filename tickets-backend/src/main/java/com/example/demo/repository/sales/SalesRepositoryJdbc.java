@@ -17,4 +17,5 @@ public interface SalesRepositoryJdbc {
 	
 	void checkTicketAndUpdate(String section,Integer eventId, Integer quantity);
 
+	void addTicketOrder();
 }

@@ -139,4 +139,15 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 
 	}
 
+	@Override
+	public void addTicketOrder() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+	
+
 }
