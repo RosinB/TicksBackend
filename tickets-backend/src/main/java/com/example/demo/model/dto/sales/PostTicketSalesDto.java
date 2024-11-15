@@ -13,9 +13,12 @@ public class PostTicketSalesDto {
 
 		private Integer eventId;
 		
+		private String section;
+		
+		private Integer quantity;
+
 		private String userName;
 		
-		private List<TicketSectionQuantityDto> ticketSectionQuantity;
-	
+		
 	
 }
