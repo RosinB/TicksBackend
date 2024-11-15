@@ -19,6 +19,7 @@ import com.example.demo.model.dto.sales.SalesDto;
 import com.example.demo.model.dto.ticket.TicketDto;
 import com.example.demo.model.dto.ticket.TicketSectionDto;
 import com.example.demo.repository.EventRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.event.EventRespositoryJdbc;
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
 
@@ -41,6 +42,9 @@ public class SalesServiceImpl implements SalesService {
 	@Autowired
 	@Qualifier("eventJPA")
 	EventRepository eventRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 //	處理購票邏輯
 //========================================================================================================
@@ -53,12 +57,16 @@ public class SalesServiceImpl implements SalesService {
 		String userName = tickets.getUserName();
 		
 	    logger.info("開始處理購票，eventId: {}, section: {}, quantity: {}, userName: {}", eventId, section, quantity, userName);
-		salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
 		
+	    salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
 		
+	    Integer userId= userRepository.findIdByUserName(userName);
+	    
+		salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity);
 		return "購票成功";
 	}
-
+//	處理購票邏輯
+//========================================================================================================
 
 
 	// 獲得演唱會資訊

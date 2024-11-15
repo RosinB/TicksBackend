@@ -76,6 +76,30 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 
 	}
 
+	// ==========================添加order========================================
+	@Override
+	public void addTicketOrder(Integer userId,String section, Integer eventId, Integer quantity) {
+		String sql=
+				"""
+				insert into orders(event_id,user_id,order_quantity,order_section,order_status)
+							values(?,?,?,?,?)
+				""".trim();
+		
+		try {
+			 int result=jdbcTemplate.update(sql,eventId,userId,quantity,section,"已完成");
+			 logger.info("訂單新增成功");
+			 if(result<1)
+				 throw new RuntimeException("訂單新增失敗");
+			
+		} catch (Exception e) {
+			throw new RuntimeException("訂單新增出現錯誤");
+		}
+		
+		
+	}
+
+//=======================================================================================
+	// ============================處理訂票狀況======================================
 	@Override
 	public void checkTicketAndUpdate(String section, Integer eventId, Integer quantity) {
 		String sql = """
@@ -106,6 +130,7 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 			throw new RuntimeException("數據庫操作失敗", e);
 		}
 	}
+	// ============================處理訂票狀況======================================
 
 	// 檢查看看票務的狀況
 	@Override
@@ -124,13 +149,12 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 			CheckSectionStatusDto dto = jdbcTemplate.queryForObject(sql,
 					new BeanPropertyRowMapper<>(CheckSectionStatusDto.class), section, eventId);
 
-			
 			return dto;
 
 		} catch (EmptyResultDataAccessException e) {
 			System.out.println("查詢結果為空，section: " + section + ", eventId: " + eventId);
 			return null;
-			
+
 		} catch (Exception e) {
 			System.out.println("其他異常: " + e.getMessage());
 			e.printStackTrace();
@@ -138,16 +162,5 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 		}
 
 	}
-
-	@Override
-	public void addTicketOrder() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
-	
-	
 
 }

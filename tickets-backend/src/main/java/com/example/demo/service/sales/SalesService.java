@@ -10,10 +10,12 @@ public interface SalesService {
 	SalesDto getTickets(Integer eventId);
 
 	TicketSectionDto getTicketSection(Integer eventId);
-
+	
+	
+//	==========訂單邏輯==========
 	String buyTicket(PostTicketSalesDto data);
 	
 	CheckSectionStatusDto getTicketRemaining(String section ,Integer eventId);
 
-
+	
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -37,7 +38,39 @@ public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	//登入查詢
+	
+//=====================訂單區======================================
+	
+	@GetMapping("/orders/{userName}")
+	public ResponseEntity<ApiResponse<Object>> getOrders(@PathVariable("userName") String userName){
+		
+		
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", userName));
+	}
+	
+	
+	
+	
+//============================================================	
+	// 列印出全部User
+	@GetMapping("/all")
+	public ResponseEntity<ApiResponse<Object>> getAllUser() {
+
+		return ResponseEntity.ok(ApiResponse.success("查詢成功", userService.getAllUser()));
+	}
+
+	// 透過token拿取userName去查詢userDto資料
+	@GetMapping("/userUpdate")
+	public ResponseEntity<ApiResponse<Object>> getUser(@RequestHeader("Authorization") String token) {
+		token = token.replace("Bearer ", "");
+		String userName = JwtUtil.validateToken(token);
+		UserDto userDto = userService.getUser(userName);
+
+		return ResponseEntity.ok(ApiResponse.success("查詢單筆成功", userDto));
+	}
+
+	
+	// 登入查詢
 	@PostMapping("/login")
 	public ResponseEntity<ApiResponse<Object>> postLoginUser(@RequestBody LoginDto loginDto) {
 
@@ -45,8 +78,8 @@ public class UserController {
 
 		if (!loginSessionDto.getSuccess()) {
 			String message = loginSessionDto.getMessage();
-			logger.info("使用者登入失敗狀況"+message);
-			
+			logger.info("使用者登入失敗狀況" + message);
+
 			switch (message) {
 
 			case "帳號不存在":
@@ -55,59 +88,32 @@ public class UserController {
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ApiResponse.error(401, "密碼錯誤", null));
 			}
 		}
-		
-	    String token = JwtUtil.generateToken(loginDto.getUserName());
 
-		
-	    Map<String, String> responseBody = new HashMap<>();
-	    responseBody.put("token", token);
-	    responseBody.put("userName", loginDto.getUserName());
-		
+		String token = JwtUtil.generateToken(loginDto.getUserName());
 
-	    logger.info("使用者登入成功: " + loginDto.getUserName());
-	    return ResponseEntity.ok(ApiResponse.success("登入成功", responseBody));
+		Map<String, String> responseBody = new HashMap<>();
+		responseBody.put("token", token);
+		responseBody.put("userName", loginDto.getUserName());
+
+		logger.info("使用者登入成功: " + loginDto.getUserName());
+		return ResponseEntity.ok(ApiResponse.success("登入成功", responseBody));
 	}
 
-	//列印出全部User
-	@GetMapping("/all")
-	public ResponseEntity<ApiResponse<Object>> getAllUser() {
-
-		return ResponseEntity.ok(ApiResponse.success("查詢成功", userService.getAllUser()));
-	}
-
-	//透過token拿取userName去查詢userDto資料
-	@GetMapping("/userUpdate")
-	public ResponseEntity<ApiResponse<Object>> getUser(@RequestHeader("Authorization") String token){
-		token=token.replace("Bearer ", "");
-		String userName = JwtUtil.validateToken(token);
-		UserDto userDto=userService.getUser(userName);
-
-		return ResponseEntity.ok(ApiResponse.success("查詢單筆成功", userDto));
-	}
-	
-	
-	
-	
+	// 更新使用者
 	@PostMapping("/userUpdate")
-	public ResponseEntity<ApiResponse<Object>> postUpdateUser(@Valid @RequestBody UserUpdateDto userUpdateDto){
-		
-		String message=userService.updateUser(userUpdateDto);
-		
+	public ResponseEntity<ApiResponse<Object>> postUpdateUser(@Valid @RequestBody UserUpdateDto userUpdateDto) {
+
+		String message = userService.updateUser(userUpdateDto);
+
 		logger.info(message);
-		
+
 		return ResponseEntity.ok(ApiResponse.success("收到", message));
 	}
-	
-	
-	
-	
-	
-	
+
 	// User註冊和檢查是否重複
 	@PostMapping("/register")
 	public ResponseEntity<ApiResponse<Object>> postAddUser(@Valid @RequestBody UserDto userDto) {
-		
-		
+
 		System.out.println(userDto.getUserName());
 		Map<String, String> errors = userService.validateUserInput(userDto);
 
@@ -120,5 +126,4 @@ public class UserController {
 		return ResponseEntity.ok(ApiResponse.success("新增成功", userDto));
 	}
 
-	
 }
