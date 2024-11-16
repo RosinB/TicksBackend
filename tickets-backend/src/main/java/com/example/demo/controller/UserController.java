@@ -41,13 +41,7 @@ public class UserController {
 	
 //=====================訂單區======================================
 	
-	@GetMapping("/orders/{userName}")
-	public ResponseEntity<ApiResponse<Object>> getOrders(@PathVariable("userName") String userName){
-		
-		
-		return ResponseEntity.ok(ApiResponse.success("傳達成功", userName));
-	}
-	
+
 	
 	
 	
