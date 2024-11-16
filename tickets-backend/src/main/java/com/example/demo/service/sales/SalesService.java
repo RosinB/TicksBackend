@@ -13,7 +13,7 @@ public interface SalesService {
 	
 	
 //	==========訂單邏輯==========
-	String buyTicket(PostTicketSalesDto data);
+	int buyTicket(PostTicketSalesDto data);
 	
 	CheckSectionStatusDto getTicketRemaining(String section ,Integer eventId);
 

@@ -52,8 +52,8 @@ public class SalesController {
 		CheckSectionStatusDto dto = salesService.getTicketRemaining(data.getSection(), data.getEventId());
 
 		try {
-			salesService.buyTicket(data);
-			return ResponseEntity.ok(ApiResponse.success("購票成功", dto));
+			int orderId=salesService.buyTicket(data);
+			return ResponseEntity.ok(ApiResponse.success("購票成功", orderId));
 
 		} catch (RuntimeException e) {
 			logger.warn("購票失敗");
@@ -63,16 +63,16 @@ public class SalesController {
 	}
 
 //========================演唱會訂單摘要==============================================
-	@PostMapping("/goticket/orders")
-	public ResponseEntity<ApiResponse<Object>> postOrders(@RequestBody PostTicketSalesDto data) {
+	@PostMapping("/goticket/orders/{orderId}")
+	public ResponseEntity<ApiResponse<Object>> postOrders(@PathVariable("orderId") Integer orderId) {
 		
 		
-		OrderAstractDto orderAstractDto = orderService.getOrderAbstract(data);
+	//	OrderAstractDto orderAstractDto = orderService.getOrderAbstract(orderId);
 		
 		
 		
 		
-		return ResponseEntity.ok(ApiResponse.success("傳達成功", orderAstractDto));
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", orderId));
 	}
 
 	

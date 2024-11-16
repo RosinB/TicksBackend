@@ -50,7 +50,7 @@ public class SalesServiceImpl implements SalesService {
 //========================================================================================================
 	@Override
 	@Transactional
-	public String buyTicket(PostTicketSalesDto tickets) {
+	public int buyTicket(PostTicketSalesDto tickets) {
 		Integer eventId = tickets.getEventId();
 		Integer quantity = tickets.getQuantity();
 		String section = tickets.getSection();
@@ -61,9 +61,8 @@ public class SalesServiceImpl implements SalesService {
 	    salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
 		
 	    Integer userId= userRepository.findIdByUserName(userName);
-	    
-		salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity);
-		return "購票成功";
+		int orderId=salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity);
+		return orderId;
 	}
 //	處理購票邏輯
 //========================================================================================================
