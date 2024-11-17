@@ -19,6 +19,7 @@ public class JwtInterceptorConfig implements WebMvcConfigurer {
                 .addPathPatterns("/user/all") // 攔截的路徑
                 .addPathPatterns("/user/userUpdate")
                 .addPathPatterns("/sales/goticket/*")
+                .addPathPatterns("/admin/*")
                 .excludePathPatterns("/login", "/public/**"); // 排除不需要攔截的路徑
     }
 }

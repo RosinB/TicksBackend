@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.filter.JwtUtil;
 import com.example.demo.model.dto.login.LoginDto;
 import com.example.demo.model.dto.login.LoginResultDto;
+import com.example.demo.model.dto.orders.OrderDetailDto;
 import com.example.demo.model.dto.user.UserDto;
 import com.example.demo.model.dto.user.UserUpdateDto;
+import com.example.demo.service.order.OrderService;
 import com.example.demo.service.user.UserService;
 import com.example.demo.util.ApiResponse;
 
@@ -36,16 +39,27 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	OrderService orderService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	
 //=====================訂單區======================================
-	
+	@GetMapping("/order/{userName}")
+	public ResponseEntity<ApiResponse<Object>> getUserOrder(@PathVariable("userName") String userName){
+		
+		List<OrderDetailDto> dto=orderService.getAllUserOrder(userName);
+		return ResponseEntity.ok(ApiResponse.success("查詢成功", dto));
+	}
 
 	
 	
 	
 //============================================================	
+	
+	
+
 	// 列印出全部User
 	@GetMapping("/all")
 	public ResponseEntity<ApiResponse<Object>> getAllUser() {

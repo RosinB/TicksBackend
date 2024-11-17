@@ -63,16 +63,15 @@ public class SalesController {
 	}
 
 //========================演唱會訂單摘要==============================================
-	@PostMapping("/goticket/orders/{orderId}")
-	public ResponseEntity<ApiResponse<Object>> postOrders(@PathVariable("orderId") Integer orderId) {
+	@GetMapping("/goticket/orders")
+	public ResponseEntity<ApiResponse<Object>> getOrders(@RequestParam("orderId") Integer orderId,
+														  @RequestParam("userName") String userName){
+		
+		OrderAstractDto dto=orderService.getOrderAbstract(orderId,userName);
+		logger.info("使用者簡易訂單"+dto);
 		
 		
-	//	OrderAstractDto orderAstractDto = orderService.getOrderAbstract(orderId);
-		
-		
-		
-		
-		return ResponseEntity.ok(ApiResponse.success("傳達成功", orderId));
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", dto));
 	}
 
 	
