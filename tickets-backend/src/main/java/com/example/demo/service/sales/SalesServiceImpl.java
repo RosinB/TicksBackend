@@ -2,9 +2,12 @@ package com.example.demo.service.sales;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +25,10 @@ import com.example.demo.repository.EventRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.event.EventRespositoryJdbc;
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
+import com.example.demo.util.RedisService;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import jakarta.transaction.Transactional;
-
 
 @Service
 public class SalesServiceImpl implements SalesService {
@@ -42,9 +46,15 @@ public class SalesServiceImpl implements SalesService {
 	@Autowired
 	@Qualifier("eventJPA")
 	EventRepository eventRepository;
-	
+
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	RedisService redisService;
+
+	@Autowired
+	private RedissonClient redissonClient;
 
 //	處理購票邏輯
 //========================================================================================================
@@ -55,39 +65,119 @@ public class SalesServiceImpl implements SalesService {
 		Integer quantity = tickets.getQuantity();
 		String section = tickets.getSection();
 		String userName = tickets.getUserName();
+
+		String lockKey = "lock:buyTicket:" + tickets.getEventId();
+		RLock lock = redissonClient.getLock(lockKey); // 获取分布式锁
+	    int orderId = -1; // 初始化 orderId，默认值为 -1 表示未生成订单
+
+		try {
+
+			if (lock.tryLock(10, 30, TimeUnit.SECONDS)) {
+				logger.info("獲得鎖，執行購票邏輯");
+				logger.info("開始處理購票，eventId: {}, section: {}, quantity: {}, userName: {}", eventId, section, quantity,
+						userName);
+
+				salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
+
+				String cacheKey = "userId:" + userName;
+
+				Integer userId = redisService.get(cacheKey, Integer.class);
+
+				if (userId == null) {
+					Integer SaveUserId = userRepository.findIdByUserName(userName);
+					redisService.save(cacheKey, SaveUserId);
+					userId = SaveUserId;
+				}
+
+				try {
+					 orderId = salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity);
+					
+				} catch (Exception e) {
+					throw new RuntimeException("處理購票的時候有問題" + e.getMessage());
+				}
+
+
+			} else { 
+				System.out.println("未獲得鎖");
+			}
+
+		} 
+		catch (InterruptedException e) 
+		{throw new RuntimeException("獲取鎖失敗", e);}
+		finally 
+		{ 
+			if (lock.isHeldByCurrentThread()) 
+			{ 
+				lock.unlock(); 
+			}
+		}
 		
-	    logger.info("開始處理購票，eventId: {}, section: {}, quantity: {}, userName: {}", eventId, section, quantity, userName);
-		
-	    salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
-		
-	    Integer userId= userRepository.findIdByUserName(userName);
-		int orderId=salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity);
 		return orderId;
+
+		
+
 	}
 //	處理購票邏輯
 //========================================================================================================
 
-
 	// 獲得演唱會資訊
 	@Override
 	public SalesDto getTickets(Integer eventId) {
+		String cacheKey = "tickets:" + eventId;
 
-		return salesRepositoryJdbc.findSalesDetailByEventId(eventId);
+		SalesDto cachedSalesDto = redisService.get(cacheKey, SalesDto.class);
+
+		if (cachedSalesDto != null)
+			return cachedSalesDto;
+
+		try {
+			SalesDto salesDto = salesRepositoryJdbc.findSalesDetailByEventId(eventId);
+			redisService.saveWithExpire(cacheKey, salesDto, 1, TimeUnit.HOURS);
+			return salesDto;
+
+		} catch (Exception e) {
+			logger.info("eventId找不到演唱會資訊", eventId);
+			throw new RuntimeException("eventId找不到演唱會資訊");
+		}
 
 	}
 
 	// 挑選區域要用的service資訊
 	public TicketSectionDto getTicketSection(Integer eventId) {
 		TicketSectionDto ticketSectionDto = new TicketSectionDto();
+
+		String cacheKey = "ticket:list:price_and_status:" + eventId;
+
+		String cacheKey2 = "event:pic:" + eventId;
+
+		String cacheKey3 = "event:details:" + eventId;
 		// 一次查詢
-		List<TicketDto> ticketDto = salesRepositoryJdbc.findPriceAndStatusByEventId(eventId);
+		List<TicketDto> ticketDto = redisService.get(cacheKey, new TypeReference<List<TicketDto>>() {
+		});
+		if (ticketDto == null) {
+			List<TicketDto> TicketDtos = salesRepositoryJdbc.findPriceAndStatusByEventId(eventId);
+			redisService.saveWithExpire(cacheKey, TicketDtos, 1, TimeUnit.HOURS);
+			ticketDto = TicketDtos;
+		}
+
 		// 兩次查詢
-		PicDto picDto = eventRespositoryJdbc.findPicByEventId(eventId);
-
+		PicDto picDto = redisService.get(cacheKey2, PicDto.class);
+		if (picDto == null) {
+			PicDto picDtos = eventRespositoryJdbc.findPicByEventId(eventId);
+			redisService.saveWithExpire(cacheKey2, picDtos, 1, TimeUnit.HOURS);
+			picDto = picDtos;
+		}
 		// 三次查詢
-		Optional<EventDto> eventDtos = eventRespositoryJdbc.findEventDetailByEventId(eventId);
-
-		EventDto eventDto = eventDtos.get();
+		EventDto eventDto = redisService.get(cacheKey3, EventDto.class);
+		if (eventDto == null) {
+			Optional<EventDto> eventDtoOpt = eventRespositoryJdbc.findEventDetailByEventId(eventId);
+			if (eventDtoOpt.isEmpty()) {
+				throw new RuntimeException("Event details not found for eventId: " + eventId);
+			}
+			EventDto eventDtos = eventDtoOpt.get();
+			redisService.saveWithExpire(cacheKey3, eventDtos, 1, TimeUnit.HOURS);
+			eventDto = eventDtos;
+		}
 
 		// 票價id
 		ticketSectionDto.setEventId(eventId);
@@ -119,16 +209,12 @@ public class SalesServiceImpl implements SalesService {
 
 	}
 
-	
-	
-	//抓取票區剩餘狀態
-	public CheckSectionStatusDto getTicketRemaining(String section ,Integer eventId) {
-		
-		
-		CheckSectionStatusDto dto= salesRepositoryJdbc.checkSectionStatus(section, eventId);
+	// 抓取票區剩餘狀態
+	public CheckSectionStatusDto getTicketRemaining(String section, Integer eventId) {
+
+		CheckSectionStatusDto dto = salesRepositoryJdbc.checkSectionStatus(section, eventId);
 		dto.setEventId(eventId);
 		return dto;
 	}
-	
-	
+
 }

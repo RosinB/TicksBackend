@@ -3,13 +3,14 @@ package com.example.demo.service.user;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.connection.RedisServer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,8 @@ import com.example.demo.model.dto.user.UserUpdateDto;
 import com.example.demo.model.entity.user.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.user.UserRepositoryJdbc;
+import com.example.demo.util.RedisService;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @Transactional
 @Service
@@ -40,26 +43,56 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 	
 	@Autowired
+	private RedisService redisService;
+	
+	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	UserMapper userMapper;
 	
+	
 	//查全部使用者
 	public List<UserDto> getAllUser() {
+		String  cacheKey = "AllUser";
+		List<UserDto> cacheUserDto=redisService.get(cacheKey, new TypeReference<List<UserDto>>(){});
+		if(cacheUserDto!=null) return cacheUserDto;
+		
+		
+		try {
+			List<UserDto> userDtos=userRepositoryJdbc.findAll().stream().map(userMapper::toDto).collect(Collectors.toList());
+			redisService.save(cacheKey, userDtos);
+			return userDtos;
 
-		return userRepositoryJdbc.findAll().stream().map(userMapper::toDto).collect(Collectors.toList());
-
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage(),e);
+		}
+		
+		
 	}
 
 	//查單筆使用者
-@Override
+	@Override
 	public UserDto getUser(String userName) {
-	 return userRepository.findUserByUserName(userName)
-			 			  .map(userMapper::toDto)
-			 			  .orElseThrow(()->  new UserNotFoundException("找不到UserName:"+userName)); 
+		String cacheKey="userDto:"+userName;
+		
+		UserDto cacheUserDto=redisService.get(cacheKey,UserDto.class);
+		
+		if(cacheUserDto!= null) return cacheUserDto;
+	
+		UserDto userDto=userRepository.findUserByUserName(userName)
+	 			  					  .map(userMapper::toDto)
+	 			  					  .orElseThrow(()->  new RuntimeException("找不到UserName:"+userName)); 
+		redisService.saveWithExpire(cacheKey, userDto ,1,TimeUnit.HOURS);
+		
+		return userDto;
+		
+
+	 
 	}
 
-	//登入驗證
+
+	//登入驗證 沒優化========================================
 	@Override
 	public  LoginResultDto checkUserLogin(LoginDto loginDto) {
 	
@@ -83,9 +116,12 @@ public class UserServiceImpl implements UserService {
 		
 		return new LoginResultDto(true,"登入正確",loginDto);
 	}
+	// 沒優化========================================
 
 
 
+	
+	
 
 	//更新使用者資料 電話 email 生日
 	@Override
@@ -97,7 +133,10 @@ public class UserServiceImpl implements UserService {
 		
 		logger.info(userUpdateDto.getUserName()+" 更新資料筆數 "+updateRow+"筆");
 		
-		if(updateRow==0) return "更新使用者失敗";
+		
+		if(updateRow==0) {return "更新使用者失敗";}
+		 redisService.delete("userDto:" + userUpdateDto.getUserName());
+	     redisService.delete("AllUser");
 		
 		
 		return "更新成功";
@@ -109,8 +148,8 @@ public class UserServiceImpl implements UserService {
 
 		User user = userMapper.toEnity(userDto);
 		user.setUserPwdHash(passwordEncoder.encode(userDto.getPassword()));
-		int a = userRepositoryJdbc.addUser(user);
-		System.out.println("在addUser新增:"+a+"筆。");
+
+		
 	
 	}
 

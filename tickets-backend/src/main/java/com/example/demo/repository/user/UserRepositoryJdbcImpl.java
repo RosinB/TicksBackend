@@ -37,9 +37,9 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 	
 	@Override
 	public List<User> findAll() {
-		
-		List<User> user=jdbcTemplate.query(findAllSql, new BeanPropertyRowMapper<>(User.class));
-		return  user;
+
+			List<User> user=jdbcTemplate.query(findAllSql, new BeanPropertyRowMapper<>(User.class));
+			return  user;
 	}
 
 	@Override
@@ -51,9 +51,8 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 			return Optional.of(user);
 
 		} catch (Exception e) {
-			logger.info(e.toString());
+			throw new  RuntimeException("使用者查不到");
 		}
-		return Optional.empty();
 	}
 
 	@Override
@@ -69,16 +68,6 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 		
 	}
 
-	@Override
-	public int updateUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteUser(Integer userId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 }

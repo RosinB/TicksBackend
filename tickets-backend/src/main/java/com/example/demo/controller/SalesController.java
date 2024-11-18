@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,22 +44,18 @@ public class SalesController {
 	
 	
 
-//====================== =處理售票狀況============================== 這在tiecketsales
+//=======================處理售票狀況============================== 這在tiecketsales
 	@PostMapping("/goticket/area/buy")
  
 	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody PostTicketSalesDto data) {
 		System.out.println("接收到的數據: " + data);
 
-		CheckSectionStatusDto dto = salesService.getTicketRemaining(data.getSection(), data.getEventId());
+		//	CheckSectionStatusDto dto = salesService.getTicketRemaining(data.getSection(), data.getEventId());
 
-		try {
+		
 			int orderId=salesService.buyTicket(data);
 			return ResponseEntity.ok(ApiResponse.success("購票成功", orderId));
 
-		} catch (RuntimeException e) {
-			logger.warn("購票失敗");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error(400, "購票失敗", null));
-		}
 
 	}
 
@@ -76,27 +73,56 @@ public class SalesController {
 
 	
 	
+	
+	
+	
+	
 	// 獲取演唱會的銷售資訊
 		@GetMapping("/goticket/{eventId}")
 		public ResponseEntity<ApiResponse<Object>> getAllTickets(@PathVariable("eventId") Integer eventId) {
 			SalesDto salesDto = salesService.getTickets(eventId);
-//			System.out.println("這是salesDTo"+salesDto);
 
-			if (Optional.of(salesDto).isEmpty()) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error(400, "查詢失敗 Saels查詢不到", null));
-			}
+			
+			
 			return ResponseEntity.ok(ApiResponse.success("查詢成功", salesDto));
 		}
 	
 	
+		
 	// 獲得演唱會區域價錢 這是在ticketSection那頁
 	@GetMapping("/goticket/area/{eventId}")
 	public ResponseEntity<ApiResponse<Object>> getTicketSection(@PathVariable("eventId") Integer eventId) {
+		
 		TicketSectionDto ticketSectionDto = salesService.getTicketSection(eventId);
-//    	System.out.println("進入到getticketsection"+ticketSectionDto);
 
 		return ResponseEntity.ok(ApiResponse.success("票價區位獲取成功", ticketSectionDto));
 
 	}
+	
+	
+	
+	
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<ApiResponse<Void>> handSalesRunTimeException(RuntimeException e) {
+		logger.info("Sales有RuntimeException:" + e.getMessage());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.body(ApiResponse.error(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

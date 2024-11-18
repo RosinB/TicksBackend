@@ -2,69 +2,129 @@ package com.example.demo.service.event;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import org.slf4j.LoggerFactory;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.RedisConnectionFailureException;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.demo.mapper.EventMapper;
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.event.EventPicDto;
 import com.example.demo.repository.EventRepository;
 import com.example.demo.repository.event.EventRespositoryJdbc;
+import com.example.demo.util.ApiResponse;
+import com.example.demo.util.RedisService;
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import io.jsonwebtoken.io.IOException;
 
 @Service
 public class EventServiceImpl implements EventService {
 
-	private final static Logger logger =LoggerFactory.getLogger(EventServiceImpl.class);
-	
-	
+	private final static Logger logger = LoggerFactory.getLogger(EventServiceImpl.class);
+
 	@Autowired
 	@Qualifier("eventJPA")
 	EventRepository eventRepository;
 
-	@Autowired 
+	@Autowired
 	EventMapper eventMapper;
-	
+
 	@Autowired
 	@Qualifier("eventJDBC")
 	EventRespositoryJdbc eventRespositoryJdbc;
-	
+
+	@Autowired
+	private RedisService redisService;
+
+	//還沒用到 廢氣中======================
 	@Override
 	public List<EventDto> findAllEvent() {
+		String cacheKey = "allEvents";
 		
-		return eventRepository.findAll().stream()
-							  .map(eventMapper::toDto)
-							  .collect(Collectors.toList());
-	}	
+		List<EventDto> cachedEvents = redisService.get(cacheKey, new TypeReference<List<EventDto>>() {});
+		
+		if (cachedEvents != null) {
+			logger.info("從 Redis 緩存中獲取所有事件列表");
+			return cachedEvents;}
+		
+		List<EventDto> events = eventRepository.findAll().stream().map(eventMapper::toDto).collect(Collectors.toList());
+
+		redisService.saveWithExpire(cacheKey, events, 1, TimeUnit.HOURS);
+		
+		return events;
+	}
+	
+	@Override
+	public List<EventPicDto> findAllEventPic() {
+		String cacheKey = "allEventsPic";
+		
+		List<EventPicDto> cachedEventsPic=redisService.get(cacheKey, new TypeReference<List<EventPicDto>>() {});
+		
+		if(cachedEventsPic !=null) {
+			return cachedEventsPic;
+		}	
+		try {
+			List<EventPicDto> eventPicDtos= eventRespositoryJdbc.findAllEventPics();
+			redisService.saveWithExpire(cacheKey, eventPicDtos, 1, TimeUnit.HOURS);
+			return eventPicDtos;
+			
+		}  catch (Exception e) {
+	        throw new RuntimeException("獲取照片時發生未知錯誤");
+	    }
+	
+	}
+
 	
 	@Override
 	public Integer findEventId(String Name) {
+		String cacheKey="eventId"+Name;
 		
-		return eventRepository.findEventIdByEventName(Name);
+		Integer cachedEventId=redisService.get(cacheKey, Integer.class);
+		if(cachedEventId!=null) {
+			return cachedEventId;
+		}
+		try {
+			Integer eventId=eventRepository.findEventIdByEventName(Name);
+			return eventId;
+
+		} catch (Exception e) {
+			throw new RuntimeException("找活動id發生錯誤",e);
+		}	
+		
 	}
-
-
 
 	@Override
 	public Optional<EventDto> findEventDetails(Integer eventId) {
+		String cacheKey="event:details:"+eventId;
+
+		EventDto cachedEventDto =redisService.get(cacheKey, EventDto.class);
+		if(cachedEventDto!=null) {
+		    return Optional.of(cachedEventDto);}
 		
-	//	logger.info("在service層，找到"+eventRespositoryJdbc.findEventDetailByEventId(eventId));
-		return eventRespositoryJdbc.findEventDetailByEventId(eventId);
+		try {
+			Optional<EventDto> eventDtos=eventRespositoryJdbc.findEventDetailByEventId(eventId);
 
-	}
-
-
-
-	@Override
-	public List<EventPicDto> findAllEventPic() {
+			EventDto eventDto=eventDtos.get();
+			redisService.saveWithExpire(cacheKey, eventDto, 1,TimeUnit.HOURS );
+			return eventDtos;
+			
+		} catch (Exception e) {
+			throw new RuntimeException("獲取演唱會資訊時錯誤"+eventId,e);
 		
-		return 	eventRespositoryJdbc.findAllEventPics();
-
+		}
 	}
+	
+
 	
 	
 	

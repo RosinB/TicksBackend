@@ -1,6 +1,7 @@
 package com.example.demo.repository.sales;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -118,8 +120,15 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 	        } else {
 	            throw new RuntimeException("無法獲取生成的 order_id");
 	        }
-	    } catch (Exception e) {
-	        throw new RuntimeException("訂單新增出現錯誤", e);
+	    } catch (BadSqlGrammarException e) {
+	        logger.error("SQL 語法錯誤: {}", e.getMessage(), e);
+	        throw new RuntimeException("SQL 語法錯誤，請檢查語句或數據庫表結構", e);
+	    } catch (DataAccessException e) {
+	        logger.error("數據訪問錯誤: {}", e.getMessage(), e);
+	        throw new RuntimeException("數據訪問錯誤，可能是數據庫連接問題或其他數據庫錯誤", e);
+	    }  catch (Exception e) {
+	        logger.error("未知錯誤: {}", e.getMessage(), e);
+	        throw new RuntimeException("訂單新增出現未知錯誤", e);
 	    }
 		
 		

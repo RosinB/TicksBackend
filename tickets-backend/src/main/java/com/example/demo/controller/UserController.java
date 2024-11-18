@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,6 +67,7 @@ public class UserController {
 
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", userService.getAllUser()));
 	}
+	
 
 	// 透過token拿取userName去查詢userDto資料
 	@GetMapping("/userUpdate")
@@ -113,7 +115,6 @@ public class UserController {
 
 		String message = userService.updateUser(userUpdateDto);
 
-		logger.info(message);
 
 		return ResponseEntity.ok(ApiResponse.success("收到", message));
 	}
@@ -134,4 +135,16 @@ public class UserController {
 		return ResponseEntity.ok(ApiResponse.success("新增成功", userDto));
 	}
 
+	
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<ApiResponse<Void>> handUserRunTimeException(RuntimeException e) {
+		logger.info("User有RuntimeException:" + e.getMessage());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.body(ApiResponse.error(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
+	}
+	
+	
+	
+	
+	
 }

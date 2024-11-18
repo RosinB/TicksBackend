@@ -34,7 +34,6 @@ public class Orders {
 //		票卷數量
 		private Integer orderQuantity;
 		
-
 			
 		@Column(name = "order_section")
 //		票卷區域

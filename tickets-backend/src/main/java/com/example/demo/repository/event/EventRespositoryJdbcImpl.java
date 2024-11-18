@@ -113,10 +113,10 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 			EventDto eventDto = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(EventDto.class),
 					eventId);
 			return Optional.of(eventDto);
+			
 		} catch (Exception e) {
-			logger.info(e.toString());
+			throw new RuntimeException("演唱會資訊找不到"+eventId,e);
 		}
-		return Optional.empty();
 	}
 
 }

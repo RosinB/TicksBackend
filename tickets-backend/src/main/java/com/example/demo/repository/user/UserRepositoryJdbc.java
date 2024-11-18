@@ -16,11 +16,11 @@ public interface UserRepositoryJdbc {
 	//新增一個
 	int addUser(User user);
 
-	//更新一個
-	int updateUser(User user);
-	
-	//刪除一個
-	int deleteUser(Integer userId);
+//	//更新一個
+//	int updateUser(User user);
+//	
+//	//刪除一個
+//	int deleteUser(Integer userId);
 	
 	
 	
