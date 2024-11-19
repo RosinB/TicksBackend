@@ -111,7 +111,7 @@ public class UserController {
 
 	// 更新使用者
 	@PostMapping("/userUpdate")
-	public ResponseEntity<ApiResponse<Object>> postUpdateUser(@Valid @RequestBody UserUpdateDto userUpdateDto) {
+	public ResponseEntity<ApiResponse<Object>> postUpdateUser(@RequestBody UserUpdateDto userUpdateDto) {
 
 		String message = userService.updateUser(userUpdateDto);
 
@@ -121,16 +121,15 @@ public class UserController {
 
 	// User註冊和檢查是否重複
 	@PostMapping("/register")
-	public ResponseEntity<ApiResponse<Object>> postAddUser(@Valid @RequestBody UserDto userDto) {
-
-		System.out.println(userDto.getUserName());
+	public ResponseEntity<ApiResponse<Object>> postAddUser( @RequestBody UserDto userDto) {
+		logger.info("使用者:"+userDto.getUserName()+"開始註冊");
 		Map<String, String> errors = userService.validateUserInput(userDto);
-
 		if (!errors.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error(400, "註冊失敗", errors));
 		}
 
 		userService.addUser(userDto);
+
 		logger.info("register新增成功");
 		return ResponseEntity.ok(ApiResponse.success("新增成功", userDto));
 	}

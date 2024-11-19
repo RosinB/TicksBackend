@@ -146,10 +146,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addUser(UserDto userDto) {
 
-		User user = userMapper.toEnity(userDto);
+		User user = userMapper.toEnity(userDto);		
+
 		user.setUserPwdHash(passwordEncoder.encode(userDto.getPassword()));
 
-		userRepository.save(user);
+		try {
+			userRepository.save(user);
+
+		} catch (Exception e) {
+			throw new RuntimeException("使用者新增出現問題");
+		}
 	
 	}
 
