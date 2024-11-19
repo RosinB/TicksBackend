@@ -6055,3 +6055,337 @@ This generated password is for development use only. Your security configuration
 2024-11-19T16:51:42.606+08:00  INFO 12584 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-11-19T16:51:42.606+08:00  INFO 12584 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-11-19T16:51:42.607+08:00  INFO 12584 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-19T16:56:21.560+08:00  INFO 12584 --- [tickets-backend] [RMI TCP Connection(16)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-19T16:56:21.577+08:00  INFO 12584 --- [tickets-backend] [RMI TCP Connection(16)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T16:56:21.579+08:00  INFO 12584 --- [tickets-backend] [RMI TCP Connection(16)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-19T16:56:21.583+08:00  INFO 12584 --- [tickets-backend] [RMI TCP Connection(16)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-19T16:56:23.945+08:00  INFO 9964 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 9964 (C:\Users\NTPU\git\TicksBackendxzz\tickets-backend\target\classes started by NTPU in C:\Users\NTPU\git\TicksBackendxzz\tickets-backend)
+2024-11-19T16:56:23.946+08:00  INFO 9964 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-19T16:56:24.468+08:00  INFO 9964 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-19T16:56:24.469+08:00  INFO 9964 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-19T16:56:24.611+08:00  INFO 9964 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 137 ms. Found 4 JPA repository interfaces.
+2024-11-19T16:56:24.619+08:00  INFO 9964 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-19T16:56:24.620+08:00  INFO 9964 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-19T16:56:24.631+08:00  INFO 9964 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.admin.repository.jpa.HostRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T16:56:24.631+08:00  INFO 9964 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T16:56:24.631+08:00  INFO 9964 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T16:56:24.631+08:00  INFO 9964 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T16:56:24.631+08:00  INFO 9964 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-11-19T16:56:25.063+08:00  INFO 9964 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-19T16:56:25.072+08:00  INFO 9964 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-19T16:56:25.072+08:00  INFO 9964 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-19T16:56:25.193+08:00  INFO 9964 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-19T16:56:25.196+08:00  INFO 9964 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-19T16:56:25.196+08:00  INFO 9964 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1229 ms
+2024-11-19T16:56:25.358+08:00  INFO 9964 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-19T16:56:25.390+08:00  INFO 9964 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-19T16:56:25.408+08:00  INFO 9964 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-19T16:56:25.577+08:00  INFO 9964 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-19T16:56:25.596+08:00  INFO 9964 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-19T16:56:25.682+08:00  INFO 9964 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31f5ffb9
+2024-11-19T16:56:25.683+08:00  INFO 9964 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-19T16:56:26.254+08:00  INFO 9964 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-19T16:56:26.282+08:00  INFO 9964 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T16:56:26.417+08:00  INFO 9964 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-19T16:56:26.758+08:00  INFO 9964 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-11-19T16:56:26.917+08:00  INFO 9964 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-11-19T16:56:26.919+08:00  INFO 9964 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-11-19T16:56:27.210+08:00  WARN 9964 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2dc3d564-2d12-4060-baa4-60a9832aca35
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-11-19T16:56:27.215+08:00  INFO 9964 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-11-19T16:56:27.283+08:00  INFO 9964 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-19T16:56:27.442+08:00  INFO 9964 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-11-19T16:56:27.781+08:00  INFO 9964 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-19T16:56:27.787+08:00  INFO 9964 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.06 seconds (process running for 4.377)
+2024-11-19T16:56:28.169+08:00  INFO 9964 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-19T16:56:28.169+08:00  INFO 9964 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-19T16:56:28.170+08:00  INFO 9964 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-19T16:56:32.516+08:00  INFO 9964 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T16:56:41.444+08:00  INFO 9964 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T16:57:04.580+08:00  INFO 9964 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T16:57:07.251+08:00  INFO 9964 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T16:57:09.059+08:00  INFO 9964 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T16:58:40.038+08:00  INFO 9964 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-19T16:58:40.056+08:00  INFO 9964 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T16:58:40.057+08:00  INFO 9964 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-19T16:58:40.061+08:00  INFO 9964 --- [tickets-backend] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-19T16:58:42.426+08:00  INFO 8860 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 8860 (C:\Users\NTPU\git\TicksBackendxzz\tickets-backend\target\classes started by NTPU in C:\Users\NTPU\git\TicksBackendxzz\tickets-backend)
+2024-11-19T16:58:42.428+08:00  INFO 8860 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-19T16:58:42.950+08:00  INFO 8860 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-19T16:58:42.951+08:00  INFO 8860 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-19T16:58:43.094+08:00  INFO 8860 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 139 ms. Found 4 JPA repository interfaces.
+2024-11-19T16:58:43.103+08:00  INFO 8860 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-19T16:58:43.103+08:00  INFO 8860 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-19T16:58:43.114+08:00  INFO 8860 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.admin.repository.jpa.HostRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T16:58:43.114+08:00  INFO 8860 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T16:58:43.114+08:00  INFO 8860 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T16:58:43.114+08:00  INFO 8860 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T16:58:43.114+08:00  INFO 8860 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-11-19T16:58:43.543+08:00  INFO 8860 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-19T16:58:43.552+08:00  INFO 8860 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-19T16:58:43.552+08:00  INFO 8860 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-19T16:58:43.674+08:00  INFO 8860 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-19T16:58:43.677+08:00  INFO 8860 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-19T16:58:43.678+08:00  INFO 8860 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1229 ms
+2024-11-19T16:58:43.840+08:00  INFO 8860 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-19T16:58:43.872+08:00  INFO 8860 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-19T16:58:43.891+08:00  INFO 8860 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-19T16:58:44.059+08:00  INFO 8860 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-19T16:58:44.077+08:00  INFO 8860 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-19T16:58:44.162+08:00  INFO 8860 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3aa8c337
+2024-11-19T16:58:44.164+08:00  INFO 8860 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-19T16:58:44.739+08:00  INFO 8860 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-19T16:58:44.767+08:00  INFO 8860 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T16:58:44.902+08:00  INFO 8860 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-19T16:58:45.238+08:00  INFO 8860 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-11-19T16:58:45.399+08:00  INFO 8860 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-11-19T16:58:45.401+08:00  INFO 8860 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-11-19T16:58:45.686+08:00  WARN 8860 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: e95d3225-635e-492d-85b6-7cb2ad412fe7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-11-19T16:58:45.691+08:00  INFO 8860 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-11-19T16:58:45.759+08:00  INFO 8860 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-19T16:58:45.914+08:00  INFO 8860 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-11-19T16:58:46.240+08:00  INFO 8860 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-19T16:58:46.246+08:00  INFO 8860 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.039 seconds (process running for 4.356)
+2024-11-19T16:58:46.645+08:00  INFO 8860 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-19T16:58:46.645+08:00  INFO 8860 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-19T16:58:46.646+08:00  INFO 8860 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-11-19T17:04:27.037+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:27.038+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:31.317+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:31.318+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:31.460+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:31.461+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:31.696+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:31.697+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:31.929+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:31.930+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:32.071+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:32.072+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:32.281+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:32.282+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:32.497+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:32.498+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:32.730+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:32.731+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:33.097+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:33.098+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:33.416+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:33.416+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:33.761+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:33.762+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:34.057+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:34.058+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:34.378+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:34.379+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:38.266+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:38.266+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:38.614+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:38.615+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:38.935+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:38.935+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:39.269+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:39.270+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:39.569+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:39.570+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:39.882+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:39.883+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:40.207+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:40.207+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:40.547+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:40.547+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:40.831+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:40.832+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:41.134+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:41.135+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:41.424+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:41.425+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:41.698+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:41.699+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:41.931+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:41.932+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:42.232+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:42.233+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:42.505+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:42.506+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:42.826+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:42.827+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:43.112+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:43.113+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:43.305+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:43.306+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:43.504+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:43.504+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:43.747+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:43.747+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:43.979+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:43.980+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:44.224+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:44.225+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:44.435+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:44.435+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:44.657+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:44.657+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:44.873+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:44.874+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:45.113+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:45.114+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:45.319+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:45.319+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:45.565+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:45.566+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:45.776+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:45.777+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:46.019+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:46.019+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:46.223+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:46.224+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:46.440+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:46.441+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:46.634+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:46.635+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:46.865+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:46.865+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:47.105+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:47.106+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:47.318+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:47.319+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:47.533+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:47.534+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:47.750+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:47.750+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:47.979+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:47.979+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:48.170+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:48.171+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:48.400+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:48.401+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-9] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:48.617+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:48.618+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-10] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:48.836+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:48.836+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:49.056+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:49.057+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-3] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:49.295+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:49.296+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:49.531+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:49.532+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:49.732+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:49.732+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-5] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:49.952+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:49.952+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:50.115+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:50.115+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:04:50.316+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : picDto的快取
+2024-11-19T17:04:50.317+08:00  INFO 8860 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.service.sales.SalesServiceImpl  : eventdto得的取
+2024-11-19T17:09:26.558+08:00  INFO 8860 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-19T17:09:26.577+08:00  INFO 8860 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T17:09:26.579+08:00  INFO 8860 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-19T17:09:26.582+08:00  INFO 8860 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-19T17:09:28.790+08:00  INFO 13780 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 13780 (C:\Users\NTPU\git\TicksBackendxzz\tickets-backend\target\classes started by NTPU in C:\Users\NTPU\git\TicksBackendxzz\tickets-backend)
+2024-11-19T17:09:28.791+08:00  INFO 13780 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-19T17:09:29.316+08:00  INFO 13780 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-19T17:09:29.317+08:00  INFO 13780 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-19T17:09:29.458+08:00  INFO 13780 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 136 ms. Found 4 JPA repository interfaces.
+2024-11-19T17:09:29.466+08:00  INFO 13780 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-19T17:09:29.466+08:00  INFO 13780 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-19T17:09:29.477+08:00  INFO 13780 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.admin.repository.jpa.HostRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T17:09:29.477+08:00  INFO 13780 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T17:09:29.477+08:00  INFO 13780 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T17:09:29.477+08:00  INFO 13780 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T17:09:29.477+08:00  INFO 13780 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-11-19T17:09:29.911+08:00  INFO 13780 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-19T17:09:29.920+08:00  INFO 13780 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-19T17:09:29.920+08:00  INFO 13780 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-19T17:09:30.040+08:00  INFO 13780 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-19T17:09:30.043+08:00  INFO 13780 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-19T17:09:30.044+08:00  INFO 13780 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1231 ms
+2024-11-19T17:09:30.205+08:00  INFO 13780 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-19T17:09:30.235+08:00  INFO 13780 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-19T17:09:30.254+08:00  INFO 13780 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-19T17:09:30.428+08:00  INFO 13780 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-19T17:09:30.446+08:00  INFO 13780 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-19T17:09:30.532+08:00  INFO 13780 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7de43652
+2024-11-19T17:09:30.534+08:00  INFO 13780 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-19T17:09:31.108+08:00  INFO 13780 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-19T17:09:31.137+08:00  INFO 13780 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T17:09:31.277+08:00  INFO 13780 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-19T17:09:31.614+08:00  INFO 13780 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-11-19T17:09:31.779+08:00  INFO 13780 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-11-19T17:09:31.781+08:00  INFO 13780 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-11-19T17:09:32.072+08:00  WARN 13780 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 25d59795-70e0-4553-9628-4ce2e20dc781
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-11-19T17:09:32.077+08:00  INFO 13780 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-11-19T17:09:32.132+08:00  INFO 13780 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-19T17:09:32.298+08:00  INFO 13780 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-11-19T17:09:32.617+08:00  INFO 13780 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-19T17:09:32.624+08:00  INFO 13780 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.057 seconds (process running for 4.376)
+2024-11-19T17:09:32.999+08:00  INFO 13780 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-19T17:09:32.999+08:00  INFO 13780 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-19T17:09:33.000+08:00  INFO 13780 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-19T17:13:12.343+08:00  INFO 13780 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : 獲得鎖，執行購票邏輯
+2024-11-19T17:13:12.343+08:00  INFO 13780 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.service.sales.SalesServiceImpl  : 開始處理購票，eventId: 1, section: A區, quantity: 1, userName: ruka
+2024-11-19T17:13:12.345+08:00  WARN 13780 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 票務更新失敗，eventId: 1, section: A區, quantity: 1
+2024-11-19T17:13:12.351+08:00  INFO 13780 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.sales.SalesRespositoryJdbcImpl   : Sales有RuntimeException:票務不足或不可用
+2024-11-19T17:21:08.778+08:00  INFO 13780 --- [tickets-backend] [RMI TCP Connection(23)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-19T17:21:08.792+08:00  INFO 13780 --- [tickets-backend] [RMI TCP Connection(23)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T17:21:08.793+08:00  INFO 13780 --- [tickets-backend] [RMI TCP Connection(23)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-19T17:21:08.799+08:00  INFO 13780 --- [tickets-backend] [RMI TCP Connection(23)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-19T17:21:11.208+08:00  INFO 8052 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 8052 (C:\Users\NTPU\git\TicksBackendxzz\tickets-backend\target\classes started by NTPU in C:\Users\NTPU\git\TicksBackendxzz\tickets-backend)
+2024-11-19T17:21:11.210+08:00  INFO 8052 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-19T17:21:11.748+08:00  INFO 8052 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-19T17:21:11.750+08:00  INFO 8052 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-19T17:21:11.902+08:00  INFO 8052 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 148 ms. Found 4 JPA repository interfaces.
+2024-11-19T17:21:11.911+08:00  INFO 8052 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-19T17:21:11.911+08:00  INFO 8052 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-19T17:21:11.922+08:00  INFO 8052 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.admin.repository.jpa.HostRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T17:21:11.922+08:00  INFO 8052 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T17:21:11.922+08:00  INFO 8052 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T17:21:11.922+08:00  INFO 8052 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-19T17:21:11.922+08:00  INFO 8052 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-11-19T17:21:12.367+08:00  INFO 8052 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-19T17:21:12.375+08:00  INFO 8052 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-19T17:21:12.375+08:00  INFO 8052 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-19T17:21:12.496+08:00  INFO 8052 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-19T17:21:12.499+08:00  INFO 8052 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-19T17:21:12.499+08:00  INFO 8052 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1268 ms
+2024-11-19T17:21:12.662+08:00  INFO 8052 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-19T17:21:12.694+08:00  INFO 8052 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-19T17:21:12.714+08:00  INFO 8052 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-19T17:21:12.883+08:00  INFO 8052 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-19T17:21:12.901+08:00  INFO 8052 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-19T17:21:12.987+08:00  INFO 8052 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1231f25c
+2024-11-19T17:21:12.988+08:00  INFO 8052 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-19T17:21:13.560+08:00  INFO 8052 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-19T17:21:13.589+08:00  INFO 8052 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T17:21:13.731+08:00  INFO 8052 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-19T17:21:14.069+08:00  INFO 8052 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-11-19T17:21:14.234+08:00  INFO 8052 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-11-19T17:21:14.237+08:00  INFO 8052 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-11-19T17:21:14.532+08:00  WARN 8052 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 04252363-7cd6-4aef-94ea-99fb042eb39b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-11-19T17:21:14.537+08:00  INFO 8052 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-11-19T17:21:14.592+08:00  INFO 8052 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-19T17:21:14.762+08:00  INFO 8052 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-11-19T17:21:15.088+08:00  INFO 8052 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-19T17:21:15.094+08:00  INFO 8052 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.117 seconds (process running for 4.439)
+2024-11-19T17:21:15.385+08:00  INFO 8052 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-19T17:21:15.386+08:00  INFO 8052 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-19T17:21:15.386+08:00  INFO 8052 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-11-19T17:26:26.890+08:00  INFO 8052 --- [tickets-backend] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : 使用者登入成功: ruka

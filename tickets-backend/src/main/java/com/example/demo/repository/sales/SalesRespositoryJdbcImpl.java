@@ -66,7 +66,8 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 				select
 						t.ticket_price as ticketPrice,
 						t.ticket_name as ticketName,
-						t.ticket_isAvailable as ticketIsAvailable
+						t.ticket_isAvailable as ticketIsAvailable,
+						t.ticket_remaining as ticketRemaining
 
 				from 	ticket t
 				where 	t.event_id = ?

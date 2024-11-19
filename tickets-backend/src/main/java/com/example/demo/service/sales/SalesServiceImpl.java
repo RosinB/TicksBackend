@@ -165,41 +165,45 @@ public class SalesServiceImpl implements SalesService {
 		
 		
 		
+		
 		TicketSectionDto ticketSectionDto = new TicketSectionDto();
 
-		String cacheKey = "ticket:list:price_and_status:" + eventId;
 
 		String cacheKey2 = "event:pic:" + eventId;
 
 		String cacheKey3 = "event:details:" + eventId;
+		
 		// 一次查詢
-		List<TicketDto> ticketDto = redisService.get(cacheKey, new TypeReference<List<TicketDto>>() {
-		});
-		if (ticketDto == null) {
-			ticketDto  = salesRepositoryJdbc.findPriceAndStatusByEventId(eventId);
-			redisService.saveWithExpire(cacheKey, ticketDto , 1, TimeUnit.HOURS);
+		List<TicketDto> ticketDto = salesRepositoryJdbc.findPriceAndStatusByEventId(eventId) ;
+		
 			
-		}
 
 		// 兩次查詢
 		PicDto picDto = redisService.get(cacheKey2, PicDto.class);
 		if (picDto == null) {
 			picDto = eventRespositoryJdbc.findPicByEventId(eventId);
-			redisService.saveWithExpire(cacheKey2, picDto, 1, TimeUnit.HOURS);
+			redisService.saveWithExpire(cacheKey2, picDto, 1, TimeUnit.HOURS);	
 			
 		}
 		// 三次查詢
 		EventDto eventDto = redisService.get(cacheKey3, EventDto.class);
 		if (eventDto == null) {
 			Optional<EventDto> eventDtoOpt = eventRespositoryJdbc.findEventDetailByEventId(eventId);
-			if (eventDtoOpt.isEmpty()) {
+			
+			if (eventDtoOpt.isEmpty()) 
+			{
 				throw new RuntimeException("Event details not found for eventId: " + eventId);
 			}
-			EventDto eventDtos = eventDtoOpt.get();
-			redisService.saveWithExpire(cacheKey3, eventDtos, 1, TimeUnit.HOURS);
-			eventDto = eventDtos;
+			
+			eventDto = eventDtoOpt.get();
+			redisService.saveWithExpire(cacheKey3, eventDto, 1, TimeUnit.HOURS);
 		}
+		
+		
 
+		
+		
+		
 		
 		// 票價id
 		ticketSectionDto.setEventId(eventId);
@@ -224,6 +228,8 @@ public class SalesServiceImpl implements SalesService {
 		// 票價資訊
 		ticketSectionDto.setTicketDto(ticketDto);
 
+		
+		
 		// 圖片
 		ticketSectionDto.setTicketPicList(picDto.getPicEventList());
 

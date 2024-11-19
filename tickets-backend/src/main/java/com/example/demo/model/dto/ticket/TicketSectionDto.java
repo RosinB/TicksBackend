@@ -42,7 +42,6 @@ public class TicketSectionDto {
 	private String ticketPicSet;
 	
 	
-	
 	//票價訊息
 	private List<TicketDto> ticketDto;
 	

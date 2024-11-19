@@ -74,6 +74,9 @@ public class SalesController {
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", salesDto));
 	}
 
+	
+	
+	
 	// 獲得演唱會區域價錢 這是在ticketSection那頁
 	@GetMapping("/goticket/area")
 	public ResponseEntity<ApiResponse<Object>> getTicketSection(@RequestParam("userName") String userName,
@@ -90,6 +93,9 @@ public class SalesController {
 
 	}
 
+	
+	
+	
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<ApiResponse<Void>> handSalesRunTimeException(RuntimeException e) {
 		logger.info("Sales有RuntimeException:" + e.getMessage());
