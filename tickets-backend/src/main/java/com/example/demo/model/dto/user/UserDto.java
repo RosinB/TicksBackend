@@ -1,10 +1,8 @@
 package com.example.demo.model.dto.user;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;

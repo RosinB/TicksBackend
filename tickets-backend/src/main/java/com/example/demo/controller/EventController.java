@@ -37,7 +37,7 @@ public class EventController {
 	}
 
 	
-	// 主要列印首頁和List的圖片
+	// 主要列印首頁和List的圖片 home.js
 	@GetMapping("/ticketAllPic")
 	ResponseEntity<ApiResponse<Object>> getEventPic() {
 

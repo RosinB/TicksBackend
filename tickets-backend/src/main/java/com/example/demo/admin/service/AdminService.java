@@ -10,4 +10,5 @@ public interface AdminService {
 	List<HostDto> getAllHost();
 	
 	void addHost(HostDto data);
+	void updateHost(HostDto data);
 }

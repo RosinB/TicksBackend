@@ -9,7 +9,7 @@ public interface SalesService {
 
 	SalesDto getTickets(Integer eventId);
 
-	TicketSectionDto getTicketSection(Integer eventId);
+	TicketSectionDto getTicketSection(Integer eventId,String userName);
 	
 	
 //	==========訂單邏輯==========

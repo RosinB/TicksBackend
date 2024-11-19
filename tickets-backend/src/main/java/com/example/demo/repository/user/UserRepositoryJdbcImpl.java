@@ -1,5 +1,6 @@
 package com.example.demo.repository.user;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.entity.user.User;
-import com.example.demo.util.Hash;
 
 @Repository
 @Qualifier("userJDBC")
@@ -37,9 +37,24 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 	
 	@Override
 	public List<User> findAll() {
+			String sql="""
+						SELECT user_id, user_name, user_pswd_hash, user_phone, user_email, user_idcard, user_birth_date, user_regdate, user_is_verified FROM users;
 
-			List<User> user=jdbcTemplate.query(findAllSql, new BeanPropertyRowMapper<>(User.class));
-			return  user;
+					""";
+			List<User> users = jdbcTemplate.query(sql, (rs, rowNum) -> {
+			    User user = new User();
+			    user.setUserId(rs.getInt("user_id"));
+			    user.setUserName(rs.getString("user_name"));
+			    user.setUserPwdHash(rs.getString("user_pswd_hash"));
+			    user.setUserPhone(rs.getString("user_phone"));
+			    user.setUserEmail(rs.getString("user_email"));
+			    user.setUserIdCard(rs.getString("user_idcard")); 
+			    user.setUserBirthDate(rs.getObject("user_birth_date", LocalDate.class));
+			    user.setUserRegdate(rs.getTimestamp("user_regdate"));
+			    user.setUserIsVerified(rs.getBoolean("user_is_verified"));
+			    return user;
+			});
+			return users;
 	}
 
 	@Override
@@ -65,6 +80,18 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 		return jdbcTemplate.update(saveSql,user.getUserName() ,user.getUserPwdHash(),
 										   user.getUserPhone(),user.getUserEmail()
 										   ,user.getUserIdCard(),user.getUserBirthDate());
+		
+	}
+
+	@Override
+	public Boolean findUserIsVerifiedByUserName(String userName) {
+		String sql="""
+				select user_is_verified from users where user_name=?
+				""".trim();		
+		
+		return jdbcTemplate.queryForObject(sql, Boolean.class,userName);
+		
+				
 		
 	}
 

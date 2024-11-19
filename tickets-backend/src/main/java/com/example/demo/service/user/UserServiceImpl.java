@@ -54,15 +54,15 @@ public class UserServiceImpl implements UserService {
 	
 	//查全部使用者
 	public List<UserDto> getAllUser() {
-		String  cacheKey = "AllUser";
-		List<UserDto> cacheUserDto=redisService.get(cacheKey, new TypeReference<List<UserDto>>(){});
-		if(cacheUserDto!=null) return cacheUserDto;
+//		String  cacheKey = "AllUser";
+//		 UserDto=redisService.get(cacheKey, new TypeReference<List<UserDto>>(){});
+//		if(UserDto!=null) return UserDto;
 		
-		
+
 		try {
-			List<UserDto> userDtos=userRepositoryJdbc.findAll().stream().map(userMapper::toDto).collect(Collectors.toList());
-			redisService.save(cacheKey, userDtos);
-			return userDtos;
+			List<UserDto>	UserDto=userRepositoryJdbc.findAll().stream().map(userMapper::toDto).collect(Collectors.toList());
+//			redisService.save(cacheKey, UserDto);
+			return UserDto;
 
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(),e);
@@ -75,9 +75,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto getUser(String userName) {
 		String cacheKey="userDto:"+userName;
-		
+			
 		UserDto cacheUserDto=redisService.get(cacheKey,UserDto.class);
-		
+		redisService.delete(cacheKey);
 		if(cacheUserDto!= null) return cacheUserDto;
 	
 		UserDto userDto=userRepository.findUserByUserName(userName)
@@ -149,7 +149,7 @@ public class UserServiceImpl implements UserService {
 		User user = userMapper.toEnity(userDto);
 		user.setUserPwdHash(passwordEncoder.encode(userDto.getPassword()));
 
-		
+		userRepository.save(user);
 	
 	}
 

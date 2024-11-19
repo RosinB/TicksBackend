@@ -3,8 +3,6 @@ package com.example.demo.service.sales;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -14,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.UserIsNotVerifiedException;
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.pic.PicDto;
 import com.example.demo.model.dto.sales.CheckSectionStatusDto;
@@ -25,6 +24,7 @@ import com.example.demo.repository.EventRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.event.EventRespositoryJdbc;
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
+import com.example.demo.repository.user.UserRepositoryJdbc;
 import com.example.demo.util.RedisService;
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -43,6 +43,10 @@ public class SalesServiceImpl implements SalesService {
 	@Qualifier("eventJDBC")
 	EventRespositoryJdbc eventRespositoryJdbc;
 
+	@Autowired
+	UserRepositoryJdbc userRepositoryJdbc;
+	
+	
 	@Autowired
 	@Qualifier("eventJPA")
 	EventRepository eventRepository;
@@ -142,8 +146,25 @@ public class SalesServiceImpl implements SalesService {
 
 	}
 
+	
+	
+	
+	
+	
 	// 挑選區域要用的service資訊
-	public TicketSectionDto getTicketSection(Integer eventId) {
+	public TicketSectionDto getTicketSection(Integer eventId ,String userName) {
+		
+		String cacheKey0="user:is_verified:"+userName;
+		Boolean isVerified= redisService.get(cacheKey0, Boolean.class);
+		if(isVerified==null) {
+				isVerified=userRepositoryJdbc.findUserIsVerifiedByUserName(userName);
+			redisService.save(cacheKey0, isVerified);
+		}
+		
+		if(!isVerified) throw new UserIsNotVerifiedException("使用者沒有認證，使用者ID:"+eventId+"使用者名字:"+userName) ;
+		
+		
+		
 		TicketSectionDto ticketSectionDto = new TicketSectionDto();
 
 		String cacheKey = "ticket:list:price_and_status:" + eventId;
@@ -155,17 +176,17 @@ public class SalesServiceImpl implements SalesService {
 		List<TicketDto> ticketDto = redisService.get(cacheKey, new TypeReference<List<TicketDto>>() {
 		});
 		if (ticketDto == null) {
-			List<TicketDto> TicketDtos = salesRepositoryJdbc.findPriceAndStatusByEventId(eventId);
-			redisService.saveWithExpire(cacheKey, TicketDtos, 1, TimeUnit.HOURS);
-			ticketDto = TicketDtos;
+			ticketDto  = salesRepositoryJdbc.findPriceAndStatusByEventId(eventId);
+			redisService.saveWithExpire(cacheKey, ticketDto , 1, TimeUnit.HOURS);
+			
 		}
 
 		// 兩次查詢
 		PicDto picDto = redisService.get(cacheKey2, PicDto.class);
 		if (picDto == null) {
-			PicDto picDtos = eventRespositoryJdbc.findPicByEventId(eventId);
-			redisService.saveWithExpire(cacheKey2, picDtos, 1, TimeUnit.HOURS);
-			picDto = picDtos;
+			picDto = eventRespositoryJdbc.findPicByEventId(eventId);
+			redisService.saveWithExpire(cacheKey2, picDto, 1, TimeUnit.HOURS);
+			
 		}
 		// 三次查詢
 		EventDto eventDto = redisService.get(cacheKey3, EventDto.class);
@@ -179,6 +200,7 @@ public class SalesServiceImpl implements SalesService {
 			eventDto = eventDtos;
 		}
 
+		
 		// 票價id
 		ticketSectionDto.setEventId(eventId);
 

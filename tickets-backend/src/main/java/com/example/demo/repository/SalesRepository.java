@@ -15,8 +15,7 @@ import com.example.demo.model.entity.sales.Sales;
 @Repository
 public interface SalesRepository  extends JpaRepository<Sales, Integer>{
 
-	
-		
+
 	
 	
 }

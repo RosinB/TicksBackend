@@ -27,7 +27,6 @@ public interface UserRepository  extends JpaRepository<User, Integer>{
 	//檢查是否有userNmae
 	Boolean existsByUserName(String userName);
 	
-	
 
 	
 	//用userName查user資料

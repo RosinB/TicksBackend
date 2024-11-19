@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.admin.dto.HostDto;
 import com.example.demo.admin.repository.jpa.HostRepository;
 import com.example.demo.model.entity.host.Host;
+import com.example.demo.util.RedisService;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -20,6 +21,10 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	HostRepository hostRepository;
 	//查詢所有主辦
+	
+	@Autowired
+	private RedisService redisService;
+	
 	@Override
 	public List<HostDto> getAllHost() {
 
@@ -42,6 +47,37 @@ public class AdminServiceImpl implements AdminService{
 		} catch (Exception e) {
 			throw new RuntimeException("資料庫新增失敗");
 		}
+		
+	}
+	
+	public void updateHost(HostDto data) {
+		
+		String cacheKey="Host:detail:"+data.getHostId();
+		
+		Host host =redisService.get(cacheKey, Host.class);
+		
+		if(host==null) {
+			
+			host =hostRepository.findById(data.getHostId()).orElseThrow(()-> new RuntimeException("host資料庫抓不到"));
+		}
+		
+		host.setHostName(data.getHostName());
+		host.setHostDescription(data.getHostDescription());
+		host.setHostContact(data.getHostContact());
+		
+		try {
+			hostRepository.save(host);
+			System.out.println("host更新成功");
+
+		} catch (Exception e) {
+			throw new RuntimeException("更新失敗");
+
+		}
+		
+		redisService.save(cacheKey, host);
+		
+		
+				
 		
 	}
 

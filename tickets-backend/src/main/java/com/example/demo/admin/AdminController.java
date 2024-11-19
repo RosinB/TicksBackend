@@ -47,7 +47,7 @@ public class AdminController {
 	
 //===========================post專區==========================
 	
-	
+//	新增主辦
 	@PostMapping("/hosts")
 	public ResponseEntity<ApiResponse<Object>> postHost(@RequestBody HostDto data){
 		try {
@@ -62,6 +62,18 @@ public class AdminController {
 		
 		
 	}
+
+//  更新主辦
+	@PostMapping("/hosts/update")
+	public ResponseEntity<ApiResponse<Object>> postUpdateHost(@RequestBody HostDto data){
+		
+		adminService.updateHost(data);
+		
+	return ResponseEntity.ok(ApiResponse.success("更新成功", 1));
+	}
+	
+	
+	
 	
 	
 	

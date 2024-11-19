@@ -41,8 +41,6 @@ public class TicketSectionDto {
 	//座位圖
 	private String ticketPicSet;
 	
-	//判斷
-	private Boolean ticketIsAvailable;
 	
 	
 	//票價訊息
