@@ -1,4 +1,4 @@
-package com.example.demo.admin.dto;
+package com.example.demo.adminPanel.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

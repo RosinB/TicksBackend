@@ -70,29 +70,31 @@ public class SalesServiceImpl implements SalesService {
 		String section = tickets.getSection();
 		String userName = tickets.getUserName();
 
+
+		
 		String lockKey = "lock:buyTicket:" + tickets.getEventId();
 		RLock lock = redissonClient.getLock(lockKey); // 获取分布式锁
-	    int orderId = -1; // 初始化 orderId，默认值为 -1 表示未生成订单
+	    int orderId = -1;
 
+	    
 		try {
 
 			if (lock.tryLock(10, 30, TimeUnit.SECONDS)) {
 				logger.info("獲得鎖，執行購票邏輯");
 				logger.info("開始處理購票，eventId: {}, section: {}, quantity: {}, userName: {}", eventId, section, quantity,
 						userName);
+				
 
 				salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
 
 				String cacheKey = "userId:" + userName;
-
 				Integer userId = redisService.get(cacheKey, Integer.class);
-
 				if (userId == null) {
-					Integer SaveUserId = userRepository.findIdByUserName(userName);
-					redisService.save(cacheKey, SaveUserId);
-					userId = SaveUserId;
+					userId = userRepository.findIdByUserName(userName);
+					redisService.save(cacheKey, userId);
 				}
 
+				
 				try {
 					 orderId = salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity);
 					
@@ -144,6 +146,7 @@ public class SalesServiceImpl implements SalesService {
 			throw new RuntimeException("eventId找不到演唱會資訊");
 		}
 
+		
 	}
 
 	
@@ -163,7 +166,7 @@ public class SalesServiceImpl implements SalesService {
 		
 		if(!isVerified) throw new UserIsNotVerifiedException("使用者沒有認證，使用者ID:"+eventId+"使用者名字:"+userName) ;
 		
-		
+
 		
 		
 		TicketSectionDto ticketSectionDto = new TicketSectionDto();
@@ -219,7 +222,6 @@ public class SalesServiceImpl implements SalesService {
 
 		// 演唱會時間
 		ticketSectionDto.setEventTime(eventDto.getEventTime());
-//		System.out.println(eventDto.getEventTime());
 		// 地點
 		ticketSectionDto.setEventLoaction(eventDto.getEventLocation());
 
@@ -228,8 +230,6 @@ public class SalesServiceImpl implements SalesService {
 		// 票價資訊
 		ticketSectionDto.setTicketDto(ticketDto);
 
-		
-		
 		// 圖片
 		ticketSectionDto.setTicketPicList(picDto.getPicEventList());
 
@@ -238,11 +238,11 @@ public class SalesServiceImpl implements SalesService {
 	}
 
 	// 抓取票區剩餘狀態
-	public CheckSectionStatusDto getTicketRemaining(String section, Integer eventId) {
-
-		CheckSectionStatusDto dto = salesRepositoryJdbc.checkSectionStatus(section, eventId);
-		dto.setEventId(eventId);
-		return dto;
-	}
+//	public CheckSectionStatusDto getTicketRemaining(String section, Integer eventId) {
+//
+//		CheckSectionStatusDto dto = salesRepositoryJdbc.checkSectionStatus(section, eventId);
+//		dto.setEventId(eventId);
+//		return dto;
+//	}
 
 }

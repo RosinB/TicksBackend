@@ -1,4 +1,4 @@
-package com.example.demo.admin.service;
+package com.example.demo.adminPanel.service.host;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.admin.dto.HostDto;
-import com.example.demo.admin.repository.jpa.HostRepository;
+import com.example.demo.adminPanel.dto.HostDto;
+import com.example.demo.adminPanel.repository.host.HostRepository;
 import com.example.demo.model.entity.host.Host;
 import com.example.demo.util.RedisService;
 

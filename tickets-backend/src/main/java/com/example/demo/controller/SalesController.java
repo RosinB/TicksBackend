@@ -44,13 +44,10 @@ public class SalesController {
 //=======================處理售票狀況============================== 這在tiecketsales
 	@PostMapping("/goticket/area/buy")
 
-	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody PostTicketSalesDto data) {
-		System.out.println("接收到的數據: " + data);
-
-		// CheckSectionStatusDto dto =
-		// salesService.getTicketRemaining(data.getSection(), data.getEventId());
+	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody PostTicketSalesDto data) {		
 
 		int orderId = salesService.buyTicket(data);
+		
 		return ResponseEntity.ok(ApiResponse.success("購票成功", orderId));
 
 	}

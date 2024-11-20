@@ -143,7 +143,7 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 				UPDATE 	ticket
 				SET 	ticket_remaining = ticket_remaining - ?,
 				    	ticket_isAvailable = CASE
-				                            	WHEN ticket_remaining - ? = 0
+				                            	WHEN ticket_remaining <= 0
 				                            	THEN false
 				                            	ELSE true
 				                         	 END
@@ -155,7 +155,7 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 								""".trim();
 
 		try {
-			int result = jdbcTemplate.update(sql, quantity, quantity, section, eventId, quantity);
+			int result = jdbcTemplate.update(sql, quantity, section, eventId, quantity);
 			if (result < 1) {
 				logger.warn("票務更新失敗，eventId: {}, section: {}, quantity: {}", eventId, section, quantity);
 				throw new RuntimeException("票務不足或不可用");
@@ -170,11 +170,9 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 
 	// 檢查看看票務的狀況
 	@Override
-	public CheckSectionStatusDto checkSectionStatus(String section, Integer eventId) {
+	public Boolean checkSectionStatus(String section, Integer eventId) {
 		String sql = """
 					select
-							ticket_name 		as section,
-							ticket_remaining 	as ticketRemaining,
 							ticket_isAvailable 	as ticketIsAvailable
 					from 	ticket
 					where 	ticket_name =? and event_id=?
@@ -182,19 +180,16 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 
 		try {
 
-			CheckSectionStatusDto dto = jdbcTemplate.queryForObject(sql,
-					new BeanPropertyRowMapper<>(CheckSectionStatusDto.class), section, eventId);
+			Boolean hasTickets= jdbcTemplate.queryForObject(sql,boolean.class, section, eventId);
 
-			return dto;
+			return hasTickets;
 
 		} catch (EmptyResultDataAccessException e) {
-			System.out.println("查詢結果為空，section: " + section + ", eventId: " + eventId);
-			return null;
+			throw new RuntimeException("票卷查詢狀態結果為空，section: " + section + ", eventId: " + eventId);
+
 
 		} catch (Exception e) {
-			System.out.println("其他異常: " + e.getMessage());
-			e.printStackTrace();
-			return null;
+			throw new RuntimeException("其他異常");
 		}
 
 	}

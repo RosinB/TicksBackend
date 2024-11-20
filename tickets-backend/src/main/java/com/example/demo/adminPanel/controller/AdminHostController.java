@@ -1,4 +1,4 @@
-package com.example.demo.admin;
+package com.example.demo.adminPanel.controller;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,20 +13,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.admin.dto.HostDto;
-import com.example.demo.admin.service.AdminService;
+import com.example.demo.adminPanel.dto.HostDto;
+import com.example.demo.adminPanel.service.host.AdminService;
 import com.example.demo.util.ApiResponse;
 
 @RestController
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/admin/host")
+public class AdminHostController {
 
-	private final static Logger logger= LoggerFactory.getLogger(AdminController.class);
+	private final static Logger logger= LoggerFactory.getLogger(AdminHostController.class);
+	
 	@Autowired
 	AdminService adminService;
 	
 	
-	@GetMapping("/hosts")
+	@GetMapping("/all")
 	ResponseEntity<ApiResponse<Object>> getHosts(){
 		
 		try {
@@ -43,12 +43,13 @@ public class AdminController {
 		
 	}
 	
+	
 
 	
 //===========================post專區==========================
 	
 //	新增主辦
-	@PostMapping("/hosts")
+	@PostMapping("/add")
 	public ResponseEntity<ApiResponse<Object>> postHost(@RequestBody HostDto data){
 		try {
 			adminService.addHost(data);
@@ -64,7 +65,7 @@ public class AdminController {
 	}
 
 //  更新主辦
-	@PostMapping("/hosts/update")
+	@PostMapping("/update")
 	public ResponseEntity<ApiResponse<Object>> postUpdateHost(@RequestBody HostDto data){
 		
 		adminService.updateHost(data);
@@ -76,9 +77,7 @@ public class AdminController {
 	
 	
 	
-	
-	
-	
+
 	
 	
 	

@@ -1,8 +1,8 @@
-package com.example.demo.admin.service;
+package com.example.demo.adminPanel.service.host;
 
 import java.util.List;
 
-import com.example.demo.admin.dto.HostDto;
+import com.example.demo.adminPanel.dto.HostDto;
 
 public interface AdminService {
 

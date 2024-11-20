@@ -13,7 +13,7 @@ public interface SalesRepositoryJdbc {
 	
 	List<TicketDto> findPriceAndStatusByEventId(Integer eventId);
 	
-	CheckSectionStatusDto checkSectionStatus(String section,Integer eventId);
+	Boolean checkSectionStatus(String section,Integer eventId);
 	
 	void checkTicketAndUpdate(String section,Integer eventId, Integer quantity);
 
