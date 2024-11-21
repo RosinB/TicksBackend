@@ -7,14 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.adminPanel.dto.HostDto;
-import com.example.demo.adminPanel.service.host.AdminService;
+import com.example.demo.adminPanel.dto.host.HostDto;
+import com.example.demo.adminPanel.service.host.AdminHostService;
 import com.example.demo.util.ApiResponse;
 
 @RestController
@@ -24,7 +25,7 @@ public class AdminHostController {
 	private final static Logger logger= LoggerFactory.getLogger(AdminHostController.class);
 	
 	@Autowired
-	AdminService adminService;
+	AdminHostService adminService;
 	
 	
 	@GetMapping("/all")
@@ -78,7 +79,12 @@ public class AdminHostController {
 	
 	
 
-	
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<ApiResponse<Void>> handAdminHostRunTimeException(RuntimeException e) {
+		logger.info("AdminHost有RuntimeException:" + e.getMessage());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.body(ApiResponse.error(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
+	}
 	
 	
 	

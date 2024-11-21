@@ -32,8 +32,8 @@ public class Pic {
 	@Column(name="pic_event_list")
 	private String picEventList;
 	
+	@Column(name="pic_event_section")
+	private String picEventSection;
 	
-	@Column(name="pic_index")
-	private String picIndex;
 	
 }
