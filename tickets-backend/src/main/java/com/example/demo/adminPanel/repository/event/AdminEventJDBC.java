@@ -20,4 +20,6 @@ public interface AdminEventJDBC {
 	
 	int addEventDto(EventDetailDto dto,Integer hostId);
 	
+	void addSalesStatus(Integer eventId);
+	
 }

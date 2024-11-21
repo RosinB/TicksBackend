@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.repository.event.AdminEventJDBC;
 import com.example.demo.adminPanel.repository.event.AdminEventJDBCImpl;
 @Repository
@@ -31,6 +32,28 @@ public class AdminHostJDBCImpl implements AdminHostJDBC{
 		
 	
 	}
+
+	
+	@Override
+	public void addPic(EventDetailDto dto, Integer eventId) {
+		String sql="""
+				insert into pic(event_id,		pic_event_ticket,	
+								pic_event_list,	pic_event_section)
+							values(?,?,?,?)
+				""".trim();
+		try {
+			jdbcTemplate.update(sql,eventId,dto.getPicEventTicket(),dto.getPicEventList(),dto.getPicEventSection());
+			
+		} catch (Exception e) {
+			logger.info("添加addPic有錯誤，這個在AdminHostJDBC。"+e.getMessage());
+			throw new RuntimeException("添加addPic有錯誤，這個在AdminHostJDBC。"+e.getMessage());	
+		}
+		
+		
+	}
 	
 
+	
+	
+	
 }

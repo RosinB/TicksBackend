@@ -134,11 +134,11 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 				insert into event(	event_performer ,event_name		,event_description,
 							 		event_date		,event_time		,event_location,
 							 		event_type		,event_status	,host_id)
-							values( ?, ?, ?, ?, ?, ?, ?, ?, ?,)		
+							values( ?, ?, ?, ?, ?, ?, ?, ?, ?)		
 				""".trim();
 		
 		KeyHolder keyHolder=new GeneratedKeyHolder();
-		try {			
+		try {	System.out.println(dto);
 				jdbcTemplate.update(connection->{
 					PreparedStatement ps =connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 					ps.setString(1,dto.getEventPerformer());
@@ -149,7 +149,7 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 					ps.setString(6,dto.getEventLocation());
 					ps.setString(7,dto.getEventType());
 					ps.setString(8,dto.getEventStatus());
-				ps.setInt(9, hostId);
+					ps.setInt(9, hostId);
 						return ps;		
 				},keyHolder);
 				
@@ -161,6 +161,29 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 		}
 
 		
+		
+	}
+
+
+
+
+	
+	
+	
+	@Override
+	public void addSalesStatus(Integer eventId) {
+		String sql="""
+				insert into sales(event_id,sales_status)
+				values(?,'未開賣')
+				
+				""".trim();
+		try {
+			jdbcTemplate.update(sql,eventId);			
+		} catch (Exception e) {
+			logger.info("addSalesStatus 添加錯誤"+e.getMessage());
+			throw new RuntimeException("addSalesStatus 添加錯誤"+e.getMessage());
+		
+		}
 		
 	}
 

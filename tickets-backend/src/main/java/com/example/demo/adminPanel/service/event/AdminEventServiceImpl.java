@@ -14,6 +14,7 @@ import com.example.demo.adminPanel.dto.event.GetEventAllDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
 import com.example.demo.adminPanel.repository.event.AdminEventJDBC;
 import com.example.demo.adminPanel.repository.host.AdminHostJDBC;
+import com.example.demo.adminPanel.repository.ticket.AdTicketJDBC;
 
 
 @Service
@@ -28,6 +29,8 @@ private final static Logger logger = LoggerFactory.getLogger(AdminEventServiceIm
 	@Autowired
 	AdminHostJDBC adminHostJDBC;
 	
+	@Autowired
+	AdTicketJDBC adTicketJDBC;
 	
 	//找全部演唱會的簡單資訊
 	@Override
@@ -52,7 +55,6 @@ private final static Logger logger = LoggerFactory.getLogger(AdminEventServiceIm
 
 
 	@Override
-	
 	@Transactional
 	public String addEvent(EventDetailDto dto) {
         LocalDate currentDate = LocalDate.now();
@@ -60,20 +62,24 @@ private final static Logger logger = LoggerFactory.getLogger(AdminEventServiceIm
         int hostId=adminHostJDBC.findHostIdByHostName(dto.getHostName());
         
         if(dto.getEventDate().isAfter(currentDate)) {
-            dto.setSalesStatus("即將舉辦");
-        }else dto.setSalesStatus("已舉辦");
+            dto.setEventStatus("即將舉辦");
+        }else dto.setEventStatus("已舉辦");
           
-   
-		adminEventJDBC.addEventDto(dto,hostId);
+//=================新增event的table=================
+		Integer eventId= adminEventJDBC.addEventDto(dto,hostId);
+		logger.info("新增的演唱會資訊的eventId是:"+eventId);		
+//=================新增sales的table=================
+		adminEventJDBC.addSalesStatus(eventId);
+//=================新增ticket的table=================
+		for(TicketDtos ticketDtos :dto.getTicketDtos()) {
+			adTicketJDBC.addTicketDtosByEventId(eventId,ticketDtos);
+		}
+//=================新增pic的table=================
+		adminHostJDBC.addPic(dto, eventId);
 		
+	
 		
-		
-		
-		
-		
-		
-		
-		return null;
+		return "新增成功";
 	}
 
 	

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.dto.event.GetEventAllDto;
+import com.example.demo.adminPanel.dto.ticket.TicketDtos;
 import com.example.demo.adminPanel.repository.event.AdminEventJDBCImpl;
 import com.example.demo.adminPanel.service.event.AdminEventService;
 import com.example.demo.util.ApiResponse;
@@ -57,7 +58,11 @@ public class AdminEventController {
 	ResponseEntity<ApiResponse<Object>> postAddEvent(@RequestBody EventDetailDto dto){
 		logger.info("需要新增的演唱會資料"+dto);
 		
-		return ResponseEntity.ok(ApiResponse.success("傳送成功", dto));
+		
+
+		String a=adminEventService.addEvent(dto);
+		
+		return ResponseEntity.ok(ApiResponse.success("傳送成功", a));
 	}
 	
 	
