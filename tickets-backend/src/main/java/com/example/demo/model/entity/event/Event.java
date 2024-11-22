@@ -1,6 +1,7 @@
 package com.example.demo.model.entity.event;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -50,6 +51,12 @@ public class Event {
 
 	@Column(name = "host_id")
 	private Integer hostId;
+	
+	@Column(name="event_salesdate")
+	private LocalDate eventSalesDate;
+	
+	@Column(name="event_salestime")
+	private LocalTime eventSalesTime;
 
 	
 	
