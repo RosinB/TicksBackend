@@ -37,7 +37,12 @@ public class EventDto {
 	//演唱會網站圖片
 	private String eventTicketPic;
 	
+	//演唱會搶票日期
+	private LocalDate eventSalesDate;
 
+	//演唱會搶票時間
+	private LocalTime eventSalesTime;
+	
 	
 	//主辦id
 	private Integer hostId;
