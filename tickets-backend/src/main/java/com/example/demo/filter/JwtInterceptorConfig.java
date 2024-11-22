@@ -16,9 +16,12 @@ public class JwtInterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
-                .addPathPatterns("/user/all") // 攔截的路徑
-                .addPathPatterns("/user/userUpdate")
+                .addPathPatterns("/user/all") // 攔截的路徑 全部會員
+                .addPathPatterns("/user/userUpdate")//更新會員
+                .addPathPatterns("/user/order")//使用者訂單
+                .addPathPatterns("/sales/goticket/*")
+                .addPathPatterns("/event/ticket")
                 .addPathPatterns("/admin/*")
-                .excludePathPatterns("/login", "/public/**"); // 排除不需要攔截的路徑
+                .excludePathPatterns("/user/login"); // 排除不需要攔截的路徑
     }
 }

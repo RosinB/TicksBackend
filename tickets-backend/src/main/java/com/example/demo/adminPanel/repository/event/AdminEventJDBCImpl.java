@@ -49,8 +49,6 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 		
 	}
 
-
-	
 	
 	//透過演唱會ID茶演唱會資料
 	@Override
@@ -95,9 +93,6 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 	}
 
 
-
-
-	
 	//透過演唱會ID查ticketDtos
 	@Override
 	public List<TicketDtos> findTicketDtosById(Integer eventId) {
@@ -124,9 +119,6 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 	}
 
 
-
-
-	
 	//先加入event的table
 	@Override
 	public int addEventDto(EventDetailDto dto,Integer hostId) {
@@ -164,12 +156,8 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 		
 	}
 
-
-
-
 	
-	
-	
+	//增加銷售狀態
 	@Override
 	public void addSalesStatus(Integer eventId) {
 		String sql="""
@@ -187,6 +175,46 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 		
 	}
 
+	
+	//更新eventTable
+	@Override
+	public void updateEventDto(EventDetailDto dto,Integer hostId,Integer eventId) {
+		String sql="""
+					update  event
+					set  	event_performer		=?,
+							event_name			=?,
+							event_description	=?,
+							event_date			=?,
+							event_time			=?,
+							event_location		=?,
+							event_type			=?,
+							event_status		=?,
+							host_id				=?
+					where 	event_id			=?
+				""".trim();
+		
+		try {
+			int row = jdbcTemplate.update(sql,
+										  dto.getEventPerformer(),dto.getEventName(),dto.getEventDescription(),
+										  dto.getEventDate(),dto.getEventTime(),dto.getEventLocation(),
+										  dto.getEventType(),dto.getEventStatus(),hostId,eventId);
+			if(row<1) {
+				logger.info("活動更新為0");
+				throw new RuntimeException("活動更新筆數為0");
+			}
+			
+			
+			
+		} catch (Exception e) {
+			logger.info("更新活動資訊失敗",e.getMessage());
+			throw new RuntimeException("更新活動資訊失敗"+e.getMessage());
+		
+		}
+		
+	
+			
+		
+		}
 	
 	
 	

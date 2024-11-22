@@ -22,4 +22,7 @@ public interface AdminEventJDBC {
 	
 	void addSalesStatus(Integer eventId);
 	
+	void updateEventDto(EventDetailDto dto,Integer hostId,Integer eventId);
+	
+
 }

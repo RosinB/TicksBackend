@@ -40,5 +40,33 @@ public class AdTicketJDBCImpl implements AdTicketJDBC{
 
 	
 	
+	@Override
+	public void updateTicketDtosByEventId(Integer eventId, TicketDtos ticketDtos) {
+		String sql="""
+					update 	ticket
+					set	   	ticket_price 	=?,
+						   	ticket_quantity =?
+					where 	event_id 	=? and ticket_name =?		
+				""".trim();
+		try {
+			int row=jdbcTemplate.update(sql,
+										ticketDtos.getTicketPrice(),ticketDtos.getTicketQuantity(),
+										eventId,ticketDtos.getTicketSection());
+			if(row<1) {
+				logger.info("updateTicketDtosByEventId更新筆數為0");
+				throw new RuntimeException("updateTicketDtosByEventId更新筆數為0");}
+									
+		} catch (Exception e) {
+			logger.info("updateTicketDtosByEventId更新失敗，有錯誤",e.getMessage());
+			throw new RuntimeException("updateTicketDtosByEventId更新失敗，有錯誤"+e.getMessage());		
+		}
+		
+	}
+
+	
+	
+	
+	
+	
 	
 }

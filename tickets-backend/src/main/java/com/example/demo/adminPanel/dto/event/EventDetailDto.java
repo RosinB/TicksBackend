@@ -55,11 +55,5 @@ public class EventDetailDto {
 		private String picEventTicket;
 		
 		
-//========================================
-		
-		
-		
-	
-	
 	
 }

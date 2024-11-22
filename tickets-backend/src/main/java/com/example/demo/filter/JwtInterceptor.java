@@ -2,17 +2,29 @@ package com.example.demo.filter;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
-
+	private final static Logger logger =LoggerFactory.getLogger(JwtInterceptor.class);
+	
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+    	
+    	System.out.println("攔截器執行成功，請求路徑: " + request.getRequestURI());
+        String requestURI = request.getRequestURI();
+
         // 從 Header 中獲取 Token
         String token = request.getHeader("Authorization");
+        // 放行登入請求
+        if ("/login".equals(requestURI)) {
+            return true;
+        }
         // 檢查 Token 是否存在
         if (token == null || !token.startsWith("Bearer")) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

@@ -82,7 +82,31 @@ private final static Logger logger = LoggerFactory.getLogger(AdminEventServiceIm
 		return "新增成功";
 	}
 
-	
+	@Override
+	@Transactional
+	public EventDetailDto updateEvent(EventDetailDto dto) {
+		logger.info("演唱會更新開始----->演唱會資料:"+dto);
+
+		Integer eventId=dto.getEventId();
+        LocalDate currentDate = LocalDate.now();
+
+        if(dto.getEventDate().isAfter(currentDate))
+        	dto.setEventStatus("即將舉辦");
+        else dto.setEventStatus("已舉辦");
+       
+        int hostId=adminHostJDBC.findHostIdByHostName(dto.getHostName());
+//=================更新eventDto=========================
+        adminEventJDBC.updateEventDto(dto, hostId, eventId);
+//=================更新ticketDto=========================
+
+        for(TicketDtos ticketDtos :dto.getTicketDtos()) {
+			adTicketJDBC.updateTicketDtosByEventId(eventId,ticketDtos);
+		}
+//=================更新picDto=========================
+        adminHostJDBC.updatePic(dto, eventId);
+        
+		return dto;
+	}
 	
 	
 	

@@ -15,5 +15,6 @@ public interface AdminEventService {
 	
 	String addEvent(EventDetailDto dto);
 	
-	
+	 EventDetailDto updateEvent(EventDetailDto dto);
+
 }

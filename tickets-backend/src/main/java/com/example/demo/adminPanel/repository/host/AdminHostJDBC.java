@@ -9,4 +9,6 @@ public interface AdminHostJDBC {
 	
 	void addPic(EventDetailDto dto , Integer eventId);
 	
+	void updatePic(EventDetailDto dto , Integer eventId);
+
 }

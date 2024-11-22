@@ -51,6 +51,35 @@ public class AdminHostJDBCImpl implements AdminHostJDBC{
 		
 		
 	}
+
+
+	
+	@Override
+	public void updatePic(EventDetailDto dto, Integer eventId) {
+		String sql="""
+					update pic
+					set    
+						   pic_event_ticket 	= ?,
+						   pic_event_list		= ?,
+					       pic_event_section	= ?
+					where  event_id	=?
+				""".trim();
+		try {
+			int row=jdbcTemplate.update(sql,
+										dto.getPicEventTicket(),dto.getPicEventList(),dto.getPicEventSection(),
+										eventId);
+			if(row<1) {
+				logger.info("updatePic更新為0條");
+				throw new RuntimeException("updatePic更新為0條");
+			}
+			
+		} catch (Exception e) {
+			logger.info("updatePic更新失敗",e.getMessage());
+			throw new RuntimeException("updatePic更新失敗"+e.getMessage());
+		}
+		
+		
+	}
 	
 
 	

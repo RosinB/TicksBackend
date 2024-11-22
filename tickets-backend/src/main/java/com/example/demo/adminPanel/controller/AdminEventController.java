@@ -65,6 +65,15 @@ public class AdminEventController {
 		return ResponseEntity.ok(ApiResponse.success("傳送成功", a));
 	}
 	
+	//更新資料
+	@PostMapping("/update")
+	ResponseEntity<ApiResponse<Object>> postUpdateEvent(@RequestBody EventDetailDto dto){
+		
+		EventDetailDto dtos=adminEventService.updateEvent(dto);
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", dtos));
+	}
+	
+	
 	
 	
 	

@@ -85,7 +85,7 @@ public class UserController {
 	public ResponseEntity<ApiResponse<Object>> postLoginUser(@RequestBody LoginDto loginDto) {
 
 		LoginResultDto loginSessionDto = userService.checkUserLogin(loginDto);
-
+		System.out.println("我在這裡");
 		if (!loginSessionDto.getSuccess()) {
 			String message = loginSessionDto.getMessage();
 			logger.info("使用者登入失敗狀況" + message);
