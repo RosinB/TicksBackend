@@ -39,7 +39,7 @@ public class TicketSectionDto {
 	private String ticketPicList;
 	
 	//座位圖
-	private String ticketPicSet;
+	private String ticketPicSection;
 	
 	
 	//票價訊息

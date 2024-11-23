@@ -59,7 +59,7 @@ public class EventServiceImpl implements EventService {
 		
 		List<EventDto> events = eventRepository.findAll().stream().map(eventMapper::toDto).collect(Collectors.toList());
 
-		redisService.saveWithExpire(cacheKey, events, 1, TimeUnit.HOURS);
+		redisService.saveWithExpire(cacheKey, events, 10, TimeUnit.MINUTES);
 		
 		return events;
 	}
@@ -68,19 +68,19 @@ public class EventServiceImpl implements EventService {
 	public List<EventPicDto> findAllEventPic() {
 		String cacheKey = "allEventsPic";
 		
+		
+		redisService.delete(cacheKey);
 		List<EventPicDto> cachedEventsPic=redisService.get(cacheKey, new TypeReference<List<EventPicDto>>() {});
 		
 		if(cachedEventsPic !=null) {
 			return cachedEventsPic;
 		}	
-		try {
-			List<EventPicDto> eventPicDtos= eventRespositoryJdbc.findAllEventPics();
-			redisService.saveWithExpire(cacheKey, eventPicDtos, 1, TimeUnit.HOURS);
-			return eventPicDtos;
+		
+		List<EventPicDto> eventPicDtos= eventRespositoryJdbc.findAllEventPics();
+		redisService.saveWithExpire(cacheKey, eventPicDtos, 10, TimeUnit.MINUTES);
+		return eventPicDtos;
 			
-		}  catch (Exception e) {
-	        throw new RuntimeException("獲取照片時發生未知錯誤");
-	    }
+		
 	
 	}
 
@@ -111,17 +111,13 @@ public class EventServiceImpl implements EventService {
 		if(cachedEventDto!=null) {
 		    return Optional.of(cachedEventDto);}
 		
-		try {
 			Optional<EventDto> eventDtos=eventRespositoryJdbc.findEventDetailByEventId(eventId);
 
 			EventDto eventDto=eventDtos.get();
-			redisService.saveWithExpire(cacheKey, eventDto, 1,TimeUnit.HOURS );
+			redisService.saveWithExpire(cacheKey, eventDto, 10, TimeUnit.MINUTES );
 			return eventDtos;
 			
-		} catch (Exception e) {
-			throw new RuntimeException("獲取演唱會資訊時錯誤"+eventId,e);
 		
-		}
 	}
 	
 

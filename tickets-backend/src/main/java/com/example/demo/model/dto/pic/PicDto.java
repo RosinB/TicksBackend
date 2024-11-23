@@ -20,6 +20,7 @@ public class PicDto {
 	
 	private String picEventList;
 	
+	private String picEventSection;
 	
 	private String picIndex;
 }

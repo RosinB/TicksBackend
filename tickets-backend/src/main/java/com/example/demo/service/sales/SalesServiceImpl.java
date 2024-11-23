@@ -91,7 +91,7 @@ public class SalesServiceImpl implements SalesService {
 				Integer userId = redisService.get(cacheKey, Integer.class);
 				if (userId == null) {
 					userId = userRepository.findIdByUserName(userName);
-					redisService.save(cacheKey, userId);
+					redisService.saveWithExpire(cacheKey, userId, 10, TimeUnit.MINUTES);
 				}
 
 				
@@ -138,7 +138,7 @@ public class SalesServiceImpl implements SalesService {
 
 		try {
 			SalesDto salesDto = salesRepositoryJdbc.findSalesDetailByEventId(eventId);
-			redisService.saveWithExpire(cacheKey, salesDto, 1, TimeUnit.HOURS);
+			redisService.saveWithExpire(cacheKey, salesDto, 10, TimeUnit.MINUTES);
 			return salesDto;
 
 		} catch (Exception e) {
@@ -161,7 +161,7 @@ public class SalesServiceImpl implements SalesService {
 		Boolean isVerified= redisService.get(cacheKey0, Boolean.class);
 		if(isVerified==null) {
 				isVerified=userRepositoryJdbc.findUserIsVerifiedByUserName(userName);
-			redisService.save(cacheKey0, isVerified);
+			redisService.saveWithExpire(cacheKey0, isVerified, 10, TimeUnit.MINUTES);
 		}
 		
 		if(!isVerified) throw new UserIsNotVerifiedException("使用者沒有認證，使用者ID:"+eventId+"使用者名字:"+userName) ;
@@ -180,12 +180,11 @@ public class SalesServiceImpl implements SalesService {
 		List<TicketDto> ticketDto = salesRepositoryJdbc.findPriceAndStatusByEventId(eventId) ;
 		
 			
-
 		// 兩次查詢
 		PicDto picDto = redisService.get(cacheKey2, PicDto.class);
 		if (picDto == null) {
 			picDto = eventRespositoryJdbc.findPicByEventId(eventId);
-			redisService.saveWithExpire(cacheKey2, picDto, 1, TimeUnit.HOURS);	
+			redisService.saveWithExpire(cacheKey2, picDto, 10, TimeUnit.MINUTES);	
 			
 		}
 		// 三次查詢
@@ -199,14 +198,9 @@ public class SalesServiceImpl implements SalesService {
 			}
 			
 			eventDto = eventDtoOpt.get();
-			redisService.saveWithExpire(cacheKey3, eventDto, 1, TimeUnit.HOURS);
+			redisService.saveWithExpire(cacheKey3, eventDto, 10, TimeUnit.MINUTES);
 		}
-		
-		
-
-		
-		
-		
+			
 		
 		// 票價id
 		ticketSectionDto.setEventId(eventId);
@@ -232,6 +226,8 @@ public class SalesServiceImpl implements SalesService {
 
 		// 圖片
 		ticketSectionDto.setTicketPicList(picDto.getPicEventList());
+		
+		ticketSectionDto.setTicketPicSection(picDto.getPicEventSection());
 
 		return ticketSectionDto;
 

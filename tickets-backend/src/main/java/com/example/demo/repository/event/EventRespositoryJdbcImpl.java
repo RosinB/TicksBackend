@@ -38,23 +38,25 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 	    		   p.pic_event_ticket as eventTicketPic,
 	               p.pic_event_list as eventTicketList,
 	               e.event_date as eventDate,
-	               e.event_name as eventName
+	               e.event_time as eventTime,
+	               e.event_name as eventName,
+	               e.event_salestime as eventSalesTime,
+	               e.event_salesdate as eventSalesDate
 	        from pic p
 	        join event e
 	        on p.event_id = e.event_id
 	    """.trim();
 	    
-	    
-	    return jdbcTemplate.query(sql, (rs, rowNum) -> 
-	    {
-	        EventPicDto eventPicDto = new EventPicDto();
-	        eventPicDto.setEventId(rs.getInt("eventId"));
-	        eventPicDto.setEventTicketPic(rs.getString("eventTicketPic"));
-	        eventPicDto.setEventTicketList(rs.getString("eventTicketList"));
-	        eventPicDto.setEventDate(rs.getObject("eventDate", LocalDate.class)); // 手動映射 LocalDate
-	        eventPicDto.setEventName(rs.getString("eventName"));
-	        return eventPicDto;  //這一行會自己加到List query是回傳一個list
-	    });
+	    try {
+	    	return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(EventPicDto.class));
+
+	    	
+		} catch (Exception e) {
+			logger.info("findAllEventPics資料查訊失敗"+e.getMessage());
+			throw new RuntimeException("findAllEventPics資料查訊失敗"+e.getMessage());
+		
+		}
+	  
 	    
 	}
 
@@ -65,7 +67,7 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 				select 	p.pic_id as picId,
 						p.pic_event_ticket as picEventTicket,
 						p.pic_event_list as picEventList,
-						p.pic_index as picIndex
+						p.pic_event_section as picEventSection
 				from pic p
 				where p.event_id=?
 	
@@ -94,8 +96,11 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 				    e.event_description AS eventDescription,
 				    e.event_date AS eventDate,
 				    e.event_time AS eventTime,
+				    e.event_salesdate AS eventSalesDate,
+				    e.event_salestime AS eventSalesTime,
 				    h.host_name AS hostName,
-				    p.pic_event_ticket AS eventTicketPic
+				    p.pic_event_ticket AS eventTicketPic,
+				    p.pic_event_section AS picTicketSection
 				FROM
 				    event e
 				JOIN
@@ -115,6 +120,7 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 			return Optional.of(eventDto);
 			
 		} catch (Exception e) {
+			logger.info("演唱會 findEventDetailByEventId 找不到");
 			throw new RuntimeException("演唱會資訊找不到"+eventId,e);
 		}
 	}

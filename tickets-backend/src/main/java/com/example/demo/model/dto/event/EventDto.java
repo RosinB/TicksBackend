@@ -43,6 +43,7 @@ public class EventDto {
 	//演唱會搶票時間
 	private LocalTime eventSalesTime;
 	
+	private String picTicketSection;
 	
 	//主辦id
 	private Integer hostId;
