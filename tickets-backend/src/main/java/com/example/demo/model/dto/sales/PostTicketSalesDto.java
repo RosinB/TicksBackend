@@ -1,5 +1,6 @@
 package com.example.demo.model.dto.sales;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ public class PostTicketSalesDto {
 
 		private String userName;
 		
-		
+	    private String requestId; // 唯一請求 ID
+
 	
 }

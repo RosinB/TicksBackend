@@ -1,6 +1,7 @@
 package com.example.demo.service.order;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
@@ -13,5 +14,5 @@ public interface OrderService {
 	
 	List<OrderDetailDto> getAllUserOrder(String userName);
 	
-	
+	Map<String, Object> getTicketStatus(String requestId);
 }

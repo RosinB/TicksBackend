@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.exception.UserIsNotVerifiedException;
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.pic.PicDto;
-import com.example.demo.model.dto.sales.CheckSectionStatusDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.model.dto.sales.SalesDto;
 import com.example.demo.model.dto.ticket.TicketDto;
@@ -59,70 +59,50 @@ public class SalesServiceImpl implements SalesService {
 
 	@Autowired
 	private RedissonClient redissonClient;
+	
+	@Autowired
+    private RabbitTemplate rabbitTemplate;
+	
+	 @Autowired
+	    public void configureRabbitTemplate(Jackson2JsonMessageConverter messageConverter) {
+	        rabbitTemplate.setMessageConverter(messageConverter);
+	    }
 
 //	處理購票邏輯
 //========================================================================================================
-	@Override
-	@Transactional
-	public int buyTicket(PostTicketSalesDto tickets) {
-		Integer eventId = tickets.getEventId();
-		Integer quantity = tickets.getQuantity();
-		String section = tickets.getSection();
-		String userName = tickets.getUserName();
+	 @Override
+	 @Transactional
+	 public void buyTicket(PostTicketSalesDto tickets) {
+	     Integer eventId = tickets.getEventId();
+	     Integer quantity = tickets.getQuantity();
+	     String section = tickets.getSection();
+	     String userName = tickets.getUserName();
+	     String requestId = tickets.getRequestId();
 
+	     try {
+	         logger.info("開始處理購票，RequestID: {}", requestId);
 
-		
-		String lockKey = "lock:buyTicket:" + tickets.getEventId();
-		RLock lock = redissonClient.getLock(lockKey); // 获取分布式锁
-	    int orderId = -1;
+	         // 檢查庫存並扣減
+	         salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
 
-	    
-		try {
+	         // 獲取用戶 ID
+	         String cacheKey = "userId:" + userName;
+	         Integer userId = redisService.get(cacheKey, Integer.class);
+	         if (userId == null) {
+	             userId = userRepository.findIdByUserName(userName);
+	             redisService.saveWithExpire(cacheKey, userId, 10, TimeUnit.MINUTES);
+	         }
 
-			if (lock.tryLock(10, 30, TimeUnit.SECONDS)) {
-				logger.info("獲得鎖，執行購票邏輯");
-				logger.info("開始處理購票，eventId: {}, section: {}, quantity: {}, userName: {}", eventId, section, quantity,
-						userName);
-				
+	         // 創建訂單
+	         salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity, requestId);
 
-				salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
+	         logger.info("訂單生成成功，RequestID: {}", requestId);
+	     } catch (Exception e) {
+	         logger.error("購票失敗，RequestID: {}，錯誤原因: {}", requestId, e.getMessage());
+	         throw new RuntimeException("購票處理失敗：" + e.getMessage(), e);
+	     }
+	 }
 
-				String cacheKey = "userId:" + userName;
-				Integer userId = redisService.get(cacheKey, Integer.class);
-				if (userId == null) {
-					userId = userRepository.findIdByUserName(userName);
-					redisService.saveWithExpire(cacheKey, userId, 10, TimeUnit.MINUTES);
-				}
-
-				
-				try {
-					 orderId = salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity);
-					
-				} catch (Exception e) {
-					throw new RuntimeException("處理購票的時候有問題" + e.getMessage());
-				}
-
-
-			} else { 
-				System.out.println("未獲得鎖");
-			}
-
-		} 
-		catch (InterruptedException e) 
-		{throw new RuntimeException("獲取鎖失敗", e);}
-		finally 
-		{ 
-			if (lock.isHeldByCurrentThread()) 
-			{ 
-				lock.unlock(); 
-			}
-		}
-		
-		return orderId;
-
-		
-
-	}
 //	處理購票邏輯
 //========================================================================================================
 

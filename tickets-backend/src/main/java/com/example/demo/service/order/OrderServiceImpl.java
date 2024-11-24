@@ -1,6 +1,7 @@
 package com.example.demo.service.order;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
+import com.example.demo.model.dto.orders.OrderDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.order.OrderRepositoryJdbc;
+import com.example.demo.util.RedisService;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -23,7 +26,43 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired
 	OrderRepositoryJdbc orderRepositoryJdbc;
+	@Autowired
+    private RedisService redisService;
 	
+	
+	public Map<String, Object> getTicketStatus(String requestId) {
+        // 檢查是否存在對應的記錄
+		String redisStatus = redisService.get("order:" + requestId,String.class);
+		
+	    if ("FAILED".equals(redisStatus)) {
+	        return Map.of(
+	            "status", "FAILED",
+	            "errorMessage", "購票失敗"
+	        );
+	    }
+		Optional<OrderDto> optionalOrder = orderRepositoryJdbc.findOrderDtoByRequestId(requestId);
+		
+		if (optionalOrder.isEmpty()) {
+		    return Map.of("status", "PENDING");
+		}
+
+		OrderDto order = optionalOrder.get();
+        
+        switch (order.getOrderStatus()) {
+		            case "COMPLETED":
+		                return Map.of(
+		                    "status", "COMPLETED",
+		                    "orderId", order.getOrderId()
+		                );
+		            case "FAILED":
+		                return Map.of(
+		                    "status", "FAILED",
+		                    "errorMessage", "訂單處理失敗"
+		                );
+		            default:
+		                return Map.of("status", "PENDING");
+        }
+    }
 	
 	
 	

@@ -86,41 +86,20 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 
 	// ==========================添加order========================================
 	@Override
-	public int addTicketOrder(Integer userId,String section, Integer eventId, Integer quantity) {
+	public void addTicketOrder(Integer userId,String section, Integer eventId, Integer quantity,String requestId) {
 		String sql=
 				"""
-				insert into orders(event_id,user_id,order_quantity,order_section,order_status)
-							values(?,?,?,?,?)
+				insert into orders(event_id,user_id,order_quantity,order_section,order_status,request_id)
+							values(?,?,?,?,?,?)
 				""".trim();
 		
-		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
 
 	    try {
-	        int result = jdbcTemplate.update(connection -> {
-	            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-	            ps.setInt(1, eventId);
-	            ps.setInt(2, userId);
-	            ps.setInt(3, quantity);
-	            ps.setString(4, section);
-	            ps.setString(5, "已完成");
-	            return ps;
-	        }, keyHolder);
+	       jdbcTemplate.update(sql,eventId,userId,quantity,section,"PENDING",requestId);
 
-	        if (result < 1) {
-	            throw new RuntimeException("訂單新增失敗");
-	        }
-
-	        // 獲取自動生成的 order_id
-	        Number generatedKey = keyHolder.getKey();
-	        if (generatedKey != null) {
-	            logger.info("訂單新增成功，生成的 order_id 為: " + generatedKey.intValue()
-	            		);
-	            return generatedKey.intValue();
-
-	            
-	        } else {
-	            throw new RuntimeException("無法獲取生成的 order_id");
-	        }
+	       
+	        
 	    } catch (BadSqlGrammarException e) {
 	        logger.error("SQL 語法錯誤: {}", e.getMessage(), e);
 	        throw new RuntimeException("SQL 語法錯誤，請檢查語句或數據庫表結構", e);

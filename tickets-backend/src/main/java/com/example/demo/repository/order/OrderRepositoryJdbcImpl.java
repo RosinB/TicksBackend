@@ -2,10 +2,13 @@ package com.example.demo.repository.order;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
+import com.example.demo.model.dto.orders.OrderDto;
 
 @Repository
 public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc{
@@ -133,8 +137,56 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc{
 		
 	}
 
+
+
+	@Override
+	public boolean existsByRequestId(String requestId) {
+		  	String sql = """
+		  			SELECT COUNT(1) > 0 
+		  			FROM orders
+		  			WHERE request_id = ?
+		  			
+		  			""";
+		  	
+		    try {
+		        return jdbcTemplate.queryForObject(sql, Boolean.class, requestId);
+		    } catch (Exception e) {
+		        // 捕獲可能的異常
+		        logger.error("查詢是否存在 requestId 時出現錯誤: {}", e.getMessage(), e);
+		        throw new RuntimeException("查詢失敗", e);
+		    }
+	}
+
+	public Optional<OrderDto> findOrderDtoByRequestId(String requestId) {
+	    String sql = """
+	        SELECT order_id AS orderId,
+	               order_status AS orderStatus
+	        FROM orders
+	        WHERE request_id = ?
+	        """;
+
+	    try {
+	        return Optional.ofNullable(
+	            jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(OrderDto.class), requestId)
+	        );
+	    } catch (EmptyResultDataAccessException e) {
+	        logger.info("透過 requestId 找不到 orders，RequestID: {}", requestId);
+	        return Optional.empty();
+	    } catch (Exception e) {
+	        logger.error("查詢訂單時出現未知錯誤，RequestID: {}, 錯誤: {}", requestId, e.getMessage(), e);
+	        throw new RuntimeException("查詢訂單失敗", e);
+	    }
+	}
 	
-	
+	public void updateOrderStatus(String requestId, String status) {
+	    String sql = """
+	        UPDATE orders
+	        SET order_status = ?
+	        WHERE request_id = ?
+	    """;
+	    jdbcTemplate.update(sql, status, requestId);
+	}
+
 	
 	
 	
