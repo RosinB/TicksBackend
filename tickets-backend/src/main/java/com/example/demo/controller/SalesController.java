@@ -76,7 +76,6 @@ public class SalesController {
 		                RabbitMQConfig.EXCHANGE_NAME,
 		                RabbitMQConfig.TRAFFIC_ROUTING_KEY, // 流量監控路由鍵
 		                trafficData);
-		        System.out.println("trafficData是啥鬼東西"+trafficData);
 		        
 		        return ResponseEntity.ok(ApiResponse.success("購票請求已提交，正在處理", requestId));
 		    } catch (Exception e) {

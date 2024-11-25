@@ -35,6 +35,12 @@ public class RedisConfig {
         template.setKeySerializer(new StringRedisSerializer());
         // 使用 JSON 序列化值
         template.setValueSerializer(serializer);
+        // 配置 Hash 鍵的序列化器為 String
+        template.setHashKeySerializer(new StringRedisSerializer());
+        // 配置 Hash 值的序列化器為 JSON
+        template.setHashValueSerializer(serializer);
+
+        template.afterPropertiesSet();
 
         return template;
     }

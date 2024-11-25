@@ -80,7 +80,7 @@ public class SalesServiceImpl implements SalesService {
 	     String requestId = tickets.getRequestId();
 
 	     try {
-	         logger.info("開始處理購票，RequestID: {}", requestId);
+//	         logger.info("開始處理購票，RequestID: {}", requestId);
 
 	         // 檢查庫存並扣減
 	         salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);

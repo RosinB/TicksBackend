@@ -51,7 +51,8 @@ public class TicketSalesConsumer {
                     salesService.buyTicket(tickets);
                     
                     orderRepositoryJdbc.updateOrderStatus(requestId, "COMPLETED");
-                    logger.info("購票請求處理完成，RequestID: {}", requestId);
+//                    logger.info("購票請求處理完成，RequestID: {}", requestId);
+                    
                 } catch (Exception e) {
                     logger.error("購票失敗，RequestID: {}，錯誤原因: {}", requestId, e.getMessage());
 
