@@ -16,7 +16,6 @@ public class JwtInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
     	
-    	System.out.println("攔截器執行成功，請求路徑: " + request.getRequestURI());
         String requestURI = request.getRequestURI();
 
         // 從 Header 中獲取 Token

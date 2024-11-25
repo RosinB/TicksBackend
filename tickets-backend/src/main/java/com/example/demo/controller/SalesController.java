@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.catalina.util.RequestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -27,11 +28,15 @@ import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.model.dto.sales.SalesDto;
 import com.example.demo.model.dto.ticket.TicketSectionDto;
+import com.example.demo.model.dto.traffic.TrafficDto;
 import com.example.demo.repository.order.OrderRepositoryJdbc;
 import com.example.demo.repository.sales.SalesRespositoryJdbcImpl;
 import com.example.demo.service.order.OrderService;
 import com.example.demo.service.sales.SalesService;
 import com.example.demo.util.ApiResponse;
+import com.example.demo.util.TrafficDataUtil;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -54,7 +59,7 @@ public class SalesController {
 //=======================處理售票狀況============================== 這在tiecketsales
 	@PostMapping("/goticket/area/buy")
 
-	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody PostTicketSalesDto data) {		
+	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody PostTicketSalesDto data, HttpServletRequest request) {		
 		 try {
 		        // 生成唯一請求 ID
 		        String requestId = UUID.randomUUID().toString();
@@ -63,11 +68,16 @@ public class SalesController {
 		        // 發送購票請求到 RabbitMQ
 		        rabbitTemplate.convertAndSend(
 		                RabbitMQConfig.EXCHANGE_NAME,
-		                RabbitMQConfig.ROUTING_KEY,
-		                data
-		        );
+		                RabbitMQConfig.TICKET_ROUTING_KEY, // 搶票路由鍵
+		                data);
+		        TrafficDto trafficData = TrafficDataUtil.createTrafficData(requestId, data.getUserName(), "BUY_TICKET", request);
 
-		        // 返回成功響應，通知請求已提交
+		        rabbitTemplate.convertAndSend(
+		                RabbitMQConfig.EXCHANGE_NAME,
+		                RabbitMQConfig.TRAFFIC_ROUTING_KEY, // 流量監控路由鍵
+		                trafficData);
+		        System.out.println("trafficData是啥鬼東西"+trafficData);
+		        
 		        return ResponseEntity.ok(ApiResponse.success("購票請求已提交，正在處理", requestId));
 		    } catch (Exception e) {
 		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

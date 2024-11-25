@@ -3,6 +3,7 @@ package com.example.demo.service.order;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,7 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
     private RedisService redisService;
 	
-	
+
 	public Map<String, Object> getTicketStatus(String requestId) {
         // 檢查是否存在對應的記錄
 		String redisStatus = redisService.get("order:" + requestId,String.class);
@@ -69,9 +70,15 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public List<OrderDetailDto> getAllUserOrder(String userName) {
 
-		Integer userId=userRepository.findIdByUserName(userName);
+		String cacheKey="userId:"+userName;
+		Integer userId=redisService.get(cacheKey, Integer.class);
+		if(userId==null) {
+			 userId=userRepository.findIdByUserName(userName);
+			 redisService.saveWithExpire(cacheKey, userId, 10, TimeUnit.MINUTES);
+	
+		}
 		
-		System.out.println("UserID是"+userId);
+
 		List<OrderDetailDto> dto=orderRepositoryJdbc.findOrderDetail(userId);
 		
 		Optional.ofNullable(dto).orElseThrow(()->new RuntimeException("找不到詳細資訊"));

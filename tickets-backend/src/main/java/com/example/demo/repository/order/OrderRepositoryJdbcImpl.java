@@ -125,7 +125,6 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc{
 			OrderAstractDto dto= jdbcTemplate.queryForObject(sql, 
 															 new BeanPropertyRowMapper<>(OrderAstractDto.class),
 															 orderId);
-			System.out.println("訂單摘要查詢成功");
 			return dto;
 			
 			

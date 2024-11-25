@@ -25,9 +25,13 @@ public class RedisConfig {
 
         // 使用自定義 ObjectMapper 配置 GenericJackson2JsonRedisSerializer
         GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+        //使用 Jackson 序列化器，將 Java 對象轉換為 JSON 存儲到 Redis 中，並從 JSON 還原為對象
+        
         
         
         // 使用 String 序列化鍵
+        //配置序列化器可以確保數據存儲時的一致性和可讀性。
+
         template.setKeySerializer(new StringRedisSerializer());
         // 使用 JSON 序列化值
         template.setValueSerializer(serializer);
