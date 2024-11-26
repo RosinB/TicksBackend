@@ -43,19 +43,17 @@ public class TrafficConsumer {
 
             
             Object currentValue = redisTemplate.opsForHash().get(redisKey, field);
-//            System.out.println("Redis 中當前秒請求數量: " + currentValue);
+           System.out.println("Redis 中當前秒請求數量: " + currentValue);
             
             
-            logger.info("----------本地流量統計：-------------");
-//            System.out.println("----------本地流量統計：-------------");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
-            localTrafficStats.forEach((second, count) -> {
-                String readableTime = formatter.format(Instant.ofEpochSecond(second));
-                logger.info("秒: " + readableTime + "，請求數量: " + count);
+////           System.out.println("----------本地流量統計：-------------");
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
+//            localTrafficStats.forEach((second, count) -> {
+//                String readableTime = formatter.format(Instant.ofEpochSecond(second));
 //                System.out.println("秒: " + readableTime + "，請求數量: " + count);
-            });
-//            System.out.println("---------------------------------");
-//           System.out.println("成功處理流量數據：" + trafficData);
+//            });
+////            System.out.println("---------------------------------");
+////           System.out.println("成功處理流量數據：" + trafficData);
         } catch (Exception e) {
             System.err.println("處理流量數據失敗：" + e.getMessage());
         }

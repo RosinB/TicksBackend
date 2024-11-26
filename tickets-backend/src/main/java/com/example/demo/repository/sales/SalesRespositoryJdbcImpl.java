@@ -96,7 +96,7 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 		
 
 	    try {
-	       jdbcTemplate.update(sql,eventId,userId,quantity,section,"PENDING",requestId);
+	       jdbcTemplate.update(sql,eventId,userId,quantity,section,"COMPLETED",requestId);
 
 	       
 	        
@@ -172,5 +172,30 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 		}
 
 	}
+
+	
+	@Override
+	public Integer findRemaingByEventIdAndSection(Integer eventId, String section) {
+			String sql="""
+						select ticket_remaining
+						from ticket
+						where event_id =? 
+						  and ticket_name=?
+					""";
+	try {
+		return jdbcTemplate.queryForObject(sql, Integer.class, eventId, section);
+	} catch (Exception e) {
+		logger.info("findRemaingByEventIdAndSection搜尋有錯",e.getMessage());
+		throw new RuntimeException("findRemaingByEventIdAndSection搜尋有錯"+e.getMessage());
+	}	
+			
+		
+
+	
+	}
+	
+	
+	
+	
 
 }

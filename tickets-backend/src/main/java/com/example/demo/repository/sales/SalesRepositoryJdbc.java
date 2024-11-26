@@ -19,6 +19,5 @@ public interface SalesRepositoryJdbc {
 
 	void addTicketOrder(Integer userId,String section ,Integer eventId ,Integer quantity,String requestId);
 	
-	
-	
+	Integer findRemaingByEventIdAndSection(Integer eventId,String section);	
 }

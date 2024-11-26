@@ -21,7 +21,12 @@ public class RedisService {
     public void save(String key, Object value) {
         redisTemplate.opsForValue().set(key, value);
     }
-
+    
+    // 減少數值並返回減少後的結果
+    public Long decrement(String key, Integer value) {
+        return redisTemplate.opsForValue().increment(key, -value); // 傳遞負數
+    }
+    
     // 保存數據到 Redis，並設置過期時間
     public void saveWithExpire(String key, Object value, long timeout, TimeUnit unit) {
         redisTemplate.opsForValue().set(key, value, timeout, unit);
@@ -66,4 +71,26 @@ public class RedisService {
     public void expire(String key, long timeout, TimeUnit unit) {
         redisTemplate.expire(key, timeout, unit);
     }
+    
+    
+    public Long increment(String key, Integer value) {
+        try {
+            return redisTemplate.opsForValue().increment(key, value); // 傳遞正數
+        } catch (Exception e) {
+            throw new RuntimeException("回滾庫存操作失敗，Key: " + key + "，錯誤信息: " + e.getMessage(), e);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

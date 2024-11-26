@@ -41,8 +41,9 @@ public class OrderServiceImpl implements OrderService{
 	            "errorMessage", "購票失敗"
 	        );
 	    }
+	    
 		Optional<OrderDto> optionalOrder = orderRepositoryJdbc.findOrderDtoByRequestId(requestId);
-		
+
 		if (optionalOrder.isEmpty()) {
 		    return Map.of("status", "PENDING");
 		}

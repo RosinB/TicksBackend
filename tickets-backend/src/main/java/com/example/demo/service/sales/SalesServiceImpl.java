@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.config.RabbitMQConfig;
 import com.example.demo.exception.UserIsNotVerifiedException;
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.pic.PicDto;
@@ -76,29 +77,39 @@ public class SalesServiceImpl implements SalesService {
 	     Integer eventId = tickets.getEventId();
 	     Integer quantity = tickets.getQuantity();
 	     String section = tickets.getSection();
-	     String userName = tickets.getUserName();
 	     String requestId = tickets.getRequestId();
+         String stockKey = "event:" + eventId + ":section:" + section + ":stock";
 
+	   	     
 	     try {
-//	         logger.info("開始處理購票，RequestID: {}", requestId);
-
-	         // 檢查庫存並扣減
-	         salesRepositoryJdbc.checkTicketAndUpdate(section, eventId, quantity);
-
-	         // 獲取用戶 ID
-	         String cacheKey = "userId:" + userName;
-	         Integer userId = redisService.get(cacheKey, Integer.class);
-	         if (userId == null) {
-	             userId = userRepository.findIdByUserName(userName);
-	             redisService.saveWithExpire(cacheKey, userId, 10, TimeUnit.MINUTES);
+	         
+	         Integer remainingStock = redisService.get(stockKey, Integer.class);
+	        
+	         if (remainingStock == null) {
+	             Integer dbStock = salesRepositoryJdbc.findRemaingByEventIdAndSection(eventId, section);
+	             if (dbStock == null || dbStock <= 0) {
+	                 throw new RuntimeException("該區域的庫存不存在或不足！");
+	             }
+	             redisService.save(stockKey, dbStock);
+	             logger.info("Redis 無庫存記錄，從資料庫初始化，庫存: {}", dbStock);
 	         }
-
-	         // 創建訂單
-	         salesRepositoryJdbc.addTicketOrder(userId, section, eventId, quantity, requestId);
-
-	         logger.info("訂單生成成功，RequestID: {}", requestId);
+	         
+	         
+	         Long updatedStock = redisService.decrement(stockKey, quantity);
+	         if (updatedStock < 0) {
+	             throw new RuntimeException("庫存不足，購票失敗！");
+	         }
+	               
+	         
+	            rabbitTemplate.convertAndSend(
+	                    RabbitMQConfig.EXCHANGE_NAME,
+	                    RabbitMQConfig.STOCK_UPDATE_ROUTING_KEY,
+	                    tickets);	            
+                      
+	           logger.info("扣減成功，剩餘庫存：{}，RequestID: {}", updatedStock, requestId);	             	    	      
 	     } catch (Exception e) {
 	         logger.error("購票失敗，RequestID: {}，錯誤原因: {}", requestId, e.getMessage());
+	         redisService.increment(stockKey, tickets.getQuantity()); // 回滾扣減
 	         throw new RuntimeException("購票處理失敗：" + e.getMessage(), e);
 	     }
 	 }

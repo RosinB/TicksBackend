@@ -70,8 +70,8 @@ public class SalesController {
 		                RabbitMQConfig.EXCHANGE_NAME,
 		                RabbitMQConfig.TICKET_ROUTING_KEY, // 搶票路由鍵
 		                data);
+		        
 		        TrafficDto trafficData = TrafficDataUtil.createTrafficData(requestId, data.getUserName(), "BUY_TICKET", request);
-
 		        rabbitTemplate.convertAndSend(
 		                RabbitMQConfig.EXCHANGE_NAME,
 		                RabbitMQConfig.TRAFFIC_ROUTING_KEY, // 流量監控路由鍵

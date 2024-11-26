@@ -27,8 +27,7 @@ public class TicketSalesConsumer {
     @Autowired
     private SalesService salesService;
 
-    @Autowired
-    private RedissonClient redissonClient;
+ 
     
     @Autowired
     private RedisService redisService;
@@ -38,43 +37,24 @@ public class TicketSalesConsumer {
 
     @RabbitListener(queues = RabbitMQConfig.TICKET_QUEUE_NAME)
     public void handleMessage(PostTicketSalesDto tickets) {
-        String requestId = tickets.getRequestId();
-        String lockKey = "lock:buyTicket:" + tickets.getEventId();
-        RLock lock = redissonClient.getLock(lockKey);
-
-        try {
-            // 嘗試獲取鎖
-            if (lock.tryLock(10, 30, TimeUnit.SECONDS)) {
-                logger.info("獲得鎖，開始處理購票邏輯，RequestID: {}", requestId);
-
-                try {
-                    salesService.buyTicket(tickets);
-                    
-                    orderRepositoryJdbc.updateOrderStatus(requestId, "COMPLETED");
-//                    logger.info("購票請求處理完成，RequestID: {}", requestId);
-                    
-                } catch (Exception e) {
-                    logger.error("購票失敗，RequestID: {}，錯誤原因: {}", requestId, e.getMessage());
-
-
-                    try {
-                        redisService.saveWithExpire("order:" + requestId, "FAILED", 10, TimeUnit.MINUTES);
-                    } catch (Exception redisException) {
-                        logger.error("保存失敗狀態到 Redis 時出現異常，RequestID: {}", requestId, redisException);
-                    }
-                    
- 
-                    
-                }
-            } else {
-                logger.warn("未獲得鎖，RequestID: {}", requestId);
+    	  String requestId = tickets.getRequestId();
+          String orderStatusKey = "order:" + requestId;
+            
+          try {
+              // 檢查是否已處理
+              if (redisService.exists(orderStatusKey)) {
+                  return; // 已處理，直接返回
+              }
+              // 處理購票邏輯
+              salesService.buyTicket(tickets);
+              // 更新狀態到 Redis
+              redisService.saveWithExpire(orderStatusKey, "COMPLETED", 10, TimeUnit.MINUTES);
+          } catch (Exception e) {
+              redisService.saveWithExpire(orderStatusKey, "FAILED", 10, TimeUnit.MINUTES);
+              logger.warn("票務不足");
+          }
+    	
             }
-        } catch (InterruptedException e) {
-            logger.error("獲取分布式鎖失敗，RequestID: {}", requestId);
-        } finally {
-            if (lock.isHeldByCurrentThread()) {
-                lock.unlock();
-            }
-        }
-    }
+        
+    
 }

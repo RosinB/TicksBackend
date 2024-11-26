@@ -17,6 +17,13 @@ public class RabbitMQConfig {
     public static final String TRAFFIC_QUEUE_NAME = "traffic_monitor_queue";
     public static final String TRAFFIC_ROUTING_KEY = "traffic.monitor.key";
     
+    // 庫存更新隊列
+    public static final String STOCK_UPDATE_QUEUE_NAME = "stock_update_queue";
+    public static final String STOCK_UPDATE_ROUTING_KEY = "stock.update.key";
+    
+    
+    
+    
     public static final String EXCHANGE_NAME = "app_exchange";
     
     
@@ -31,7 +38,15 @@ public class RabbitMQConfig {
     public Queue trafficQueue() {
         return new Queue(TRAFFIC_QUEUE_NAME, true);
     }
-
+    
+    
+    // 定義庫存更新隊列
+    @Bean
+    public Queue stockUpdateQueue() {
+        return new Queue(STOCK_UPDATE_QUEUE_NAME, true);
+    }
+    
+    
     // 定義通用交換機
     @Bean
     public TopicExchange exchange() {
@@ -51,7 +66,10 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(trafficQueue).to(exchange).with(TRAFFIC_ROUTING_KEY);
     }
     
-    
+    @Bean
+    public Binding stockUpdateBinding(@Qualifier("stockUpdateQueue") Queue stockUpdateQueue, TopicExchange exchange) {
+        return BindingBuilder.bind(stockUpdateQueue).to(exchange).with(STOCK_UPDATE_ROUTING_KEY);
+    }
     
     
 

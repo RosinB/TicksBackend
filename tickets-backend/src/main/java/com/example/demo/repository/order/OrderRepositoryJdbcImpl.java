@@ -165,11 +165,12 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc{
 	        """;
 
 	    try {
+	    	logger.info("已搜尋到訂單"+jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(OrderDto.class), requestId));
 	        return Optional.ofNullable(
 	            jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(OrderDto.class), requestId)
 	        );
 	    } catch (EmptyResultDataAccessException e) {
-	        logger.info("透過 requestId 找不到 orders，RequestID: {}", requestId);
+	        logger.info("搜尋不到訂單...");
 	        return Optional.empty();
 	    } catch (Exception e) {
 	        logger.error("查詢訂單時出現未知錯誤，RequestID: {}, 錯誤: {}", requestId, e.getMessage(), e);
