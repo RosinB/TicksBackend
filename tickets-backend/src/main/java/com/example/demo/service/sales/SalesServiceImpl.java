@@ -79,23 +79,29 @@ public class SalesServiceImpl implements SalesService {
 	     String section = tickets.getSection();
 	     String requestId = tickets.getRequestId();
          String stockKey = "event:" + eventId + ":section:" + section + ":stock";
+   
+  
 
-	   	     
 	     try {
 	         
 	         Integer remainingStock = redisService.get(stockKey, Integer.class);
-	         redisService.delete(stockKey);
+	       //應急  
+	         if(remainingStock==0) {
+	             Integer dbStock = salesRepositoryJdbc.findRemaingByEventIdAndSection(eventId, section);
+	             redisService.saveWithExpire(stockKey, dbStock,5,TimeUnit.SECONDS);
+
+	         }
 	         if (remainingStock == null) {
 	             Integer dbStock = salesRepositoryJdbc.findRemaingByEventIdAndSection(eventId, section);
 	             if (dbStock == null || dbStock <= 0) {
 	                 throw new RuntimeException("該區域的庫存不存在或不足！");
 	             }
-	             redisService.save(stockKey, dbStock);
+	             redisService.saveWithExpire(stockKey, dbStock,5,TimeUnit.SECONDS);
 	             logger.info("Redis 無庫存記錄，從資料庫初始化，庫存: {}", dbStock);
 	         }
-	         
-	         
+
 	         Long updatedStock = redisService.decrement(stockKey, quantity);
+	         logger.info("!===目前剩餘票數: "+updatedStock+" !===");
 	         if (updatedStock < 0) {
 	             throw new RuntimeException("庫存不足，購票失敗！");
 	         }

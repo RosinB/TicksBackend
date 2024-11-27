@@ -80,7 +80,7 @@ public class SalesController {
 		        return ResponseEntity.ok(ApiResponse.success("購票請求已提交，正在處理", requestId));
 		    } catch (Exception e) {
 		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-		                .body(ApiResponse.error(500, "伺服器錯誤：" + e.getMessage(), null));
+		                .body(ApiResponse.error(500, "伺服器錯誤123：" + e.getMessage(), null));
 		    }
 	
 
