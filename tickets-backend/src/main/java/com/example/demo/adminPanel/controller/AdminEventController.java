@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.dto.event.GetEventAllDto;
+import com.example.demo.adminPanel.dto.ticket.LockedDto;
 import com.example.demo.adminPanel.dto.ticket.RealTimeDto;
 import com.example.demo.adminPanel.dto.ticket.StatusOnSaleDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
@@ -99,7 +100,12 @@ public class AdminEventController {
 	}
 	
 	
-	
+	@PostMapping("/api/lock")
+	ResponseEntity<ApiResponse<Object>> postLockTicket(@RequestBody LockedDto lock){
+		
+		adminEventService.LockTicket(lock);
+		return ResponseEntity.ok(ApiResponse.success("傳達成功",lock));
+	}
 	
 	
 	@ExceptionHandler(RuntimeException.class)

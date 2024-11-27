@@ -1,4 +1,4 @@
-package com.example.demo.util;
+package com.example.demo.traffic;
 
 import com.example.demo.model.dto.traffic.TrafficDto;
 import jakarta.servlet.http.HttpServletRequest;

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.adminPanel.dto.event.AddEventDto;
 import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.dto.event.GetEventAllDto;
+import com.example.demo.adminPanel.dto.ticket.LockedDto;
 import com.example.demo.adminPanel.dto.ticket.RealTimeTicketDto;
 import com.example.demo.adminPanel.dto.ticket.StatusOnSaleDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
@@ -280,6 +281,33 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 		
 		
 	}
+
+	
+
+	@Override
+	public void updateStatus(LockedDto lock) {
+		String sql="""
+					update ticket
+					set    ticket_isAvailable=?
+					where  event_id=? and ticket_name=?
+				""".trim();
+		
+		try {
+			int row =jdbcTemplate.update(sql,lock.getTicketIsAvailable(),lock.getEventId(),lock.getTicketName());
+			if(row<1) {
+				logger.info("updateStatus更新比數為0");
+				throw new RuntimeException("updateStatus更新比數為0");
+			}	
+			
+		} catch (Exception e) {
+			logger.info("updateStatus更新失敗:"+e.getMessage());
+			throw new RuntimeException("updateStatus更新失敗:"+e.getMessage());
+		}
+		
+		
+		
+	}
+	
 	
 	
 

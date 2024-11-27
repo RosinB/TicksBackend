@@ -84,7 +84,7 @@ public class SalesServiceImpl implements SalesService {
 	     try {
 	         
 	         Integer remainingStock = redisService.get(stockKey, Integer.class);
-	        
+	         redisService.delete(stockKey);
 	         if (remainingStock == null) {
 	             Integer dbStock = salesRepositoryJdbc.findRemaingByEventIdAndSection(eventId, section);
 	             if (dbStock == null || dbStock <= 0) {

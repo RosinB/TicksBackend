@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -81,6 +83,20 @@ public class RedisService {
         }
     }
     
+    public Set<String> keys(String pattern) {
+        try {
+            return redisTemplate.keys(pattern);
+        } catch (Exception e) {
+            throw new RuntimeException("獲取 Redis 鍵失敗，匹配模式: " + pattern, e);
+        }
+    }
+    public List<Object> multiGet(Set<String> keys) {
+        try {
+            return redisTemplate.opsForValue().multiGet(keys);
+        } catch (Exception e) {
+            throw new RuntimeException("批量獲取 Redis 鍵值失敗，鍵集合: " + keys, e);
+        }
+    }
     
     
     

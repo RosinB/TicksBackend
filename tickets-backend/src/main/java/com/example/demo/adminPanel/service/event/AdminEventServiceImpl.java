@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.dto.event.GetEventAllDto;
+import com.example.demo.adminPanel.dto.ticket.LockedDto;
 import com.example.demo.adminPanel.dto.ticket.RealTimeDto;
 import com.example.demo.adminPanel.dto.ticket.StatusOnSaleDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
@@ -153,8 +154,17 @@ private final static Logger logger = LoggerFactory.getLogger(AdminEventServiceIm
 			
 		return dto;
 	}
+
+
+	
+	@Override
+	public void LockTicket(LockedDto lock) {
+		adminEventJDBC.updateStatus(lock);
+		
+	}
 	
 
+	
 	
 	
 	

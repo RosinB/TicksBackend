@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.adminPanel.dto.event.AddEventDto;
 import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.dto.event.GetEventAllDto;
+import com.example.demo.adminPanel.dto.ticket.LockedDto;
 import com.example.demo.adminPanel.dto.ticket.RealTimeTicketDto;
 import com.example.demo.adminPanel.dto.ticket.StatusOnSaleDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
@@ -29,5 +30,8 @@ public interface AdminEventJDBC {
 	List<StatusOnSaleDto> findStatusOnSale();
 	 
 	List<RealTimeTicketDto> findRealTimeTicketByEventId(Integer eventId);
-	 
+	
+	
+	void updateStatus(LockedDto lock);
+	
 }

@@ -40,7 +40,7 @@ public class TicketService {
         	  System.out.println("啟用定時查詢");
         }
     }
-
+    
     public void disableQuery() {
         if (scheduledFuture != null) {
             scheduledFuture.cancel(true);
@@ -78,7 +78,7 @@ public class TicketService {
                             remaining
                     );
                     session.sendMessage(new TextMessage(status));
-                    System.out.println("發送數據成功: " + status);
+                  //  System.out.println("發送數據成功: " + status);
                 } catch (Exception e) {
                     System.err.println("向客戶端發送數據失敗，會話 ID: " + session.getId());
                     e.printStackTrace();

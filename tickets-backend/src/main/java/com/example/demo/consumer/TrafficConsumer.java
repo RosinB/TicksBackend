@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.config.RabbitMQConfig;
 import com.example.demo.controller.EventController;
 import com.example.demo.model.dto.traffic.TrafficDto;
+import com.example.demo.util.RedisService;
 
 @Service
 public class TrafficConsumer {
@@ -25,35 +26,30 @@ public class TrafficConsumer {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
     private final Map<Long, Long> localTrafficStats = new ConcurrentHashMap<>();
-
-    @RabbitListener(queues = RabbitMQConfig.TRAFFIC_QUEUE_NAME) 
+    @Autowired
+    RedisService redisService;
+    
+    @RabbitListener(queues = RabbitMQConfig.TRAFFIC_QUEUE_NAME)
     public void processTrafficData(TrafficDto trafficData) {
         try {
-            // 1. 獲取當前時間戳的秒數
             long currentSecond = trafficData.getTimestamp() / 1000;
 
             String redisKey = "traffic:stats";
-            String field = String.valueOf(currentSecond);
+            String field = currentSecond + "_" + trafficData.getRequestType() + "_" + trafficData.getRegion();
+            String totalTrafficKey = "traffic:stats:" + currentSecond;
+            // 累計總請求數
+            redisService.increment(totalTrafficKey, 1);
+            redisService.expire(totalTrafficKey, 5, TimeUnit.MINUTES);
+            
+            
+            
+            redisService.increment(redisKey + ":" + field, 1);
 
-            redisTemplate.opsForHash().increment(redisKey, field, 1);
+            redisService.expire(redisKey + ":" + field, 5, TimeUnit.MINUTES); // 為具體鍵設置過期
 
-            redisTemplate.expire(redisKey, 5, TimeUnit.MINUTES);
-            
-            localTrafficStats.merge(currentSecond, 1L, Long::sum);
+            Long currentValue = redisService.get(redisKey + ":" + field, Long.class);
+            System.out.println("當前秒請求數量: " + currentValue);
 
-            
-            Object currentValue = redisTemplate.opsForHash().get(redisKey, field);
-           System.out.println("Redis 中當前秒請求數量: " + currentValue);
-            
-            
-////           System.out.println("----------本地流量統計：-------------");
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
-//            localTrafficStats.forEach((second, count) -> {
-//                String readableTime = formatter.format(Instant.ofEpochSecond(second));
-//                System.out.println("秒: " + readableTime + "，請求數量: " + count);
-//            });
-////            System.out.println("---------------------------------");
-////           System.out.println("成功處理流量數據：" + trafficData);
         } catch (Exception e) {
             System.err.println("處理流量數據失敗：" + e.getMessage());
         }

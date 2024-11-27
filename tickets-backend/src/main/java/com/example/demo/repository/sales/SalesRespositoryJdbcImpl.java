@@ -142,7 +142,7 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 		} catch (DataAccessException e) {
 			logger.error("SQL 執行出現異常，section: {}, eventId: {}, quantity: {}, 錯誤信息: {}", section, eventId, quantity,
 					e.getMessage(), e);
-			throw new RuntimeException("數據庫操作失敗", e);
+			throw new RuntimeException("數據庫操作失敗"+ e.getMessage());
 		}
 	}
 	// ============================處理訂票狀況======================================

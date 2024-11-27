@@ -55,7 +55,7 @@ public class StockUpdateConsumer {
             logger.info("訂單創建成功: UserId={}, EventId={}, Section={}, Quantity={}, RequestId={}",
                     userId, tickets.getEventId(), tickets.getSection(), tickets.getQuantity(), requestId);        
             } catch (Exception e) {
-            throw new RuntimeException("庫存更新失敗：" + e.getMessage(), e);
-        }
+            	logger.info("票卷更新失敗: "+e.getMessage());
+            }
     }
     }

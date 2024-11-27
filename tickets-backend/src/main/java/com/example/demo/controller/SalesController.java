@@ -33,8 +33,8 @@ import com.example.demo.repository.order.OrderRepositoryJdbc;
 import com.example.demo.repository.sales.SalesRespositoryJdbcImpl;
 import com.example.demo.service.order.OrderService;
 import com.example.demo.service.sales.SalesService;
+import com.example.demo.traffic.TrafficDataUtil;
 import com.example.demo.util.ApiResponse;
-import com.example.demo.util.TrafficDataUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 
