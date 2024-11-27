@@ -2,7 +2,9 @@ package com.example.demo.adminPanel.repository.event;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.adminPanel.dto.event.AddEventDto;
 import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.dto.event.GetEventAllDto;
+import com.example.demo.adminPanel.dto.ticket.RealTimeTicketDto;
+import com.example.demo.adminPanel.dto.ticket.StatusOnSaleDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
 
 @Repository
@@ -215,8 +219,71 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 			
 		
 		}
+
+
 	
 	
+	
+	@Override
+	public List<StatusOnSaleDto> findStatusOnSale() {
+		String sql="""
+				select 		   e.event_id		 as eventId,
+							   e.event_name 	 as eventName,
+							   e.event_salesdate as eventSalesDate,
+							   e.event_salestime as eventSalesTime,
+							   e.event_date		 as eventDate,
+							   e.event_time	     as eventTime,
+							   e.event_status    as eventStatus,
+							   s.sales_status 	 as salesStatus	
+				
+					
+				
+				from 			event e
+				join 			sales s
+				on 				e.event_id=s.event_id
+				where  			e.event_status='即將舉辦'
+						
+				""".trim();
+		try {
+			
+			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StatusOnSaleDto.class));
+			
+			
+		} catch (Exception e) {
+			logger.info("findStatusOnSale查詢失敗"+e.getMessage());
+			throw new RuntimeException("findStatusOnSale查詢失敗"+e.getMessage());
+		
+		}
+	}
+
+	
+
+	@Override
+	public List<RealTimeTicketDto> findRealTimeTicketByEventId(Integer eventId) {
+		String sql="""
+				select  ticket_price as ticketPrice,
+						ticket_name as ticketName,
+						ticket_quantity as ticketQuantity,
+						ticket_isAvailable as ticketIsAvailable
+				from ticket
+				where event_id=?
+				""".trim();
+		try {
+			
+			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(RealTimeTicketDto.class),eventId);
+		} catch (Exception e) {
+			logger.info("findRealTimeTicketByEventId"+e.getMessage());
+			throw new RuntimeException("findRealTimeTicketByEventId"+e.getMessage());
+			
+		}
+	
+		
+		
+	}
+	
+	
+
+
 	
 	
 	

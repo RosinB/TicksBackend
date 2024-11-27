@@ -125,4 +125,34 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 		}
 	}
 
+
+	@Override
+	public String findEventNameByEventId(Integer eventId) {
+		
+		String sql="""
+				select event_name
+				from event
+				where event_id=?
+				
+				
+				""".trim();
+			
+		try {
+			return jdbcTemplate.queryForObject(sql, String.class,eventId);
+			
+			
+		} catch (Exception e) {
+			logger.info(" findEventNameByEventId找不到:"+e.getMessage());
+			throw new RuntimeException(" findEventNameByEventId找不到:"+e.getMessage());
+		}
+		
+		
+		
+	}
+
+	
+	
+	
+	
+	
 }

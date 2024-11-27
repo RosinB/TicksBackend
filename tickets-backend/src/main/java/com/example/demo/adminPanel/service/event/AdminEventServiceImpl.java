@@ -2,19 +2,25 @@ package com.example.demo.adminPanel.service.event;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.cache.CacheProperties.Redis;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.dto.event.GetEventAllDto;
+import com.example.demo.adminPanel.dto.ticket.RealTimeDto;
+import com.example.demo.adminPanel.dto.ticket.StatusOnSaleDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
 import com.example.demo.adminPanel.repository.event.AdminEventJDBC;
 import com.example.demo.adminPanel.repository.host.AdminHostJDBC;
 import com.example.demo.adminPanel.repository.ticket.AdTicketJDBC;
+import com.example.demo.repository.event.EventRespositoryJdbc;
+import com.example.demo.util.RedisService;
 
 
 @Service
@@ -32,6 +38,11 @@ private final static Logger logger = LoggerFactory.getLogger(AdminEventServiceIm
 	@Autowired
 	AdTicketJDBC adTicketJDBC;
 	
+	@Autowired
+	EventRespositoryJdbc eventRespositoryJdbc;
+	
+	@Autowired
+	RedisService redisService;
 	//找全部演唱會的簡單資訊
 	@Override
 	public List<GetEventAllDto> getAllEvent() {
@@ -107,6 +118,43 @@ private final static Logger logger = LoggerFactory.getLogger(AdminEventServiceIm
         
 		return dto;
 	}
+
+
+	
+	@Override
+	public List<StatusOnSaleDto> getStatusOnSale() {
+
+		
+		
+		
+		return adminEventJDBC.findStatusOnSale();
+	}
+
+
+	
+	
+	//查詢票務實時狀態
+	@Override
+	public RealTimeDto getRealTimeDto(Integer eventId) {
+		RealTimeDto dto= new RealTimeDto();
+		
+		
+		dto.setEventId(eventId);
+		String cacheKey="eventName:"+eventId;
+		
+		String eventName=redisService.get(cacheKey, String.class);
+		if(eventName==null) {
+			eventName=eventRespositoryJdbc.findEventNameByEventId(eventId);
+			redisService.saveWithExpire(cacheKey, eventName, 10, TimeUnit.MINUTES);
+		}
+		dto.setEventName(eventName);
+		dto.setDto(adminEventJDBC.findRealTimeTicketByEventId(eventId));
+
+			
+		return dto;
+	}
+	
+
 	
 	
 	

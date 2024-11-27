@@ -15,4 +15,6 @@ public interface EventRespositoryJdbc {
 	List<EventPicDto> findAllEventPics();
 	
 	PicDto findPicByEventId(Integer eventId);
+	
+	String findEventNameByEventId(Integer eventId);
 }

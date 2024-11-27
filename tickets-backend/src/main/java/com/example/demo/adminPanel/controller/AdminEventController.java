@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.adminPanel.dto.event.EventDetailDto;
 import com.example.demo.adminPanel.dto.event.GetEventAllDto;
+import com.example.demo.adminPanel.dto.ticket.RealTimeDto;
+import com.example.demo.adminPanel.dto.ticket.StatusOnSaleDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
 import com.example.demo.adminPanel.repository.event.AdminEventJDBCImpl;
 import com.example.demo.adminPanel.service.event.AdminEventService;
@@ -74,7 +76,27 @@ public class AdminEventController {
 	}
 	
 	
+	@GetMapping("/onsale")
+	ResponseEntity<ApiResponse<Object>> getEventOnSale(){
+		
 	
+		List<StatusOnSaleDto> dto = adminEventService.getStatusOnSale();
+		
+		
+		
+		
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", dto));
+	}
+	
+	
+	
+	@GetMapping("/onsale/{eventId}")
+	ResponseEntity<ApiResponse<Object>> getRealTimeTicket(@PathVariable("eventId") Integer eventId){
+		
+		RealTimeDto dto=adminEventService.getRealTimeDto(eventId);
+		
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", dto));
+	}
 	
 	
 	

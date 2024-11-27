@@ -4,27 +4,30 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 import com.example.demo.model.dto.event.WebSocketTicketDto;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.*;
 
 @Component
 public class SessionManager {
+    // 將每個 WebSocketSession 映射到多個 WebSocketTicketDto
+    private final Map<WebSocketSession, List<WebSocketTicketDto>> sessionEventMap = new HashMap<>();
 
-    private final Map<WebSocketSession, WebSocketTicketDto> sessionEventMap = new ConcurrentHashMap<>();
-
-    public Map<WebSocketSession, WebSocketTicketDto> getSessionEventMap() {
-        return sessionEventMap;
+    // 添加新的訂閱
+    public synchronized void addSession(WebSocketSession session, WebSocketTicketDto eventSection) {
+        sessionEventMap.computeIfAbsent(session, k -> new ArrayList<>()).add(eventSection);
     }
 
-    public void addSession(WebSocketSession session, WebSocketTicketDto eventSection) {
-        sessionEventMap.put(session, eventSection);
-    }
-
-    public void removeSession(WebSocketSession session) {
+    // 移除會話
+    public synchronized void removeSession(WebSocketSession session) {
         sessionEventMap.remove(session);
     }
 
-    public boolean isEmpty() {
+    // 獲取會話的訂閱映射
+    public synchronized Map<WebSocketSession, List<WebSocketTicketDto>> getSessionEventMap() {
+        return new HashMap<>(sessionEventMap);
+    }
+
+    // 檢查是否為空
+    public synchronized boolean isEmpty() {
         return sessionEventMap.isEmpty();
     }
 }

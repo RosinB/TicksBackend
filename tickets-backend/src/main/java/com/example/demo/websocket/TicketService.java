@@ -11,6 +11,7 @@ import com.example.demo.repository.sales.SalesRepositoryJdbc;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -34,8 +35,8 @@ public class TicketService {
         	  scheduledFuture = taskScheduler.scheduleAtFixedRate(
                       this::updateTicketStatus,
                       Instant.now(), // 從當前時間開始
-                      Duration.ofSeconds(1) // 每 5 秒執行一次
-                  );            
+                      Duration.ofSeconds(1) // 每 1 秒執行一次
+                  );           
         	  System.out.println("啟用定時查詢");
         }
     }
@@ -48,39 +49,42 @@ public class TicketService {
     }
 
     private void updateTicketStatus() {
-        Map<WebSocketSession, WebSocketTicketDto> sessionEventMap = sessionManager.getSessionEventMap();
+        Map<WebSocketSession, List<WebSocketTicketDto>> sessionEventMap = sessionManager.getSessionEventMap();
 
         if (sessionEventMap.isEmpty()) {
-            System.out.println("無活動的客戶端連接，暫停查詢");
+            System.out.println("無活動的客戶端連接，暫時不發送數據");
             return;
         }
 
-        for (Map.Entry<WebSocketSession, WebSocketTicketDto> entry : sessionEventMap.entrySet()) {
+        for (Map.Entry<WebSocketSession, List<WebSocketTicketDto>> entry : sessionEventMap.entrySet()) {
             WebSocketSession session = entry.getKey();
-            WebSocketTicketDto eventSection = entry.getValue();
+            List<WebSocketTicketDto> subscriptions = entry.getValue();
 
             if (session == null || !session.isOpen()) {
                 sessionManager.removeSession(session);
                 continue;
             }
 
-            try {
-                Integer remaining = salesRepositoryJdbc.findRemaingByEventIdAndSection(
-                        eventSection.getEventId(),
-                        eventSection.getSection()
-                );
-                String status = String.format(
-                        "{\"eventId\": %d, \"section\": \"%s\", \"remainingTickets\": %d}",
-                        eventSection.getEventId(),
-                        eventSection.getSection(),
-                        remaining
-                );
-                session.sendMessage(new TextMessage(status));
-                System.out.println("發送數據成功: " + status);
-            } catch (Exception e) {
-                System.err.println("向客戶端發送數據失敗，會話 ID: " + session.getId());
-                e.printStackTrace();
+            for (WebSocketTicketDto eventSection : subscriptions) {
+                try {
+                    Integer remaining = salesRepositoryJdbc.findRemaingByEventIdAndSection(
+                            eventSection.getEventId(),
+                            eventSection.getSection()
+                    );
+                    String status = String.format(
+                            "{\"eventId\": %d, \"section\": \"%s\", \"remainingTickets\": %d}",
+                            eventSection.getEventId(),
+                            eventSection.getSection(),
+                            remaining
+                    );
+                    session.sendMessage(new TextMessage(status));
+                    System.out.println("發送數據成功: " + status);
+                } catch (Exception e) {
+                    System.err.println("向客戶端發送數據失敗，會話 ID: " + session.getId());
+                    e.printStackTrace();
+                }
             }
         }
     }
+
 }
