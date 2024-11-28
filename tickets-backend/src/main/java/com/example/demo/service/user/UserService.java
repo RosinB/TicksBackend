@@ -28,4 +28,21 @@ public interface UserService {
 	//註冊帳號檢查帳號是否重複
 	Map<String,String> validateUserInput(UserDto userDto);
 	
+	//===============================驗證信箱相關=============================================
+
+	String getEmail(String userName);
+	
+	void getCAPTCHA(String userName);
+	
+//==================	驗證信箱
+	String verificationEmail(String userName,String code);
+	
+	
+//=================忘記密碼 -驗證信箱============================
+
+	String checkUserAndEmail(String userName,String email);
+	
+	String checkToken(String token);
+	
+
 }

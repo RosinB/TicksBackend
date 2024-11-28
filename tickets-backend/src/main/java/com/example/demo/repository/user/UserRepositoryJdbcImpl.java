@@ -95,6 +95,46 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 		
 	}
 
+	@Override
+	public String findUserEmailByUserName(String userName) {
+		String sql="""
+				select user_email 
+				from users
+				where user_name=?
+				""".trim();
+		
+		try {
+			
+			return jdbcTemplate.queryForObject(sql, String.class,userName);
+		} catch (Exception e) {
+			logger.info("查不到使用者信箱",e.getMessage());
+			throw new RuntimeException("查不到信箱"+e.getMessage());
+		}
+		
+		
+	}
+
+	
+	@Override
+	public void updateUserIsVerified(String userName) {
+		String sql="""
+				update  users
+				set 	user_is_verified=true
+				where   user_name=?
+				""";
+		
+		try {
+			jdbcTemplate.update(sql,userName);
+			
+		} catch (Exception e) {
+			logger.info("使用者驗證更新失敗",e.getMessage());
+			throw new RuntimeException("使用者驗證更新失敗"+e.getMessage());		}
+		
+		
+		
+	}
+
+	
 	
 
 }

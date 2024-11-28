@@ -85,12 +85,7 @@ public class SalesServiceImpl implements SalesService {
 	     try {
 	         
 	         Integer remainingStock = redisService.get(stockKey, Integer.class);
-	       //應急  
-	         if(remainingStock==0) {
-	             Integer dbStock = salesRepositoryJdbc.findRemaingByEventIdAndSection(eventId, section);
-	             redisService.saveWithExpire(stockKey, dbStock,5,TimeUnit.SECONDS);
-
-	         }
+	       
 	         if (remainingStock == null) {
 	             Integer dbStock = salesRepositoryJdbc.findRemaingByEventIdAndSection(eventId, section);
 	             if (dbStock == null || dbStock <= 0) {

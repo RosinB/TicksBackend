@@ -19,6 +19,13 @@ public interface UserRepositoryJdbc {
 	Boolean findUserIsVerifiedByUserName(String userName);
 
 	
+	String findUserEmailByUserName(String userName);
+	
+	
+	void updateUserIsVerified(String userName);
+	
+	
+
 	
 	
 }

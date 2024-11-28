@@ -3,6 +3,8 @@ package com.example.demo.service.user;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -25,8 +27,10 @@ import com.example.demo.model.dto.user.UserUpdateDto;
 import com.example.demo.model.entity.user.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.user.UserRepositoryJdbc;
+import com.example.demo.util.GmailOAuthSender;
 import com.example.demo.util.RedisService;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.google.api.services.gmail.Gmail;
 
 @Transactional
 @Service
@@ -189,4 +193,162 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
+	
+//===============================驗證信箱相關=============================================
+	//查詢使用者信箱
+	@Override
+	public String getEmail(String userName) {
+
+		String cachekey="userEmail:"+ userName;
+		String userEmail=redisService.get(cachekey, String.class);
+		
+		if(userEmail==null) {
+			userEmail=userRepositoryJdbc.findUserEmailByUserName(userName);
+			
+			redisService.saveWithExpire(cachekey, userEmail, 10, TimeUnit.MINUTES);
+		}
+		
+		return userEmail;
+				
+				
+	}
+
+	//獲取驗證碼
+	@Override
+	public void getCAPTCHA(String userName) {
+		Random random = new Random();
+        StringBuilder code = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            code.append(random.nextInt(10)); // 生成 0-9 的隨機數
+        }
+        
+        String cachekey="userEmail:"+ userName;
+		String userEmail=redisService.get(cachekey, String.class);
+		if(userEmail==null) {
+			userEmail=userRepositoryJdbc.findUserEmailByUserName(userName);
+			
+			redisService.saveWithExpire(cachekey, userEmail, 10, TimeUnit.MINUTES);
+		}
+		
+		
+		String cachekey2="userName:"+userName+"userEmail"+userEmail+"code:";
+
+		redisService.saveWithExpire(cachekey2, code, 5, TimeUnit.MINUTES);
+	
+		
+        try {
+            Gmail service = GmailOAuthSender.getGmailService();         
+        	//收件人者email "me"是關鍵字 不用改
+        	GmailOAuthSender.sendMessage(service, "me", GmailOAuthSender.createEmail(userEmail, "信箱認證", 
+        			"信箱驗證碼:"+code));
+        
+            System.out.println("郵件已成功寄出！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("郵件寄送失敗：" + e.getMessage());}
+        
+	}
+
+	@Override
+	public String verificationEmail(String userName, String code) {
+		
+		String userEmail=redisService.get("userEmail:"+userName, String.class);
+		
+		String cachekey="userName:"+userName+"userEmail"+userEmail+"code:";
+
+		
+		String verifCode=redisService.get(cachekey, String.class);
+		
+		if(code.trim().equals(verifCode.trim())) 
+		{	
+			userRepositoryJdbc.updateUserIsVerified(userName);		
+			return "驗證成功";		
+		}
+		
+		return "驗證失敗";
+	}
+
+	
+	
+	//忘記密碼 確認使用者和email的關係
+	@Override
+	public String checkUserAndEmail(String userName, String email) {
+
+		
+		String realEmail=userRepositoryJdbc.findUserEmailByUserName(userName);
+		
+		if( !(email.equals(realEmail) ) ) { 
+			logger.info("email和userName不匹配");
+			throw new RuntimeException("email和userName不匹配");
+		}
+		
+		
+		try {
+            Gmail service = GmailOAuthSender.getGmailService();         
+            
+            String token=UUID.randomUUID().toString();
+            
+            //把userName和token綁在redis
+            String savaUserNameForToken="userName:"+token;
+            //把token和userNmae綁在redis
+            String saveTokenForUserName="token:"+userName;
+            
+            redisService.saveWithExpire(savaUserNameForToken, userName, 10, TimeUnit.MINUTES);
+            redisService.saveWithExpire(saveTokenForUserName, token, 10, TimeUnit.MINUTES);
+            
+            
+            GmailOAuthSender.sendMessage(service, "me", GmailOAuthSender.createEmail(email, "重設密碼", 
+        			"""
+        			重設密碼:
+        			請去以下網址重設:
+        				http://localhost:3000/forgetpassword/reset/%s
+    
+                    這是您的重設密碼url，有效期限10分鐘。
+        		    """.formatted(token))
+        			
+        			);
+        
+            System.out.println("重設密碼郵件已成功寄出！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("郵件寄送失敗：" + e.getMessage());}
+		
+		
+		return null;
+	}
+
+	
+	//確認url的token關係
+	@Override
+	public String checkToken(String token) {
+		
+        String savaUserNameForToken="userName:"+token;
+        String userName=redisService.get(savaUserNameForToken, String.class);
+        if(userName==null) {
+        	logger.info("token和帳號不匹配");
+        	throw new RuntimeException("token和帳號不匹配");
+        }
+        
+        return userName;
+	
+		
+	}
+		
+	
+	
+	
+	
+	
 }
+	
+	
+
+	
+	
+	
+	
+
+	
+	
+

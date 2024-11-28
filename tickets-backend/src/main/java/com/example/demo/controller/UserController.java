@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.filter.JwtUtil;
@@ -132,7 +134,67 @@ public class UserController {
 		logger.info("register新增成功");
 		return ResponseEntity.ok(ApiResponse.success("新增成功", userDto));
 	}
+	
+	//==================================重設密碼===========================================
+	@PostMapping("/forget/password")
+	public ResponseEntity<ApiResponse<Object>> forgetPassowrd(@RequestParam("userName") String userName,
+															  @RequestParam("email") String email){
+		
+		userService.checkUserAndEmail(userName,email);
+		
+		
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", "123yes"));
+	}
+	
+	
+	@GetMapping("/forget/password/{token}")
+	public ResponseEntity<ApiResponse<Object>> checkToken(@PathVariable("token") String token){
+		
+		String userName=userService.checkToken(token);
+		
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", userName));
+	}
+	
+	
+	
+	
+	
+	
+	
+//==============================信箱驗證相關========================================
+	//獲取信箱
+	@GetMapping("/email/get/{userName}")
+	public ResponseEntity<ApiResponse<Object>> getUserCAPTCHA(@PathVariable("userName") String userName){
+		
 
+		String userEmail=userService.getEmail(userName);
+		
+		
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", userEmail));
+	}
+	
+	@GetMapping("/email/getCAPTCHA/{userName}")
+	public ResponseEntity<ApiResponse<Object>> getUserEmail(@PathVariable("userName") String userName){
+		
+
+		userService.getCAPTCHA(userName);
+		
+		
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", null));
+	}
+	
+	
+	@PostMapping("/email/verification")
+	public ResponseEntity<ApiResponse<Object>> verifEmail(@RequestParam("code") String code ,@RequestParam("userName") String userName){
+		
+		String status=userService.verificationEmail(userName,code);
+		
+		if(status.equals("驗證成功"))
+			return ResponseEntity.ok(ApiResponse.success("傳達成功", status));
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error(400, status, "驗證錯誤"));
+		
+	}
 	
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<ApiResponse<Void>> handUserRunTimeException(RuntimeException e) {
