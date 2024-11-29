@@ -1712,3 +1712,149 @@ This generated password is for development use only. Your security configuration
 2024-11-29T15:02:37.764+08:00  INFO 13708 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-11-29T15:02:37.765+08:00  INFO 13708 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2024-11-29T15:02:45.100+08:00  INFO 13708 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : 使用者登入成功: ruka
+2024-11-29T16:18:47.037+08:00  INFO 13708 --- [tickets-backend] [RMI TCP Connection(88)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-29T16:18:47.040+08:00  INFO 13708 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-11-29T16:18:47.041+08:00  INFO 13708 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-11-29T16:18:47.041+08:00  INFO 13708 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-11-29T16:18:47.234+08:00  INFO 13708 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-11-29T16:18:47.264+08:00  INFO 13708 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-11-29T16:18:47.373+08:00  INFO 13708 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-11-29T16:18:47.397+08:00  INFO 13708 --- [tickets-backend] [RMI TCP Connection(88)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-29T16:18:47.398+08:00  INFO 13708 --- [tickets-backend] [RMI TCP Connection(88)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-29T16:18:47.400+08:00  INFO 13708 --- [tickets-backend] [RMI TCP Connection(88)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-29T16:18:49.802+08:00  INFO 12844 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 12844 (C:\Users\NTPU\git\TicksBackendcx\tickets-backend\target\classes started by NTPU in C:\Users\NTPU\git\TicksBackendcx\tickets-backend)
+2024-11-29T16:18:49.803+08:00  INFO 12844 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-29T16:18:50.417+08:00  INFO 12844 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-29T16:18:50.418+08:00  INFO 12844 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-29T16:18:50.605+08:00  INFO 12844 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 183 ms. Found 4 JPA repository interfaces.
+2024-11-29T16:18:50.614+08:00  INFO 12844 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-29T16:18:50.615+08:00  INFO 12844 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-29T16:18:50.629+08:00  INFO 12844 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.adminPanel.repository.HostRepo; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-29T16:18:50.629+08:00  INFO 12844 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-29T16:18:50.629+08:00  INFO 12844 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-29T16:18:50.629+08:00  INFO 12844 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-29T16:18:50.629+08:00  INFO 12844 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-11-29T16:18:51.079+08:00  INFO 12844 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-29T16:18:51.087+08:00  INFO 12844 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-29T16:18:51.087+08:00  INFO 12844 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-29T16:18:51.217+08:00  INFO 12844 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-29T16:18:51.220+08:00  INFO 12844 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-29T16:18:51.220+08:00  INFO 12844 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1395 ms
+2024-11-29T16:18:51.394+08:00  INFO 12844 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-29T16:18:51.444+08:00  INFO 12844 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-29T16:18:51.472+08:00  INFO 12844 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-29T16:18:51.679+08:00  INFO 12844 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-29T16:18:51.702+08:00  INFO 12844 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-29T16:18:51.793+08:00  INFO 12844 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3777fc44
+2024-11-29T16:18:51.794+08:00  INFO 12844 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-29T16:18:52.453+08:00  INFO 12844 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-29T16:18:52.484+08:00  INFO 12844 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-29T16:18:52.626+08:00  INFO 12844 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-11-29T16:18:52.790+08:00  INFO 12844 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-11-29T16:18:52.793+08:00  INFO 12844 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-11-29T16:18:53.056+08:00  INFO 12844 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-29T16:18:53.640+08:00  WARN 12844 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: cdf7197b-6442-46cd-99ef-267428e2e65d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-11-29T16:18:53.645+08:00  INFO 12844 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-11-29T16:18:53.721+08:00  INFO 12844 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-29T16:18:53.885+08:00  INFO 12844 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-11-29T16:18:54.295+08:00  INFO 12844 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-29T16:18:54.297+08:00  INFO 12844 --- [tickets-backend] [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-11-29T16:18:54.321+08:00  INFO 12844 --- [tickets-backend] [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#10f535a6:0/SimpleConnection@3129bf02 [delegate=amqp://guest@127.0.0.1:5672/, localPort=59774]
+2024-11-29T16:18:54.358+08:00  INFO 12844 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.774 seconds (process running for 5.123)
+2024-11-29T16:18:54.514+08:00  INFO 12844 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-29T16:18:54.514+08:00  INFO 12844 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-29T16:18:54.515+08:00  INFO 12844 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-29T16:25:14.272+08:00  INFO 12844 --- [tickets-backend] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : 使用者登入成功: ruka
+2024-11-29T16:25:16.877+08:00  INFO 12844 --- [tickets-backend] [http-nio-8080-exec-10] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in the request target [/sales/goticket/area/seat?eventId[eventId]=1&eventId[zone]=A%E5%8D%80 ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:481) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:257) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-util.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-util.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-util.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-11-29T16:26:00.737+08:00  INFO 12844 --- [tickets-backend] [http-nio-8080-exec-9] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in the request target [/sales/goticket/area/seat?eventId[eventId]=1&eventId[zone]=A%E5%8D%80 ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:481) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:257) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-coyote.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-util.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-util.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-util.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-11-29T16:29:44.109+08:00  INFO 12844 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-29T16:29:44.112+08:00  INFO 12844 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-11-29T16:29:44.113+08:00  INFO 12844 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-11-29T16:29:44.113+08:00  INFO 12844 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-11-29T16:29:44.281+08:00  INFO 12844 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-11-29T16:29:44.281+08:00  INFO 12844 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-11-29T16:29:44.297+08:00  INFO 12844 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-11-29T16:29:44.311+08:00  INFO 12844 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-29T16:29:44.313+08:00  INFO 12844 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-29T16:29:44.316+08:00  INFO 12844 --- [tickets-backend] [RMI TCP Connection(22)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-29T16:29:46.697+08:00  INFO 9704 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 9704 (C:\Users\NTPU\git\TicksBackendcx\tickets-backend\target\classes started by NTPU in C:\Users\NTPU\git\TicksBackendcx\tickets-backend)
+2024-11-29T16:29:46.699+08:00  INFO 9704 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-11-29T16:29:47.278+08:00  INFO 9704 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-29T16:29:47.279+08:00  INFO 9704 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-29T16:29:47.429+08:00  INFO 9704 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 145 ms. Found 4 JPA repository interfaces.
+2024-11-29T16:29:47.437+08:00  INFO 9704 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-29T16:29:47.438+08:00  INFO 9704 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-29T16:29:47.450+08:00  INFO 9704 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.adminPanel.repository.HostRepo; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-29T16:29:47.450+08:00  INFO 9704 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-29T16:29:47.450+08:00  INFO 9704 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-29T16:29:47.450+08:00  INFO 9704 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-29T16:29:47.450+08:00  INFO 9704 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-11-29T16:29:47.911+08:00  INFO 9704 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-29T16:29:47.919+08:00  INFO 9704 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-29T16:29:47.919+08:00  INFO 9704 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-29T16:29:48.039+08:00  INFO 9704 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-29T16:29:48.042+08:00  INFO 9704 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-29T16:29:48.042+08:00  INFO 9704 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1322 ms
+2024-11-29T16:29:48.215+08:00  INFO 9704 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-29T16:29:48.247+08:00  INFO 9704 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-29T16:29:48.266+08:00  INFO 9704 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-29T16:29:48.433+08:00  INFO 9704 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-29T16:29:48.451+08:00  INFO 9704 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-29T16:29:48.540+08:00  INFO 9704 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69ae7632
+2024-11-29T16:29:48.542+08:00  INFO 9704 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-29T16:29:49.125+08:00  INFO 9704 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-29T16:29:49.154+08:00  INFO 9704 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-29T16:29:49.284+08:00  INFO 9704 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-11-29T16:29:49.446+08:00  INFO 9704 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-11-29T16:29:49.449+08:00  INFO 9704 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-11-29T16:29:49.692+08:00  INFO 9704 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-29T16:29:50.263+08:00  WARN 9704 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: dd6f4d44-1e08-43a2-b523-4e0ed3c1a460
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-11-29T16:29:50.268+08:00  INFO 9704 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-11-29T16:29:50.343+08:00  INFO 9704 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-29T16:29:50.506+08:00  INFO 9704 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-11-29T16:29:50.911+08:00  INFO 9704 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-29T16:29:50.913+08:00  INFO 9704 --- [tickets-backend] [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-11-29T16:29:50.937+08:00  INFO 9704 --- [tickets-backend] [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#42afbce5:0/SimpleConnection@5a68d4d6 [delegate=amqp://guest@127.0.0.1:5672/, localPort=60318]
+2024-11-29T16:29:50.974+08:00  INFO 9704 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 4.498 seconds (process running for 4.827)
+2024-11-29T16:29:51.388+08:00  INFO 9704 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-29T16:29:51.388+08:00  INFO 9704 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-29T16:29:51.389+08:00  INFO 9704 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-29T16:30:01.741+08:00  INFO 9704 --- [tickets-backend] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : 使用者登入成功: ruka

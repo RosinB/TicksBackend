@@ -2,7 +2,9 @@ package com.example.demo.repository.event;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -150,6 +152,40 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 		
 	}
 
+//找總票數
+	@Override
+	public Integer findQuantityByEventIdAndSection(Integer eventId, String section) {
+		String sql="""
+				select ticket_quantity 
+				from ticket
+				where event_id=? and ticket_name
+				""".trim();
+		
+		try {
+			return jdbcTemplate.queryForObject(sql, Integer.class);
+
+		} catch (Exception e) {
+			logger.info(" ffindQuantityByEventIdAndSection找不到:"+e.getMessage());
+			throw new RuntimeException(" findQuantityByEventIdAndSection找不到:"+e.getMessage());		}
+			
+	}
+
+
+	
+	@Override
+	public Map<Integer, Boolean> checkSeatStatus(Integer eventId, String section) {
+		String sql="""
+					select pool_number,
+					select pool_status
+					from pool
+					where event_id=? and section=?			
+				""".trim();
+		
+		return null;
+
+
+//找座位狀態
+	
 	
 	
 	

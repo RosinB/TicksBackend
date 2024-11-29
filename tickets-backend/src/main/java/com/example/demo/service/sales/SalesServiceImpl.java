@@ -19,6 +19,7 @@ import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.pic.PicDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.model.dto.sales.SalesDto;
+import com.example.demo.model.dto.ticket.SeatStatusDto;
 import com.example.demo.model.dto.ticket.TicketDto;
 import com.example.demo.model.dto.ticket.TicketSectionDto;
 import com.example.demo.repository.EventRepository;
@@ -64,11 +65,13 @@ public class SalesServiceImpl implements SalesService {
 	@Autowired
     private RabbitTemplate rabbitTemplate;
 	
-	 @Autowired
-	    public void configureRabbitTemplate(Jackson2JsonMessageConverter messageConverter) {
+	@Autowired
+	public void configureRabbitTemplate(Jackson2JsonMessageConverter messageConverter) {
 	        rabbitTemplate.setMessageConverter(messageConverter);
 	    }
 
+	
+	
 //	處理購票邏輯
 //========================================================================================================
 	 @Override
@@ -140,9 +143,7 @@ public class SalesServiceImpl implements SalesService {
 		
 	}
 
-	
-	
-	
+
 	
 	
 	// 挑選區域要用的service資訊
@@ -224,12 +225,36 @@ public class SalesServiceImpl implements SalesService {
 
 	}
 
-	// 抓取票區剩餘狀態
-//	public CheckSectionStatusDto getTicketRemaining(String section, Integer eventId) {
-//
-//		CheckSectionStatusDto dto = salesRepositoryJdbc.checkSectionStatus(section, eventId);
-//		dto.setEventId(eventId);
-//		return dto;
-//	}
+
+
+	
+	//確認座位圖情況
+	@Override
+	public SeatStatusDto checkSeatStatus(Integer eventId, String section) {
+		SeatStatusDto dto=new SeatStatusDto();
+			
+		String cacheKey="eventId"+section;
+		
+		Integer quantity =redisService.get(cacheKey, Integer.class);
+		
+		if(quantity==null) {
+			quantity=eventRespositoryJdbc.findQuantityByEventIdAndSection(eventId, section);
+			redisService.saveWithExpire(cacheKey, quantity, 30, TimeUnit.MINUTES);
+		}
+		
+		dto.setQuantity(quantity);
+		
+		
+		
+		
+		
+		
+		return null;
+	}
+
+
+	
+	
+	
 
 }

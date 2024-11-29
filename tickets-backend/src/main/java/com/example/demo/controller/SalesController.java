@@ -155,6 +155,18 @@ public class SalesController {
 
 	}
 
+
+//	獲得演唱會座位資訊 
+	@GetMapping("/goticket/area/seat")
+	public ResponseEntity<ApiResponse<Object>> getSeatStatus(@RequestParam("eventId") Integer eventId,
+															 @RequestParam("section") String section){
+		
+		
+		
+		
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", "123"));
+	}
+	
 	
 	
 	

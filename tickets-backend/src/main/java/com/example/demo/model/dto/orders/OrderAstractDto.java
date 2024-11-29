@@ -36,8 +36,8 @@ public class OrderAstractDto {
 	
 	public  void setSeat() 
 	{if (poolNumber != null) {
-	        int row = (poolNumber - 1) / 30 + 1; // 假設每排 20 個座位
-	        int seatNumber = (poolNumber - 1) % 30 + 1;
+	        int row = (poolNumber - 1) / 25 + 1; // 假設每排 20 個座位
+	        int seatNumber = (poolNumber - 1) % 25 + 1;
 	        this.seat = "第" + row + "排 第" + seatNumber + "號";
 	        }
    }
