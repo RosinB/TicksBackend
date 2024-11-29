@@ -80,8 +80,6 @@ public class SalesServiceImpl implements SalesService {
 	     String requestId = tickets.getRequestId();
          String stockKey = "event:" + eventId + ":section:" + section + ":stock";
    
-  
-
 	     try {
 	         
 	         Integer remainingStock = redisService.get(stockKey, Integer.class);
@@ -97,6 +95,7 @@ public class SalesServiceImpl implements SalesService {
 
 	         Long updatedStock = redisService.decrement(stockKey, quantity);
 	         logger.info("!===目前剩餘票數: "+updatedStock+" !===");
+	        
 	         if (updatedStock < 0) {
 	             throw new RuntimeException("庫存不足，購票失敗！");
 	         }

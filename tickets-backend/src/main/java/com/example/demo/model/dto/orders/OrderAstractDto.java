@@ -25,5 +25,21 @@ public class OrderAstractDto {
 	
 	private String orderStatus;
 	
+	private Integer poolNumber;
+	
+	private String seat;
+	
+	public void setPoolNumber(Integer poolNumber) {
+	    this.poolNumber = poolNumber;
+	    setSeat(); // 自动生成座位描述
+	}
+	
+	public  void setSeat() 
+	{if (poolNumber != null) {
+	        int row = (poolNumber - 1) / 30 + 1; // 假設每排 20 個座位
+	        int seatNumber = (poolNumber - 1) % 30 + 1;
+	        this.seat = "第" + row + "排 第" + seatNumber + "號";
+	        }
+   }
 	
 }

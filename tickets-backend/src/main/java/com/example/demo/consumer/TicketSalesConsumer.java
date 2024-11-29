@@ -48,9 +48,9 @@ public class TicketSalesConsumer {
               // 處理購票邏輯
               salesService.buyTicket(tickets);
               
-              redisService.saveWithExpire(orderStatusKey, "COMPLETED", 10, TimeUnit.MINUTES);
+              redisService.saveWithExpire(orderStatusKey, "付款中", 10, TimeUnit.MINUTES);
           } catch (Exception e) {
-              redisService.saveWithExpire(orderStatusKey, "FAILED", 10, TimeUnit.MINUTES);
+              redisService.saveWithExpire(orderStatusKey, "錯誤", 10, TimeUnit.MINUTES);
               logger.warn("票務不足");
           }
     	

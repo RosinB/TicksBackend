@@ -1,5 +1,6 @@
 package com.example.demo.repository.sales;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -93,23 +94,43 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 							values(?,?,?,?,?,?)
 				""".trim();
 		
+		String updatePoolSql = """
+		        UPDATE pool
+		        SET order_id = ?, pool_status = '已售出'
+		        WHERE event_id = ? AND event_section = ? AND pool_status = '未售出'
+		        LIMIT ?
+		    """;
 		
+		KeyHolder keyHolder =new GeneratedKeyHolder();
+		
+		try {
+			jdbcTemplate.update(connection->{
+				PreparedStatement ps =connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+				ps.setInt(1, eventId);
+		        ps.setInt(2, userId);
+		        ps.setInt(3, quantity);
+		        ps.setString(4, section);
+		        ps.setString(5, "付款中");
+		        ps.setString(6, requestId);
+		        return ps;
+			},keyHolder);
+			
+		} catch (Exception e) {
+			throw new RuntimeException("獲取訂單key失敗");
+		}
+		Integer orderId=keyHolder.getKey().intValue();
 
-	    try {
-	       jdbcTemplate.update(sql,eventId,userId,quantity,section,"COMPLETED",requestId);
+		
+		
+		
+	    int rowsUpdated = jdbcTemplate.update(updatePoolSql, orderId, eventId, section, quantity);
 
-	       
-	        
-	    } catch (BadSqlGrammarException e) {
-	        logger.error("SQL 語法錯誤: {}", e.getMessage(), e);
-	        throw new RuntimeException("SQL 語法錯誤，請檢查語句或數據庫表結構", e);
-	    } catch (DataAccessException e) {
-	        logger.error("數據訪問錯誤: {}", e.getMessage(), e);
-	        throw new RuntimeException("數據訪問錯誤，可能是數據庫連接問題或其他數據庫錯誤", e);
-	    }  catch (Exception e) {
-	        logger.error("未知錯誤: {}", e.getMessage(), e);
-	        throw new RuntimeException("訂單新增出現未知錯誤", e);
+	    if(rowsUpdated<1) {
+	    	logger.info("座位更新失敗");
+	    	throw new RuntimeException("座位更新失敗");
 	    }
+	    
+	    
 		
 		
 	}

@@ -19,5 +19,7 @@ public interface OrderRepositoryJdbc {
 	
 	Optional<OrderDto> findOrderDtoByRequestId(String requestId);
 	
-	void updateOrderStatus(String requestId, String status) ;
+	void updateOrderStatus(Integer orderId) ;
+	
+	void updateCancelOrder(Integer orderId);
 }

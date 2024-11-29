@@ -88,7 +88,7 @@ public class SalesController {
 
 //========================演唱會requestId查詢==============================================
 	@GetMapping("/goticket/area/status/{requestId}")
-	public ResponseEntity<ApiResponse<Object>> checkTicketStatus(@PathVariable("requestId") String requestId) {
+	public ResponseEntity<ApiResponse<Object>> getCheckTicketStatus(@PathVariable("requestId") String requestId) {
 		  try {
 		        // 調用通用邏輯獲取狀態
 		        Map<String, Object> statusResponse = orderService.getTicketStatus(requestId);
@@ -101,8 +101,20 @@ public class SalesController {
 		                .body(ApiResponse.error(500, "查詢訂單失敗，請稍後再試！", null));
 		    }
 	}
-	
-	
+
+//========================付款後訂單更新=============================================
+	@PostMapping("/goticket/pay/{orderId}")
+	public ResponseEntity<ApiResponse<Object>> postUpdateOrderStatus(@PathVariable("orderId") Integer orderId) {	
+		orderService.updateOrderStatus(orderId);
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", orderId));
+	}
+
+//========================不付錢自己取消訂單============================================
+	@PostMapping("/goticket/pay/cancel/{orderId}")
+	public ResponseEntity<ApiResponse<Object>> postCancelOrder(@PathVariable("orderId") Integer orderId) {	
+		orderService.cancelOrder(orderId);
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", orderId));
+	}
 	
 	
 	
@@ -110,7 +122,6 @@ public class SalesController {
 	@GetMapping("/goticket/orders")
 	public ResponseEntity<ApiResponse<Object>> getOrders(@RequestParam("orderId") Integer orderId,
 			@RequestParam("userName") String userName) {
-
 		OrderAstractDto dto = orderService.getOrderAbstract(orderId, userName);
 		logger.info("使用者簡易訂單" + dto);
 

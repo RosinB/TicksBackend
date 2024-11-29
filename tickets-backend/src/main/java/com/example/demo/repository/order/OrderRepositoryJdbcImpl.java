@@ -112,11 +112,17 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc{
 							   o.order_section 	as	orderSection,
 							   o.order_status   as  orderStatus,
 							   o.order_datetime as  orderDateTime,
-							   e.event_name     as  eventName	
-						
+							   e.event_name     as  eventName,
+							   t.ticket_price   as  orderPrice,
+							   p.pool_number    as  poolNumber
+							   
 						from 	orders o
 						join 	event e
 						on 		o.event_id =e.event_id
+						join    ticket t
+						on      t.event_id = o.event_id and t.ticket_name=o.order_section
+						join    pool p
+						on      o.order_id=p.order_id
 						where 	o.order_id =? 
 						
 							
@@ -178,15 +184,57 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc{
 	    }
 	}
 	
-	public void updateOrderStatus(String requestId, String status) {
+	
+	
+	public void updateOrderStatus(Integer orderId) {
 	    String sql = """
 	        UPDATE orders
 	        SET order_status = ?
-	        WHERE request_id = ?
+	        WHERE order_id = ?
 	    """;
-	    jdbcTemplate.update(sql, status, requestId);
+	    
+	    
+	    
+	    try {
+		    jdbcTemplate.update(sql, "訂單完成", orderId);
+	    } catch (Exception e) {
+	        logger.error("updateOrderStatus時出現錯誤: ", e.getMessage());
+	        throw new RuntimeException("updateOrderStatus出現錯誤 "+e.getMessage());
+	    }
 	}
 
+
+
+	
+	//取消訂單
+	@Override
+	public void updateCancelOrder(Integer orderId) {
+		   String sql = """
+			        UPDATE orders
+			        SET order_status = ?
+			        WHERE order_id = ?
+			    """;
+			String cancel="""
+					update 	pool
+					set 	order_id =?,
+					 		pool_status='未售出'
+					where 	order_id=?					
+					""".trim();    
+		   
+			    
+		   
+		try {
+			jdbcTemplate.update(sql, "訂單取消", orderId);
+			jdbcTemplate.update(cancel,null,orderId);
+			} catch (Exception e) {
+			logger.error("updateCancelOrder時出現錯誤: ", e.getMessage());
+			throw new RuntimeException("updateCancelOrder出現錯誤 "+e.getMessage());
+		}
+	}
+
+	
+	
+	
 	
 	
 	

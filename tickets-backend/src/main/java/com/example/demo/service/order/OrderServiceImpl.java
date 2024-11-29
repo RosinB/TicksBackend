@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService{
 		
 	    if ("FAILED".equals(redisStatus)) {
 	        return Map.of(
-	            "status", "FAILED",
+	            "status", "錯誤",
 	            "errorMessage", "購票失敗"
 	        );
 	    }
@@ -45,24 +45,24 @@ public class OrderServiceImpl implements OrderService{
 		Optional<OrderDto> optionalOrder = orderRepositoryJdbc.findOrderDtoByRequestId(requestId);
 
 		if (optionalOrder.isEmpty()) {
-		    return Map.of("status", "PENDING");
+		    return Map.of("status", "輪尋中");
 		}
 
 		OrderDto order = optionalOrder.get();
         
         switch (order.getOrderStatus()) {
-		            case "COMPLETED":
+		            case "付款中":
 		                return Map.of(
-		                    "status", "COMPLETED",
+		                    "status", "付款中",
 		                    "orderId", order.getOrderId()
 		                );
-		            case "FAILED":
+		            case "錯誤":
 		                return Map.of(
-		                    "status", "FAILED",
+		                    "status", "錯誤",
 		                    "errorMessage", "訂單處理失敗"
 		                );
 		            default:
-		                return Map.of("status", "PENDING");
+		                return Map.of("status", "輪巡中");
         }
     }
 	
@@ -89,6 +89,22 @@ public class OrderServiceImpl implements OrderService{
 		return dto;
 	}
 
+	//付款完更新訂單狀況
+	@Override
+	public void updateOrderStatus(Integer orderId) {
+		
+		orderRepositoryJdbc.updateOrderStatus(orderId);
+		
+	}
+
+	//取消訂單
+	@Override
+	public void cancelOrder(Integer orderId) {
+
+		orderRepositoryJdbc.updateCancelOrder(orderId);
+		
+	}
+
 
 
 
@@ -107,6 +123,12 @@ public class OrderServiceImpl implements OrderService{
 		return dto;
 	}
 
+
+
+	
+
+
+	
 	
 	
 	

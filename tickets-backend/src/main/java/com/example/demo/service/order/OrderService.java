@@ -15,4 +15,8 @@ public interface OrderService {
 	List<OrderDetailDto> getAllUserOrder(String userName);
 	
 	Map<String, Object> getTicketStatus(String requestId);
+	
+	void updateOrderStatus(Integer orderId);
+	
+	void cancelOrder(Integer orderId);
 }

@@ -46,7 +46,6 @@ public class TrafficConsumer {
             redisService.expire(redisKey + ":" + field, 5, TimeUnit.MINUTES); // 為具體鍵設置過期
 
             Long currentValue = redisService.get(redisKey + ":" + field, Long.class);
-            System.out.println("當前秒請求數量: " + currentValue);
 
         } catch (Exception e) {
             System.err.println("處理流量數據失敗：" + e.getMessage());
