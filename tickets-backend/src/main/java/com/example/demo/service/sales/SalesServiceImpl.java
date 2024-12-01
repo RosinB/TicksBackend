@@ -244,12 +244,10 @@ public class SalesServiceImpl implements SalesService {
 		
 		dto.setQuantity(quantity);
 		
+		dto.setSeatStatus(eventRespositoryJdbc.checkSeatStatus(eventId, section));
 		
 		
-		
-		
-		
-		return null;
+		return dto;
 	}
 
 

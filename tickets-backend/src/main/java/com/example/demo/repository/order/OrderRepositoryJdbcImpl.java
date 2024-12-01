@@ -106,40 +106,60 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc{
 
 	@Override
 	public OrderAstractDto findOrderAbstract(Integer orderId) {
-			String sql="""
-						select o.order_id 		as 	orderId,
-							   o.order_quantity as	orderQuantity,
-							   o.order_section 	as	orderSection,
-							   o.order_status   as  orderStatus,
-							   o.order_datetime as  orderDateTime,
-							   e.event_name     as  eventName,
-							   t.ticket_price   as  orderPrice,
-							   p.pool_number    as  poolNumber
-							   
-						from 	orders o
-						join 	event e
-						on 		o.event_id =e.event_id
-						join    ticket t
-						on      t.event_id = o.event_id and t.ticket_name=o.order_section
-						join    pool p
-						on      o.order_id=p.order_id
-						where 	o.order_id =? 
-						
-							
-					""".trim();
-		try {
-			OrderAstractDto dto= jdbcTemplate.queryForObject(sql, 
-															 new BeanPropertyRowMapper<>(OrderAstractDto.class),
-															 orderId);
-			return dto;
-			
-			
-		} catch (Exception e) {
-			logger.info("訂單摘要查詢失敗");
-			e.printStackTrace();
-			return null;
-		}
-		
+	    String sql = """
+	        SELECT 
+				    o.order_id as orderId,
+				    o.order_quantity as orderQuantity,
+				    o.order_section as orderSection,
+				    o.order_status as orderStatus,
+				    o.order_datetime as orderDateTime,
+				    e.event_name as eventName,
+				    t.ticket_price as orderPrice,
+				    GROUP_CONCAT(p.pool_number) as poolNumbers
+			FROM orders o
+			JOIN event e ON o.event_id = e.event_id
+			JOIN ticket t ON t.event_id = o.event_id AND t.ticket_name = o.order_section
+			JOIN pool p ON o.order_id = p.order_id
+			WHERE o.order_id = ?
+			GROUP BY 
+						    o.order_id,
+						    o.order_quantity,
+						    o.order_section,
+						    o.order_status,
+						    o.order_datetime,
+						    e.event_name,
+						    t.ticket_price
+	    """.trim();
+
+	    try {
+	        return jdbcTemplate.queryForObject(
+	            sql,
+	            (rs, rowNum) -> {
+	                OrderAstractDto dto = new OrderAstractDto();
+	                dto.setOrderId(rs.getInt("orderId"));
+	                dto.setEventName(rs.getString("eventName"));
+	                dto.setOrderSection(rs.getString("orderSection"));
+	                dto.setOrderStatus(rs.getString("orderStatus"));
+	                dto.setOrderDateTime(rs.getTimestamp("orderDateTime").toLocalDateTime());
+	                dto.setOrderPrice(rs.getInt("orderPrice"));
+	                
+	                // 處理多個座位號碼
+	                String poolNumbersStr = rs.getString("poolNumbers");
+	                if (poolNumbersStr != null) {
+	                    for (String poolNumber : poolNumbersStr.split(",")) {
+	                        dto.addPoolNumber(Integer.parseInt(poolNumber.trim()));
+	                    }
+	                }
+	                
+	                return dto;
+	            },
+	            orderId
+	        );
+	    } catch (Exception e) {
+	        logger.info("訂單摘要查詢失敗");
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
 
 

@@ -158,11 +158,11 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 		String sql="""
 				select ticket_quantity 
 				from ticket
-				where event_id=? and ticket_name
+				where event_id=? and ticket_name=?
 				""".trim();
 		
 		try {
-			return jdbcTemplate.queryForObject(sql, Integer.class);
+			return jdbcTemplate.queryForObject(sql, Integer.class,eventId,section);
 
 		} catch (Exception e) {
 			logger.info(" ffindQuantityByEventIdAndSection找不到:"+e.getMessage());
@@ -173,17 +173,27 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 
 	
 	@Override
-	public Map<Integer, Boolean> checkSeatStatus(Integer eventId, String section) {
+	public Map<Integer, String> checkSeatStatus(Integer eventId, String section) {
 		String sql="""
-					select pool_number,
-					select pool_status
+					select pool_number, pool_status
 					from pool
-					where event_id=? and section=?			
+					where event_id=? and event_section=?			
 				""".trim();
 		
-		return null;
+		 List<Map<String, Object>> seatStatusList = jdbcTemplate.queryForList(sql, eventId, section);
+		    Map<Integer, String> seatStatusMap = new HashMap<>();
 
+		    for (Map<String, Object> seat : seatStatusList) {
+		        Integer poolNumber = (Integer) seat.get("pool_number");
+		        String poolStatus = (String) seat.get("pool_status");
 
+		        seatStatusMap.put(poolNumber, poolStatus);
+		    }
+
+		    
+		    return seatStatusMap;
+		
+	}
 //找座位狀態
 	
 	

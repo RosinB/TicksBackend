@@ -22,7 +22,7 @@ public interface EventRespositoryJdbc {
 	//找總票數
 	Integer findQuantityByEventIdAndSection(Integer eventId,String section);
 	
-	Map<Integer,Boolean> checkSeatStatus(Integer eventId,String section);
+	Map<Integer,String> checkSeatStatus(Integer eventId,String section);
 	
 	
 }

@@ -27,6 +27,7 @@ import com.example.demo.exception.UserIsNotVerifiedException;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.model.dto.sales.SalesDto;
+import com.example.demo.model.dto.ticket.SeatStatusDto;
 import com.example.demo.model.dto.ticket.TicketSectionDto;
 import com.example.demo.model.dto.traffic.TrafficDto;
 import com.example.demo.repository.order.OrderRepositoryJdbc;
@@ -162,9 +163,9 @@ public class SalesController {
 															 @RequestParam("section") String section){
 		
 		
+		SeatStatusDto dto=salesService.checkSeatStatus(eventId, section);
 		
-		
-		return ResponseEntity.ok(ApiResponse.success("傳達成功", "123"));
+		return ResponseEntity.ok(ApiResponse.success("傳達成功", dto));
 	}
 	
 	

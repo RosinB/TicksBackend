@@ -119,15 +119,29 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 			throw new RuntimeException("獲取訂單key失敗");
 		}
 		Integer orderId=keyHolder.getKey().intValue();
+		
+		
+		try {
+	        logger.info("即將執行座位更新，SQL: {}", updatePoolSql);
+	        logger.info("參數: orderId={}, eventId={}, section={}, quantity={}",
+	                    orderId, eventId, section, quantity);
 
-		
-		
-		
-	    int rowsUpdated = jdbcTemplate.update(updatePoolSql, orderId, eventId, section, quantity);
+	        int rowsUpdated = jdbcTemplate.update(updatePoolSql, orderId, eventId, section, quantity);
 
-	    if(rowsUpdated<1) {
-	    	logger.info("座位更新失敗");
-	    	throw new RuntimeException("座位更新失敗");
+	        if (rowsUpdated < 1) {
+	            logger.warn("座位更新失敗，更新行數: {}", rowsUpdated);
+	            throw new RuntimeException("座位更新失敗，沒有更新任何行");
+	        }
+
+	        logger.info("座位更新成功，更新行數: {}", rowsUpdated);
+
+	    } catch (DataAccessException e) {
+	        logger.error("數據庫操作失敗，請檢查 SQL 和參數。", e);
+	        throw new RuntimeException("座位更新失敗，數據庫操作出錯", e);
+
+	    } catch (Exception e) {
+	        logger.error("未知錯誤，座位更新失敗", e);
+	        throw new RuntimeException("座位更新失敗，系統錯誤", e);
 	    }
 	    
 	    

@@ -1,6 +1,8 @@
 package com.example.demo.model.dto.orders;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,21 +27,21 @@ public class OrderAstractDto {
 	
 	private String orderStatus;
 	
-	private Integer poolNumber;
+	   private List<Integer> poolNumbers = new ArrayList<>();  // 初始化列表
+	    private List<String> seats = new ArrayList<>();        // 初始化列表
 	
-	private String seat;
-	
-	public void setPoolNumber(Integer poolNumber) {
-	    this.poolNumber = poolNumber;
-	    setSeat(); // 自动生成座位描述
-	}
-	
-	public  void setSeat() 
-	{if (poolNumber != null) {
-	        int row = (poolNumber - 1) / 25 + 1; // 假設每排 20 個座位
-	        int seatNumber = (poolNumber - 1) % 25 + 1;
-	        this.seat = "第" + row + "排 第" + seatNumber + "號";
+	    public void addPoolNumber(Integer poolNumber) {
+	        if (poolNumber != null) {
+	            this.poolNumbers.add(poolNumber);
+	            int row = (poolNumber - 1) / 25 + 1;
+	            int seatNumber = (poolNumber - 1) % 25 + 1;
+	            this.seats.add("第" + row + "排 第" + seatNumber + "號");
 	        }
-   }
+	    }
+	    
+	    // 獲取座位描述的字串，用逗號分隔
+	    public String getSeatsDisplay() {
+	        return String.join(", ", seats);
+	    }
 	
 }

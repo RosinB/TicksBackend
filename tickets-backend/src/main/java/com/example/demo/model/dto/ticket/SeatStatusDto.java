@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class SeatStatusDto {
 
 		private Integer quantity;
-		private Map<Integer,Boolean> seatStatus;
+		private Map<Integer,String> seatStatus;
 
 	
 }
