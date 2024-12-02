@@ -65,6 +65,7 @@ public class SalesController {
 		        // 生成唯一請求 ID
 		        String requestId = UUID.randomUUID().toString();
 		        data.setRequestId(requestId);
+		     
 
 		        // 發送購票請求到 RabbitMQ
 		        rabbitTemplate.convertAndSend(
@@ -86,7 +87,23 @@ public class SalesController {
 	
 
 	}
+	@PostMapping("/goticket/area/buy/seat")
+	public ResponseEntity<ApiResponse<Object>> postBuyTicketwithSeat(@RequestBody PostTicketSalesDto data, HttpServletRequest request) {		
+		 try {			 	System.out.println("有進來嗎");
 
+		        // 生成唯一請求 ID
+		        String requestId = UUID.randomUUID().toString();
+		        data.setRequestId(requestId);
+		        salesService.buyTicketWithSeat(data);
+		        
+		        return ResponseEntity.ok(ApiResponse.success("購票請求已提交，正在處理", requestId));
+		    } catch (Exception e) {
+		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+		                .body(ApiResponse.error(500, "伺服器錯誤123：" + e.getMessage(), null));
+		    }
+	
+
+	}
 //========================演唱會requestId查詢==============================================
 	@GetMapping("/goticket/area/status/{requestId}")
 	public ResponseEntity<ApiResponse<Object>> getCheckTicketStatus(@PathVariable("requestId") String requestId) {
@@ -122,8 +139,9 @@ public class SalesController {
 //========================演唱會訂單摘要==============================================
 	@GetMapping("/goticket/orders")
 	public ResponseEntity<ApiResponse<Object>> getOrders(@RequestParam("orderId") Integer orderId,
-			@RequestParam("userName") String userName) {
-		OrderAstractDto dto = orderService.getOrderAbstract(orderId, userName);
+			@RequestParam("userName") String userName,@RequestParam("requestId") String requestId) {
+		OrderAstractDto dto = orderService.getOrderAbstract(orderId, userName,requestId);
+		
 		logger.info("使用者簡易訂單" + dto);
 
 		return ResponseEntity.ok(ApiResponse.success("傳達成功", dto));

@@ -82,6 +82,7 @@ public class OrderServiceImpl implements OrderService{
 
 		List<OrderDetailDto> dto=orderRepositoryJdbc.findOrderDetail(userId);
 		
+		System.out.println(dto);
 		Optional.ofNullable(dto).orElseThrow(()->new RuntimeException("找不到詳細資訊"));
 		
 		
@@ -110,8 +111,13 @@ public class OrderServiceImpl implements OrderService{
 
 	//訂單摘要
 	@Override
-	public OrderAstractDto getOrderAbstract(Integer orderId,String userName) {
+	public OrderAstractDto getOrderAbstract(Integer orderId,String userName,String requestId) {
 
+		//我這寫在buyticket那裏		
+		if(!redisService.exists("order:"+requestId)) {
+			logger.info("付款時間結束");
+			throw new RuntimeException("付款時間結束");
+		}
 		
 		OrderAstractDto dto= orderRepositoryJdbc.findOrderAbstract(orderId);
 		

@@ -15,7 +15,7 @@ public interface SalesService {
 //	==========訂單邏輯==========
 	void buyTicket(PostTicketSalesDto data);
 	
-
+	 void buyTicketWithSeat(PostTicketSalesDto data) ;
 //===========檢查座位圖===============
 
 	SeatStatusDto checkSeatStatus(Integer eventId,String section) ;

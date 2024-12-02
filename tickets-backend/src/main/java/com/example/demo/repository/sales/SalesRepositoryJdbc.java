@@ -20,4 +20,15 @@ public interface SalesRepositoryJdbc {
 	void addTicketOrder(Integer userId,String section ,Integer eventId ,Integer quantity,String requestId);
 	
 	Integer findRemaingByEventIdAndSection(Integer eventId,String section);	
+	
+	boolean existsSeatsByPoolNumber(Integer seat ,String section,Integer eventId);
+	
+	Integer addTicketOrderWithSeat(Integer userId,String section ,Integer eventId ,Integer quantity,String requestId,Integer poolNumber);
+
+	void updateTicketOrderSeat(Integer userId, String section, Integer eventId, Integer seat,Integer orderId);
+	
+	
+	
+
+
 }

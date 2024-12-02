@@ -87,69 +87,125 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 
 	// ==========================添加order========================================
 	@Override
-	public void addTicketOrder(Integer userId,String section, Integer eventId, Integer quantity,String requestId) {
-		String sql=
-				"""
+	public void addTicketOrder(Integer userId, String section, Integer eventId, Integer quantity, String requestId) {
+		String sql = """
 				insert into orders(event_id,user_id,order_quantity,order_section,order_status,request_id)
 							values(?,?,?,?,?,?)
 				""".trim();
-		
+
 		String updatePoolSql = """
-		        UPDATE pool
-		        SET order_id = ?, pool_status = '已售出'
-		        WHERE event_id = ? AND event_section = ? AND pool_status = '未售出'
-		        LIMIT ?
-		    """;
-		
-		KeyHolder keyHolder =new GeneratedKeyHolder();
-		
+				    UPDATE pool
+				    SET order_id = ?, pool_status = '已售出'
+				    WHERE event_id = ? AND event_section = ? AND pool_status = '未售出'
+				    LIMIT ?
+				""";
+
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
 		try {
-			jdbcTemplate.update(connection->{
-				PreparedStatement ps =connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			jdbcTemplate.update(connection -> {
+				PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				ps.setInt(1, eventId);
-		        ps.setInt(2, userId);
-		        ps.setInt(3, quantity);
-		        ps.setString(4, section);
-		        ps.setString(5, "付款中");
-		        ps.setString(6, requestId);
-		        return ps;
-			},keyHolder);
-			
+				ps.setInt(2, userId);
+				ps.setInt(3, quantity);
+				ps.setString(4, section);
+				ps.setString(5, "付款中");
+				ps.setString(6, requestId);
+				return ps;
+			}, keyHolder);
+
 		} catch (Exception e) {
 			throw new RuntimeException("獲取訂單key失敗");
 		}
-		Integer orderId=keyHolder.getKey().intValue();
-		
-		
+		Integer orderId = keyHolder.getKey().intValue();
+
 		try {
-	        logger.info("即將執行座位更新，SQL: {}", updatePoolSql);
-	        logger.info("參數: orderId={}, eventId={}, section={}, quantity={}",
-	                    orderId, eventId, section, quantity);
+			logger.info("即將執行座位更新，SQL: {}", updatePoolSql);
+			logger.info("參數: orderId={}, eventId={}, section={}, quantity={}", orderId, eventId, section, quantity);
 
-	        int rowsUpdated = jdbcTemplate.update(updatePoolSql, orderId, eventId, section, quantity);
+			int rowsUpdated = jdbcTemplate.update(updatePoolSql, orderId, eventId, section, quantity);
 
-	        if (rowsUpdated < 1) {
-	            logger.warn("座位更新失敗，更新行數: {}", rowsUpdated);
-	            throw new RuntimeException("座位更新失敗，沒有更新任何行");
-	        }
+			if (rowsUpdated < 1) {
+				logger.warn("座位更新失敗，更新行數: {}", rowsUpdated);
+				throw new RuntimeException("座位更新失敗，沒有更新任何行");
+			}
 
-	        logger.info("座位更新成功，更新行數: {}", rowsUpdated);
+			logger.info("座位更新成功，更新行數: {}", rowsUpdated);
 
-	    } catch (DataAccessException e) {
-	        logger.error("數據庫操作失敗，請檢查 SQL 和參數。", e);
-	        throw new RuntimeException("座位更新失敗，數據庫操作出錯", e);
+		} catch (DataAccessException e) {
+			logger.error("數據庫操作失敗，請檢查 SQL 和參數。", e);
+			throw new RuntimeException("座位更新失敗，數據庫操作出錯", e);
 
-	    } catch (Exception e) {
-	        logger.error("未知錯誤，座位更新失敗", e);
-	        throw new RuntimeException("座位更新失敗，系統錯誤", e);
-	    }
-	    
-	    
+		} catch (Exception e) {
+			logger.error("未知錯誤，座位更新失敗", e);
+			throw new RuntimeException("座位更新失敗，系統錯誤", e);
+		}
+
+	}
+
+	@Override
+	public Integer addTicketOrderWithSeat(Integer userId, String section, Integer eventId, Integer quantity,
+			String requestId, Integer seat) {
+		String sql = """
+				insert into orders(event_id,user_id,order_quantity,order_section,order_status,request_id)
+							values(?,?,?,?,?,?)
+				""".trim();
+
 		
+
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		try {
+			jdbcTemplate.update(connection -> {
+				PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				ps.setInt(1, eventId);
+				ps.setInt(2, userId);
+				ps.setInt(3, quantity);
+				ps.setString(4, section);
+				ps.setString(5, "付款中");
+				ps.setString(6, requestId);
+				return ps;
+			}, keyHolder);
+
+		} catch (Exception e) {
+			throw new RuntimeException("獲取訂單key失敗");
+		}
+	//==========================================================================================================	
+		Integer orderId = keyHolder.getKey().intValue();
+
+		return orderId;
 		
 	}
 
-//=======================================================================================
+	
+	
+	
+	@Override
+	public void updateTicketOrderSeat(Integer userId, String section, Integer eventId, Integer seat,Integer orderId) {
+		String updatePoolSql = """
+			    UPDATE pool
+			    SET order_id = ?, pool_status = '已售出'
+			    WHERE event_id = ? AND event_section = ? AND pool_status = '未售出' and pool_number=?
+			   
+			""";
+		try {
+			logger.info("參數: orderId={}, eventId={}, section={}, poolNumber={}", orderId, eventId, section, seat);
+			
+			int rowsUpdated = jdbcTemplate.update(updatePoolSql, orderId, eventId, section,seat);
+			logger.info("訂單新增成功:參數: orderId={}, eventId={}, section={}, poolNumber={}", orderId, eventId, section, seat);
+
+			if (rowsUpdated != 1) {
+	            throw new RuntimeException("座位更新失敗，可能座位已被他人購買");
+	        }
+
+
+		} catch (Exception e) {
+			logger.error("未知錯誤，座位更新失敗", e);
+			throw new RuntimeException("座位更新失敗，系統錯誤", e);
+		}		
+	}
+
+	// =======================================================================================
 	// ============================處理訂票狀況======================================
 	@Override
 	public void checkTicketAndUpdate(String section, Integer eventId, Integer quantity) {
@@ -177,7 +233,7 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 		} catch (DataAccessException e) {
 			logger.error("SQL 執行出現異常，section: {}, eventId: {}, quantity: {}, 錯誤信息: {}", section, eventId, quantity,
 					e.getMessage(), e);
-			throw new RuntimeException("數據庫操作失敗"+ e.getMessage());
+			throw new RuntimeException("數據庫操作失敗" + e.getMessage());
 		}
 	}
 	// ============================處理訂票狀況======================================
@@ -194,13 +250,12 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 
 		try {
 
-			Boolean hasTickets= jdbcTemplate.queryForObject(sql,boolean.class, section, eventId);
+			Boolean hasTickets = jdbcTemplate.queryForObject(sql, boolean.class, section, eventId);
 
 			return hasTickets;
 
 		} catch (EmptyResultDataAccessException e) {
 			throw new RuntimeException("票卷查詢狀態結果為空，section: " + section + ", eventId: " + eventId);
-
 
 		} catch (Exception e) {
 			throw new RuntimeException("其他異常");
@@ -208,29 +263,44 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 
 	}
 
-	
 	@Override
 	public Integer findRemaingByEventIdAndSection(Integer eventId, String section) {
-			String sql="""
-						select ticket_remaining
-						from ticket
-						where event_id =? 
-						  and ticket_name=?
-					""";
-	try {
-		return jdbcTemplate.queryForObject(sql, Integer.class, eventId, section);
-	} catch (Exception e) {
-		logger.info("findRemaingByEventIdAndSection搜尋有錯",e.getMessage());
-		throw new RuntimeException("findRemaingByEventIdAndSection搜尋有錯"+e.getMessage());
-	}	
-			
-		
+		String sql = """
+					select ticket_remaining
+					from ticket
+					where event_id =?
+					  and ticket_name=?
+				""";
+		try {
+			return jdbcTemplate.queryForObject(sql, Integer.class, eventId, section);
+		} catch (Exception e) {
+			logger.info("findRemaingByEventIdAndSection搜尋有錯", e.getMessage());
+			throw new RuntimeException("findRemaingByEventIdAndSection搜尋有錯" + e.getMessage());
+		}
 
-	
 	}
-	
-	
-	
-	
+
+	// 看位置有沒有人坐
+	@Override
+	public boolean existsSeatsByPoolNumber(Integer seat, String section, Integer eventId) {
+		String sql = """
+				SELECT COUNT(1) > 0
+				from pool
+
+				where pool_number=?
+				and   event_section=?
+				and   event_id=?
+				and   pool_status='未售出'
+				""".trim();
+
+		try {
+			return jdbcTemplate.queryForObject(sql, Boolean.class, seat, section, eventId);
+
+		} catch (Exception e) {
+			logger.info("existsSeatsByPoolNumber有錯誤" + e.getMessage());
+			throw new RuntimeException("existsSeatsByPoolNumber有錯誤" + e.getMessage());
+		}
+
+	}
 
 }

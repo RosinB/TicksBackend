@@ -8,5 +8,6 @@ public interface AdOrdersJDBC {
 
 	List<AdOrdersDto> findAllOrdersByEventId(Integer eventId);
 	
+	Integer updateOrderByUpdateTime(Integer eventId,String section);
 	
 }

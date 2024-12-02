@@ -22,4 +22,6 @@ public interface OrderRepositoryJdbc {
 	void updateOrderStatus(Integer orderId) ;
 	
 	void updateCancelOrder(Integer orderId);
+	
+	
 }

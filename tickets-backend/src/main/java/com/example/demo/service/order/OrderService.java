@@ -9,7 +9,7 @@ import com.example.demo.model.dto.orders.OrderDetailDto;
 public interface OrderService {
 
 	
-	OrderAstractDto getOrderAbstract(Integer orderId,String userName);
+	OrderAstractDto getOrderAbstract(Integer orderId,String userName,String requestId);
 	
 	
 	List<OrderDetailDto> getAllUserOrder(String userName);

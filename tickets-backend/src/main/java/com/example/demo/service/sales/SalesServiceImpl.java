@@ -117,6 +117,52 @@ public class SalesServiceImpl implements SalesService {
 	     }
 	 }
 
+	 @Override
+	 @Transactional
+	 public void buyTicketWithSeat(PostTicketSalesDto tickets) {
+		  	 Integer eventId = tickets.getEventId();
+		     Integer quantity = tickets.getPoolNumber().length;
+		     String section = tickets.getSection();
+		     String requestId = tickets.getRequestId();
+		     Integer[] seats =tickets.getPoolNumber();
+		     // 獲取用戶 ID
+	         String cacheKey = "userId:" + tickets.getUserName();
+	         Integer userId = redisService.get(cacheKey, Integer.class);
+	            if (userId == null) {
+	                userId = userRepository.findIdByUserName(tickets.getUserName());
+	                redisService.saveWithExpire(cacheKey, userId, 10, TimeUnit.MINUTES);
+	            }
+	            
+	            
+		     for(Integer seat : seats) {
+
+		         boolean isAvailable = salesRepositoryJdbc.existsSeatsByPoolNumber(seat, section, eventId);
+		         if (!isAvailable) {
+		             logger.error("座位 {} 已被購買或不存在", seat);
+		             throw new RuntimeException("選擇的座位已有人坐或不存在");
+		         }
+		     }
+	    	Integer orderId =salesRepositoryJdbc.addTicketOrderWithSeat(userId, section, eventId, quantity, requestId, quantity);
+
+		     for(Integer seat :seats) {
+		    	    logger.info("座位號: {}", seat);
+		    	 try {
+		    		salesRepositoryJdbc.updateTicketOrderSeat(userId, section, eventId, seat, orderId);
+		    		 redisService.saveWithExpire("order:" + requestId, tickets.getUserName(), 10, TimeUnit.MINUTES);
+		    	 }catch (Exception e) {
+		    		 logger.error("訂單新增失敗");
+						throw new RuntimeException("訂單新增失敗");
+
+		    	 }
+		     
+		     }
+		 
+
+		 
+		 
+		 
+		 
+	 }
 //	處理購票邏輯
 //========================================================================================================
 

@@ -22,5 +22,5 @@ public class PostTicketSalesDto {
 		
 	    private String requestId; // 唯一請求 ID
 
-	
+	    private Integer[]  poolNumber;
 }

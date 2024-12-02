@@ -6,6 +6,9 @@ public interface AdTicketJDBC {
 
 	void addTicketDtosByEventId(Integer eventId,TicketDtos ticketDtos);
 	
-	 void updateTicketDtosByEventId(Integer eventId,TicketDtos ticketDtos) ;
+	void updateTicketDtosByEventId(Integer eventId,TicketDtos ticketDtos) ;
 
+	void updateRemaining(Integer eventId,Integer tickets,String section);
+	
+	
 }

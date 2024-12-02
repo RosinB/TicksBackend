@@ -24,7 +24,9 @@ import com.example.demo.adminPanel.dto.ticket.RealTimeDto;
 import com.example.demo.adminPanel.dto.ticket.StatusOnSaleDto;
 import com.example.demo.adminPanel.dto.ticket.TicketDtos;
 import com.example.demo.adminPanel.repository.event.AdminEventJDBCImpl;
+import com.example.demo.adminPanel.repository.ticket.AdTicketJDBC;
 import com.example.demo.adminPanel.service.event.AdminEventService;
+import com.example.demo.adminPanel.service.ticket.AdTicketService;
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
 import com.example.demo.util.ApiResponse;
 import com.example.demo.util.RedisService;
@@ -45,6 +47,9 @@ public class AdminEventController {
 	
 	@Autowired
 	RedisService redisService;
+	
+	@Autowired
+	AdTicketService adTicketService;
 	
 	@GetMapping("/all")
 	ResponseEntity<ApiResponse<Object>> getAllEvents(){
@@ -121,16 +126,19 @@ public class AdminEventController {
 	ResponseEntity<ApiResponse<Object>> postBalanceTicket(@RequestParam("eventId")  Integer eventId,
 														  @RequestParam("section")	String section){
        
-			String stockKey = "event:" + eventId + ":section:" + section + ":stock";
-            Integer dbStock = salesRepositoryJdbc.findRemaingByEventIdAndSection(eventId, section);
-            logger.info("================整票成功========"+dbStock+"=====================");
-            redisService.saveWithExpire(stockKey, dbStock,5,TimeUnit.SECONDS);
 
 		
 		return ResponseEntity.ok(ApiResponse.success("更新成功", "ok"));
 	}
 	
-	
+	@PostMapping("/api/clear")
+	ResponseEntity<ApiResponse<Object>> postclearTicket(@RequestParam("eventId")  Integer eventId,
+			  											@RequestParam("section")	String section){
+       
+		adTicketService.clearTicket(eventId,section);
+		
+		return ResponseEntity.ok(ApiResponse.success("更新成功", "ok"));
+	}
 	
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<ApiResponse<Void>> handAdminEventRunTimeException(RuntimeException e) {

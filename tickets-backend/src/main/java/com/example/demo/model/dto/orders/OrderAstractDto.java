@@ -27,10 +27,10 @@ public class OrderAstractDto {
 	
 	private String orderStatus;
 	
-	   private List<Integer> poolNumbers = new ArrayList<>();  // 初始化列表
-	    private List<String> seats = new ArrayList<>();        // 初始化列表
+	private List<Integer> poolNumbers = new ArrayList<>();  // 初始化列表
+	private List<String> seats = new ArrayList<>();        // 初始化列表
 	
-	    public void addPoolNumber(Integer poolNumber) {
+	public void addPoolNumber(Integer poolNumber) {
 	        if (poolNumber != null) {
 	            this.poolNumbers.add(poolNumber);
 	            int row = (poolNumber - 1) / 25 + 1;
@@ -40,7 +40,7 @@ public class OrderAstractDto {
 	    }
 	    
 	    // 獲取座位描述的字串，用逗號分隔
-	    public String getSeatsDisplay() {
+	public String getSeatsDisplay() {
 	        return String.join(", ", seats);
 	    }
 	

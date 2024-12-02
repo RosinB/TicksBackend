@@ -63,6 +63,29 @@ public class AdTicketJDBCImpl implements AdTicketJDBC{
 		
 	}
 
+
+
+	
+	@Override
+	public void updateRemaining(Integer eventId, Integer tickets,String section) {
+		
+		String sql="""
+					update ticket 
+					set	   ticket_remaining=ticket_remaining + ?
+					where  event_id=?
+					and    ticket_name=?
+				""".trim();
+
+		try {
+				jdbcTemplate.update(sql,tickets,eventId,section);
+		} catch (Exception e) {
+			logger.warn("更新餘票失敗"+e.getMessage());
+			throw new RuntimeException("更新餘票失敗"+e.getMessage());
+			
+			
+		}
+	}
+
 	
 	
 	

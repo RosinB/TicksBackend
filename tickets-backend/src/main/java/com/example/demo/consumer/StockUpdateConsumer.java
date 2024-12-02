@@ -52,6 +52,7 @@ public class StockUpdateConsumer {
             
             // 創建訂單
             salesRepositoryJdbc.addTicketOrder(userId, tickets.getSection(), tickets.getEventId(), tickets.getQuantity(), requestId);
+            redisService.saveWithExpire("order:" + requestId, tickets.getUserName(), 10, TimeUnit.MINUTES);
             logger.info("訂單創建成功: UserId={}, EventId={}, Section={}, Quantity={}, RequestId={}",
                     userId, tickets.getEventId(), tickets.getSection(), tickets.getQuantity(), requestId);        
             } catch (Exception e) {
