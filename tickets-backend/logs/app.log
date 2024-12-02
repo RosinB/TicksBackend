@@ -17391,3 +17391,546 @@ This generated password is for development use only. Your security configuration
 2024-12-02T16:41:09.482+08:00  INFO 7532 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.demo.controller.EventController      : 訂單創建成功: UserId=3, EventId=1, Section=A區, Quantity=1, RequestId=c5c3144a-04cb-403e-8bf7-3830ad2d1617
 2024-12-02T16:41:10.486+08:00  INFO 7532 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.order.OrderRepositoryJdbcImpl    : 已搜尋到訂單OrderDto(orderId=63184, orderStatus=付款中)
 2024-12-02T16:41:10.503+08:00  INFO 7532 --- [tickets-backend] [http-nio-8080-exec-9] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=63184, eventName=亞洲巡迴day2, userName=ruka, orderSection=A區, orderPrice=3000, orderDateTime=2024-12-02T16:41:09, orderStatus=付款中, poolNumbers=[4], seats=[第1排 第4號])
+2024-12-02T20:28:26.504+08:00  INFO 23880 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 23880 (C:\Users\karta\git\TicksBackendvcx\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackendvcx\tickets-backend)
+2024-12-02T20:28:26.506+08:00  INFO 23880 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-12-02T20:28:28.006+08:00  INFO 23880 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:28:28.009+08:00  INFO 23880 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-02T20:28:28.459+08:00  INFO 23880 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 439 ms. Found 4 JPA repository interfaces.
+2024-12-02T20:28:28.481+08:00  INFO 23880 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:28:28.482+08:00  INFO 23880 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-12-02T20:28:28.514+08:00  INFO 23880 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.adminPanel.repository.HostRepo; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:28:28.514+08:00  INFO 23880 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:28:28.515+08:00  INFO 23880 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:28:28.515+08:00  INFO 23880 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:28:28.516+08:00  INFO 23880 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2024-12-02T20:28:29.658+08:00  INFO 23880 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-02T20:28:29.677+08:00  INFO 23880 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-02T20:28:29.677+08:00  INFO 23880 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-02T20:28:29.976+08:00  INFO 23880 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-02T20:28:29.982+08:00  INFO 23880 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-02T20:28:29.983+08:00  INFO 23880 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3415 ms
+2024-12-02T20:28:30.368+08:00  INFO 23880 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-02T20:28:30.462+08:00  INFO 23880 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-02T20:28:30.514+08:00  INFO 23880 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-02T20:28:30.972+08:00  INFO 23880 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-02T20:28:31.020+08:00  INFO 23880 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-02T20:28:31.221+08:00  INFO 23880 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69c51fdb
+2024-12-02T20:28:31.223+08:00  INFO 23880 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-02T20:28:32.640+08:00  INFO 23880 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-02T20:28:32.715+08:00  INFO 23880 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T20:28:33.024+08:00  INFO 23880 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-12-02T20:28:33.449+08:00  INFO 23880 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-12-02T20:28:33.454+08:00  INFO 23880 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-12-02T20:28:34.047+08:00  INFO 23880 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-02T20:28:35.361+08:00  WARN 23880 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: c23946f9-afc8-4d8e-922d-1593b3254f86
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-02T20:28:35.375+08:00  INFO 23880 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-12-02T20:28:35.563+08:00  INFO 23880 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-12-02T20:28:35.929+08:00  INFO 23880 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-12-02T20:28:36.806+08:00  WARN 23880 --- [tickets-backend] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-12-02T20:28:36.831+08:00  INFO 23880 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T20:28:36.834+08:00  INFO 23880 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-02T20:28:36.842+08:00  INFO 23880 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-02T20:28:36.859+08:00  INFO 23880 --- [tickets-backend] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-02T20:28:36.881+08:00 ERROR 23880 --- [tickets-backend] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2024-12-02T20:28:47.097+08:00  INFO 30504 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 30504 (C:\Users\karta\git\TicksBackendvcx\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackendvcx\tickets-backend)
+2024-12-02T20:28:47.099+08:00  INFO 30504 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-12-02T20:28:48.452+08:00  INFO 30504 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:28:48.454+08:00  INFO 30504 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-02T20:28:48.780+08:00  INFO 30504 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 315 ms. Found 4 JPA repository interfaces.
+2024-12-02T20:28:48.798+08:00  INFO 30504 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:28:48.800+08:00  INFO 30504 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-12-02T20:28:48.827+08:00  INFO 30504 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.adminPanel.repository.HostRepo; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:28:48.827+08:00  INFO 30504 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:28:48.828+08:00  INFO 30504 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:28:48.828+08:00  INFO 30504 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:28:48.829+08:00  INFO 30504 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2024-12-02T20:28:49.864+08:00  INFO 30504 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-02T20:28:49.881+08:00  INFO 30504 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-02T20:28:49.881+08:00  INFO 30504 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-02T20:28:50.176+08:00  INFO 30504 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-02T20:28:50.183+08:00  INFO 30504 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-02T20:28:50.184+08:00  INFO 30504 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3025 ms
+2024-12-02T20:28:50.550+08:00  INFO 30504 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-02T20:28:50.617+08:00  INFO 30504 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-02T20:28:50.658+08:00  INFO 30504 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-02T20:28:51.040+08:00  INFO 30504 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-02T20:28:51.076+08:00  INFO 30504 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-02T20:28:51.258+08:00  INFO 30504 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@48a61e38
+2024-12-02T20:28:51.260+08:00  INFO 30504 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-02T20:28:52.564+08:00  INFO 30504 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-02T20:28:52.629+08:00  INFO 30504 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T20:28:52.921+08:00  INFO 30504 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-12-02T20:28:53.274+08:00  INFO 30504 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-12-02T20:28:53.280+08:00  INFO 30504 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-12-02T20:28:53.807+08:00  INFO 30504 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-02T20:28:55.034+08:00  WARN 30504 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 3a873d60-050b-438a-838b-d578f0c78b37
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-02T20:28:55.045+08:00  INFO 30504 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-12-02T20:28:55.211+08:00  INFO 30504 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-12-02T20:28:55.543+08:00  INFO 30504 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-12-02T20:28:56.418+08:00  WARN 30504 --- [tickets-backend] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-12-02T20:28:56.443+08:00  INFO 30504 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T20:28:56.446+08:00  INFO 30504 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-02T20:28:56.453+08:00  INFO 30504 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-02T20:28:56.470+08:00  INFO 30504 --- [tickets-backend] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-02T20:28:56.489+08:00 ERROR 30504 --- [tickets-backend] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2024-12-02T20:32:55.249+08:00  INFO 9028 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 9028 (C:\Users\karta\git\TicksBackendvcx\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackendvcx\tickets-backend)
+2024-12-02T20:32:55.252+08:00  INFO 9028 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-12-02T20:32:56.655+08:00  INFO 9028 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:32:56.657+08:00  INFO 9028 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-02T20:32:56.981+08:00  INFO 9028 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 313 ms. Found 4 JPA repository interfaces.
+2024-12-02T20:32:57.000+08:00  INFO 9028 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:32:57.001+08:00  INFO 9028 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-12-02T20:32:57.028+08:00  INFO 9028 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.adminPanel.repository.HostRepo; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:32:57.029+08:00  INFO 9028 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:32:57.029+08:00  INFO 9028 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:32:57.029+08:00  INFO 9028 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:32:57.030+08:00  INFO 9028 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2024-12-02T20:32:58.143+08:00  INFO 9028 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-02T20:32:58.163+08:00  INFO 9028 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-02T20:32:58.163+08:00  INFO 9028 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-02T20:32:58.472+08:00  INFO 9028 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-02T20:32:58.480+08:00  INFO 9028 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-02T20:32:58.480+08:00  INFO 9028 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3170 ms
+2024-12-02T20:32:58.846+08:00  INFO 9028 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-02T20:32:58.914+08:00  INFO 9028 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-02T20:32:58.958+08:00  INFO 9028 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-02T20:32:59.330+08:00  INFO 9028 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-02T20:32:59.365+08:00  INFO 9028 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-02T20:33:00.501+08:00  WARN 9028 --- [tickets-backend] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 08S01
+2024-12-02T20:33:00.502+08:00 ERROR 9028 --- [tickets-backend] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2024-12-02T20:33:00.503+08:00  WARN 9028 --- [tickets-backend] [main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
+
+org.hibernate.exception.JDBCConnectionException: unable to obtain isolated JDBC connection [Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] [n/a]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:100) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:292) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:124) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:78) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:221) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:189) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1431) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1502) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.5.jar:3.3.5]
+	at com.example.demo.MainApp.main(MainApp.java:11) ~[classes/:na]
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:439) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	... 35 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:149) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:165) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:88) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:62) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 51 common frames omitted
+
+2024-12-02T20:33:00.509+08:00 ERROR 9028 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
+2024-12-02T20:33:00.510+08:00  WARN 9028 --- [tickets-backend] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
+2024-12-02T20:33:00.513+08:00  INFO 9028 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-12-02T20:33:00.531+08:00  INFO 9028 --- [tickets-backend] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-02T20:33:00.549+08:00 ERROR 9028 --- [tickets-backend] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.5.jar:3.3.5]
+	at com.example.demo.MainApp.main(MainApp.java:11) ~[classes/:na]
+Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:276) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:221) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:189) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1431) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1502) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.14.jar:6.1.14]
+	... 15 common frames omitted
+Caused by: org.hibernate.HibernateException: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.determineDialect(DialectFactoryImpl.java:191) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.buildDialect(DialectFactoryImpl.java:87) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentWithDefaults(JdbcEnvironmentInitiator.java:153) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:364) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:124) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:78) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	... 30 common frames omitted
+
+2024-12-02T20:33:29.101+08:00  INFO 23740 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 23740 (C:\Users\karta\git\TicksBackendvcx\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackendvcx\tickets-backend)
+2024-12-02T20:33:29.103+08:00  INFO 23740 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-12-02T20:33:30.470+08:00  INFO 23740 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:33:30.472+08:00  INFO 23740 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-02T20:33:30.789+08:00  INFO 23740 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 308 ms. Found 4 JPA repository interfaces.
+2024-12-02T20:33:30.806+08:00  INFO 23740 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:33:30.807+08:00  INFO 23740 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-12-02T20:33:30.835+08:00  INFO 23740 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.adminPanel.repository.HostRepo; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:33:30.835+08:00  INFO 23740 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:33:30.836+08:00  INFO 23740 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:33:30.836+08:00  INFO 23740 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:33:30.836+08:00  INFO 23740 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2024-12-02T20:33:31.866+08:00  INFO 23740 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-02T20:33:31.884+08:00  INFO 23740 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-02T20:33:31.886+08:00  INFO 23740 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-02T20:33:32.192+08:00  INFO 23740 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-02T20:33:32.198+08:00  INFO 23740 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-02T20:33:32.199+08:00  INFO 23740 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3041 ms
+2024-12-02T20:33:32.553+08:00  INFO 23740 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-02T20:33:32.626+08:00  INFO 23740 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-02T20:33:32.666+08:00  INFO 23740 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-02T20:33:33.024+08:00  INFO 23740 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-02T20:33:33.061+08:00  INFO 23740 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-02T20:33:33.249+08:00  INFO 23740 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2809e38a
+2024-12-02T20:33:33.251+08:00  INFO 23740 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-02T20:33:34.556+08:00  INFO 23740 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-02T20:33:34.622+08:00  INFO 23740 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T20:33:34.909+08:00  INFO 23740 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-12-02T20:33:35.257+08:00  INFO 23740 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-12-02T20:33:35.263+08:00  INFO 23740 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-12-02T20:33:35.808+08:00  INFO 23740 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-02T20:33:37.033+08:00  WARN 23740 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: c59cc15c-c3e3-45ea-b131-131904841ebd
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-02T20:33:37.044+08:00  INFO 23740 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-12-02T20:33:37.221+08:00  INFO 23740 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-12-02T20:33:37.565+08:00  INFO 23740 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-12-02T20:33:38.431+08:00  INFO 23740 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-02T20:33:38.435+08:00  INFO 23740 --- [tickets-backend] [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-12-02T20:33:38.525+08:00  INFO 23740 --- [tickets-backend] [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#2438702:0/SimpleConnection@6cfd694a [delegate=amqp://guest@127.0.0.1:5672/, localPort=1382]
+2024-12-02T20:33:38.605+08:00  INFO 23740 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 10.031 seconds (process running for 10.766)
+2024-12-02T20:33:39.273+08:00  INFO 23740 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-02T20:33:39.274+08:00  INFO 23740 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-02T20:33:39.277+08:00  INFO 23740 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-12-02T20:33:52.772+08:00  INFO 23740 --- [tickets-backend] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : 使用者登入成功: ruka
+2024-12-02T20:33:56.338+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : Redis 無庫存記錄，從資料庫初始化，庫存: 2952
+2024-12-02T20:33:56.341+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: 2951 !===
+2024-12-02T20:33:56.342+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 扣減成功，剩餘庫存：2951，RequestID: c5524e84-62ae-4383-a7c5-795356e28809
+2024-12-02T20:33:56.356+08:00  INFO 23740 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.order.OrderRepositoryJdbcImpl    : 搜尋不到訂單...
+2024-12-02T20:33:56.420+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 即將執行座位更新，SQL:     UPDATE pool
+    SET order_id = ?, pool_status = '已售出'
+    WHERE event_id = ? AND event_section = ? AND pool_status = '未售出'
+    LIMIT ?
+
+2024-12-02T20:33:56.421+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 參數: orderId=50815, eventId=1, section=A區, quantity=1
+2024-12-02T20:33:56.442+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 座位更新成功，更新行數: 1
+2024-12-02T20:33:56.444+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.demo.controller.EventController      : 訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=c5524e84-62ae-4383-a7c5-795356e28809
+2024-12-02T20:33:57.376+08:00  INFO 23740 --- [tickets-backend] [http-nio-8080-exec-2] c.e.d.r.order.OrderRepositoryJdbcImpl    : 已搜尋到訂單OrderDto(orderId=50815, orderStatus=付款中)
+2024-12-02T20:33:57.413+08:00  INFO 23740 --- [tickets-backend] [http-nio-8080-exec-7] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50815, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:33:56, orderStatus=付款中, poolNumbers=[40], seats=[第2排 第15號])
+2024-12-02T20:42:24.232+08:00  INFO 23740 --- [tickets-backend] [RMI TCP Connection(21)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-12-02T20:42:24.240+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-12-02T20:42:24.241+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-12-02T20:42:24.242+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-12-02T20:42:24.287+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-12-02T20:42:24.381+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-12-02T20:42:24.396+08:00  INFO 23740 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-12-02T20:42:24.433+08:00  INFO 23740 --- [tickets-backend] [RMI TCP Connection(21)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T20:42:24.437+08:00  INFO 23740 --- [tickets-backend] [RMI TCP Connection(21)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-02T20:42:24.444+08:00  INFO 23740 --- [tickets-backend] [RMI TCP Connection(21)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-02T20:42:27.952+08:00  INFO 12080 --- [tickets-backend] [main] com.example.demo.MainApp                 : Starting MainApp using Java 21.0.4 with PID 12080 (C:\Users\karta\git\TicksBackendvcx\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackendvcx\tickets-backend)
+2024-12-02T20:42:27.954+08:00  INFO 12080 --- [tickets-backend] [main] com.example.demo.MainApp                 : No active profile set, falling back to 1 default profile: "default"
+2024-12-02T20:42:29.306+08:00  INFO 12080 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:42:29.308+08:00  INFO 12080 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-02T20:42:29.609+08:00  INFO 12080 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 291 ms. Found 4 JPA repository interfaces.
+2024-12-02T20:42:29.625+08:00  INFO 12080 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-12-02T20:42:29.627+08:00  INFO 12080 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-12-02T20:42:29.653+08:00  INFO 12080 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.adminPanel.repository.HostRepo; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:42:29.654+08:00  INFO 12080 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:42:29.654+08:00  INFO 12080 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.SalesRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:42:29.655+08:00  INFO 12080 --- [tickets-backend] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-12-02T20:42:29.655+08:00  INFO 12080 --- [tickets-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 Redis repository interfaces.
+2024-12-02T20:42:30.646+08:00  INFO 12080 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-02T20:42:30.673+08:00  INFO 12080 --- [tickets-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-02T20:42:30.674+08:00  INFO 12080 --- [tickets-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-02T20:42:30.951+08:00  INFO 12080 --- [tickets-backend] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-02T20:42:30.958+08:00  INFO 12080 --- [tickets-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-02T20:42:30.958+08:00  INFO 12080 --- [tickets-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2946 ms
+2024-12-02T20:42:31.312+08:00  INFO 12080 --- [tickets-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-02T20:42:31.376+08:00  INFO 12080 --- [tickets-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-02T20:42:31.416+08:00  INFO 12080 --- [tickets-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-02T20:42:31.758+08:00  INFO 12080 --- [tickets-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-02T20:42:31.793+08:00  INFO 12080 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-02T20:42:31.977+08:00  INFO 12080 --- [tickets-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e2c0292
+2024-12-02T20:42:31.980+08:00  INFO 12080 --- [tickets-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-02T20:42:33.218+08:00  INFO 12080 --- [tickets-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-02T20:42:33.277+08:00  INFO 12080 --- [tickets-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T20:42:33.554+08:00  INFO 12080 --- [tickets-backend] [main] org.redisson.Version                     : Redisson 3.22.0
+2024-12-02T20:42:33.888+08:00  INFO 12080 --- [tickets-backend] [redisson-netty-2-5] o.r.c.pool.MasterPubSubConnectionPool    : 1 connections initialized for localhost/127.0.0.1:6379
+2024-12-02T20:42:33.895+08:00  INFO 12080 --- [tickets-backend] [redisson-netty-2-8] o.r.c.pool.MasterConnectionPool          : 2 connections initialized for localhost/127.0.0.1:6379
+2024-12-02T20:42:34.426+08:00  INFO 12080 --- [tickets-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-02T20:42:35.605+08:00  WARN 12080 --- [tickets-backend] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: eaa5cdae-e214-4079-8e29-4a765ae2f22f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-02T20:42:35.617+08:00  INFO 12080 --- [tickets-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-12-02T20:42:35.779+08:00  INFO 12080 --- [tickets-backend] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-12-02T20:42:36.110+08:00  INFO 12080 --- [tickets-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-12-02T20:42:36.987+08:00  INFO 12080 --- [tickets-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-02T20:42:36.990+08:00  INFO 12080 --- [tickets-backend] [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-12-02T20:42:37.042+08:00  INFO 12080 --- [tickets-backend] [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#19b656b0:0/SimpleConnection@7c3341c9 [delegate=amqp://guest@127.0.0.1:5672/, localPort=1846]
+2024-12-02T20:42:37.118+08:00  INFO 12080 --- [tickets-backend] [main] com.example.demo.MainApp                 : Started MainApp in 9.661 seconds (process running for 10.398)
+2024-12-02T20:42:38.693+08:00  INFO 12080 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-02T20:42:38.693+08:00  INFO 12080 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-02T20:42:38.695+08:00  INFO 12080 --- [tickets-backend] [RMI TCP Connection(10)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-02T20:42:51.496+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : 使用者登入成功: ruka
+2024-12-02T20:42:55.243+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : Redis 無庫存記錄，從資料庫初始化，庫存: 2951
+2024-12-02T20:42:55.244+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: 2950 !===
+2024-12-02T20:42:55.245+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 扣減成功，剩餘庫存：2950，RequestID: 7caf45ea-a156-4c8a-976b-26d3046294b5
+2024-12-02T20:42:55.255+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.r.order.OrderRepositoryJdbcImpl    : 搜尋不到訂單...
+2024-12-02T20:42:55.266+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 即將執行座位更新，SQL:     UPDATE pool
+    SET order_id = ?, pool_status = '已售出'
+    WHERE event_id = ? AND event_section = ? AND pool_status = '未售出'
+    LIMIT ?
+
+2024-12-02T20:42:55.266+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 參數: orderId=50816, eventId=1, section=A區, quantity=1
+2024-12-02T20:42:55.268+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 座位更新成功，更新行數: 1
+2024-12-02T20:42:55.404+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.demo.controller.EventController      : 訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=7caf45ea-a156-4c8a-976b-26d3046294b5
+2024-12-02T20:42:56.273+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-1] c.e.d.r.order.OrderRepositoryJdbcImpl    : 已搜尋到訂單OrderDto(orderId=50816, orderStatus=付款中)
+2024-12-02T20:42:56.312+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-3] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50816, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:42:55, orderStatus=付款中, poolNumbers=[41], seats=[第2排 第16號])
+2024-12-02T20:43:26.797+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-9] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50816, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:42:55, orderStatus=訂單完成, poolNumbers=[41], seats=[第2排 第16號])
+2024-12-02T20:43:37.233+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50816, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:42:55, orderStatus=訂單完成, poolNumbers=[41], seats=[第2排 第16號])
+2024-12-02T20:43:41.261+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50816, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:42:55, orderStatus=訂單完成, poolNumbers=[41], seats=[第2排 第16號])
+2024-12-02T20:43:43.235+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-2] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50816, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:42:55, orderStatus=訂單完成, poolNumbers=[41], seats=[第2排 第16號])
+2024-12-02T20:43:44.237+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-3] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50816, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:42:55, orderStatus=訂單完成, poolNumbers=[41], seats=[第2排 第16號])
+2024-12-02T20:47:51.229+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50816, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:42:55, orderStatus=訂單完成, poolNumbers=[41], seats=[第2排 第16號])
+2024-12-02T20:51:15.552+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : Redis 無庫存記錄，從資料庫初始化，庫存: 2950
+2024-12-02T20:51:15.553+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: 2949 !===
+2024-12-02T20:51:15.554+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 扣減成功，剩餘庫存：2949，RequestID: 0152b5c3-bff5-4f16-9654-7831f04ee83d
+2024-12-02T20:51:15.575+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-2] c.e.d.r.order.OrderRepositoryJdbcImpl    : 搜尋不到訂單...
+2024-12-02T20:51:15.618+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 即將執行座位更新，SQL:     UPDATE pool
+    SET order_id = ?, pool_status = '已售出'
+    WHERE event_id = ? AND event_section = ? AND pool_status = '未售出'
+    LIMIT ?
+
+2024-12-02T20:51:15.619+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 參數: orderId=50817, eventId=1, section=A區, quantity=1
+2024-12-02T20:51:15.621+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 座位更新成功，更新行數: 1
+2024-12-02T20:51:15.624+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.demo.controller.EventController      : 訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=0152b5c3-bff5-4f16-9654-7831f04ee83d
+2024-12-02T20:51:16.590+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-3] c.e.d.r.order.OrderRepositoryJdbcImpl    : 已搜尋到訂單OrderDto(orderId=50817, orderStatus=付款中)
+2024-12-02T20:51:16.621+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:51:40.075+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-5] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:51:40.760+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-7] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:51:40.816+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:51:43.413+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-9] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:51:46.169+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:52:23.242+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:52:25.037+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-2] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:52:28.406+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-3] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:52:36.231+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-4] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:53:53.237+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-5] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:53:54.234+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-7] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:53:56.513+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:04.233+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-9] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:05.231+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:07.240+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:08.236+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-2] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:09.230+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-3] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:13.228+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-4] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:14.236+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:15.231+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-5] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:17.342+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-7] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:29.235+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:30.235+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-9] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:34.569+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=付款中, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:53.168+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-4] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:56.821+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:54:59.236+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-7] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:14.451+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:28.225+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-9] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:29.311+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:32.124+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:43.240+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-2] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:44.245+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-3] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:46.230+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-4] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:48.153+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-6] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:57.231+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-5] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:58.228+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-7] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:59.233+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:59.886+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-9] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:59.922+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:55:59.972+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:56:04.248+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-2] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者簡易訂單OrderAstractDto(orderId=50817, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:51:15, orderStatus=訂單完成, poolNumbers=[42], seats=[第2排 第17號])
+2024-12-02T20:56:23.674+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : Redis 無庫存記錄，從資料庫初始化，庫存: 2949
+2024-12-02T20:56:23.675+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: 2948 !===
+2024-12-02T20:56:23.675+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 扣減成功，剩餘庫存：2948，RequestID: 26b17885-242d-4ec0-8cd0-ed4fbd61113c
+2024-12-02T20:56:23.687+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 即將執行座位更新，SQL:     UPDATE pool
+    SET order_id = ?, pool_status = '已售出'
+    WHERE event_id = ? AND event_section = ? AND pool_status = '未售出'
+    LIMIT ?
+
+2024-12-02T20:56:23.687+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 參數: orderId=50818, eventId=1, section=A區, quantity=1
+2024-12-02T20:56:23.690+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 座位更新成功，更新行數: 1
+2024-12-02T20:56:23.691+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.demo.controller.EventController      : 訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=26b17885-242d-4ec0-8cd0-ed4fbd61113c
+2024-12-02T20:56:23.695+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.d.r.order.OrderRepositoryJdbcImpl    : 已搜尋到訂單OrderDto(orderId=50818, orderStatus=付款中)
+2024-12-02T20:56:23.723+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 使用者查詢付錢訂單OrderAstractDto(orderId=50818, eventName=五周年巡迴day1, userName=ruka, orderSection=A區, orderPrice=2000, orderDateTime=2024-12-02T20:56:23, orderStatus=付款中, poolNumbers=[43], seats=[第2排 第18號])
+2024-12-02T20:56:50.403+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : 使用者登入成功: admin
+2024-12-02T21:25:17.000+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-4] c.e.d.a.r.event.AdminEventJDBCImpl       : AdminEvent有RuntimeException:Method parameter 'eventId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"
+2024-12-02T21:31:37.102+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.d.a.r.event.AdminEventJDBCImpl       : AdminEvent有RuntimeException:Method parameter 'eventId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"
+2024-12-02T21:31:49.773+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-3] c.e.d.a.r.event.AdminEventJDBCImpl       : AdminEvent有RuntimeException:Method parameter 'eventId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"
+2024-12-02T21:31:56.263+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-8] c.e.d.a.r.event.AdminEventJDBCImpl       : AdminEvent有RuntimeException:Method parameter 'eventId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"
+2024-12-02T21:32:00.989+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-3] c.e.d.a.r.event.AdminEventJDBCImpl       : AdminEvent有RuntimeException:Method parameter 'eventId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"
+2024-12-02T21:34:46.505+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-10] c.e.d.a.r.event.AdminEventJDBCImpl       : AdminEvent有RuntimeException:Method parameter 'eventId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"
+2024-12-02T21:35:56.183+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-1] c.e.d.a.r.event.AdminEventJDBCImpl       : AdminEvent有RuntimeException:Method parameter 'eventId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"
+2024-12-02T21:39:44.902+08:00  INFO 12080 --- [tickets-backend] [http-nio-8080-exec-1] c.e.d.a.r.event.AdminEventJDBCImpl       : AdminEvent有RuntimeException:Method parameter 'eventId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "undefined"
+2024-12-02T22:04:21.415+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : findRemaingByEventIdAndSection搜尋有錯
+2024-12-02T22:04:21.423+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: faf758d9-7005-420b-8fa5-14a27a2baad3，錯誤原因: findRemaingByEventIdAndSection搜尋有錯Incorrect result size: expected 1, actual 0
+2024-12-02T22:04:21.429+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足
+2024-12-02T22:04:21.433+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: 0 !===
+2024-12-02T22:04:21.433+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 扣減成功，剩餘庫存：0，RequestID: e350d7aa-127d-496a-84dd-701d66fc8c82
+2024-12-02T22:04:21.437+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.d.r.sales.SalesRespositoryJdbcImpl   : 票務更新失敗，eventId: 1, section: 搖滾A區, quantity: 1
+2024-12-02T22:04:21.437+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.e.demo.controller.EventController      : 票卷更新失敗: 票務不足或不可用
+2024-12-02T22:04:21.471+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: -1 !===
+2024-12-02T22:04:21.472+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: dd459a80-ac9f-46a2-bc16-034a00816100，錯誤原因: 庫存不足，購票失敗！
+2024-12-02T22:04:21.474+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足
+2024-12-02T22:04:21.575+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: -1 !===
+2024-12-02T22:04:21.575+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: b32f2a4b-f82f-4060-956d-c61bf997c663，錯誤原因: 庫存不足，購票失敗！
+2024-12-02T22:04:21.577+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足
+2024-12-02T22:04:21.672+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: -1 !===
+2024-12-02T22:04:21.672+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: 1ebeb69d-d770-4ece-acf8-5c8dacab53c2，錯誤原因: 庫存不足，購票失敗！
+2024-12-02T22:04:21.675+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足
+2024-12-02T22:04:21.773+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: -1 !===
+2024-12-02T22:04:21.773+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: 39b20ccd-74e9-4957-97fd-6fa171dcf868，錯誤原因: 庫存不足，購票失敗！
+2024-12-02T22:04:21.774+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足
+2024-12-02T22:04:21.876+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: -1 !===
+2024-12-02T22:04:21.876+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: 9b7be151-2f81-4afc-882e-6a94aa6e4602，錯誤原因: 庫存不足，購票失敗！
+2024-12-02T22:04:21.878+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足
+2024-12-02T22:04:21.970+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: -1 !===
+2024-12-02T22:04:21.971+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: cf47af71-550d-483c-9991-5b58d56eb9a2，錯誤原因: 庫存不足，購票失敗！
+2024-12-02T22:04:21.972+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足
+2024-12-02T22:04:22.069+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: -1 !===
+2024-12-02T22:04:22.069+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: 21130e26-20ce-4da7-bdb6-309221088e8f，錯誤原因: 庫存不足，購票失敗！
+2024-12-02T22:04:22.071+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足
+2024-12-02T22:04:22.172+08:00  INFO 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : !===目前剩餘票數: -1 !===
+2024-12-02T22:04:22.172+08:00 ERROR 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.service.sales.SalesServiceImpl  : 購票失敗，RequestID: 30843eb8-fc3a-450d-9207-c75fc707a69b，錯誤原因: 庫存不足，購票失敗！
+2024-12-02T22:04:22.173+08:00  WARN 12080 --- [tickets-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] c.e.demo.controller.EventController      : 票務不足

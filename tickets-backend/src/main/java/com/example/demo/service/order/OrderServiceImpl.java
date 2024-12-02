@@ -131,6 +131,20 @@ public class OrderServiceImpl implements OrderService{
 
 
 
+	@Override
+	public OrderAstractDto getOrderAbstract2(Integer orderId, String userName) {
+		OrderAstractDto dto= orderRepositoryJdbc.findOrderAbstract(orderId);
+		
+		Optional.ofNullable(dto).orElseThrow(()->new RuntimeException("訂單找不到"));
+		
+		dto.setUserName(userName);
+		
+		
+		return dto;
+	}
+
+
+
 	
 
 

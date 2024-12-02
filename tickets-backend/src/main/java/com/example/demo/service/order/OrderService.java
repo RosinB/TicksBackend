@@ -11,6 +11,8 @@ public interface OrderService {
 	
 	OrderAstractDto getOrderAbstract(Integer orderId,String userName,String requestId);
 	
+	OrderAstractDto getOrderAbstract2(Integer orderId,String userName);
+
 	
 	List<OrderDetailDto> getAllUserOrder(String userName);
 	
