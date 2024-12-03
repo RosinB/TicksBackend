@@ -3,4 +3,9 @@ spring:
     redis:
       host: 127.0.0.1
       port: 6379
-      password: ""  # 如果無密碼，保持空白
+      password: ""
+
+jwt:
+  secret: "bXlfc3VwZXJfc2VjcmV0X2tleV9mb3JfdGlja2V0X3N5c3RlbQ=="  # 這是一個 Base64 編碼的字串
+  expiration: 86400000
+  public-urls: /user/login,/user/register,/event/all,/user/forget/**,/user/email/get/**,/event/ticketAllPic,/event/ticket/**

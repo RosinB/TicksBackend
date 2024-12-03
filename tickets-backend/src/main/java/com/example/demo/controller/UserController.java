@@ -38,7 +38,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/user")
 
 public class UserController {
-
+	@Autowired
+    private JwtUtil jwtUtil;  // 添加這行
 	@Autowired
 	UserService userService;
 
@@ -75,7 +76,7 @@ public class UserController {
 	@GetMapping("/userUpdate")
 	public ResponseEntity<ApiResponse<Object>> getUser(@RequestHeader("Authorization") String token) {
 		token = token.replace("Bearer ", "");
-		String userName = JwtUtil.validateToken(token);
+	    String userName = jwtUtil.validateToken(token);  // 這個方法需要在 JwtUtil 中添加
 		UserDto userDto = userService.getUser(userName);
 
 		return ResponseEntity.ok(ApiResponse.success("查詢單筆成功", userDto));
@@ -100,7 +101,7 @@ public class UserController {
 			}
 		}
 
-		String token = JwtUtil.generateToken(loginDto.getUserName());
+	    String token = jwtUtil.generateToken(loginDto.getUserName());
 
 		Map<String, String> responseBody = new HashMap<>();
 		responseBody.put("token", token);
