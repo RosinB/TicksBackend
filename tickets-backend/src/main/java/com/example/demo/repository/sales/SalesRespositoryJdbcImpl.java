@@ -120,7 +120,6 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 		Integer orderId = keyHolder.getKey().intValue();
 
 		try {
-			logger.info("即將執行座位更新，SQL: {}", updatePoolSql);
 			logger.info("參數: orderId={}, eventId={}, section={}, quantity={}", orderId, eventId, section, quantity);
 
 			int rowsUpdated = jdbcTemplate.update(updatePoolSql, orderId, eventId, section, quantity);

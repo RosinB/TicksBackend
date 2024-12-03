@@ -38,14 +38,13 @@ public class TrafficConsumer {
             // 累計總請求數
             redisService.increment(totalTrafficKey, 1);
             redisService.expire(totalTrafficKey, 5, TimeUnit.MINUTES);
-            
+            System.out.println("資料"+trafficData);
             
             
             redisService.increment(redisKey + ":" + field, 1);
 
             redisService.expire(redisKey + ":" + field, 5, TimeUnit.MINUTES); // 為具體鍵設置過期
 
-            Long currentValue = redisService.get(redisKey + ":" + field, Long.class);
 
         } catch (Exception e) {
             System.err.println("處理流量數據失敗：" + e.getMessage());
