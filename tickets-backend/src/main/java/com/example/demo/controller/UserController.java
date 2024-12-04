@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.filter.JwtUtil;
+import com.example.demo.common.filter.JwtUtil;
 import com.example.demo.model.dto.login.LoginDto;
 import com.example.demo.model.dto.login.LoginResultDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
@@ -115,10 +115,10 @@ public class UserController {
 	@PostMapping("/userUpdate")
 	public ResponseEntity<ApiResponse<Object>> postUpdateUser(@RequestBody UserUpdateDto userUpdateDto) {
 
-		String message = userService.updateUser(userUpdateDto);
+		 userService.updateUser(userUpdateDto);
 
 
-		return ResponseEntity.ok(ApiResponse.success("收到", message));
+		return ResponseEntity.ok(ApiResponse.success("收到", "更新成功"));
 	}
 
 	// User註冊和檢查是否重複

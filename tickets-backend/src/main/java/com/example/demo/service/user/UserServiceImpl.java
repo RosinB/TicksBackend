@@ -12,14 +12,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.connection.RedisServer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.common.annotation.CacheableUser;
+import com.example.demo.common.annotation.GenerateCaptcha;
+import com.example.demo.common.aspect.UserBusinessAspect;
+import com.example.demo.common.mapper.UserMapper;
 import com.example.demo.controller.UserController;
-import com.example.demo.exception.User.UserNotFoundException;
-import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.dto.login.LoginDto;
 import com.example.demo.model.dto.login.LoginResultDto;
 import com.example.demo.model.dto.user.UserDto;
@@ -27,9 +28,9 @@ import com.example.demo.model.dto.user.UserUpdateDto;
 import com.example.demo.model.entity.user.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.user.UserRepositoryJdbc;
+import com.example.demo.util.CacheKeys;
 import com.example.demo.util.GmailOAuthSender;
 import com.example.demo.util.RedisService;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.api.services.gmail.Gmail;
 
 @Transactional
@@ -38,61 +39,47 @@ public class UserServiceImpl implements UserService {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
-	@Autowired
-	@Qualifier("userJDBC")
-	UserRepositoryJdbc userRepositoryJdbc;
+	
 
-	@Autowired
-	@Qualifier("userJPA")
-	UserRepository userRepository;
+	private  final UserRepository userRepository;
+	private  final RedisService redisService;
+	private  final PasswordEncoder passwordEncoder;
+	private  final UserMapper userMapper;
+	private  final UserRepositoryJdbc userRepositoryJdbc;
+
+	public  UserServiceImpl(UserRepository userRepository,
+							UserRepositoryJdbc userRepositoryJdbc,RedisService redisService,PasswordEncoder passwordEncoder,UserMapper userMapper) {
+			this.userRepositoryJdbc=userRepositoryJdbc;
+			this.redisService=redisService;
+			this.passwordEncoder=passwordEncoder;
+			this.userMapper=userMapper;
+			this.userRepository=userRepository;
+	}
 	
-	@Autowired
-	private RedisService redisService;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	
-	@Autowired
-	UserMapper userMapper;
 	
 	
 	//查全部使用者
+	@CacheableUser(key = CacheKeys.User.ALL_USERS , expireTime = 10 ,timeUnit = TimeUnit.MINUTES)
+	@Override
 	public List<UserDto> getAllUser() {
-//		String  cacheKey = "AllUser";
-//		 UserDto=redisService.get(cacheKey, new TypeReference<List<UserDto>>(){});
-//		if(UserDto!=null) return UserDto;
 		
-
-		try {
-			List<UserDto>	UserDto=userRepositoryJdbc.findAll().stream().map(userMapper::toDto).collect(Collectors.toList());
-//			redisService.save(cacheKey, UserDto);
-			return UserDto;
-
-		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage(),e);
-		}
-		
-		
+		return userRepositoryJdbc.findAll()
+								 .stream()
+								 .map(userMapper::toDto)
+								 .collect(Collectors.toList());
 	}
 
 	//查單筆使用者
+	@CacheableUser(key=CacheKeys.User.USERSDTO_PREFIX+"{0}",expireTime = 10 ,timeUnit = TimeUnit.MINUTES)
 	@Override
 	public UserDto getUser(String userName) {
-		String cacheKey="userDto:"+userName;
-			
-		UserDto cacheUserDto=redisService.get(cacheKey,UserDto.class);
-		redisService.delete(cacheKey);
-		if(cacheUserDto!= null) return cacheUserDto;
 	
-		UserDto userDto=userRepository.findUserByUserName(userName)
-	 			  					  .map(userMapper::toDto)
-	 			  					  .orElseThrow(()->  new RuntimeException("找不到UserName:"+userName)); 
-		redisService.saveWithExpire(cacheKey, userDto ,1,TimeUnit.HOURS);
+		return userRepository.findUserByUserName(userName)
+					  .map(userMapper::toDto)
+					  .orElseThrow(()->  new RuntimeException("找不到UserName:"+userName)); 
 		
-		return userDto;
-		
-
-	 
 	}
 
 
@@ -129,21 +116,16 @@ public class UserServiceImpl implements UserService {
 
 	//更新使用者資料 電話 email 生日
 	@Override
-	public String updateUser(UserUpdateDto userUpdateDto) {
+	@Transactional  
+	public void updateUser(UserUpdateDto userUpdateDto) {
 		
 
-		int updateRow=userRepository.updateUser(userUpdateDto.getUserPhone(), userUpdateDto.getUserEmail(), 
-												userUpdateDto.getUserBirthDate(), userUpdateDto.getUserName());
-		
-		logger.info(userUpdateDto.getUserName()+" 更新資料筆數 "+updateRow+"筆");
-		
-		
-		if(updateRow==0) {return "更新使用者失敗";}
-		 redisService.delete("userDto:" + userUpdateDto.getUserName());
-	     redisService.delete("AllUser");
+		userRepository.updateUser(userUpdateDto.getUserPhone(), userUpdateDto.getUserEmail(), 
+								  userUpdateDto.getUserBirthDate(), userUpdateDto.getUserName());
+			
+		 clearUserCaches(userUpdateDto.getUserName());
 		
 		
-		return "更新成功";
 	}
 
 	//新增使用者
@@ -151,18 +133,13 @@ public class UserServiceImpl implements UserService {
 	public void addUser(UserDto userDto) {
 
 		User user = userMapper.toEnity(userDto);		
-
 		user.setUserPwdHash(passwordEncoder.encode(userDto.getPassword()));
-
-		try {
-			userRepository.save(user);
-
-		} catch (Exception e) {
-			throw new RuntimeException("使用者新增出現問題");
-		}
+		userRepository.save(user);
+		clearUserCaches(userDto.getUserName());
 	
 	}
 
+	
 	//檢查註冊使用者資料是否重複
 	@Override
 	public Map<String, String> validateUserInput(UserDto userDto) {
@@ -198,32 +175,22 @@ public class UserServiceImpl implements UserService {
 //===============================驗證信箱相關=============================================
 	//查詢使用者信箱
 	@Override
+	@CacheableUser(key = CacheKeys.User.USEREMAIL_PREFIX+"{0}" ,expireTime = 10,timeUnit = TimeUnit.MINUTES)
 	public String getEmail(String userName) {
 
-		String cachekey="userEmail:"+ userName;
-		String userEmail=redisService.get(cachekey, String.class);
-		
-		if(userEmail==null) {
-			userEmail=userRepositoryJdbc.findUserEmailByUserName(userName);
-			
-			redisService.saveWithExpire(cachekey, userEmail, 10, TimeUnit.MINUTES);
-		}
-		
-		return userEmail;
-				
+		return userRepositoryJdbc.findUserEmailByUserName(userName);
 				
 	}
 
 	//獲取驗證碼
 	@Override
+    @GenerateCaptcha(length = 6)
 	public void getCAPTCHA(String userName) {
-		Random random = new Random();
-        StringBuilder code = new StringBuilder();
-        for (int i = 0; i < 6; i++) {
-            code.append(random.nextInt(10)); // 生成 0-9 的隨機數
-        }
-        
-        String cachekey="userEmail:"+ userName;
+		
+        String code = UserBusinessAspect.getCaptcha();
+
+
+        String cachekey=CacheKeys.User.USEREMAIL_PREFIX+ userName;
 		String userEmail=redisService.get(cachekey, String.class);
 		if(userEmail==null) {
 			userEmail=userRepositoryJdbc.findUserEmailByUserName(userName);
@@ -232,9 +199,10 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		
-		String cachekey2="userName:"+userName+"userEmail"+userEmail+"code:";
-
-		redisService.saveWithExpire(cachekey2, code, 5, TimeUnit.MINUTES);
+		String verificationKey=String.format(CacheKeys.User.VERIFICATION_CODE, userName,userEmail);
+		
+		
+		redisService.saveWithExpire(verificationKey, code, 5, TimeUnit.MINUTES);
 	
 		
         try {
@@ -253,16 +221,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String verificationEmail(String userName, String code) {
 		
-		String userEmail=redisService.get("userEmail:"+userName, String.class);
+		String userEmail=redisService.get(CacheKeys.User.USEREMAIL_PREFIX+userName, String.class);
 		
-		String cachekey="userName:"+userName+"userEmail"+userEmail+"code:";
-
+		String verificationKey = String.format(CacheKeys.User.VERIFICATION_CODE, userName,userEmail);
 		
-		String verifCode=redisService.get(cachekey, String.class);
+		String verifCode=redisService.get(verificationKey, String.class);
 		
 		if(code.trim().equals(verifCode.trim())) 
 		{	
 			userRepositoryJdbc.updateUserIsVerified(userName);		
+			clearUserCaches(userName);
 			return "驗證成功";		
 		}
 		
@@ -323,8 +291,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String checkToken(String token) {
 		
-        String savaUserNameForToken="userName:"+token;
-        String userName=redisService.get(savaUserNameForToken, String.class);
+        String userName=redisService.get(CacheKeys.User.USERTOKEN_PREFIX+token, String.class);
         if(userName==null) {
         	logger.info("token和帳號不匹配");
         	throw new RuntimeException("token和帳號不匹配");
@@ -336,6 +303,14 @@ public class UserServiceImpl implements UserService {
 	}
 		
 	
+	
+	
+	
+	
+	private void clearUserCaches(String userName) {
+	    redisService.delete(CacheKeys.User.USERSDTO_PREFIX + userName);
+	    redisService.delete(CacheKeys.User.ALL_USERS);
+	}
 	
 	
 	

@@ -23,7 +23,7 @@ public interface UserService {
 	UserDto getUser(String userName);
 	
 	//更新使用者資料
-	String  updateUser(UserUpdateDto userUpdateDto);
+	void  updateUser(UserUpdateDto userUpdateDto);
 	
 	//註冊帳號檢查帳號是否重複
 	Map<String,String> validateUserInput(UserDto userDto);

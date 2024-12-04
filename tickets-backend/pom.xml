@@ -66,7 +66,10 @@
 		</dependency>
 
 		<!--  的依賴-->
-
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

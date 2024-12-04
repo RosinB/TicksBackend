@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.example.demo.mapper.EventMapper;
+import com.example.demo.common.mapper.EventMapper;
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.event.EventPicDto;
 import com.example.demo.repository.EventRepository;

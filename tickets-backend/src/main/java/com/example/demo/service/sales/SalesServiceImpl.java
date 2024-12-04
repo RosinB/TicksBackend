@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.config.RabbitMQConfig;
-import com.example.demo.exception.UserIsNotVerifiedException;
+import com.example.demo.common.config.RabbitMQConfig;
+import com.example.demo.common.exception.UserIsNotVerifiedException;
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.pic.PicDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;

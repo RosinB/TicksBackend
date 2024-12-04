@@ -22,8 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.config.RabbitMQConfig;
-import com.example.demo.exception.UserIsNotVerifiedException;
+import com.example.demo.common.config.RabbitMQConfig;
+import com.example.demo.common.exception.UserIsNotVerifiedException;
+import com.example.demo.common.traffic.TrafficDataUtil;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.model.dto.sales.SalesDto;
@@ -34,7 +35,6 @@ import com.example.demo.repository.order.OrderRepositoryJdbc;
 import com.example.demo.repository.sales.SalesRespositoryJdbcImpl;
 import com.example.demo.service.order.OrderService;
 import com.example.demo.service.sales.SalesService;
-import com.example.demo.traffic.TrafficDataUtil;
 import com.example.demo.util.ApiResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
