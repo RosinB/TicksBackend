@@ -1,129 +1,55 @@
 package com.example.demo.service.event;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import org.slf4j.LoggerFactory;
 
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.RedisConnectionFailureException;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.example.demo.common.mapper.EventMapper;
+import com.example.demo.common.annotation.Cacheable;
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.event.EventPicDto;
 import com.example.demo.repository.EventRepository;
 import com.example.demo.repository.event.EventRespositoryJdbc;
-import com.example.demo.util.ApiResponse;
-import com.example.demo.util.RedisService;
-import com.fasterxml.jackson.core.type.TypeReference;
-
-import io.jsonwebtoken.io.IOException;
+import com.example.demo.util.CacheKeys;
 
 @Service
 public class EventServiceImpl implements EventService {
 
-	private final static Logger logger = LoggerFactory.getLogger(EventServiceImpl.class);
+	private final EventRepository eventRepository;
+	private final EventRespositoryJdbc eventRespositoryJdbc;
 
-	@Autowired
-	@Qualifier("eventJPA")
-	EventRepository eventRepository;
-
-	@Autowired
-	EventMapper eventMapper;
-
-	@Autowired
-	@Qualifier("eventJDBC")
-	EventRespositoryJdbc eventRespositoryJdbc;
-
-	@Autowired
-	private RedisService redisService;
-
-	//還沒用到 廢氣中======================
-	@Override
-	public List<EventDto> findAllEvent() {
-		String cacheKey = "allEvents";
-		
-		List<EventDto> cachedEvents = redisService.get(cacheKey, new TypeReference<List<EventDto>>() {});
-		
-		if (cachedEvents != null) {
-			logger.info("從 Redis 緩存中獲取所有事件列表");
-			return cachedEvents;}
-		
-		List<EventDto> events = eventRepository.findAll().stream().map(eventMapper::toDto).collect(Collectors.toList());
-
-		redisService.saveWithExpire(cacheKey, events, 10, TimeUnit.MINUTES);
-		
-		return events;
+	public EventServiceImpl(EventRepository eventRepository, EventRespositoryJdbc eventRespositoryJdbc) {
+		this.eventRepository = eventRepository;
+		this.eventRespositoryJdbc = eventRespositoryJdbc;
 	}
+
 	
+	
+	// 獲取所有活動圖片資訊
 	@Override
+	@Cacheable(key = CacheKeys.Event.ALL_EVENTPIC, expireTime = 10, timeUnit = TimeUnit.MINUTES)
 	public List<EventPicDto> findAllEventPic() {
-		String cacheKey = "allEventsPic";
+
+		return eventRespositoryJdbc.findAllEventPics();
 		
-		
-		redisService.delete(cacheKey);
-		List<EventPicDto> cachedEventsPic=redisService.get(cacheKey, new TypeReference<List<EventPicDto>>() {});
-		
-		if(cachedEventsPic !=null) {
-			return cachedEventsPic;
-		}	
-		
-		List<EventPicDto> eventPicDtos= eventRespositoryJdbc.findAllEventPics();
-		redisService.saveWithExpire(cacheKey, eventPicDtos, 10, TimeUnit.MINUTES);
-		return eventPicDtos;
-			
-		
-	
 	}
 
-	
+	// 根據活動名稱查詢活動 ID
 	@Override
+	@Cacheable(key = CacheKeys.Event.EVENTID_PREFIX + "{0}", expireTime = 10, timeUnit = TimeUnit.MINUTES)
 	public Integer findEventId(String Name) {
-		String cacheKey="eventId"+Name;
-		
-		Integer cachedEventId=redisService.get(cacheKey, Integer.class);
-		if(cachedEventId!=null) {
-			return cachedEventId;
-		}
-		try {
-			Integer eventId=eventRepository.findEventIdByEventName(Name);
-			return eventId;
 
-		} catch (Exception e) {
-			throw new RuntimeException("找活動id發生錯誤",e);
-		}	
-		
+		return eventRepository.findEventIdByEventName(Name);
+
 	}
 
+	// 根據活動 ID 查詢活動詳細資訊
 	@Override
-	public Optional<EventDto> findEventDetails(Integer eventId) {
-		String cacheKey="event:details:"+eventId;
+	@Cacheable(key = CacheKeys.Event.EVENT_DETAIL_PREFIX + "{0}", expireTime = 10, timeUnit = TimeUnit.MINUTES)
+	public EventDto findEventDetails(Integer eventId) {
 
-		EventDto cachedEventDto =redisService.get(cacheKey, EventDto.class);
-		if(cachedEventDto!=null) {
-		    return Optional.of(cachedEventDto);}
-		
-			Optional<EventDto> eventDtos=eventRespositoryJdbc.findEventDetailByEventId(eventId);
+		return eventRespositoryJdbc.findEventDetailByEventId(eventId).get();
 
-			EventDto eventDto=eventDtos.get();
-			redisService.saveWithExpire(cacheKey, eventDto, 10, TimeUnit.MINUTES );
-			return eventDtos;
-			
-		
 	}
-	
 
-	
-	
-	
-	
-	
 }

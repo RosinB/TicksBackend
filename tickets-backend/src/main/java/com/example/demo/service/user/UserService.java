@@ -40,7 +40,7 @@ public interface UserService {
 	
 //=================忘記密碼 -驗證信箱============================
 
-	String checkUserAndEmail(String userName,String email);
+	void checkUserAndEmail(String userName,String email);
 	
 	String checkToken(String token);
 	

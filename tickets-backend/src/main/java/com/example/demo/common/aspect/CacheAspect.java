@@ -7,7 +7,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.common.annotation.CacheableUser;
+import com.example.demo.common.annotation.Cacheable;
 import com.example.demo.util.RedisService;
 
 import java.lang.reflect.Type;
@@ -25,13 +25,13 @@ public class CacheAspect {
     
     // @Around註解表示這是環繞通知,可以在目標方法執行前後都進行處理
     // @annotation(CacheableUser)表示切入點是所有帶有@CacheableUser註解的方法
-    @Around("@annotation(CacheableUser)") 
+    @Around("@annotation(Cacheable)") 
     public Object handleCache(ProceedingJoinPoint joinPoint) throws Throwable {
         // 獲取方法的簽名信息
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         // 獲取方法上的CacheableUser註解
         
-        CacheableUser cacheableUser = signature.getMethod().getAnnotation(CacheableUser.class);
+        Cacheable cacheableUser = signature.getMethod().getAnnotation(Cacheable.class);
         
         // 構建緩存key
         String cacheKey = buildCacheKey(joinPoint, cacheableUser);
@@ -70,11 +70,11 @@ public class CacheAspect {
     }
 
     // 構建緩存key的私有方法
-    private String buildCacheKey(ProceedingJoinPoint joinPoint, CacheableUser cacheableUser) {
-    	  String key = cacheableUser.key();
+    private String buildCacheKey(ProceedingJoinPoint joinPoint, Cacheable cacheable) {
+    	  String key = cacheable.key();
           if(key.isEmpty()) {
               // 如果沒有指定key模板，使用預設的格式
-              String prefix = cacheableUser.prefix();
+              String prefix = cacheable.prefix();
               Object[] args = joinPoint.getArgs();
               return prefix + ":" + String.join(":", Arrays.stream(args)
                       .map(String::valueOf)

@@ -28,13 +28,7 @@ public class EventController {
 	@Autowired
 	EventService eventService;
 
-	// ===========棄用中================
-	@GetMapping("/all")
-	ResponseEntity<ApiResponse<Object>> getEvent() {
-		List<EventDto> eventDto = eventService.findAllEvent();
-
-		return ResponseEntity.ok(ApiResponse.success("查詢所有活動成功", eventDto));
-	}
+	
 
 	
 	// 主要列印首頁和List的圖片 home.js
@@ -50,8 +44,8 @@ public class EventController {
 	@GetMapping("/ticket/{eventId}")
 	ResponseEntity<ApiResponse<Object>> getEventDetails(@PathVariable("eventId") Integer eventId) {
 		
-		Optional<EventDto> eventDto = eventService.findEventDetails(eventId);
-		return ResponseEntity.ok(ApiResponse.success("活動查詢成功", eventDto.get()));	
+		EventDto eventDto = eventService.findEventDetails(eventId);
+		return ResponseEntity.ok(ApiResponse.success("活動查詢成功", eventDto));	
 
 	}
 

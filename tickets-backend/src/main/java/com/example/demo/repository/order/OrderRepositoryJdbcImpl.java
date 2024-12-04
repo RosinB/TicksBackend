@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,7 +15,10 @@ import com.example.demo.model.dto.orders.OrderDetailDto;
 import com.example.demo.model.dto.orders.OrderDto;
 import com.example.demo.util.DatabaseUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 
 	
@@ -195,13 +199,21 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 	}
 
 	public Optional<OrderDto> findOrderDtoByRequestId(String requestId) {
+			
+			try {
+		    	log.info("已搜尋到訂單"+jdbcTemplate.queryForObject(SQL.FIND_ORDERDTO_BY_REQUESTID, orderMapper, requestId));
+		        return Optional.ofNullable(
+		            jdbcTemplate.queryForObject(SQL.FIND_ORDERDTO_BY_REQUESTID, orderMapper, requestId)
+		        );
+		    } catch (EmptyResultDataAccessException e) {
+		        log.debug("搜尋不到訂單...");
+		        return Optional.empty();
+		    } catch (Exception e) {
+		        log.error("查詢訂單時出現未知錯誤，RequestID: {}, 錯誤: {}", requestId, e.getMessage(), e);
+		        throw new RuntimeException("查詢訂單失敗", e);
+		    }
 		
-		return Optional.ofNullable(
-					DatabaseUtils.executeQuery(
-						"findOrderDtoByRequestId", 
-						()->jdbcTemplate.queryForObject(SQL.FIND_ORDERDTO_BY_REQUESTID, orderMapper, requestId), 
-						String.format("搜尋不到訂單Dto，RequestId:%s", requestId))
-				);
+		
 		
 	}
 

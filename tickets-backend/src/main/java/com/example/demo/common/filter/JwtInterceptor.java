@@ -50,7 +50,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 			return false;
 		}
 
-		logger.info("Access granted for URI: {}", requestURI);
+//		logger.info("Access granted for URI: {}", requestURI);
 		return true;
 	}
 
