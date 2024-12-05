@@ -16,25 +16,26 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Aspect     
 @Component  
+@Slf4j
 public class CacheAspect {
     
     @Autowired
     private RedisService redisService;  
     
-    // @Around註解表示這是環繞通知,可以在目標方法執行前後都進行處理
-    // @annotation(CacheableUser)表示切入點是所有帶有@CacheableUser註解的方法
     @Around("@annotation(com.example.demo.common.annotation.Cacheable)")
     public Object handleCache(ProceedingJoinPoint joinPoint) throws Throwable {
         // 獲取方法的簽名信息
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         // 獲取方法上的CacheableUser註解
         Cacheable cacheable = signature.getMethod().getAnnotation(Cacheable.class);
-        System.out.println("cacheable是:"+cacheable);
         // 構建緩存key
+        log.info("CacheAble:"+cacheable);
         String cacheKey = buildCacheKey(joinPoint, cacheable);
-        System.out.println("計算的cacheKey:"+cacheKey);
+        log.info("CacheKey:"+cacheKey);
         // 使用泛型通配符
         TypeReference<Object> typeReference = new TypeReference<Object>() {
             @Override

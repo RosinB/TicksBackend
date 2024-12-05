@@ -132,7 +132,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Cacheable(key = "'"+CacheKeys.User.USEREMAIL_PREFIX+"' + #userName")
 	public String getEmail(String userName) {
-		System.out.println("caheL"+CacheKeys.User.USEREMAIL_PREFIX);
 		return userRepositoryJdbc.findUserEmailByUserName(userName);
 
 	}
