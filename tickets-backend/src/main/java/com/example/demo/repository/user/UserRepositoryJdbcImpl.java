@@ -35,8 +35,8 @@ public class UserRepositoryJdbcImpl implements UserRepositoryJdbc {
 				""".trim();
 		private static final String ADD_USER="""
 				insert into 
-				users(user_name,user_pswd_hash,user_phone,user_email,user_idcard,user_birth_date) 
-				value(?,?,?,?,?,?)
+				users(user_name,	 user_pswd_hash, 	user_phone,	 user_email,	 user_idcard, 	user_birth_date,	 user_is_verified) 
+				value(?,?,?,?,?,?,0)
 
 		""".trim();		
 		private static final String FIND_USER_ISVERIFIED_BY_USER_NAME="""

@@ -3,37 +3,40 @@ package com.example.demo.service.order;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
 import com.example.demo.model.dto.orders.OrderDto;
-import com.example.demo.model.dto.sales.PostTicketSalesDto;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.order.OrderRepositoryJdbc;
+import com.example.demo.repository.sales.SalesRepositoryJdbc;
+import com.example.demo.service.user.UserService;
+import com.example.demo.util.CacheKeys;
 import com.example.demo.util.RedisService;
 
-@Service
-public class OrderServiceImpl implements OrderService{
-	private final static Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
-	
-	@Autowired
-	UserRepository userRepository;
-	
-	@Autowired
-	OrderRepositoryJdbc orderRepositoryJdbc;
-	@Autowired
-    private RedisService redisService;
-	
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Service
+@Slf4j
+@RequiredArgsConstructor
+public class OrderServiceImpl implements OrderService{
+	
+	
+	
+	private final UserService userService;
+	private final SalesRepositoryJdbc salesRepositoryJdbc;
+	private final RedisService redisService;
+	private final OrderRepositoryJdbc orderRepositoryJdbc;
+
+
+	
 	public Map<String, Object> getTicketStatus(String requestId) {
+		
         // 檢查是否存在對應的記錄
-		String redisStatus = redisService.get("order:" + requestId,String.class);
+		String redisStatus = redisService.get(CacheKeys.Order.ORDER_PREFIX+requestId,String.class);
 		
 	    if ("FAILED".equals(redisStatus)) {
 	        return Map.of(
@@ -42,6 +45,7 @@ public class OrderServiceImpl implements OrderService{
 	        );
 	    }
 	    
+	  
 		Optional<OrderDto> optionalOrder = orderRepositoryJdbc.findOrderDtoByRequestId(requestId);
 
 		if (optionalOrder.isEmpty()) {
@@ -51,18 +55,15 @@ public class OrderServiceImpl implements OrderService{
 		OrderDto order = optionalOrder.get();
         
         switch (order.getOrderStatus()) {
-		            case "付款中":
-		                return Map.of(
-		                    "status", "付款中",
-		                    "orderId", order.getOrderId()
-		                );
-		            case "錯誤":
-		                return Map.of(
-		                    "status", "錯誤",
-		                    "errorMessage", "訂單處理失敗"
-		                );
-		            default:
-		                return Map.of("status", "輪巡中");
+		            case "付款中":	return Map.of(
+					                    "status", "付款中",
+					                    "orderId", order.getOrderId());
+		            
+		            case "錯誤":		return Map.of(
+						                "status", "錯誤",
+						                "errorMessage", "訂單處理失敗");
+		            
+		            default:		return Map.of("status", "輪巡中");
         }
     }
 	
@@ -71,23 +72,10 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public List<OrderDetailDto> getAllUserOrder(String userName) {
 
-		String cacheKey="userId:"+userName;
-		Integer userId=redisService.get(cacheKey, Integer.class);
-		if(userId==null) {
-			 userId=userRepository.findIdByUserName(userName);
-			 redisService.saveWithExpire(cacheKey, userId, 10, TimeUnit.MINUTES);
-	
-		}
+		Integer userId=userService.getUserId(userName);
 		
-
-		List<OrderDetailDto> dto=orderRepositoryJdbc.findOrderDetail(userId);
+		return orderRepositoryJdbc.findOrderDetail(userId);
 		
-		System.out.println(dto);
-		Optional.ofNullable(dto).orElseThrow(()->new RuntimeException("找不到詳細資訊"));
-		
-		
-		
-		return dto;
 	}
 
 	//付款完更新訂單狀況
@@ -106,50 +94,55 @@ public class OrderServiceImpl implements OrderService{
 		
 	}
 
-
-
-
 	//訂單摘要
 	@Override
 	public OrderAstractDto getOrderAbstract(Integer orderId,String userName,String requestId) {
 
-		//我這寫在buyticket那裏		
-		if(!redisService.exists("order:"+requestId)) {
-			logger.info("付款時間結束");
-			throw new RuntimeException("付款時間結束");
-		}
+		validatePayTime(requestId);
 		
-		OrderAstractDto dto= orderRepositoryJdbc.findOrderAbstract(orderId);
+	    OrderAstractDto dto = validateAndGetOrder(orderId);
 		
-		Optional.ofNullable(dto).orElseThrow(()->new RuntimeException("訂單找不到"));
-		
-		dto.setUserName(userName);
-		
+		dto.setUserName(userName);	
 		
 		return dto;
 	}
-
 
 
 	@Override
 	public OrderAstractDto getOrderAbstract2(Integer orderId, String userName) {
-		OrderAstractDto dto= orderRepositoryJdbc.findOrderAbstract(orderId);
 		
-		Optional.ofNullable(dto).orElseThrow(()->new RuntimeException("訂單找不到"));
-		
+	    OrderAstractDto dto = validateAndGetOrder(orderId);
+
 		dto.setUserName(userName);
-		
-		
 		return dto;
 	}
 
+	@Override
+	public Integer createOrder(Integer userId, String section, Integer eventId, Integer quantity, String requestId) {
 
+		return salesRepositoryJdbc.addTicketOrderWithSeat(userId, section, eventId, quantity, requestId,
+				quantity);
+	}
 
+//=============================小組件	
 	
+	private OrderAstractDto validateAndGetOrder(Integer orderId) {
+		
+	    return Optional.ofNullable(
+	    		orderRepositoryJdbc.findOrderAbstract(orderId))
+	    		.orElseThrow(() -> 
+	    				{            
+	    					log.error("訂單不存在 orderId: {}", orderId);
+	    				    return new RuntimeException("訂單找不到: " + orderId);});
+	}
 
-
-	
-	
+	private void validatePayTime(String requestId) {
+		//我這寫在buyticket mq那裏		
+		if(!redisService.exists(CacheKeys.Order.ORDER_PREFIX+requestId)) {
+	        log.error("付款時間已過期 requestId: {}", requestId);
+			throw new RuntimeException("付款時間結束");
+		}
+	}
 	
 	
 	

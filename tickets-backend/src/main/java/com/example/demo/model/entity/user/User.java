@@ -49,6 +49,7 @@ public class User {
 	private Timestamp userRegdate;
 
 	@Column(name = "user_is_verified")
-	private Boolean userIsVerified;
+	private Boolean userIsVerified = false;  // 給預設值
+
 
 }

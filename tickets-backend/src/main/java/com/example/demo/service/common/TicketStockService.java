@@ -2,22 +2,22 @@ package com.example.demo.service.common;
 
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
 import com.example.demo.util.CacheKeys;
 import com.example.demo.util.RedisService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class TicketStockService {
-	@Autowired
-	RedisService redisService;
-	@Autowired
-	SalesRepositoryJdbc salesRepositoryJdbc;
+	
+	private final RedisService redisService;
+	private final SalesRepositoryJdbc salesRepositoryJdbc;
 	
 	
 	 public Integer ensureStockInRedis( Integer eventId, String section) {
@@ -39,6 +39,7 @@ public class TicketStockService {
 	    }	
 	 
 	public Long decrementTicketStock(Integer eventId, String section ,Integer quantity){
+		
 	 	String stockKey = String.format(CacheKeys.Sales.STOCK, eventId,section);
 	 	Long updatedStock = redisService.decrement(stockKey, quantity);
         log.info("目前剩餘票數: {}", updatedStock);

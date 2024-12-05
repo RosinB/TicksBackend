@@ -21,4 +21,6 @@ public interface OrderService {
 	void updateOrderStatus(Integer orderId);
 	
 	void cancelOrder(Integer orderId);
+	
+	Integer createOrder(Integer userId, String section, Integer eventId,Integer quantity, String requestId);
 }

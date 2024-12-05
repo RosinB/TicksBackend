@@ -16,7 +16,7 @@ public interface AdminEventService {
 
 	EventDetailDto getEventById(Integer eventId);
 	
-	String addEvent(EventDetailDto dto);
+	void addEvent(EventDetailDto dto);
 	
 	EventDetailDto updateEvent(EventDetailDto dto);
 	

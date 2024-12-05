@@ -25,10 +25,12 @@ import com.example.demo.util.CacheKeys;
 import com.example.demo.util.CaptchaUtils;
 import com.example.demo.util.RedisService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
@@ -38,19 +40,9 @@ public class UserServiceImpl implements UserService {
 	private final UserRepositoryJdbc userRepositoryJdbc;
 	private final EmailService emailService;
 
-	public UserServiceImpl(EmailService emailService, UserRepository userRepository,
-			UserRepositoryJdbc userRepositoryJdbc, RedisService redisService, PasswordEncoder passwordEncoder,
-			UserMapper userMapper) {
-		this.userRepositoryJdbc = userRepositoryJdbc;
-		this.redisService = redisService;
-		this.passwordEncoder = passwordEncoder;
-		this.userMapper = userMapper;
-		this.userRepository = userRepository;
-		this.emailService = emailService;
-	}
 
 	// 獲取所有用戶資訊
-	@Cacheable(key = CacheKeys.User.ALL_USERS, expireTime = 10, timeUnit = TimeUnit.MINUTES)
+	@Cacheable(key = CacheKeys.User.ALL_USERS)
 	@Override
 	public List<UserDto> getAllUser() {
 
@@ -58,7 +50,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	// 根據用戶名查詢單一用戶資訊
-	@Cacheable(key = CacheKeys.User.USERSDTO_PREFIX + "{0}", expireTime = 10, timeUnit = TimeUnit.MINUTES)
+	@Cacheable(key = "'"+CacheKeys.User.USERSDTO_PREFIX +"'+#userName")
 	@Override
 	public UserDto getUser(String userName) {
 
@@ -102,7 +94,7 @@ public class UserServiceImpl implements UserService {
 
 		User user = userMapper.toEnity(userDto);
 		user.setUserPwdHash(passwordEncoder.encode(userDto.getPassword()));
-		userRepository.save(user);
+		userRepositoryJdbc.addUser(user);
 		clearUserCaches(userDto.getUserName());
 
 	}
@@ -138,9 +130,9 @@ public class UserServiceImpl implements UserService {
 //===============================驗證信箱相關=============================================
 	// 查詢使用者信箱
 	@Override
-	@Cacheable(key = CacheKeys.User.USEREMAIL_PREFIX + "{0}", expireTime = 10, timeUnit = TimeUnit.MINUTES)
+	@Cacheable(key = "'"+CacheKeys.User.USEREMAIL_PREFIX+"' + #userName")
 	public String getEmail(String userName) {
-
+		System.out.println("caheL"+CacheKeys.User.USEREMAIL_PREFIX);
 		return userRepositoryJdbc.findUserEmailByUserName(userName);
 
 	}
@@ -151,7 +143,7 @@ public class UserServiceImpl implements UserService {
 
 		String code = CaptchaUtils.generateNumericCaptcha(6);
 		String userEmail = getEmail(userName);
-
+		System.out.println("getCaptcha"+userEmail);
 		emailService.sendVerificationEmail(code, userName, userEmail);
 
 	}
@@ -190,9 +182,26 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+//===============================================尋找user相關的redis====================================
+	@Override
+	@Cacheable(key ="'"+ CacheKeys.User.USERID_PREFIX+"'+#userName" )
+	public Integer getUserId(String userName) {
+		 
+	        return userRepository.findIdByUserName(userName);
+	}
+	
+
+	@Override
+	@Cacheable(key ="'"+  CacheKeys.User.USER_ISVERFIED_PREFIX+"'+#userName")
+	public Boolean getUserIsVerified(String userName) {
+	
+		return userRepositoryJdbc.findUserIsVerifiedByUserName(userName);
+	}
+
 	private void clearUserCaches(String userName) {
 		redisService.delete(CacheKeys.User.USERSDTO_PREFIX + userName);
 		redisService.delete(CacheKeys.User.ALL_USERS);
 	}
 
+	
 }

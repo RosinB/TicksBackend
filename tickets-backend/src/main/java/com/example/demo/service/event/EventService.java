@@ -1,12 +1,12 @@
 package com.example.demo.service.event;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
-import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.event.EventPicDto;
+import com.example.demo.model.dto.pic.PicDto;
 
 public interface EventService {
 
@@ -19,4 +19,15 @@ public interface EventService {
 
 	List<EventPicDto> findAllEventPic();
 	
+	
+	PicDto getPicDto(Integer eventId);
+	
+	Integer getQuantity(String section,Integer eventId);
+	
+     Map<Integer, String> checkSeatStatus(Integer eventId, String section) ;
+
+     
+ 	 String getEventName(Integer eventId) ;
+
 }
+

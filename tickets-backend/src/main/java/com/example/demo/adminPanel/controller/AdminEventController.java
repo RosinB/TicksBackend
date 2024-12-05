@@ -78,9 +78,9 @@ public class AdminEventController {
 		
 		
 
-		String a=adminEventService.addEvent(dto);
+		adminEventService.addEvent(dto);
 		
-		return ResponseEntity.ok(ApiResponse.success("傳送成功", a));
+		return ResponseEntity.ok(ApiResponse.success("傳送成功", "傳達成功"));
 	}
 	
 	//更新資料

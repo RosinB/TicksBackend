@@ -11,6 +11,6 @@ import java.util.concurrent.TimeUnit;
 public @interface Cacheable {
     String prefix() default "";    // 緩存key的前綴
     String key() default "";       // 緩存key的模板,例如 "userDto:{0}" 
-    long expireTime() default 0;   // 過期時間
-    TimeUnit timeUnit() default TimeUnit.SECONDS;   // 時間單位
+    long expireTime() default 10;   // 過期時間
+    TimeUnit timeUnit() default TimeUnit.MINUTES;   // 時間單位
 	}

@@ -25,17 +25,16 @@ public class CacheAspect {
     
     // @Around註解表示這是環繞通知,可以在目標方法執行前後都進行處理
     // @annotation(CacheableUser)表示切入點是所有帶有@CacheableUser註解的方法
-    @Around("@annotation(Cacheable)") 
+    @Around("@annotation(com.example.demo.common.annotation.Cacheable)")
     public Object handleCache(ProceedingJoinPoint joinPoint) throws Throwable {
         // 獲取方法的簽名信息
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         // 獲取方法上的CacheableUser註解
-        
-        Cacheable cacheableUser = signature.getMethod().getAnnotation(Cacheable.class);
-        
+        Cacheable cacheable = signature.getMethod().getAnnotation(Cacheable.class);
+        System.out.println("cacheable是:"+cacheable);
         // 構建緩存key
-        String cacheKey = buildCacheKey(joinPoint, cacheableUser);
-        
+        String cacheKey = buildCacheKey(joinPoint, cacheable);
+        System.out.println("計算的cacheKey:"+cacheKey);
         // 使用泛型通配符
         TypeReference<Object> typeReference = new TypeReference<Object>() {
             @Override
@@ -54,23 +53,29 @@ public class CacheAspect {
         Object result = joinPoint.proceed();
         
         // 如果設置了過期時間
-        if(cacheableUser.expireTime() > 0) {
+        if(cacheable.expireTime() > 0) {
             // 將結果存入緩存,並設置過期時間
             redisService.saveWithExpire(cacheKey, 
                                       result, 
-                                      cacheableUser.expireTime(), 
-                                      cacheableUser.timeUnit());
+                                      cacheable.expireTime(), 
+                                      cacheable.timeUnit());
         } else {
             // 將結果存入緩存,不設置過期時間
             redisService.save(cacheKey, result);
         }
-        
+        System.out.println("緩存多少"+result);
         // 返回方法執行結果
         return result;
     }
 
     // 構建緩存key的私有方法
     private String buildCacheKey(ProceedingJoinPoint joinPoint, Cacheable cacheable) {
+    	
+    	
+    	
+    	
+    	
+    	
     	  String key = cacheable.key();
           if(key.isEmpty()) {
               // 如果沒有指定key模板，使用預設的格式
