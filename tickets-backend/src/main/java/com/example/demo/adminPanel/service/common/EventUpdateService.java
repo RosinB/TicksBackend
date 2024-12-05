@@ -27,12 +27,14 @@ public class EventUpdateService {
 	
     @Transactional
 	public void addEvent(EventDetailDto dto) {
-		
+        log.info("開始新增活動, 活動名稱: {}", dto.getEventName());
+
 		Integer eventId=addEventDto(dto);
 		addSalesStatus(eventId);
 		addTicketDtos(dto.getTicketDtos(),eventId);
 		addPic(dto, eventId);
-		
+        log.info("新增活動成功, 活動名稱: {}", dto.getEventName());
+
 		
 	}
     @Transactional

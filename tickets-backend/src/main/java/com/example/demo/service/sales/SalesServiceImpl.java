@@ -124,7 +124,7 @@ public class SalesServiceImpl implements SalesService {
 	// 獲得演唱會資訊
 
 	@Override
-	@Cacheable(key ="'" +CacheKeys.Sales.TICKETS_PREFIX +"' +#eventId")
+	@Cacheable(prefixKey = CacheKeys.Sales.TICKETS_PREFIX ,key = "#a0")
 	public SalesDto getTickets(Integer eventId) {
 
 		return salesRepositoryJdbc.findSalesDetailByEventId(eventId);

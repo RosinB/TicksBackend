@@ -1,18 +1,12 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.event.EventDto;
@@ -20,16 +14,15 @@ import com.example.demo.model.dto.event.EventPicDto;
 import com.example.demo.service.event.EventService;
 import com.example.demo.util.ApiResponse;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/event")
+@RequiredArgsConstructor
 public class EventController {
-	private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 
-	@Autowired
-	EventService eventService;
-
+	private final EventService eventService;
 	
-
 	
 	// 主要列印首頁和List的圖片 home.js
 	@GetMapping("/ticketAllPic")
@@ -48,13 +41,6 @@ public class EventController {
 		return ResponseEntity.ok(ApiResponse.success("活動查詢成功", eventDto));	
 
 	}
-
 	
-	@ExceptionHandler(RuntimeException.class)
-	public ResponseEntity<ApiResponse<Void>> handEventRunTimeException(RuntimeException e) {
-		logger.info("有RuntimeException:" + e.getMessage());
-		return ResponseEntity.status(HttpStatus.NOT_FOUND)
-				.body(ApiResponse.error(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
-	}
 
 }

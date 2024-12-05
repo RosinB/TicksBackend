@@ -103,7 +103,8 @@ public class OrderServiceImpl implements OrderService{
 	    OrderAstractDto dto = validateAndGetOrder(orderId);
 		
 		dto.setUserName(userName);	
-		
+	    log.info("獲取訂單摘要, 訂單ID: {}, 用戶名: {}, 請求ID: {}", orderId, userName);
+
 		return dto;
 	}
 
@@ -114,6 +115,8 @@ public class OrderServiceImpl implements OrderService{
 	    OrderAstractDto dto = validateAndGetOrder(orderId);
 
 		dto.setUserName(userName);
+	    log.info("獲取訂單摘要, 訂單ID: {}, 用戶名: {}, 請求ID: {}", orderId, userName);
+
 		return dto;
 	}
 

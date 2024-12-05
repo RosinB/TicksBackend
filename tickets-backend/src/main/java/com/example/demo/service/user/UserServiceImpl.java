@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +24,6 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.user.UserRepositoryJdbc;
 import com.example.demo.service.common.EmailService;
 import com.example.demo.util.CacheKeys;
-import com.example.demo.util.CaptchaUtils;
 import com.example.demo.util.RedisService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,10 +40,13 @@ public class UserServiceImpl implements UserService {
 	private final UserMapper userMapper;
 	private final UserRepositoryJdbc userRepositoryJdbc;
 	private final EmailService emailService;
-
-
+	 @Lazy
+	    @Autowired
+	    private UserService self;
+	@Lazy
+	
 	// 獲取所有用戶資訊
-	@Cacheable(key = CacheKeys.User.ALL_USERS)
+	@Cacheable(prefixKey  = CacheKeys.User.ALL_USERS)
 	@Override
 	public List<UserDto> getAllUser() {
 
@@ -50,7 +54,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	// 根據用戶名查詢單一用戶資訊
-	@Cacheable(key = "'"+CacheKeys.User.USERSDTO_PREFIX +"'+#userName")
+	@Cacheable(prefixKey = CacheKeys.User.USERSDTO_PREFIX, key = "#a0")
 	@Override
 	public UserDto getUser(String userName) {
 
@@ -64,15 +68,18 @@ public class UserServiceImpl implements UserService {
 	public LoginResultDto checkUserLogin(LoginDto loginDto) {
 
 		if (!userRepository.existsByUserName(loginDto.getUserName())) {
+	        log.warn("登入失敗：用戶名{}不存在", loginDto.getUserName());
 			return new LoginResultDto("帳號不存在");
 		}
 
 		String storeHashPassword = userRepository.findHashPasswordByUserName(loginDto.getUserName());
 		if (!passwordEncoder.matches(loginDto.getPassword(), storeHashPassword)) {
+	        log.warn("登入失敗：用戶{}密碼錯誤", loginDto.getUserName());
 			return new LoginResultDto("密碼錯誤");
 		}
 
 		loginDto.setUserId(userRepository.findIdByUserName(loginDto.getUserName()));
+	    log.info("用戶{}登入成功", loginDto.getUserName());
 		return new LoginResultDto(loginDto);
 	}
 
@@ -105,8 +112,12 @@ public class UserServiceImpl implements UserService {
 		// 用MAP去存重複資訊
 		Map<String, String> errors = new HashMap<String, String>();
 
-		List<User> conDuplicatesUsers = userRepository.findDuplicatesUsers(userDto.getUserName(),
-				userDto.getUserPhone(), userDto.getUserEmail(), userDto.getUserIdCard());
+		List<User> conDuplicatesUsers = userRepository.findDuplicatesUsers(
+						userDto.getUserName(),
+						userDto.getUserPhone(), 
+						userDto.getUserEmail(), 
+						userDto.getUserIdCard()
+					);
 
 		for (User user : conDuplicatesUsers) {
 			if (user.getUserName().equals(userDto.getUserName())) {
@@ -130,7 +141,7 @@ public class UserServiceImpl implements UserService {
 //===============================驗證信箱相關=============================================
 	// 查詢使用者信箱
 	@Override
-	@Cacheable(key = "'"+CacheKeys.User.USEREMAIL_PREFIX+"' + #userName")
+	@Cacheable(prefixKey = CacheKeys.User.USEREMAIL_PREFIX ,key="#a0")
 	public String getEmail(String userName) {
 		return userRepositoryJdbc.findUserEmailByUserName(userName);
 
@@ -140,10 +151,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void getCAPTCHA(String userName) {
 
-		String code = CaptchaUtils.generateNumericCaptcha(6);
-		String userEmail = getEmail(userName);
-		System.out.println("getCaptcha"+userEmail);
-		emailService.sendVerificationEmail(code, userName, userEmail);
+	
+		emailService.sendVerificationEmail(userName);
 
 	}
 
@@ -158,7 +167,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void checkUserAndEmail(String userName, String email) {
 
-		String realEmail = getEmail(userName);
+		String realEmail =self.getEmail(userName);
 
 		if (!(email.equals(realEmail))) {
 			log.info("email和userName不匹配");
@@ -183,15 +192,15 @@ public class UserServiceImpl implements UserService {
 
 //===============================================尋找user相關的redis====================================
 	@Override
-	@Cacheable(key ="'"+ CacheKeys.User.USERID_PREFIX+"'+#userName" )
+	@Cacheable(prefixKey = CacheKeys.User.USERID_PREFIX ,key="#a0" )
 	public Integer getUserId(String userName) {
 		 
 	        return userRepository.findIdByUserName(userName);
 	}
-	
+
 
 	@Override
-	@Cacheable(key ="'"+  CacheKeys.User.USER_ISVERFIED_PREFIX+"'+#userName")
+	@Cacheable(prefixKey  =CacheKeys.User.USER_ISVERFIED_PREFIX, key="#a0")
 	public Boolean getUserIsVerified(String userName) {
 	
 		return userRepositoryJdbc.findUserIsVerifiedByUserName(userName);

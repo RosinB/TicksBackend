@@ -1,13 +1,16 @@
 package com.example.demo.service.common;
 
-
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.user.UserRepositoryJdbc;
+import com.example.demo.service.user.UserService;
 import com.example.demo.util.CacheKeys;
+import com.example.demo.util.CaptchaUtils;
 import com.example.demo.util.GmailOAuthSender;
 import com.example.demo.util.RedisService;
 import com.google.api.services.gmail.Gmail;
@@ -20,14 +23,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EmailService {
 
-	
 	private final RedisService redisService;
 	private final UserRepositoryJdbc userRepositoryJdbc;
+	@Lazy
+	@Autowired
+	private UserService userService;
 
-	
-
-	public void sendVerificationEmail(String code, String userName, String userEmail) {
-		System.out.println("1.userName:"+userName+"userEmail"+userEmail);
+	public void sendVerificationEmail(String userName) {
+		String code = CaptchaUtils.generateNumericCaptcha(6);
+		String userEmail = userService.getEmail(userName);
 
 		String verificationKey = String.format(CacheKeys.User.VERIFICATION_CODE, userName, userEmail);
 
@@ -39,7 +43,7 @@ public class EmailService {
 			GmailOAuthSender.sendMessage(service, "me",
 					GmailOAuthSender.createEmail(userEmail, "信箱認證", "信箱驗證碼:" + code));
 
-			log.info("認證信已成功寄出{}",userEmail);
+			log.info("認證信已成功寄出{}", userEmail);
 		} catch (Exception e) {
 			log.warn("郵件發送失敗", e);
 			throw new RuntimeException("郵件發送失敗", e);
@@ -49,8 +53,7 @@ public class EmailService {
 
 	public String verificationEmail(String code, String userName) {
 		String userEmail = redisService.get(CacheKeys.User.USEREMAIL_PREFIX + userName, String.class);
-	
-		System.out.println("2.userName:"+userName+"userEmail"+userEmail);
+
 		String verificationKey = String.format(CacheKeys.User.VERIFICATION_CODE, userName, userEmail);
 
 		String verifCode = redisService.get(verificationKey, String.class);
@@ -70,7 +73,7 @@ public class EmailService {
 		saveTokenToRedis(userName, token);
 
 		try {
-			
+
 			Gmail service = GmailOAuthSender.getGmailService();
 			GmailOAuthSender.sendMessage(service, "me", GmailOAuthSender.createEmail(email, "重設密碼", """
 					重設密碼:
@@ -81,7 +84,7 @@ public class EmailService {
 					   """.formatted(token))
 
 			);
-			log.info("重設密碼信已成功寄出 {}",email);
+			log.info("重設密碼信已成功寄出 {}", email);
 		} catch (Exception e) {
 			log.warn("郵件發送失敗", e);
 			throw new RuntimeException("郵件發送失敗", e);
