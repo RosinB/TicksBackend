@@ -22,7 +22,9 @@ public class AdminHostJDBCImpl implements AdminHostJDBC {
 	
 	private static final class SQL {
 		static final String FIND_ALL_HOST="""
-				select host_name as hostName,
+				select  
+					   host_id   as hostId,
+					   host_name as hostName,
 					   host_contact as hostContact,
 					   host_description as hostDescription
 				from host

@@ -41,9 +41,11 @@ public class UserServiceImpl implements UserService {
 	private final UserRepositoryJdbc userRepositoryJdbc;
 	private final EmailService emailService;
 	 @Lazy
-	    @Autowired
-	    private UserService self;
-	@Lazy
+	 @Autowired
+	 private UserService self;
+	 
+	
+	
 	
 	// 獲取所有用戶資訊
 	@Cacheable(prefixKey  = CacheKeys.User.ALL_USERS)
@@ -200,7 +202,6 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	@Cacheable(prefixKey  =CacheKeys.User.USER_ISVERFIED_PREFIX, key="#a0")
 	public Boolean getUserIsVerified(String userName) {
 	
 		return userRepositoryJdbc.findUserIsVerifiedByUserName(userName);
@@ -209,7 +210,6 @@ public class UserServiceImpl implements UserService {
 	private void clearUserCaches(String userName) {
 		redisService.delete(CacheKeys.User.USERSDTO_PREFIX + userName);
 		redisService.delete(CacheKeys.User.ALL_USERS);
-	}
 
-	
+	}
 }

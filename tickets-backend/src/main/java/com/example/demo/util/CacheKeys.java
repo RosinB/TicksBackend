@@ -31,13 +31,17 @@ public class CacheKeys {
 	 public static class Sales{
 		 	public static final String STOCK= "event:%s:section:%s:stock";
 		 	public static final String TICKETS_PREFIX="tickets:";
-
+		 	public static final String SALESQUEUE_PREFIX="queue:";
 		 
 	 }
 	 
 	 public static class Order{
 		 	public static final String ORDER_PREFIX="order:";
 		 
+		 
+	 }
+	 public static class util{
+		 	public static final String CAPTCHA_PREFIX="captcha:";
 		 
 	 }
 	 

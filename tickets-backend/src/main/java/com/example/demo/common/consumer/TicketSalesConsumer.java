@@ -17,23 +17,22 @@ import com.example.demo.repository.order.OrderRepositoryJdbc;
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
 import com.example.demo.repository.sales.SalesRespositoryJdbcImpl;
 import com.example.demo.service.sales.SalesService;
+import com.example.demo.util.CacheKeys;
 import com.example.demo.util.RedisService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Component
+@Slf4j
+@RequiredArgsConstructor
 public class TicketSalesConsumer {
-	private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 
-    @Autowired
-    private SalesService salesService;
+    private final  SalesService salesService;
 
- 
+    private final  RedisService redisService;
     
-    @Autowired
-    private RedisService redisService;
-    
-    @Autowired
-    OrderRepositoryJdbc orderRepositoryJdbc;
 
     @RabbitListener(queues = RabbitMQConfig.TICKET_QUEUE_NAME)
     public void handleMessage(PostTicketSalesDto tickets) {
@@ -46,13 +45,19 @@ public class TicketSalesConsumer {
                   return; // 已處理，直接返回
               }
               // 處理購票邏輯
+              
+             
+
               salesService.buyTicket(tickets);
               
               redisService.saveWithExpire(orderStatusKey, "付款中", 10, TimeUnit.MINUTES);
           } catch (Exception e) {
-              redisService.saveWithExpire(orderStatusKey, "錯誤", 10, TimeUnit.MINUTES);
-              logger.warn("票務不足");
+         
+              
           }
+          
+          
+          
     	
             }
         

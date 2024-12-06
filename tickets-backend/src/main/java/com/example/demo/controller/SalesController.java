@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import java.lang.System.Logger;
 import java.util.Map;
 import java.util.UUID;
 
@@ -29,6 +30,8 @@ import com.example.demo.model.dto.traffic.TrafficDto;
 import com.example.demo.service.order.OrderService;
 import com.example.demo.service.sales.SalesService;
 import com.example.demo.util.ApiResponse;
+import com.example.demo.util.CacheKeys;
+import com.example.demo.util.RedisService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +47,7 @@ public class SalesController {
 	private final SalesService salesService;
 	private final OrderService orderService;
 	private final RabbitTemplate rabbitTemplate;
-
+	private final RedisService redisService;
 
 //=======================處理售票狀況============================== 這在tiecketsales
 	@PostMapping("/goticket/area/buy")
@@ -54,7 +57,15 @@ public class SalesController {
 			// 生成唯一請求 ID
 			String requestId = UUID.randomUUID().toString();
 			data.setRequestId(requestId);
+			
+			String captcha=redisService.get(CacheKeys.util.CAPTCHA_PREFIX+data.getUserName(), String.class);
 
+			if(!captcha.equals(data.getUserCaptcha()) ) {
+				log.warn("使用者驗證失敗:{}",data.getUserName());
+				return ResponseEntity.status(400).body(ApiResponse.error(400, "驗證失敗", null));
+			}
+			
+			
 			// 發送購票請求到 RabbitMQ
 			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TICKET_ROUTING_KEY, // 搶票路由鍵
 					data);

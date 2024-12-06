@@ -8,6 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WebSocketTicketDto {
-	  private  Integer eventId;
-	  private  String  section;
+    private Integer eventId;
+    private String section;
+    
+    // 添加驗證方法
+    public boolean isValid() {
+        return eventId != null && section != null && !section.trim().isEmpty();
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.demo.service.sales;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

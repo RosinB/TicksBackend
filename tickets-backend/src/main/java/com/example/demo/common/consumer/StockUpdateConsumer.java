@@ -15,39 +15,35 @@ import com.example.demo.controller.EventController;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
+import com.example.demo.service.user.UserService;
+import com.example.demo.util.CacheKeys;
 import com.example.demo.util.RedisService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Component
+@RequiredArgsConstructor
+@Slf4j
 public class StockUpdateConsumer {
     private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 
-    @Autowired
-    private SalesRepositoryJdbc salesRepositoryJdbc;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RedisService redisService;
-
+    private final SalesRepositoryJdbc salesRepositoryJdbc;
+    private final RedisService redisService;
+    private final UserService userService;
   
 
     @RabbitListener(queues = RabbitMQConfig.STOCK_UPDATE_QUEUE_NAME)
     public void handleStockUpdate(PostTicketSalesDto tickets) {
         String requestId = tickets.getRequestId();
-
+       
         try {
             // 更新資料庫庫存
             salesRepositoryJdbc.checkTicketAndUpdate(tickets.getSection(), tickets.getEventId(), tickets.getQuantity());
 
             // 獲取用戶 ID
-            String cacheKey = "userId:" + tickets.getUserName();
-            Integer userId = redisService.get(cacheKey, Integer.class);
-            if (userId == null) {
-                userId = userRepository.findIdByUserName(tickets.getUserName());
-                redisService.saveWithExpire(cacheKey, userId, 10, TimeUnit.MINUTES);
-            }
+            Integer userId =userService.getUserId(tickets.getUserName());
 
             
             // 創建訂單
@@ -57,6 +53,10 @@ public class StockUpdateConsumer {
                     userId, tickets.getEventId(), tickets.getSection(), tickets.getQuantity(), requestId);        
             } catch (Exception e) {
             	logger.info("票卷更新失敗: "+e.getMessage());
-            }
+            }finally {
+            	redisService.decrement(CacheKeys.Sales.SALESQUEUE_PREFIX+tickets.getEventId(), 1);
+            	log.info("排隊結束:{}",redisService.get(CacheKeys.Sales.SALESQUEUE_PREFIX+tickets.getEventId(),Integer.class));
+
+			}
     }
     }

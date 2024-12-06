@@ -1,26 +1,27 @@
 package com.example.demo.common.config;
 
+import com.example.demo.common.websocket.TicketWebSocketService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-import com.example.demo.common.websocket.TicketWebSocketHandler;
-
-
 @Configuration
-@EnableWebSocket // 啟用 WebSocket 支持
+@EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
+    private final TicketWebSocketService ticketWebSocketService;
 
-    private final TicketWebSocketHandler ticketWebSocketHandler;
-
-    public WebSocketConfig(TicketWebSocketHandler ticketWebSocketHandler) {
-        this.ticketWebSocketHandler = ticketWebSocketHandler;
-        System.out.println("WebSocketConfig 使用的 handler: " + ticketWebSocketHandler.hashCode());
+    public WebSocketConfig(TicketWebSocketService ticketWebSocketService) {
+        this.ticketWebSocketService = ticketWebSocketService;
     }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(ticketWebSocketHandler, "/ws/tickets").setAllowedOrigins("*");
+        registry.addHandler(ticketWebSocketService, "/ws/tickets")
+               .setAllowedOrigins("*");
     }
+
 }
