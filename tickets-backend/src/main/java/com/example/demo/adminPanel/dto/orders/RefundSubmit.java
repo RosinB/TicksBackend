@@ -12,15 +12,15 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class RefundSubmit {
-
+    public Integer refundId;
 	public Integer eventId;
-	public Integer userName;
+	public Integer userId;
 	public Integer orderId;
-	public String RefundStatus;
-	public LocalDateTime RefundTime;
-	public LocalDateTime OrderDateTime;
-	public String RefundTitle;
-	public String RefundReason;
+	public String refundStatus;
+	public LocalDateTime refundTime;
+	public LocalDateTime orderDateTime;
+	public String refundTitle;
+	public String refundReason;
 	
 	
 	

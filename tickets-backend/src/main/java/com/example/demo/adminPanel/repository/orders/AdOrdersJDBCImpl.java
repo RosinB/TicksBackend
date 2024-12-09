@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.adminPanel.dto.orders.AdOrdersDto;
+import com.example.demo.adminPanel.dto.orders.RefundSubmit;
 import com.example.demo.util.DatabaseUtils;
 
 @Repository
@@ -18,7 +19,7 @@ public class AdOrdersJDBCImpl implements AdOrdersJDBC{
 
 	private final static Logger logger=LoggerFactory.getLogger(AdOrdersJDBCImpl.class);
 	private final static RowMapper<AdOrdersDto> adOrdersMapper=new BeanPropertyRowMapper<>(AdOrdersDto.class);
-	
+	private final static RowMapper<RefundSubmit> refundMapper=new BeanPropertyRowMapper<>(RefundSubmit.class);
 	private final static class SQL{
 		
 		static String FIND_ALL_ORDERS_BY_EVENTID="""
@@ -55,6 +56,26 @@ public class AdOrdersJDBCImpl implements AdOrdersJDBC{
 				AND  o.order_section = ?
 				AND   p.event_section = o.order_section  -- 確保兩個 section 相符
 				""".trim();
+		static  String FIND_REFUBD_BY_PENDING="""
+				select 
+				       r.refund_id as refundId,
+					   e.event_id as eventId,
+					   u.user_id  as userId,
+					   o.order_id as orderId,
+					   o.order_datetime as orderDateTime,
+					   r.refund_status as refundStatus,
+					   r.refund_title as refundTitle,
+					   r.refund_reason as refundReason,
+					   r.created_time as refundTime			
+				from refund r
+				join orders o on r.order_id=o.order_id
+				join users u on o.user_id =u.user_id
+				join event e on e.event_id = o.event_id
+				
+				
+				
+				
+				""".trim(); 
 	}
 	
 	
@@ -97,7 +118,19 @@ public class AdOrdersJDBCImpl implements AdOrdersJDBC{
 					String.format("清除訂單錯誤: eventId:%d", eventId));
 	
 	}
-	
 
+
+
+	@Override
+	public List<RefundSubmit> findRefundByPending() {
+
+
+		
+		return  DatabaseUtils.executeQuery("findRefundByPending", 
+										()->jdbcTemplate.query(SQL.FIND_REFUBD_BY_PENDING, refundMapper),
+										"查詢所有退票請求失敗");
+	}
+	
+	
 	
 }
