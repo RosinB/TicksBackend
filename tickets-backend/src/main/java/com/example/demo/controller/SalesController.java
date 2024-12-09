@@ -22,7 +22,6 @@ import com.example.demo.common.exception.UserIsNotVerifiedException;
 import com.example.demo.common.traffic.TrafficDataUtil;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
-import com.example.demo.model.dto.sales.SalesDto;
 import com.example.demo.model.dto.ticket.SeatStatusDto;
 import com.example.demo.model.dto.ticket.TicketSectionDto;
 import com.example.demo.model.dto.traffic.TrafficDto;
@@ -143,13 +142,7 @@ public class SalesController {
 		return ResponseEntity.ok(ApiResponse.success("傳達成功", dto));
 	}
 
-	// 獲取演唱會的銷售資訊
-	@GetMapping("/goticket/{eventId}")
-	public ResponseEntity<ApiResponse<Object>> getAllTickets(@PathVariable("eventId") Integer eventId) {
-		SalesDto salesDto = salesService.getTickets(eventId);
 
-		return ResponseEntity.ok(ApiResponse.success("查詢成功", salesDto));
-	}
 
 	// 獲得演唱會區域價錢 這是在ticketSection那頁
 	@GetMapping("/goticket/area")

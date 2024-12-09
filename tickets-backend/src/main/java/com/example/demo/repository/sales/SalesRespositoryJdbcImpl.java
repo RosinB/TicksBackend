@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
-import com.example.demo.model.dto.sales.SalesDto;
 import com.example.demo.model.dto.ticket.TicketDto;
 import com.example.demo.util.DatabaseUtils;
 
@@ -107,22 +106,13 @@ public class SalesRespositoryJdbcImpl implements SalesRepositoryJdbc {
 					""".trim();
 	}
 
-	private static final RowMapper<SalesDto> salesMapper=new BeanPropertyRowMapper<>(SalesDto.class);
 	private static final RowMapper<TicketDto> ticketMapper=new BeanPropertyRowMapper<>(TicketDto.class);
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
 	// 透過活動ID獲得售票狀態
-	@Override
-	public SalesDto findSalesDetailByEventId(Integer eventId) {
-		
-		return DatabaseUtils.executeQuery(
-					"findSalesDetailByEventId", 
-					()->jdbcTemplate.queryForObject(SQL.FIND_SALES_DETAIL_BY_EVENT_ID, salesMapper, eventId), 
-					"演唱會Id匹配不到");
 
-	}
 
 	// 透過活動ID抓到販賣價錢
 	@Override

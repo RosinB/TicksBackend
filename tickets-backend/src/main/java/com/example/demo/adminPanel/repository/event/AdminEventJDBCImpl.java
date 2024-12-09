@@ -47,7 +47,6 @@ public class AdminEventJDBCImpl implements AdminEventJDBC{
 			    e.event_type 			AS eventType,
 			    e.event_status			AS eventStatus,							   	   					    
 			    h.host_name 			AS hostName,							    
-			    s.sales_status 			AS salesStatus,				    
 			    p.pic_event_ticket 		AS picEventTicket,
 			    p.pic_event_list 		AS picEventList,
 			    p.pic_event_section		AS picEventSection
@@ -57,7 +56,6 @@ JOIN			host h
 ON				e.host_id = h.host_id
 JOIN			pic p
 ON				e.event_id = p.event_id 
-JOIN 			sales s
 ON				e.event_id=s.event_id			
 WHERE			e.event_id = ?
 															
@@ -99,20 +97,18 @@ WHERE			e.event_id = ?
 				where 	event_id			=?
 			""".trim();
 		static final String FIND_STATUS_ONSALE="""
-				select 		   e.event_id		 as eventId,
+				select 		  
+				   e.event_id		 as eventId,
 				   e.event_name 	 as eventName,
 				   e.event_salesdate as eventSalesDate,
 				   e.event_salestime as eventSalesTime,
 				   e.event_date		 as eventDate,
 				   e.event_time	     as eventTime,
-				   e.event_status    as eventStatus,
-				   s.sales_status 	 as salesStatus	
+				   e.event_status    as eventStatus
 	
 		
-	
 	from 			event e
-	join 			sales s
-	on 				e.event_id=s.event_id
+
 	where  			e.event_status='即將舉辦'
 			
 	""".trim();

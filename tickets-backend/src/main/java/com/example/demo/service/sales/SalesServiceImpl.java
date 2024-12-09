@@ -7,13 +7,11 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.common.annotation.Cacheable;
 import com.example.demo.common.config.RabbitMQConfig;
 import com.example.demo.common.exception.UserIsNotVerifiedException;
 import com.example.demo.model.dto.event.EventDto;
 import com.example.demo.model.dto.pic.PicDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
-import com.example.demo.model.dto.sales.SalesDto;
 import com.example.demo.model.dto.ticket.SeatStatusDto;
 import com.example.demo.model.dto.ticket.TicketDto;
 import com.example.demo.model.dto.ticket.TicketSectionDto;
@@ -23,7 +21,6 @@ import com.example.demo.service.common.TicketStockService;
 import com.example.demo.service.event.EventService;
 import com.example.demo.service.order.OrderService;
 import com.example.demo.service.user.UserService;
-import com.example.demo.util.CacheKeys;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
@@ -122,14 +119,7 @@ public class SalesServiceImpl implements SalesService {
 
 	// 獲得演唱會資訊
 
-	@Override
-	@Cacheable(prefixKey = CacheKeys.Sales.TICKETS_PREFIX ,key = "#a0")
-	public SalesDto getTickets(Integer eventId) {
-
-		return salesRepositoryJdbc.findSalesDetailByEventId(eventId);
-
-	}
-
+	
 	
 	// 挑選區域要用的service資訊
 	public TicketSectionDto getTicketSection(Integer eventId, String userName) {
