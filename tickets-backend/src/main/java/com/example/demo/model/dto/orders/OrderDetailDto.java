@@ -66,6 +66,9 @@ public class OrderDetailDto {
 	
 	private String requestId;
 	
+	private String picEventTicket;
+	
+	
 
 	
 	

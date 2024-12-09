@@ -39,6 +39,8 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 
 			    t.ticket_price as ticketPrice,
 
+				c.pic_event_ticket as picEventTicket,
+				
 			    h.host_name as hostName,
 
 	    GROUP_CONCAT(p.pool_number) as poolNumbers
@@ -48,6 +50,7 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 		JOIN event e ON o.event_id = e.event_id
 		JOIN host h ON e.host_id = h.host_id
 		JOIN ticket t ON t.ticket_name = o.order_section AND t.event_id = o.event_id
+		join pic c on c.pic_id=e.event_id
 		LEFT JOIN pool p ON o.order_id = p.order_id
 		WHERE u.user_id = ?
 		GROUP BY 
@@ -63,6 +66,7 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 				    e.event_time,
 				    e.event_location,
 				    t.ticket_price,
+				    c.pic_event_ticket,
 				    h.host_name
 		ORDER BY o.order_datetime DESC
 	
