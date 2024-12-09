@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
+import com.example.demo.model.dto.orders.RefundOrder;
 
 public interface OrderService {
 
@@ -23,4 +24,10 @@ public interface OrderService {
 	void cancelOrder(Integer orderId);
 	
 	Integer createOrder(Integer userId, String section, Integer eventId,Integer quantity, String requestId);
+	
+	OrderDetailDto getOrderDetailByOrderId(Integer orderId);
+	
+	void refundTicketForm(RefundOrder dto);
+	
+	
 }

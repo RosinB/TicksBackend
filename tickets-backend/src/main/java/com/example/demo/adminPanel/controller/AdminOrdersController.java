@@ -32,6 +32,12 @@ public class AdminOrdersController {
 	
 	
 	
+	public ResponseEntity<ApiResponse<Object>> getRefundSubmit(){
+		
+		
+		return ResponseEntity.ok(ApiResponse.success("查詢成功", null));
+	}
+	
 	
 	
 	

@@ -1,0 +1,14 @@
+services:
+  redis:
+    image: redis:6.2.6-alpine
+    ports:
+      - "6379:6379"
+      
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"    # AMQP 協議端口
+      - "15672:15672"  # 管理界面端口
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest

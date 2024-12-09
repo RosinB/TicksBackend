@@ -56,7 +56,6 @@ JOIN			host h
 ON				e.host_id = h.host_id
 JOIN			pic p
 ON				e.event_id = p.event_id 
-ON				e.event_id=s.event_id			
 WHERE			e.event_id = ?
 															
 """.trim();

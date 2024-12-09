@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
 import com.example.demo.model.dto.orders.OrderDto;
+import com.example.demo.model.dto.orders.RefundOrder;
 import com.example.demo.util.DatabaseUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -71,6 +72,54 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 		ORDER BY o.order_datetime DESC
 	
 	""".trim();
+		static final String FIND_ORDER_DETAIL_BY_ORDERID="""
+				SELECT
+			    o.order_id as orderId,
+			    o.order_quantity as orderQuantity,
+			    o.order_section as orderSection,
+			    o.order_datetime as orderDateTime,
+			    o.order_status as orderStatus,
+				o.request_id as requestId,
+			    e.event_name as eventName,
+			    e.event_performer as eventPerformer,
+			    e.event_date as eventDate,
+			    e.event_time as eventTime,
+			    e.event_location as eventLocation,
+
+			    t.ticket_price as ticketPrice,
+
+				c.pic_event_ticket as picEventTicket,
+				
+			    h.host_name as hostName,
+
+	    GROUP_CONCAT(p.pool_number) as poolNumbers
+
+		FROM orders o
+		JOIN users u ON o.user_id = u.user_id
+		JOIN event e ON o.event_id = e.event_id
+		JOIN host h ON e.host_id = h.host_id
+		JOIN ticket t ON t.ticket_name = o.order_section AND t.event_id = o.event_id
+		join pic c on c.pic_id=e.event_id
+		LEFT JOIN pool p ON o.order_id = p.order_id
+		WHERE o.order_id = ?
+		GROUP BY 
+				    o.order_id,
+				    o.order_quantity,
+				    o.order_section,
+				    o.order_datetime,
+				    o.order_status,
+				    o.request_id ,
+				    e.event_name,
+				    e.event_performer,
+				    e.event_date,
+				    e.event_time,
+				    e.event_location,
+				    t.ticket_price,
+				    c.pic_event_ticket,
+				    h.host_name
+		ORDER BY o.order_datetime DESC
+				""".trim();
+		
 		static final String FIND_ORDER_ABSTRACT="""
 			      SELECT
 				    o.order_id as orderId,
@@ -101,6 +150,14 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 				WHERE request_id = ?
 
 				""".trim();
+		static final String EXISTS_ORDERID_BY_REFUND="""
+				select count(1)>0
+				from refund 
+				where order_id=?
+				
+				""".trim();
+		
+		
 		static final String FIND_ORDERDTO_BY_REQUESTID= """
 				SELECT order_id AS orderId,
 			       order_status AS orderStatus
@@ -119,7 +176,11 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 				where 	order_id=?
 				""".trim();
 	
+		static final String ADD_REFUND_SUBMIT="""
+				INSERT INTO refund(order_id, refund_title, refund_reason, refund_status)
+				VALUES (?, ?, ?, '待處理')
 	
+				""".trim();
 	
 	
 	
@@ -133,6 +194,47 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 	private static final RowMapper<OrderDto> orderMapper=new BeanPropertyRowMapper<>(OrderDto.class); 
 
 	
+	
+	@Override
+	public void addRefundSubmit(RefundOrder dto) {
+		DatabaseUtils.executeUpdate(
+				"addRefundSubmit",
+					()->jdbcTemplate.update(SQL.ADD_REFUND_SUBMIT,dto.getOrderId(),dto.getRefundTitle(),dto.getRefundReason()),
+					"新建退表table失敗");
+		
+		
+	}
+	
+	
+	@Override
+	public OrderDetailDto findOrderDetailByOrderId(Integer orderId) {
+	    return DatabaseUtils.executeQuery(
+	        "findOrderDetailByOrderId",
+	        () -> jdbcTemplate.queryForObject(
+	            SQL.FIND_ORDER_DETAIL_BY_ORDERID,
+	            (rs, rowNum) -> {
+	                OrderDetailDto dto = orderDetailMapper.mapRow(rs, rowNum);
+	                
+	                // 處理多個 poolNumbers
+	                String poolNumbers = rs.getString("poolNumbers");
+	                if (poolNumbers != null && !poolNumbers.isEmpty()) {
+	                    // 將逗號分隔的字串轉換成個別的 pool number
+	                    String[] numbers = poolNumbers.split(",");
+	                    for (String number : numbers) {
+	                        dto.addPoolNumber(Integer.parseInt(number.trim()));
+	                    }
+	                }
+	                
+	                return dto;
+	            },
+	            orderId
+	        ),
+	        String.format("找不到訂單 ID:%d 的詳細資訊", orderId)
+	    );
+	}
+
+
+
 	@Override
 	public List<OrderDetailDto> findOrderDetail(Integer userId) {
 
@@ -161,6 +263,9 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 
 	}
 
+	
+	
+	
 //	訂單摘要
 	@Override
 	public OrderAstractDto findOrderAbstract(Integer orderId) {
@@ -244,5 +349,31 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 					 String.format("訂單 %d 座位狀態更新失敗", orderId));
 		
 	}
+
+
+	@Override
+	public boolean existsOrderIdByRefund(Integer orderId) {
+
+		return DatabaseUtils.executeQuery(
+					"existsOrderIdByRefund", 
+					()->jdbcTemplate.queryForObject(SQL.EXISTS_ORDERID_BY_REFUND, Boolean.class, orderId),
+					"查詢是否有重複退票請求失敗"
+					);
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

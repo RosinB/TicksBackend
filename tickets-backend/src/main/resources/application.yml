@@ -1,11 +1,16 @@
 spring:
   data:
     redis:
-      host: 127.0.0.1
+      host: localhost
       port: 6379
-      password: ""
+  
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 jwt:
   secret: "bXlfc3VwZXJfc2VjcmV0X2tleV9mb3JfdGlja2V0X3N5c3RlbQ=="  # 這是一個 Base64 編碼的字串
   expiration: 86400000
-  public-urls: /user/login,/user/register,/event/all,/user/forget/**,/user/email/get/**,/event/ticketAllPic,/event/ticket/**
+  public-urls: /user/login,/user/register,/event/all,/user/forget/**,/user/email/get/**,/event/ticketAllPic,/event/ticket/**icket/**

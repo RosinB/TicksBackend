@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
 import com.example.demo.model.dto.orders.OrderDto;
+import com.example.demo.model.dto.orders.RefundOrder;
 import com.example.demo.repository.order.OrderRepositoryJdbc;
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
+import com.example.demo.service.common.RefundService;
 import com.example.demo.service.user.UserService;
 import com.example.demo.util.CacheKeys;
 import com.example.demo.util.RedisService;
@@ -30,7 +32,7 @@ public class OrderServiceImpl implements OrderService{
 	private final SalesRepositoryJdbc salesRepositoryJdbc;
 	private final RedisService redisService;
 	private final OrderRepositoryJdbc orderRepositoryJdbc;
-
+	private final RefundService refundService;
 
 	
 	public Map<String, Object> getTicketStatus(String requestId) {
@@ -146,6 +148,28 @@ public class OrderServiceImpl implements OrderService{
 			throw new RuntimeException("付款時間結束");
 		}
 	}
+
+
+
+	@Override
+	public OrderDetailDto getOrderDetailByOrderId(Integer orderId) {
+		
+		
+		return orderRepositoryJdbc.findOrderDetailByOrderId(orderId);
+	}
+
+
+
+	@Override
+	public void refundTicketForm(RefundOrder dto) {
+
+		refundService.handleRefund(dto);
+		
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -20,6 +20,7 @@ import com.example.demo.common.filter.JwtUtil;
 import com.example.demo.model.dto.login.LoginDto;
 import com.example.demo.model.dto.login.LoginResultDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
+import com.example.demo.model.dto.orders.RefundOrder;
 import com.example.demo.model.dto.user.UserDto;
 import com.example.demo.model.dto.user.UserUpdateDto;
 import com.example.demo.service.order.OrderService;
@@ -54,6 +55,8 @@ public class UserController {
 	@GetMapping("/all")
 	public ResponseEntity<ApiResponse<Object>> getAllUser() {
 
+		
+		
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", userService.getAllUser()));
 	}
 	
@@ -177,6 +180,28 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error(400, status, "驗證錯誤"));
 		
 	}
+	
+	
+//---------處理退票相關
+	@GetMapping("/order/refund/{orderId}")
+	public ResponseEntity<ApiResponse<Object>> reundTicket(@PathVariable("orderId") Integer orderId){
+		
+		OrderDetailDto dto = orderService.getOrderDetailByOrderId(orderId);
+		
+		return ResponseEntity.ok(ApiResponse.success("退票成功", dto));
+	}
+	
+	@PostMapping("/order/refund/form")
+	public ResponseEntity<ApiResponse<Object>> reundForm(@RequestBody RefundOrder dto){
+		
+		orderService.refundTicketForm(dto);
+		
+		return ResponseEntity.ok(ApiResponse.success("退票成功", dto));
+	}
+	
+	
+	
+	
 	
 	
 	

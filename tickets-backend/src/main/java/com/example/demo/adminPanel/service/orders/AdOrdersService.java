@@ -10,4 +10,7 @@ public interface AdOrdersService {
 
 	
 		List<AdOrdersDto> getAllOrdersByEventId(Integer eventId);
+		
+		
+		
 }
