@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.adminPanel.dto.traffic.TrafficDto;
+import com.example.demo.adminPanel.service.common.TrafficRecordService;
 import com.example.demo.common.config.RabbitMQConfig;
 import com.example.demo.common.exception.UserIsNotVerifiedException;
-import com.example.demo.common.traffic.TrafficDataUtil;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.model.dto.ticket.SeatStatusDto;
 import com.example.demo.model.dto.ticket.TicketSectionDto;
-import com.example.demo.model.dto.traffic.TrafficDto;
-
 import com.example.demo.service.order.OrderService;
 import com.example.demo.service.sales.SalesService;
 import com.example.demo.util.ApiResponse;
 import com.example.demo.util.CacheKeys;
+import com.example.demo.util.ConstantList;
 import com.example.demo.util.RedisService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,7 +46,7 @@ public class SalesController {
 	private final OrderService orderService;
 	private final RabbitTemplate rabbitTemplate;
 	private final RedisService redisService;
-
+	private final TrafficRecordService trafficService;
 //=======================處理售票狀況============================== 這在tiecketsales
 	@PostMapping("/goticket/area/buy")
 
@@ -58,19 +58,22 @@ public class SalesController {
 			
 			String captcha=redisService.get(CacheKeys.util.CAPTCHA_PREFIX+data.getUserName(), String.class);
 
-			if(!captcha.equals(data.getUserCaptcha()) ) {
-				log.warn("使用者驗證失敗:{}",data.getUserName());
-				return ResponseEntity.status(400).body(ApiResponse.error(400, "驗證失敗", null));
+			if (ConstantList.CAPTCHA) {
+			    // 只在啟用驗證碼時進行驗證
+			    if (!captcha.equals(data.getUserCaptcha())) {
+			        return handleCaptchaError(data.getUserName());
+			    }
 			}
-			
-			
+			TrafficDto trafficData = trafficService.createTrafficDto(data,request,requestId);
+			 // 頻率檢查
+	        Integer frequency = trafficData.getRequestFrequency();
+	        if (frequency > 100) {
+	        	 return handleTooManyRequests(data.getUserName(), frequency);
+	        }
 			// 發送購票請求到 RabbitMQ
-			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TICKET_ROUTING_KEY, // 搶票路由鍵
+			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TICKET_ROUTING_KEY, 
 					data);
-
-			TrafficDto trafficData = TrafficDataUtil.createTrafficData(requestId, data.getUserName(), "BUY_TICKET",
-					request);
-			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TRAFFIC_ROUTING_KEY, // 流量監控路由鍵
+			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TRAFFIC_ROUTING_KEY, 
 					trafficData);
 
 			return ResponseEntity.ok(ApiResponse.success("購票請求已提交，正在處理", requestId));
@@ -169,4 +172,36 @@ public class SalesController {
 		return ResponseEntity.ok(ApiResponse.success("傳達成功", dto));
 	}
 
+	
+	
+	
+	
+	
+	 // 錯誤響應處理方法
+    private ResponseEntity<ApiResponse<Object>> handleCaptchaError(String userName) {
+        log.warn("使用者驗證失敗:{}", userName);
+        return ResponseEntity.status(400)
+                .body(ApiResponse.error(400, "驗證失敗", null));
+    }
+
+    private ResponseEntity<ApiResponse<Object>> handleTooManyRequests(String userName, Integer frequency) {
+        log.warn("使用者請求過多:{}, 頻率:{}", userName, frequency);
+        return ResponseEntity.status(429)
+                .body(ApiResponse.error(429, "請求過於頻繁，請稍後再試", null));
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

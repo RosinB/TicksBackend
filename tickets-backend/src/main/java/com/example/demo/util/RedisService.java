@@ -7,8 +7,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Service
 public class RedisService {
@@ -98,14 +100,45 @@ public class RedisService {
         }
     }
     
+    // Hash 操作: 同時設置多個字段
+    public void hashMultiSet(String key, Map<String, Object> map) {
+        redisTemplate.opsForHash().putAll(key, map);
+    }
     
     
+    // Set 操作: 獲取集合所有成員
+    public Set<String> sMembers(String key) {
+        return redisTemplate.opsForSet().members(key).stream()
+                .map(Object::toString)
+                .collect(Collectors.toSet());
+    }
+    public void sAdd(String key, String... values) {
+        redisTemplate.opsForSet().add(key, values);
+    }
     
     
-    
-    
-    
-    
+    // 從左側插入列表
+    public void listLeftPush(String key, String value) {
+        redisTemplate.opsForList().leftPush(key, value);
+    }
+
+    // 獲取列表指定範圍的值
+    public List<String> listRange(String key, long start, long end) {
+        return redisTemplate.opsForList().range(key, start, end)
+                .stream()
+                .map(Object::toString)
+                .collect(Collectors.toList());
+    }
+
+    // 修剪列表
+    public void listTrim(String key, long start, long end) {
+        redisTemplate.opsForList().trim(key, start, end);
+    }
+
+    // 獲取列表長度
+    public Long listSize(String key) {
+        return redisTemplate.opsForList().size(key);
+    }
     
     
     

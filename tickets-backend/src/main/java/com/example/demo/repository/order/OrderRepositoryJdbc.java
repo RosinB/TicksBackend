@@ -3,6 +3,7 @@ package com.example.demo.repository.order;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.adminPanel.dto.orders.RefundSubmit;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
 import com.example.demo.model.dto.orders.OrderDto;
@@ -31,6 +32,7 @@ public interface OrderRepositoryJdbc {
 	
 	boolean existsOrderIdByRefund(Integer orderId);
 	
+	void updateRefundByOrderStatus(RefundOrder dto);
 	
 	
 	

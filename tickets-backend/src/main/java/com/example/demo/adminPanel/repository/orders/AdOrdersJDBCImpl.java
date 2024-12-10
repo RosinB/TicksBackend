@@ -76,6 +76,52 @@ public class AdOrdersJDBCImpl implements AdOrdersJDBC{
 				
 				
 				""".trim(); 
+		static String REJECT_REFUND="""
+				update  refund
+				set    refund_status='退票駁回'
+				where refund_id = ?
+				
+				""".trim();
+		static String REJECT_REFUND_BY_ORDERS="""
+				update orders o
+				join refund r on r.order_id=o.order_id
+				set o.order_status='退票失敗'
+				where r.refund_id=?
+				
+				
+				""".trim();
+		static String SUCCESS_REFUND_BY_ORDERS="""
+				UPDATE orders o
+				JOIN refund r ON r.order_id = o.order_id
+				SET o.order_status = '退票成功'
+				WHERE r.refund_id = ?;
+
+				""".trim();
+		static String SUCCESS_REFUND="""
+				update refund 
+				set refund_status='退票通過'
+				where refund_id=?
+				""".trim();
+		
+		static String SUCCESS_REFUND_BY_POOL="""
+				UPDATE pool p
+				JOIN refund r ON r.order_id = p.order_id
+				SET 
+				    p.pool_status = '未售出',
+				    p.order_id = null
+				WHERE r.refund_id = ?
+				
+				""".trim();
+		static String SUCCESS_REFUND_BY_TICKETS="""
+				update ticket t
+				join  orders o on o.event_id=t.event_id
+				join  refund r on r.order_id=o.order_id
+				set
+					 t.ticket_remaining=t.ticket_remaining + ?
+				where r.refund_id=? and o.order_section=t.ticket_name
+				
+				
+				""".trim();
 	}
 	
 	
@@ -130,6 +176,52 @@ public class AdOrdersJDBCImpl implements AdOrdersJDBC{
 										()->jdbcTemplate.query(SQL.FIND_REFUBD_BY_PENDING, refundMapper),
 										"查詢所有退票請求失敗");
 	}
+
+
+
+	@Override
+	public void updateRefundByReject(Integer refundId) {
+		
+		//更新refund table
+		DatabaseUtils.executeUpdate(" updateRefundByReject ",
+									()->jdbcTemplate.update(SQL.REJECT_REFUND,refundId),
+									"退票駁回更新失敗(refund table)");
+		//更新order table
+		DatabaseUtils.executeUpdate(" updateRefundByReject ",
+									()->jdbcTemplate.update(SQL.REJECT_REFUND_BY_ORDERS,refundId),
+									"退票駁回更新失敗(orders table)");
+		
+		
+	}
+
+
+
+	@Override
+	public void updateRefundBySuccess(Integer refundId) {
+		//改refund table
+		DatabaseUtils.executeUpdate(" updateRefundBySuccess ",
+									()->jdbcTemplate.update(SQL.SUCCESS_REFUND,refundId),
+									"退票成功更新失敗(By Refund Table)");
+		//改orders_table
+		DatabaseUtils.executeUpdate(" updateRefundBySuccess ",
+									()->jdbcTemplate.update(SQL.SUCCESS_REFUND_BY_ORDERS,refundId),
+									"退票成功更新失敗(By orders Table)");
+		//改pool_table
+		Integer remainging =DatabaseUtils.executeQuery(" updateRefundBySuccess ", 
+									()->jdbcTemplate.update(SQL.SUCCESS_REFUND_BY_POOL,refundId),
+									"退票成功更新失敗(By pool Table)");
+		//改ticket_table
+		DatabaseUtils.executeUpdate(" updateRefundBySuccess ", 
+									()->jdbcTemplate.update(SQL.SUCCESS_REFUND_BY_TICKETS,remainging,refundId),
+									"退票成功更新失敗(By ticket Table)");
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	

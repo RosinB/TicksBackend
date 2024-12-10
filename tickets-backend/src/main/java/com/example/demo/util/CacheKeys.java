@@ -42,7 +42,13 @@ public class CacheKeys {
 	 }
 	 public static class util{
 		 	public static final String CAPTCHA_PREFIX="captcha:";
-		 
+		 	public static final String REQUEST_FREQUENCY="request_frequency:";
+		 	public static final String TRAFFIC_EVENTID="traffic:eventId:";
+		 	public static final String USERS_BEHAVIOR="user:behavior";
+		 	public static final String USERS_IPS="user:ips:";
+		 	public static final String SUSPICIOUS_USERS="user:susicious:";
+		 	public static final String TRAFFIC_RECORD_EVENTID="traffic:record:eventId";
+		 	
 	 }
 	 
 }

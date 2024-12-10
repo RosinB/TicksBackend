@@ -18,6 +18,7 @@ import com.example.demo.service.user.UserService;
 import com.example.demo.util.CacheKeys;
 import com.example.demo.util.RedisService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -90,6 +91,7 @@ public class OrderServiceImpl implements OrderService{
 
 	//取消訂單
 	@Override
+	@Transactional
 	public void cancelOrder(Integer orderId) {
 
 		orderRepositoryJdbc.updateCancelOrder(orderId);

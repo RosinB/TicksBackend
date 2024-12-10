@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.adminPanel.dto.orders.RefundSubmit;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.orders.OrderDetailDto;
 import com.example.demo.model.dto.orders.OrderDto;
@@ -24,6 +25,10 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 
 	
 	private static final class SQL{
+	
+		
+		
+		
 		static final String FIND_ORDER_DETAIL="""
 				SELECT
 			    o.order_id as orderId,
@@ -169,21 +174,36 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 			    SET order_status = ?
 			    WHERE order_id = ?
 			""".trim();
-		static final String UPDATE_CANCEL_ORDER_STATUS="""
+		static final String UPDATE_CANCEL_POOl_STATUS="""
 				update 	pool
-				set 	order_id =?,
+				set 	order_id =null,
 				 		pool_status='未售出'
 				where 	order_id=?
 				""".trim();
 	
+		
+		
 		static final String ADD_REFUND_SUBMIT="""
 				INSERT INTO refund(order_id, refund_title, refund_reason, refund_status)
 				VALUES (?, ?, ?, '待處理')
 	
 				""".trim();
 	
-	
-	
+		static final String UPDATE_REFUND_SUBMIT_BY_ORDERS="""
+				update orders
+				set    order_status='申請退票'
+				where  order_id=?
+				
+				""".trim();
+		static final String UPDATE_CANCEL_BY_TICKETS="""
+				update ticket t
+				join  orders o on o.event_id=t.event_id
+				set
+					 t.ticket_remaining=t.ticket_remaining + ?
+				where o.order_id=? and o.order_section=t.ticket_name
+				
+				
+				""".trim();
 	
 	
 	}
@@ -192,9 +212,12 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 	
 	private static final RowMapper<OrderDetailDto> orderDetailMapper=new BeanPropertyRowMapper<>(OrderDetailDto.class);
 	private static final RowMapper<OrderDto> orderMapper=new BeanPropertyRowMapper<>(OrderDto.class); 
+	
+	
+	
 
-	
-	
+
+
 	@Override
 	public void addRefundSubmit(RefundOrder dto) {
 		DatabaseUtils.executeUpdate(
@@ -343,10 +366,14 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 					"updateCancelOrder", 
 					()->jdbcTemplate.update(SQL.UPDATE_ORDER_STATUS, "訂單取消", orderId), 
 			        String.format("訂單 %d 取消失敗", orderId));
-		DatabaseUtils.executeUpdate(
+		Integer remaining= DatabaseUtils.executeQuery(
 					"updateCancelOrder", 
-					()->jdbcTemplate.update(SQL.UPDATE_CANCEL_ORDER_STATUS, null, orderId), 
+					()->jdbcTemplate.update(SQL.UPDATE_CANCEL_POOl_STATUS,  orderId), 
 					 String.format("訂單 %d 座位狀態更新失敗", orderId));
+		DatabaseUtils.executeUpdate("updateCancelOrder",
+					()->jdbcTemplate.update(SQL.UPDATE_CANCEL_BY_TICKETS,remaining,orderId),
+					 String.format("訂單 %d 座位狀態更新失敗(ticket table)", orderId));
+		
 		
 	}
 
@@ -360,6 +387,15 @@ public class OrderRepositoryJdbcImpl implements OrderRepositoryJdbc {
 					"查詢是否有重複退票請求失敗"
 					);
 	
+	}
+
+
+	@Override
+	public void updateRefundByOrderStatus(RefundOrder dto) {
+
+		DatabaseUtils.executeUpdate("updateRefundByOrderStatus",
+									()->jdbcTemplate.update(SQL.UPDATE_REFUND_SUBMIT_BY_ORDERS,dto.getOrderId()),
+									"修改退票訂單狀態失敗");
 	}
 	
 	

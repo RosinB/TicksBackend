@@ -13,4 +13,7 @@ public interface AdOrdersJDBC {
 
 	List<RefundSubmit> findRefundByPending();
 	
+	void updateRefundByReject(Integer refundId);
+	
+	void updateRefundBySuccess(Integer refundId);
 }
