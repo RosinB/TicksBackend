@@ -73,8 +73,8 @@ public class SalesController {
 			// 發送購票請求到 RabbitMQ
 			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TICKET_ROUTING_KEY, 
 					data);
-			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TRAFFIC_ROUTING_KEY, 
-					trafficData);
+//			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TRAFFIC_ROUTING_KEY, 
+//					trafficData);
 
 			return ResponseEntity.ok(ApiResponse.success("購票請求已提交，正在處理", requestId));
 		
