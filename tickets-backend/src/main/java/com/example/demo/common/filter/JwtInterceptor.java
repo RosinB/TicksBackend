@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
-	private final static Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
 
     @Value("${jwt.public-urls}")
 	private List<String> publicUrls;
