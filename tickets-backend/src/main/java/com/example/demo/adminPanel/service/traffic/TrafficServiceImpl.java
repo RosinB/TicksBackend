@@ -25,7 +25,7 @@ public class TrafficServiceImpl implements TrafficService{
 	@Override
 	public List<TrafficRecordDto> getTrafficRecord(Integer eventId,int start, int end) {
 
-		String cachekey=CacheKeys.util.TRAFFIC_RECORD_EVENTID+eventId;
+		String cachekey=CacheKeys.util.TRAFFIC_RECORD;
 		
 	    List<String> records = redisService.listRange(cachekey, start, end);
 	
@@ -33,9 +33,7 @@ public class TrafficServiceImpl implements TrafficService{
 	    return records.stream()
 	            .map(record -> {
 	                try {
-	                    log.info("嘗試轉換記錄: {}", record);
 	                    TrafficRecordDto dto = new ObjectMapper().readValue(record, TrafficRecordDto.class);
-	                    log.info("轉換成功: {}", dto);
 	                    return dto;
 	                } catch (Exception e) {
 	                    log.error("轉換失敗，原因: {}", e.getMessage());

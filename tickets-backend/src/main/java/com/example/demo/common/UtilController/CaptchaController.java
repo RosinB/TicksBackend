@@ -1,5 +1,7 @@
 package com.example.demo.common.UtilController;
 
+import com.example.demo.common.filter.JwtUtil;
+import com.example.demo.repository.user.UserRepositoryJdbc;
 import com.example.demo.util.ApiResponse;
 import com.example.demo.util.CacheKeys;
 import com.example.demo.util.RedisService;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
@@ -33,18 +36,21 @@ public class CaptchaController {
 
     private final Producer kaptchaProducer;
     private final RedisService redisService;
-    
+    private final JwtUtil jwtUtil;
     
    
     
     
-    @GetMapping("/captcha/{userName}")
-    public ResponseEntity<ApiResponse<Object >> getCaptcha(@PathVariable("userName") String  userName){
+    @GetMapping("/captcha")
+    public ResponseEntity<ApiResponse<Object >> getCaptcha(@RequestHeader("Authorization") String token){
     	  try {
     	        // 生成驗證碼文本
+    		
+    			String userName=jwtUtil.getUserNameFromHeader(token);
+     	        
     	        String captchaText = kaptchaProducer.createText();
     	        log.info("產生的驗證碼:"+captchaText);
-    	        
+    	       
     	        redisService.saveWithExpire(CacheKeys.util.CAPTCHA_PREFIX+userName,captchaText , 1, TimeUnit.MINUTES);
     	        
     	        // 生成驗證碼圖片

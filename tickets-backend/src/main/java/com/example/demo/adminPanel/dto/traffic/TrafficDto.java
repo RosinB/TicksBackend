@@ -39,6 +39,8 @@ public class TrafficDto {
     private Boolean isProxy;         // 是否使用代理
     private Integer requestFrequency;// 單位時間內的請求次數
     private String errorMessage;     // 如果失敗，錯誤訊息
+    private Long executionTime;  // 添加執行時間欄位
+
 }
 
 

@@ -1,9 +1,0 @@
-jwt:
-  public-urls:
-    - /user/login
-    - /user/register
-    - /event/all
-    - /user/forget/**
-    - /user/email/get/**
-    - /event/ticketAllPic
-    - /event/ticket/**

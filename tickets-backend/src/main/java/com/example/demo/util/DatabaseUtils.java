@@ -38,7 +38,7 @@ public class DatabaseUtils {
 	            throw new RuntimeException("更新失敗(筆數為0): " + errorMessage);
 	        }
 	        // 成功時也記錄日誌
-	        logger.info("{}更新成功，影響筆數: {}", operation, result);
+//	        logger.info("{}更新成功，影響筆數: {}", operation, result);
 	        
 	    } catch (EmptyResultDataAccessException e) {
 	        logger.info("{}：{}", errorMessage, e.getMessage());

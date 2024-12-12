@@ -38,30 +38,55 @@ public class TrafficWatcherService {
 	            recordSuspiciousActivity(trafficData);
 	        }
 	    }
+	    
+	    
 	    private void storeTrafficRecord(TrafficDto trafficData) {
-	        String recordKey = CacheKeys.util.TRAFFIC_RECORD_EVENTID+trafficData.getEventId();
-	        
+	        String recordKey = CacheKeys.util.TRAFFIC_RECORD;
+
 	        Map<String, Object> record = new HashMap<>();
+	        // 基本請求資訊
+	        record.put("requestId", trafficData.getRequestId());
 	        record.put("timestamp", trafficData.getTimestamp());
 	        record.put("userName", trafficData.getUserName());
 	        record.put("ip", trafficData.getIpAddress());
 	        record.put("eventId", trafficData.getEventId());
 	        record.put("requestType", trafficData.getRequestType());
+	        
+	        // 設備和請求相關
 	        record.put("deviceType", trafficData.getDeviceType());
+	        record.put("userAgent", trafficData.getUserAgent());
+	        record.put("sessionId", trafficData.getSessionId());
+	        record.put("requestMethod", trafficData.getRequestMethod());
+	        record.put("requestUrl", trafficData.getRequestUrl());
+	        record.put("referrer", trafficData.getReferrer());
+	        record.put("executionTime", trafficData.getExecutionTime());  // 添加執行時間
+
+	        // 風險控制相關
 	        record.put("isProxy", trafficData.getIsProxy());
 	        record.put("isRobot", trafficData.getIsRobot());
-	        try {	        // 將記錄轉為 JSON 字符串存入 Redis 列表
+	        record.put("requestFrequency", trafficData.getRequestFrequency());
+	        
+	        // 結果相關
+	        record.put("success", trafficData.isSuccess());
+	        record.put("errorMessage", trafficData.getErrorMessage());
+	        
+	        // 票務相關（如果有的話）
+	        if (trafficData.getEventId() != null) {
+	            record.put("ticketType", trafficData.getTicketType());
+	            record.put("ticketQuantity", trafficData.getTicketQuantity());
+	            record.put("price", trafficData.getPrice());
+	        }
 
-		        String recordJson = new ObjectMapper().writeValueAsString(record);
-		        redisService.listLeftPush(recordKey, recordJson);
-		        log.info("儲存的訊息:"+recordJson);
-
-			} catch (Exception e) {
-				log.info("將記錄轉為 JSON 字符串存入 Redis 列表:TrafficWatcherService");
-			}
+	        try {
+	            String recordJson = new ObjectMapper().writeValueAsString(record);
+	            redisService.listLeftPush(recordKey, recordJson);
+	            log.info("儲存的訊息:" + recordJson);
+	        } catch (Exception e) {
+	            log.error("Redis 存儲失敗: ", e);
+	        }
 	        
 	        // 限制列表長度，只保留最近的記錄
-	        redisService.listTrim(recordKey, 0, 9999); // 保留最近1000條記錄
+	        redisService.listTrim(recordKey, 0, 9999);
 	    }
 	    
 	    
@@ -73,6 +98,7 @@ public class TrafficWatcherService {
 	        redisService.expire(secondKey, 5, TimeUnit.MINUTES);
 	    }
 	    
+	    
 	    // 記錄用戶活動
 	    private void recordUserActivity(TrafficDto trafficData, long currentSecond) {
 	        String userKey = CacheKeys.util.USERS_BEHAVIOR + trafficData.getUserName() + currentSecond;
@@ -80,6 +106,7 @@ public class TrafficWatcherService {
 	        redisService.hashMultiSet(userKey, behavior);
 	        redisService.expire(userKey, 30, TimeUnit.MINUTES);
 	    }
+	    
 	    
 	    // 創建行為映射
 	    private Map<String, Object> createBehaviorMap(TrafficDto trafficData) {

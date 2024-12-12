@@ -38,13 +38,11 @@ public class TicketSalesConsumer {
     public void handleMessage(PostTicketSalesDto tickets) {
     	  String requestId = tickets.getRequestId();
           String orderStatusKey = "order:" + requestId;
-            
           try {
               // 檢查是否已處理
               if (redisService.exists(orderStatusKey)) {
                   return; // 已處理，直接返回
               }
-              // 處理購票邏輯
               
              
 

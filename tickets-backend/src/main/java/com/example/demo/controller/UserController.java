@@ -39,12 +39,11 @@ public class UserController {
     private final  JwtUtil jwtUtil;  
 	private final UserService userService;
 	private final OrderService orderService;
-	
 
 //----------獲取指定用戶的所有訂單詳情
-	@GetMapping("/order/{userName}")
-	public ResponseEntity<ApiResponse<Object>> getUserOrder(@PathVariable("userName") String userName){
-		
+	@GetMapping("/order")
+	public ResponseEntity<ApiResponse<Object>> getUserOrder(@RequestHeader("Authorization") String token){
+		String userName=jwtUtil.getUserNameFromHeader(token);
 		List<OrderDetailDto> dto=orderService.getAllUserOrder(userName);
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", dto));
 	}
@@ -66,7 +65,7 @@ public class UserController {
 	@GetMapping("/userUpdate")
 	public ResponseEntity<ApiResponse<Object>> getUser(@RequestHeader("Authorization") String token) {
 		token = token.replace("Bearer ", "");
-	    String userName = jwtUtil.validateToken(token);  // 這個方法需要在 JwtUtil 中添加
+	    String userName = jwtUtil.getUsernameFromToken(token);  
 		UserDto userDto = userService.getUser(userName);
 
 		return ResponseEntity.ok(ApiResponse.success("查詢單筆成功", userDto));
@@ -94,7 +93,6 @@ public class UserController {
 			            .body(ApiResponse.error(401, loginSessionDto.getMessage(), null));
 		}
 		
-
 	    String token = jwtUtil.generateToken(loginDto.getUserName());
 	    Map<String, String> response = Map.of(
 	            "token", token,

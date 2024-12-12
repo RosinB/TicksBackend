@@ -20,8 +20,11 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
 @Service
@@ -42,39 +45,33 @@ public class TicketWebSocketService extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) {
-        try {
-            String payload = message.getPayload();
-//            log.info("【WebSocket】收到消息: {}", payload);  // 顯示原始消息
-            
-            ObjectMapper objectMapper = new ObjectMapper();
-            WebSocketTicketDto subscription = objectMapper.readValue(payload, WebSocketTicketDto.class);
-            
-            
-       
-            if (subscription.getEventId() != null && subscription.getSection() != null) {
-            	
-                sessionManager.addSession(session, subscription);  // 直接使用 subscription
+        synchronized (session) {
+            try {
+                String payload = message.getPayload();
+                ObjectMapper objectMapper = new ObjectMapper();
+                WebSocketTicketDto subscription = objectMapper.readValue(payload, WebSocketTicketDto.class);
                 
-//                log.info("【WebSocket】成功添加訂閱: sessionId={}, eventId={}, section={}", 
-//                    session.getId(), subscription.getEventId(), subscription.getSection());
-                // 立即發送一次當前狀態
-                Integer remaining = salesRepositoryJdbc.findRemaingByEventIdAndSection(
-                    subscription.getEventId(),
-                    subscription.getSection()
-                );
-                String status = String.format(
-                    "{\"eventId\": %d, \"section\": \"%s\", \"remainingTickets\": %d}",
-                    subscription.getEventId(),
-                    subscription.getSection(),
-                    remaining
-                );
-                session.sendMessage(new TextMessage(status));
-//                log.info("【WebSocket】立即發送狀態更新: {}", status);
-            } else {
-                log.warn("無效的訂閱請求: {}", payload);
+                if (subscription.getEventId() != null && subscription.getSection() != null) {
+                    sessionManager.addSession(session, subscription);
+                    
+                    Integer remaining = salesRepositoryJdbc.findRemaingByEventIdAndSection(
+                        subscription.getEventId(),
+                        subscription.getSection()
+                    );
+                    String status = String.format(
+                        "{\"eventId\": %d, \"section\": \"%s\", \"remainingTickets\": %d}",
+                        subscription.getEventId(),
+                        subscription.getSection(),
+                        remaining
+                    );
+                    session.sendMessage(new TextMessage(status));
+                } else {
+                    log.warn("無效的訂閱請求: {}", payload);
+                }
+            } catch (Exception e) {
+                log.error("處理訂閱請求時發生錯誤: {}", e.getMessage());
+                sessionManager.removeSession(session);
             }
-        } catch (Exception e) {
-            log.error("處理訂閱請求時發生錯誤: {}", e.getMessage());
         }
     }
 
@@ -123,38 +120,56 @@ public class TicketWebSocketService extends TextWebSocketHandler {
             return;
         }
 
-        sessionMap.forEach((session, subscriptions) -> {
+        Set<WebSocketSession> invalidSessions = ConcurrentHashMap.newKeySet();
+
+        for (Map.Entry<WebSocketSession, List<WebSocketTicketDto>> entry : sessionMap.entrySet()) {
+            WebSocketSession session = entry.getKey();
+            List<WebSocketTicketDto> subscriptions = entry.getValue();
+
             if (!isValidSession(session)) {
-                sessionManager.removeSession(session);
-                return;
+                invalidSessions.add(session);
+                continue;
             }
 
-            subscriptions.forEach(subscription -> 
-                sendTicketUpdate(session, subscription));
+            for (WebSocketTicketDto subscription : subscriptions) {
+                sendTicketUpdate(session, subscription);
+            }
+        }
+
+        // 移除無效的 session
+        invalidSessions.forEach(session -> {
+            sessionManager.removeSession(session);
         });
     }
+    
+    
 
     private void sendTicketUpdate(WebSocketSession session, WebSocketTicketDto subscription) {
-        try {
-            Integer remaining = salesRepositoryJdbc.findRemaingByEventIdAndSection(
-                subscription.getEventId(),
-                subscription.getSection()
-            );
-
-            TicketUpdate update = new TicketUpdate(
-                subscription.getEventId(),
-                subscription.getSection(),
-                remaining
-            );
-
-            synchronized (lock) {
-                if (isValidSession(session)) {
-                    session.sendMessage(new TextMessage(update.toJson()));
+        // 添加同步機制來確保消息按順序發送
+        synchronized (session) {
+            try {
+                if (!isValidSession(session)) {
+                    return;
                 }
+
+                Integer remaining = salesRepositoryJdbc.findRemaingByEventIdAndSection(
+                    subscription.getEventId(),
+                    subscription.getSection()
+                );
+
+                TicketUpdate update = new TicketUpdate(
+                    subscription.getEventId(),
+                    subscription.getSection(),
+                    remaining
+                );
+
+                session.sendMessage(new TextMessage(update.toJson()));
+            } catch (Exception e) {
+                log.error("發送票務更新失敗: sessionId={}, error={}", 
+                    session.getId(), e.getMessage());
+                // 如果發送失敗，標記 session 為無效
+                sessionManager.removeSession(session);
             }
-        } catch (Exception e) {
-            log.error("發送票務更新失敗: sessionId={}, error={}", 
-                session.getId(), e.getMessage());
         }
     }
 

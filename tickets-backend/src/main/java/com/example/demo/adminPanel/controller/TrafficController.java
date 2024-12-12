@@ -32,7 +32,6 @@ public class TrafficController {
 						@RequestParam("eventId") Integer eventId){
 		List<TrafficRecordDto> dto=
 		trafficService.getTrafficRecord(eventId, start, end);
-		System.out.println("dto是:"+dto);
 		
 		return ResponseEntity.ok(ApiResponse.success("21", dto));
 	}

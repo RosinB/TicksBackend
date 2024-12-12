@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 
-import java.util.Map;
 import java.util.UUID;
 
 
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +20,7 @@ import com.example.demo.adminPanel.dto.traffic.TrafficDto;
 import com.example.demo.adminPanel.service.common.TrafficRecordService;
 import com.example.demo.common.config.RabbitMQConfig;
 import com.example.demo.common.exception.UserIsNotVerifiedException;
+import com.example.demo.common.filter.JwtUtil;
 import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.model.dto.sales.PostTicketSalesDto;
 import com.example.demo.model.dto.ticket.SeatStatusDto;
@@ -46,16 +47,15 @@ public class SalesController {
 	private final OrderService orderService;
 	private final RabbitTemplate rabbitTemplate;
 	private final RedisService redisService;
-	private final TrafficRecordService trafficService;
+	private final JwtUtil jwtUtil;
 //=======================處理售票狀況============================== 這在tiecketsales
 	@PostMapping("/goticket/area/buy")
 
 	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody PostTicketSalesDto data,
 			HttpServletRequest request) {
-			// 生成唯一請求 ID
-			String requestId = UUID.randomUUID().toString();
+			String requestId = (String) request.getAttribute("requestId");
 			data.setRequestId(requestId);
-			
+			System.out.println("這是butticket的"+requestId);
 			String captcha=redisService.get(CacheKeys.util.CAPTCHA_PREFIX+data.getUserName(), String.class);
 
 			if (ConstantList.CAPTCHA) {
@@ -64,17 +64,11 @@ public class SalesController {
 			        return handleCaptchaError(data.getUserName());
 			    }
 			}
-			TrafficDto trafficData = trafficService.createTrafficDto(data,request,requestId);
-			 // 頻率檢查
-	        Integer frequency = trafficData.getRequestFrequency();
-	        if (frequency > 100) {
-	        	 return handleTooManyRequests(data.getUserName(), frequency);
-	        }
+		
 			// 發送購票請求到 RabbitMQ
 			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TICKET_ROUTING_KEY, 
 					data);
-//			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TRAFFIC_ROUTING_KEY, 
-//					trafficData);
+			
 
 			return ResponseEntity.ok(ApiResponse.success("購票請求已提交，正在處理", requestId));
 		
@@ -82,10 +76,10 @@ public class SalesController {
 	}
 
 	@PostMapping("/goticket/area/buy/seat")
-	public ResponseEntity<ApiResponse<Object>> postBuyTicketwithSeat(@RequestBody PostTicketSalesDto data) {
+	public ResponseEntity<ApiResponse<Object>> postBuyTicketwithSeat(@RequestBody PostTicketSalesDto data,HttpServletRequest request) {
 
 			// 生成唯一請求 ID
-			String requestId = UUID.randomUUID().toString();
+			String requestId = (String) request.getAttribute("requestId");
 			data.setRequestId(requestId);
 			salesService.buyTicketWithSeat(data);
 
@@ -94,21 +88,7 @@ public class SalesController {
 
 	}
 
-//========================演唱會requestId查詢==============================================
-	@GetMapping("/goticket/area/status/{requestId}")
-	public ResponseEntity<ApiResponse<Object>> getCheckTicketStatus(@PathVariable("requestId") String requestId) {
-		try {
-			// 調用通用邏輯獲取狀態
-			Map<String, Object> statusResponse = orderService.getTicketStatus(requestId);
 
-			// 根據狀態返回結果
-			return ResponseEntity.ok(ApiResponse.success("查詢成功", statusResponse));
-		} catch (Exception e) {
-			log.error("查詢訂單狀態失敗，RequestID: {}, 錯誤: {}", requestId, e.getMessage(), e);
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body(ApiResponse.error(500, "查詢訂單失敗，請稍後再試！", null));
-		}
-	}
 
 //========================付款後訂單更新=============================================
 	@PostMapping("/goticket/pay/{orderId}")
@@ -135,9 +115,11 @@ public class SalesController {
 		return ResponseEntity.ok(ApiResponse.success("傳達成功", dto));
 	}
 
-	@GetMapping("/goticket/asborders")
-	public ResponseEntity<ApiResponse<Object>> getAsbOrders(@RequestParam("orderId") Integer orderId,
-			@RequestParam("userName") String userName) {
+	@GetMapping("/goticket/asborders/{orderId}")
+	public ResponseEntity<ApiResponse<Object>> getAsbOrders(@PathVariable("orderId") Integer orderId,
+															@RequestHeader("Authorization") String token
+			) {
+		String userName = jwtUtil.getUserNameFromHeader(token);
 		OrderAstractDto dto = orderService.getOrderAbstract2(orderId, userName);
 
 
@@ -147,9 +129,11 @@ public class SalesController {
 
 
 	// 獲得演唱會區域價錢 這是在ticketSection那頁
-	@GetMapping("/goticket/area")
-	public ResponseEntity<ApiResponse<Object>> getTicketSection(@RequestParam("userName") String userName,
-			@RequestParam("eventId") Integer eventId) {
+	@GetMapping("/goticket/area/{eventId}")
+	public ResponseEntity<ApiResponse<Object>> getTicketSection(@RequestHeader("Authorization") String token,
+			@PathVariable("eventId") Integer eventId) {
+	
+		String userName=jwtUtil.getUserNameFromHeader(token);
 
 		try {
 			TicketSectionDto ticketSectionDto = salesService.getTicketSection(eventId, userName);

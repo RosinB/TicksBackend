@@ -53,10 +53,6 @@ public class StockUpdateConsumer {
                     userId, tickets.getEventId(), tickets.getSection(), tickets.getQuantity(), requestId);        
             } catch (Exception e) {
             	logger.info("票卷更新失敗: "+e.getMessage());
-            }finally {
-            	redisService.decrement(CacheKeys.Sales.SALESQUEUE_PREFIX+tickets.getEventId(), 1);
-            	log.info("排隊結束:{}",redisService.get(CacheKeys.Sales.SALESQUEUE_PREFIX+tickets.getEventId(),Integer.class));
-
-			}
+            }
     }
     }

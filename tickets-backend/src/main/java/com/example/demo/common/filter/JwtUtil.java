@@ -47,21 +47,41 @@ public class JwtUtil {
                 .parseClaimsJws(token);
             return true;
         } catch (Exception e) {
-            logger.error("Token validation failed: ", e);
+            logger.error("Token認證失敗 ", e);
             return false;
         }
     }
-    public String validateToken(String token) {
+
+    public String getUsernameFromToken(String token) {
         try {
             return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getSubject();
         } catch (Exception e) {
-            logger.error("Token validation failed: ", e);
-            throw new RuntimeException("Invalid token");
+            logger.error("Failed to get username from token: ", e);
+            throw new RuntimeException("Failed to get username from token");
         }
     }
+    
+    public String getUserNameFromHeader(String header) {
+        try {
+            if (header.startsWith("Bearer ")) {
+                String token = header.substring(7); // 去掉前綴
+                return getUsernameFromToken(token); // 使用已存在的方法提取用戶名
+            } else {
+                throw new RuntimeException("Authorization 標頭格式不正確");
+            }
+        } catch (Exception e) {
+            logger.error("從 Authorization 標頭提取用戶名失敗: ", e);
+            throw new RuntimeException("無法從 Authorization 標頭提取用戶名");
+        }
+    }
+    
+    
+    
+    
+    
 }
