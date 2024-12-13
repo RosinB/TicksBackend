@@ -49,13 +49,15 @@ public class RequestStatisticsFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
             
+            TrafficDto trafficDatas = (TrafficDto) request.getAttribute("trafficData");
+
             // 更新完成時間
-            updateResponseInfo(trafficData, response, System.currentTimeMillis() - startTime);
+            updateResponseInfo(trafficDatas, response, System.currentTimeMillis() - startTime);
             
             rabbitTemplate.convertAndSend(
                 RabbitMQConfig.EXCHANGE_NAME,
                 RabbitMQConfig.TRAFFIC_ROUTING_KEY,
-                trafficData
+                trafficDatas
             );
 
         } catch (Exception e) {

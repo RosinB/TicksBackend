@@ -3378,3 +3378,1004 @@ java.lang.RuntimeException: 找不到訂單ID:64180 的摘要Incorrect result si
 				獲取訂單摘要, 訂單ID: 64182, 用戶名: ruka, 請求ID: {}
 2024-12-13 14:13:18.025 [http-nio-8080-exec-9] INFO  c.e.d.c.U.CaptchaController -
 				產生的驗證碼:5HMTP
+2024-12-13 21:21:25.357 [main] INFO  c.e.d.MainApp -
+				Starting MainApp using Java 21.0.4 with PID 36644 (C:\Users\karta\git\TicksBackend2\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend2\tickets-backend)
+2024-12-13 21:21:25.359 [main] INFO  c.e.d.MainApp -
+				No active profile set, falling back to 1 default profile: "default"
+2024-12-13 21:21:28.867 [main] INFO  o.a.c.h.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2024-12-13 21:21:28.873 [main] INFO  o.a.c.c.StandardService -
+				Starting service [Tomcat]
+2024-12-13 21:21:28.874 [main] INFO  o.a.c.c.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-13 21:21:29.145 [main] INFO  o.a.j.s.TldScanner -
+				At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-13 21:21:29.151 [main] INFO  o.a.c.c.C.[.[.[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-12-13 21:21:29.932 [main] INFO  o.r.Version -
+				Redisson 3.22.0
+2024-12-13 21:21:30.324 [redisson-netty-2-6] INFO  o.r.c.p.MasterPubSubConnectionPool -
+				1 connections initialized for localhost/127.0.0.1:6379
+2024-12-13 21:21:30.332 [redisson-netty-2-8] INFO  o.r.c.p.MasterConnectionPool -
+				2 connections initialized for localhost/127.0.0.1:6379
+2024-12-13 21:21:31.624 [main] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Starting...
+2024-12-13 21:21:31.827 [main] INFO  c.z.h.p.HikariPool -
+				HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71a509c
+2024-12-13 21:21:31.829 [main] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Start completed.
+2024-12-13 21:21:35.011 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -
+				
+
+Using generated security password: a9de454f-1d15-4642-86c4-ea7aa50a8e1f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-13 21:21:36.938 [main] INFO  o.a.c.h.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2024-12-13 21:21:37.147 [main] INFO  c.e.d.MainApp -
+				Started MainApp in 12.446 seconds (process running for 13.238)
+2024-12-13 21:21:38.043 [RMI TCP Connection(10)-127.0.0.1] INFO  o.a.c.c.C.[.[.[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-13 21:22:22.794 [http-nio-8080-exec-2] INFO  c.e.d.c.a.LoginAspect -
+				用戶登入嘗試: ruka
+2024-12-13 21:22:23.182 [http-nio-8080-exec-2] INFO  c.e.d.s.u.UserServiceImpl -
+				用戶ruka登入成功
+2024-12-13 21:22:23.182 [http-nio-8080-exec-2] INFO  c.e.d.c.a.LoginAspect -
+				用戶: ruka 登入成功
+2024-12-13 21:22:26.501 [http-nio-8080-exec-5] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:RG3RH
+2024-12-13 21:22:35.642 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 2939
+2024-12-13 21:22:35.645 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 2938
+2024-12-13 21:22:35.646 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：2938，RequestID: c02b3571-57f6-45d5-a642-e0b1c332e7e2
+2024-12-13 21:22:35.675 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50831, eventId=1, section=A區, quantity=1
+2024-12-13 21:22:35.685 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=c02b3571-57f6-45d5-a642-e0b1c332e7e2
+2024-12-13 21:22:35.729 [http-nio-8080-exec-10] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50831, orderStatus=付款中)
+2024-12-13 21:22:35.736 [http-nio-8080-exec-10] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 21:22:35.789 [http-nio-8080-exec-1] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50831, 用戶名: ruka, 請求ID: {}
+2024-12-13 21:22:38.447 [http-nio-8080-exec-4] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50831, 用戶名: ruka, 請求ID: {}
+2024-12-13 21:22:50.275 [http-nio-8080-exec-7] INFO  c.e.d.s.c.RefundService -
+				退票訂單發送成功:ruka
+2024-12-13 21:23:02.743 [http-nio-8080-exec-9] INFO  c.e.d.c.a.LoginAspect -
+				用戶登入嘗試: admin
+2024-12-13 21:23:02.891 [http-nio-8080-exec-9] INFO  c.e.d.s.u.UserServiceImpl -
+				用戶admin登入成功
+2024-12-13 21:23:02.891 [http-nio-8080-exec-9] INFO  c.e.d.c.a.LoginAspect -
+				用戶: admin 登入成功
+2024-12-13 21:23:05.038 [http-nio-8080-exec-10] ERROR c.e.d.u.DatabaseUtils -
+				查詢所有退票請求失敗
+2024-12-13 21:23:05.043 [http-nio-8080-exec-10] ERROR c.e.d.c.a.GlobalExceptionAspect -
+				AdOrderServiceImpl中的getAllRefund方法發生錯誤: 查詢所有退票請求失敗StatementCallback; bad SQL grammar [select
+       r.refund_id as refundId,
+	   e.event_id as eventId,
+	   u.user_id  as userId,
+	   o.order_id as orderId,
+	   o.order_datetime as orderDateTime,
+	   r.refund_status as refundStatus,
+	   r.refund_title as refundTitle,
+	   r.refund_reason as refundReason,
+	   r.created_time as refundTime
+from refund r
+join orders o on r.order_id=o.order_id
+join users u on o.user_id =u.user_id
+join event e on e.event_id = o.event_id]
+2024-12-13 21:23:05.046 [http-nio-8080-exec-10] ERROR c.e.d.c.e.GlobalExceptionHandler -
+				運行時異常:
+控制器: com.example.demo.adminPanel.controller.AdminOrdersController#getRefundSubmit()
+請求方法: GET
+請求路徑: /admin/orders/refund
+請求參數: org.apache.catalina.util.ParameterMap@cb4770b
+異常類型: RuntimeException
+錯誤訊息: 查詢所有退票請求失敗StatementCallback; bad SQL grammar [select
+       r.refund_id as refundId,
+	   e.event_id as eventId,
+	   u.user_id  as userId,
+	   o.order_id as orderId,
+	   o.order_datetime as orderDateTime,
+	   r.refund_status as refundStatus,
+	   r.refund_title as refundTitle,
+	   r.refund_reason as refundReason,
+	   r.created_time as refundTime
+from refund r
+join orders o on r.order_id=o.order_id
+join users u on o.user_id =u.user_id
+join event e on e.event_id = o.event_id]
+堆疊追蹤:
+
+java.lang.RuntimeException: 查詢所有退票請求失敗StatementCallback; bad SQL grammar [select
+       r.refund_id as refundId,
+	   e.event_id as eventId,
+	   u.user_id  as userId,
+	   o.order_id as orderId,
+	   o.order_datetime as orderDateTime,
+	   r.refund_status as refundStatus,
+	   r.refund_title as refundTitle,
+	   r.refund_reason as refundReason,
+	   r.created_time as refundTime
+from refund r
+join orders o on r.order_id=o.order_id
+join users u on o.user_id =u.user_id
+join event e on e.event_id = o.event_id]
+	at com.example.demo.common.aspect.GlobalExceptionAspect.handleException(GlobalExceptionAspect.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:637)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:627)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
+	at com.example.demo.adminPanel.service.orders.AdOrderServiceImpl$$SpringCGLIB$$0.getAllRefund(<generated>)
+	at com.example.demo.adminPanel.controller.AdminOrdersController.getRefundSubmit(AdminOrdersController.java:39)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at com.example.demo.common.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:66)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at com.example.demo.common.filter.RequestStatisticsFilter.doFilterInternal(RequestStatisticsFilter.java:50)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:113)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-12-13 21:26:36.773 [http-nio-8080-exec-4] INFO  c.e.d.a.s.c.AdRefundService -
+				(通過)退票訂單更新成功:1
+2024-12-13 21:26:50.446 [http-nio-8080-exec-8] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: 3a92aa58-8fcc-c08f-87d0-1df2155d133a
+2024-12-13 21:26:52.163 [http-nio-8080-exec-7] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: 3a92aa58-8fcc-c08f-87d0-1df2155d133a
+2024-12-13 21:26:52.190 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: cde2f650-1e93-6dff-eeb3-721f87c846ac
+2024-12-13 21:26:59.313 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: cde2f650-1e93-6dff-eeb3-721f87c846ac
+2024-12-13 22:10:10.855 [http-nio-8080-exec-1] INFO  c.e.d.c.a.LoginAspect -
+				用戶登入嘗試: admin
+2024-12-13 22:10:10.991 [http-nio-8080-exec-1] INFO  c.e.d.s.u.UserServiceImpl -
+				用戶admin登入成功
+2024-12-13 22:10:10.991 [http-nio-8080-exec-1] INFO  c.e.d.c.a.LoginAspect -
+				用戶: admin 登入成功
+2024-12-13 22:10:12.598 [http-nio-8080-exec-4] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: a217a425-5260-b5f5-3c4b-42fb1282bf60
+2024-12-13 22:10:13.373 [http-nio-8080-exec-6] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: a217a425-5260-b5f5-3c4b-42fb1282bf60
+2024-12-13 22:10:13.390 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 865aafcd-a503-266d-8936-b48e7ccf7b28
+2024-12-13 22:10:22.159 [http-nio-8080-exec-7] INFO  c.e.d.c.a.LoginAspect -
+				用戶登入嘗試: ruka
+2024-12-13 22:10:22.296 [http-nio-8080-exec-7] INFO  c.e.d.s.u.UserServiceImpl -
+				用戶ruka登入成功
+2024-12-13 22:10:22.297 [http-nio-8080-exec-7] INFO  c.e.d.c.a.LoginAspect -
+				用戶: ruka 登入成功
+2024-12-13 22:10:23.998 [http-nio-8080-exec-10] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:GANEK
+2024-12-13 22:10:26.702 [http-nio-8080-exec-2] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:HEHDY
+2024-12-13 22:10:35.366 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 1000
+2024-12-13 22:10:35.373 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 999
+2024-12-13 22:10:35.374 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：999，RequestID: 9189cc2f-0eb1-4794-afdd-c84306e11139
+2024-12-13 22:10:35.387 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50832, eventId=1, section=A區, quantity=1
+2024-12-13 22:10:35.391 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=9189cc2f-0eb1-4794-afdd-c84306e11139
+2024-12-13 22:10:35.392 [http-nio-8080-exec-5] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50832, orderStatus=付款中)
+2024-12-13 22:10:35.393 [http-nio-8080-exec-5] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:10:35.431 [http-nio-8080-exec-9] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50832, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:10:42.272 [http-nio-8080-exec-1] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50832, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:10:45.145 [http-nio-8080-exec-6] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:VUMHB
+2024-12-13 22:10:51.736 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 1000
+2024-12-13 22:10:51.737 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 999
+2024-12-13 22:10:51.738 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：999，RequestID: 04a7eb50-4c7a-4abb-9a6a-59354cee2d57
+2024-12-13 22:10:51.749 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50833, eventId=1, section=B區, quantity=1
+2024-12-13 22:10:51.753 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=1, Section=B區, Quantity=1, RequestId=04a7eb50-4c7a-4abb-9a6a-59354cee2d57
+2024-12-13 22:10:51.759 [http-nio-8080-exec-3] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50833, orderStatus=付款中)
+2024-12-13 22:10:51.761 [http-nio-8080-exec-3] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:10:51.794 [http-nio-8080-exec-1] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50833, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:10:53.743 [http-nio-8080-exec-2] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50833, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:10:55.769 [http-nio-8080-exec-5] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:SRGM8
+2024-12-13 22:11:03.148 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 500
+2024-12-13 22:11:03.149 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 499
+2024-12-13 22:11:03.150 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：499，RequestID: efa4da10-7965-4033-835b-f498ccc0d4e0
+2024-12-13 22:11:03.159 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50834, eventId=2, section=A區, quantity=1
+2024-12-13 22:11:03.163 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=2, Section=A區, Quantity=1, RequestId=efa4da10-7965-4033-835b-f498ccc0d4e0
+2024-12-13 22:11:03.173 [http-nio-8080-exec-10] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50834, orderStatus=付款中)
+2024-12-13 22:11:03.174 [http-nio-8080-exec-10] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:11:03.209 [http-nio-8080-exec-2] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50834, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:11:05.151 [http-nio-8080-exec-8] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50834, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:11:07.131 [http-nio-8080-exec-3] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:NTJBN
+2024-12-13 22:11:13.766 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 500
+2024-12-13 22:11:13.769 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 499
+2024-12-13 22:11:13.770 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：499，RequestID: c575c98f-45cf-458e-aec9-a29114152520
+2024-12-13 22:11:13.780 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50835, eventId=2, section=B區, quantity=1
+2024-12-13 22:11:13.784 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=2, Section=B區, Quantity=1, RequestId=c575c98f-45cf-458e-aec9-a29114152520
+2024-12-13 22:11:13.788 [http-nio-8080-exec-4] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50835, orderStatus=付款中)
+2024-12-13 22:11:13.790 [http-nio-8080-exec-4] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:11:13.821 [http-nio-8080-exec-8] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50835, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:11:15.675 [http-nio-8080-exec-7] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50835, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:11:18.552 [http-nio-8080-exec-10] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:AVDE6
+2024-12-13 22:11:20.755 [http-nio-8080-exec-4] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:RCVVH
+2024-12-13 22:12:18.330 [RMI TCP Connection(63)-127.0.0.1] INFO  o.a.c.h.Http11NioProtocol -
+				Stopping ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:12:18.371 [RMI TCP Connection(63)-127.0.0.1] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2024-12-13 22:12:18.375 [RMI TCP Connection(63)-127.0.0.1] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2024-12-13 22:12:18.394 [RMI TCP Connection(63)-127.0.0.1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 865aafcd-a503-266d-8936-b48e7ccf7b28
+2024-12-13 22:12:22.483 [main] INFO  c.e.d.MainApp -
+				Starting MainApp using Java 21.0.4 with PID 8380 (C:\Users\karta\git\TicksBackend2\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend2\tickets-backend)
+2024-12-13 22:12:22.484 [main] INFO  c.e.d.MainApp -
+				No active profile set, falling back to 1 default profile: "default"
+2024-12-13 22:12:25.435 [main] INFO  o.a.c.h.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:12:25.440 [main] INFO  o.a.c.c.StandardService -
+				Starting service [Tomcat]
+2024-12-13 22:12:25.441 [main] INFO  o.a.c.c.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-13 22:12:25.724 [main] INFO  o.a.j.s.TldScanner -
+				At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-13 22:12:25.731 [main] INFO  o.a.c.c.C.[.[.[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-12-13 22:12:26.530 [main] INFO  o.r.Version -
+				Redisson 3.22.0
+2024-12-13 22:12:26.906 [redisson-netty-2-5] INFO  o.r.c.p.MasterPubSubConnectionPool -
+				1 connections initialized for localhost/127.0.0.1:6379
+2024-12-13 22:12:26.913 [redisson-netty-2-8] INFO  o.r.c.p.MasterConnectionPool -
+				2 connections initialized for localhost/127.0.0.1:6379
+2024-12-13 22:12:28.108 [main] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Starting...
+2024-12-13 22:12:28.311 [main] INFO  c.z.h.p.HikariPool -
+				HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71a509c
+2024-12-13 22:12:28.313 [main] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Start completed.
+2024-12-13 22:12:31.481 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -
+				
+
+Using generated security password: 2ed1f074-ed0f-40b7-b33b-79440282173c
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-13 22:12:33.355 [main] INFO  o.a.c.h.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:12:33.560 [main] INFO  c.e.d.MainApp -
+				Started MainApp in 11.73 seconds (process running for 12.508)
+2024-12-13 22:12:34.090 [RMI TCP Connection(8)-127.0.0.1] INFO  o.a.c.c.C.[.[.[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-13 22:12:44.201 [http-nio-8080-exec-2] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: 6f89dada-1d07-65f4-d84c-2a9ad8c75a94
+2024-12-13 22:12:45.186 [http-nio-8080-exec-3] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: 6f89dada-1d07-65f4-d84c-2a9ad8c75a94
+2024-12-13 22:12:45.204 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 6e3fdafc-c331-1752-e7d9-135a92e0edd5
+2024-12-13 22:12:48.657 [http-nio-8080-exec-5] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:2X7BX
+2024-12-13 22:12:54.227 [http-nio-8080-exec-10] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:VQS9W
+2024-12-13 22:12:55.239 [http-nio-8080-exec-3] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:FNKU9
+2024-12-13 22:13:12.824 [http-nio-8080-exec-4] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:ENJ2J
+2024-12-13 22:13:16.165 [http-nio-8080-exec-7] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:LDTVN
+2024-12-13 22:13:31.514 [http-nio-8080-exec-1] INFO  c.e.d.s.c.RefundService -
+				退票訂單發送成功:ruka
+2024-12-13 22:13:35.551 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 6e3fdafc-c331-1752-e7d9-135a92e0edd5
+2024-12-13 22:13:40.684 [http-nio-8080-exec-6] INFO  c.e.d.a.s.c.AdRefundService -
+				(通過)退票訂單更新成功:2
+2024-12-13 22:14:09.184 [http-nio-8080-exec-1] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: d01e33cb-5c81-0816-c38b-0e34981adb5c
+2024-12-13 22:14:12.323 [http-nio-8080-exec-10] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: d01e33cb-5c81-0816-c38b-0e34981adb5c
+2024-12-13 22:14:12.340 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 142be154-3daa-f1f8-cb5d-58c3c8379f8e
+2024-12-13 22:15:12.349 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 142be154-3daa-f1f8-cb5d-58c3c8379f8e
+2024-12-13 22:17:03.083 [RMI TCP Connection(16)-127.0.0.1] INFO  o.a.c.h.Http11NioProtocol -
+				Stopping ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:17:03.119 [RMI TCP Connection(16)-127.0.0.1] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2024-12-13 22:17:03.135 [RMI TCP Connection(16)-127.0.0.1] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2024-12-13 22:17:06.859 [main] INFO  c.e.d.MainApp -
+				Starting MainApp using Java 21.0.4 with PID 14672 (C:\Users\karta\git\TicksBackend2\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend2\tickets-backend)
+2024-12-13 22:17:06.861 [main] INFO  c.e.d.MainApp -
+				No active profile set, falling back to 1 default profile: "default"
+2024-12-13 22:17:09.809 [main] INFO  o.a.c.h.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:17:09.814 [main] INFO  o.a.c.c.StandardService -
+				Starting service [Tomcat]
+2024-12-13 22:17:09.814 [main] INFO  o.a.c.c.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-13 22:17:10.096 [main] INFO  o.a.j.s.TldScanner -
+				At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-13 22:17:10.102 [main] INFO  o.a.c.c.C.[.[.[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-12-13 22:17:10.850 [main] INFO  o.r.Version -
+				Redisson 3.22.0
+2024-12-13 22:17:11.202 [redisson-netty-2-5] INFO  o.r.c.p.MasterPubSubConnectionPool -
+				1 connections initialized for localhost/127.0.0.1:6379
+2024-12-13 22:17:11.211 [redisson-netty-2-8] INFO  o.r.c.p.MasterConnectionPool -
+				2 connections initialized for localhost/127.0.0.1:6379
+2024-12-13 22:17:12.304 [main] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Starting...
+2024-12-13 22:17:12.491 [main] INFO  c.z.h.p.HikariPool -
+				HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71a509c
+2024-12-13 22:17:12.493 [main] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Start completed.
+2024-12-13 22:17:15.454 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -
+				
+
+Using generated security password: d421c69d-f86a-495d-b2d8-8f2c7f55d8ba
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-13 22:17:17.305 [main] INFO  o.a.c.h.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:17:17.493 [main] INFO  c.e.d.MainApp -
+				Started MainApp in 11.25 seconds (process running for 12.021)
+2024-12-13 22:17:18.111 [RMI TCP Connection(10)-127.0.0.1] INFO  o.a.c.c.C.[.[.[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-13 22:17:25.980 [http-nio-8080-exec-7] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:9EMQM
+2024-12-13 22:17:26.844 [http-nio-8080-exec-10] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:5Q6LK
+2024-12-13 22:17:29.054 [http-nio-8080-exec-9] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:8M7PJ
+2024-12-13 22:17:31.056 [http-nio-8080-exec-2] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:TVBX2
+2024-12-13 22:18:02.519 [http-nio-8080-exec-7] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:9LS7A
+2024-12-13 22:18:12.195 [http-nio-8080-exec-10] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:9DJJE
+2024-12-13 22:18:39.439 [http-nio-8080-exec-9] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:MJ8MC
+2024-12-13 22:18:44.967 [http-nio-8080-exec-3] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:VJHB2
+2024-12-13 22:19:02.523 [http-nio-8080-exec-5] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:F9GXT
+2024-12-13 22:19:09.299 [http-nio-8080-exec-8] INFO  c.e.d.s.c.SeatService -
+				座位號: 15
+2024-12-13 22:19:09.303 [http-nio-8080-exec-8] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				訂單新增成功:參數: orderId=50836, eventId=2, section=B區, poolNumber=15
+2024-12-13 22:19:09.410 [http-nio-8080-exec-7] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50836, orderStatus=付款中)
+2024-12-13 22:19:09.417 [http-nio-8080-exec-7] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:19:09.462 [http-nio-8080-exec-1] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50836, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:19:22.558 [http-nio-8080-exec-4] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50836, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:19:33.916 [http-nio-8080-exec-8] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:YYB5U
+2024-12-13 22:19:43.841 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 999
+2024-12-13 22:19:43.843 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 998
+2024-12-13 22:19:43.844 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：998，RequestID: efde4b14-40c4-41d6-8eae-29c0ba808f89
+2024-12-13 22:19:43.865 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50837, eventId=1, section=A區, quantity=1
+2024-12-13 22:19:43.867 [http-nio-8080-exec-4] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50837, orderStatus=付款中)
+2024-12-13 22:19:43.869 [http-nio-8080-exec-4] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:19:43.869 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=efde4b14-40c4-41d6-8eae-29c0ba808f89
+2024-12-13 22:19:43.905 [http-nio-8080-exec-9] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50837, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:19:58.905 [http-nio-8080-exec-5] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50837, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:20:05.291 [http-nio-8080-exec-7] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50837, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:20:11.368 [http-nio-8080-exec-4] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50837, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:22:41.900 [http-nio-8080-exec-6] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: fd042dc5-e2aa-98ed-a1fd-513aec043b6a
+2024-12-13 22:22:42.924 [http-nio-8080-exec-8] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: fd042dc5-e2aa-98ed-a1fd-513aec043b6a
+2024-12-13 22:22:42.939 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 7aaac477-0831-2fd7-43ab-b8b87577d470
+2024-12-13 22:23:48.315 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 7aaac477-0831-2fd7-43ab-b8b87577d470
+2024-12-13 22:43:10.342 [http-nio-8080-exec-9] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:25U75
+2024-12-13 22:43:17.444 [http-nio-8080-exec-3] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: 7577830a-2bdf-8bd7-16f8-68915d5bca56
+2024-12-13 22:43:18.482 [http-nio-8080-exec-5] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: 7577830a-2bdf-8bd7-16f8-68915d5bca56
+2024-12-13 22:43:18.495 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 84aa545a-b79a-305f-03d5-d0797a65a3df
+2024-12-13 22:43:22.886 [http-nio-8080-exec-4] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:Y9PGA
+2024-12-13 22:43:36.721 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 499
+2024-12-13 22:43:36.723 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 498
+2024-12-13 22:43:36.723 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：498，RequestID: bd677434-b30a-4b9c-9787-c19e8c928dc3
+2024-12-13 22:43:36.739 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50838, eventId=2, section=A區, quantity=1
+2024-12-13 22:43:36.743 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=2, Section=A區, Quantity=1, RequestId=bd677434-b30a-4b9c-9787-c19e8c928dc3
+2024-12-13 22:43:37.750 [ForkJoinPool.commonPool-worker-1] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50838, orderStatus=付款中)
+2024-12-13 22:43:37.753 [ForkJoinPool.commonPool-worker-1] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:43:37.819 [http-nio-8080-exec-8] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50838, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:43:39.798 [http-nio-8080-exec-1] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50838, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:44:10.143 [RMI TCP Connection(37)-127.0.0.1] INFO  o.a.c.h.Http11NioProtocol -
+				Stopping ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:44:10.183 [RMI TCP Connection(37)-127.0.0.1] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Shutdown initiated...
+2024-12-13 22:44:10.194 [RMI TCP Connection(37)-127.0.0.1] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Shutdown completed.
+2024-12-13 22:44:10.212 [RMI TCP Connection(37)-127.0.0.1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 84aa545a-b79a-305f-03d5-d0797a65a3df
+2024-12-13 22:44:13.935 [main] INFO  c.e.d.MainApp -
+				Starting MainApp using Java 21.0.4 with PID 38432 (C:\Users\karta\git\TicksBackend2\tickets-backend\target\classes started by karta in C:\Users\karta\git\TicksBackend2\tickets-backend)
+2024-12-13 22:44:13.937 [main] INFO  c.e.d.MainApp -
+				No active profile set, falling back to 1 default profile: "default"
+2024-12-13 22:44:16.894 [main] INFO  o.a.c.h.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:44:16.899 [main] INFO  o.a.c.c.StandardService -
+				Starting service [Tomcat]
+2024-12-13 22:44:16.899 [main] INFO  o.a.c.c.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-13 22:44:17.178 [main] INFO  o.a.j.s.TldScanner -
+				At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-12-13 22:44:17.184 [main] INFO  o.a.c.c.C.[.[.[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-12-13 22:44:17.954 [main] INFO  o.r.Version -
+				Redisson 3.22.0
+2024-12-13 22:44:18.301 [redisson-netty-2-5] INFO  o.r.c.p.MasterPubSubConnectionPool -
+				1 connections initialized for localhost/127.0.0.1:6379
+2024-12-13 22:44:18.309 [redisson-netty-2-8] INFO  o.r.c.p.MasterConnectionPool -
+				2 connections initialized for localhost/127.0.0.1:6379
+2024-12-13 22:44:19.393 [main] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Starting...
+2024-12-13 22:44:19.578 [main] INFO  c.z.h.p.HikariPool -
+				HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71a509c
+2024-12-13 22:44:19.580 [main] INFO  c.z.h.HikariDataSource -
+				HikariPool-1 - Start completed.
+2024-12-13 22:44:22.551 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -
+				
+
+Using generated security password: 73d22e76-fbec-4270-80f6-5e1ccb796c1c
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-13 22:44:24.394 [main] INFO  o.a.c.h.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8080"]
+2024-12-13 22:44:24.570 [main] INFO  c.e.d.MainApp -
+				Started MainApp in 11.294 seconds (process running for 12.086)
+2024-12-13 22:44:25.112 [RMI TCP Connection(11)-127.0.0.1] INFO  o.a.c.c.C.[.[.[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-13 22:44:33.913 [http-nio-8080-exec-2] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: f0b167ed-41d6-2a35-262b-b210a33cab6c
+2024-12-13 22:44:35.018 [http-nio-8080-exec-4] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: f0b167ed-41d6-2a35-262b-b210a33cab6c
+2024-12-13 22:44:35.039 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 89cd9bb1-4902-e144-abfb-42bcce749e15
+2024-12-13 22:44:50.263 [http-nio-8080-exec-8] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:VHSXR
+2024-12-13 22:44:59.755 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 999
+2024-12-13 22:44:59.758 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 998
+2024-12-13 22:44:59.759 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：998，RequestID: d48a3a76-72f6-4889-ad2a-4bdfbbd8a2c4
+2024-12-13 22:44:59.778 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50839, eventId=1, section=A區, quantity=1
+2024-12-13 22:44:59.784 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=d48a3a76-72f6-4889-ad2a-4bdfbbd8a2c4
+2024-12-13 22:45:00.792 [ForkJoinPool.commonPool-worker-1] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50839, orderStatus=付款中)
+2024-12-13 22:45:00.794 [ForkJoinPool.commonPool-worker-1] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:45:00.853 [http-nio-8080-exec-5] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50839, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:45:02.720 [http-nio-8080-exec-7] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50839, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:46:02.788 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 89cd9bb1-4902-e144-abfb-42bcce749e15
+2024-12-13 22:46:39.550 [http-nio-8080-exec-10] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: 94ca4f89-042e-b6c3-de42-b1cc4bc4a16b
+2024-12-13 22:46:40.399 [http-nio-8080-exec-1] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: 94ca4f89-042e-b6c3-de42-b1cc4bc4a16b
+2024-12-13 22:46:40.420 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 033e2326-a20b-c7ea-a57c-0c71a51d586f
+2024-12-13 22:46:49.970 [http-nio-8080-exec-6] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:NR5AE
+2024-12-13 22:46:58.031 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 998
+2024-12-13 22:46:58.035 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 997
+2024-12-13 22:46:58.036 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：997，RequestID: 40659f29-17ad-447a-8e48-25d5c331101a
+2024-12-13 22:46:58.046 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50840, eventId=1, section=A區, quantity=1
+2024-12-13 22:46:58.050 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=40659f29-17ad-447a-8e48-25d5c331101a
+2024-12-13 22:46:58.050 [http-nio-8080-exec-1] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50840, orderStatus=付款中)
+2024-12-13 22:46:58.051 [http-nio-8080-exec-1] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 22:46:58.095 [http-nio-8080-exec-2] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50840, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:47:00.529 [http-nio-8080-exec-3] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50840, 用戶名: ruka, 請求ID: {}
+2024-12-13 22:48:00.565 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 033e2326-a20b-c7ea-a57c-0c71a51d586f
+2024-12-13 22:51:08.520 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 9d489300-01ad-425b-d57b-47736c6abe17
+2024-12-13 22:51:16.220 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 9d489300-01ad-425b-d57b-47736c6abe17
+2024-12-13 22:51:16.625 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: b627e696-82bf-bf00-6513-cd03a0291bae
+2024-12-13 22:51:33.512 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: b627e696-82bf-bf00-6513-cd03a0291bae
+2024-12-13 22:51:33.530 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: b9be35c9-6d66-8c32-0f07-35f4bcf602c4
+2024-12-13 22:52:33.578 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: b9be35c9-6d66-8c32-0f07-35f4bcf602c4
+2024-12-13 22:52:37.562 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 72bd4198-b48d-ac6a-9707-e2f5986d00a0
+2024-12-13 22:53:37.611 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 72bd4198-b48d-ac6a-9707-e2f5986d00a0
+2024-12-13 22:54:48.736 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 3dc78de2-a208-5443-f40f-f1dfcab345ef
+2024-12-13 22:55:26.464 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 3dc78de2-a208-5443-f40f-f1dfcab345ef
+2024-12-13 22:55:26.481 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 5ff983d7-75a2-871d-586c-22f75c0de2af
+2024-12-13 22:56:26.531 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 5ff983d7-75a2-871d-586c-22f75c0de2af
+2024-12-13 22:58:55.509 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: b3f3ce01-2f24-669c-6ead-9d3ebe886fdb
+2024-12-13 22:59:55.558 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: b3f3ce01-2f24-669c-6ead-9d3ebe886fdb
+2024-12-13 23:00:49.519 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 8847b918-ad63-9b7a-e20b-ebf7fdf55a29
+2024-12-13 23:01:18.514 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 8847b918-ad63-9b7a-e20b-ebf7fdf55a29
+2024-12-13 23:01:18.526 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: c970da5c-f8af-0c4d-2500-2125359d5753
+2024-12-13 23:01:25.886 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: c970da5c-f8af-0c4d-2500-2125359d5753
+2024-12-13 23:01:25.907 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 5fbd377e-da2e-ef16-7112-ed4a4468b3d9
+2024-12-13 23:01:29.818 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 5fbd377e-da2e-ef16-7112-ed4a4468b3d9
+2024-12-13 23:01:29.833 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: d2c6815b-b4ff-6d4d-0b27-0b35c073571f
+2024-12-13 23:02:29.883 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: d2c6815b-b4ff-6d4d-0b27-0b35c073571f
+2024-12-13 23:03:16.525 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 36627da9-8e37-0f45-c7ca-2eff2a3b8cd1
+2024-12-13 23:04:16.535 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 36627da9-8e37-0f45-c7ca-2eff2a3b8cd1
+2024-12-13 23:04:47.500 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 442a3139-700a-648e-d143-96c263d4575d
+2024-12-13 23:04:48.496 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 442a3139-700a-648e-d143-96c263d4575d
+2024-12-13 23:04:48.515 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: c6075f01-efb5-81a3-a96a-b7ad5eeebfd6
+2024-12-13 23:05:48.559 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: c6075f01-efb5-81a3-a96a-b7ad5eeebfd6
+2024-12-13 23:06:13.518 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 385c63c6-0a01-8669-6f8f-f2e31687a044
+2024-12-13 23:06:15.414 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 385c63c6-0a01-8669-6f8f-f2e31687a044
+2024-12-13 23:06:15.434 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: acb209a1-3665-437a-60ef-37bfc28c6309
+2024-12-13 23:06:35.492 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: acb209a1-3665-437a-60ef-37bfc28c6309
+2024-12-13 23:06:35.533 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: ee1a8143-b634-5e47-a07e-502148def4dc
+2024-12-13 23:06:38.488 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: ee1a8143-b634-5e47-a07e-502148def4dc
+2024-12-13 23:06:38.530 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: e79298a1-3052-e5e2-390a-43a6ee5e11f2
+2024-12-13 23:06:43.563 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: e79298a1-3052-e5e2-390a-43a6ee5e11f2
+2024-12-13 23:06:43.576 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 46220e21-7d4d-0657-63f6-5a395711c7d7
+2024-12-13 23:06:50.515 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 46220e21-7d4d-0657-63f6-5a395711c7d7
+2024-12-13 23:06:50.554 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 5c8c4126-c0f9-25d0-051d-e6caac6de70a
+2024-12-13 23:06:52.359 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 5c8c4126-c0f9-25d0-051d-e6caac6de70a
+2024-12-13 23:06:52.374 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 47bc454b-b9d0-a39f-7c90-137218678c09
+2024-12-13 23:07:02.503 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 47bc454b-b9d0-a39f-7c90-137218678c09
+2024-12-13 23:07:02.519 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 524f5ad1-5bb7-1f0b-9a46-b5ec7ad4e3d7
+2024-12-13 23:07:09.510 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 524f5ad1-5bb7-1f0b-9a46-b5ec7ad4e3d7
+2024-12-13 23:07:09.551 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 9be18889-9bf7-7e89-f0ef-423a56307cf8
+2024-12-13 23:07:16.507 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 9be18889-9bf7-7e89-f0ef-423a56307cf8
+2024-12-13 23:07:16.521 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: f600b80e-8a83-6625-507f-9c900be488ce
+2024-12-13 23:07:17.159 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: f600b80e-8a83-6625-507f-9c900be488ce
+2024-12-13 23:07:17.178 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 11ea3f64-a5d5-ad39-8d25-ef734b924395
+2024-12-13 23:07:31.492 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 11ea3f64-a5d5-ad39-8d25-ef734b924395
+2024-12-13 23:07:31.506 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: d8732bee-6c02-af30-84c5-07a8c614f39f
+2024-12-13 23:07:33.494 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: d8732bee-6c02-af30-84c5-07a8c614f39f
+2024-12-13 23:07:33.526 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 1bcd11f6-30cf-8dc0-5f24-8a9c28217879
+2024-12-13 23:07:36.512 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 1bcd11f6-30cf-8dc0-5f24-8a9c28217879
+2024-12-13 23:07:36.527 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 6df01b1f-31e2-d8c5-185a-34ff46c9caf3
+2024-12-13 23:07:38.769 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 6df01b1f-31e2-d8c5-185a-34ff46c9caf3
+2024-12-13 23:07:38.792 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 4df29207-e85f-8528-3c46-ca2b934ad3f6
+2024-12-13 23:08:38.832 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 4df29207-e85f-8528-3c46-ca2b934ad3f6
+2024-12-13 23:09:27.620 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 8b8d82fc-a089-7686-f10c-bd28d8e0bb45
+2024-12-13 23:09:48.966 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 8b8d82fc-a089-7686-f10c-bd28d8e0bb45
+2024-12-13 23:09:48.983 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: e491cdd6-4a31-c8e7-3ae0-5eee249080d9
+2024-12-13 23:10:49.032 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: e491cdd6-4a31-c8e7-3ae0-5eee249080d9
+2024-12-13 23:11:05.526 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: ef18c87e-9216-2ccd-7899-b38c001a5d62
+2024-12-13 23:11:09.904 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: ef18c87e-9216-2ccd-7899-b38c001a5d62
+2024-12-13 23:11:10.292 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 3da545f6-2d81-1715-33e7-f2d5e79108ff
+2024-12-13 23:12:10.342 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 3da545f6-2d81-1715-33e7-f2d5e79108ff
+2024-12-13 23:13:17.553 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: ba8f4757-74ac-7fb2-1a13-d9f9f444b1f3
+2024-12-13 23:13:28.507 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: ba8f4757-74ac-7fb2-1a13-d9f9f444b1f3
+2024-12-13 23:13:28.521 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 59675ac1-36d8-b804-48a4-2fb4dde8a2ca
+2024-12-13 23:13:29.515 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 59675ac1-36d8-b804-48a4-2fb4dde8a2ca
+2024-12-13 23:13:29.527 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: f026776f-c912-f5e4-c861-c7971f46aca8
+2024-12-13 23:13:38.527 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: f026776f-c912-f5e4-c861-c7971f46aca8
+2024-12-13 23:13:38.565 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 606527fe-6210-1da0-5b79-b19a7ad1f80e
+2024-12-13 23:13:51.514 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 606527fe-6210-1da0-5b79-b19a7ad1f80e
+2024-12-13 23:13:51.531 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: f8e3f983-a6a3-8e14-78ce-1d61a0e865c6
+2024-12-13 23:13:54.526 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: f8e3f983-a6a3-8e14-78ce-1d61a0e865c6
+2024-12-13 23:13:54.549 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 1a1f4767-80ab-f1df-93b5-202628a6a23c
+2024-12-13 23:13:55.149 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 1a1f4767-80ab-f1df-93b5-202628a6a23c
+2024-12-13 23:13:55.161 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 1fc51b9a-358a-0ddb-a29f-025dc880e45c
+2024-12-13 23:14:09.503 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 1fc51b9a-358a-0ddb-a29f-025dc880e45c
+2024-12-13 23:14:09.548 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 77371902-b479-964d-dc79-e0cec329ea83
+2024-12-13 23:14:09.942 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 77371902-b479-964d-dc79-e0cec329ea83
+2024-12-13 23:14:09.968 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 157a7a9c-3251-8b1b-c3c5-8ba7a05ea9ec
+2024-12-13 23:14:19.609 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 157a7a9c-3251-8b1b-c3c5-8ba7a05ea9ec
+2024-12-13 23:14:19.624 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 09356e58-f68f-3156-64ad-05761ca29b1f
+2024-12-13 23:14:26.443 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 09356e58-f68f-3156-64ad-05761ca29b1f
+2024-12-13 23:14:26.463 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 6dacdc81-71c1-46cd-dd97-e0f860106905
+2024-12-13 23:14:30.504 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 6dacdc81-71c1-46cd-dd97-e0f860106905
+2024-12-13 23:14:30.546 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 85d2bae6-918e-db86-2002-88c976c2ef2d
+2024-12-13 23:14:33.571 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 85d2bae6-918e-db86-2002-88c976c2ef2d
+2024-12-13 23:14:33.589 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 22d879ff-5610-be06-f59f-26c3f9749949
+2024-12-13 23:14:38.452 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 22d879ff-5610-be06-f59f-26c3f9749949
+2024-12-13 23:14:38.486 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 46df3452-a437-9e7e-4509-dfc60c66d853
+2024-12-13 23:15:17.510 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 46df3452-a437-9e7e-4509-dfc60c66d853
+2024-12-13 23:15:17.522 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 0db434ee-5b5e-70e7-9477-8b2f8d9ebf4d
+2024-12-13 23:15:18.504 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 0db434ee-5b5e-70e7-9477-8b2f8d9ebf4d
+2024-12-13 23:15:18.515 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: caaf7b44-a455-3f80-cf57-7d97891a3ae6
+2024-12-13 23:15:20.497 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: caaf7b44-a455-3f80-cf57-7d97891a3ae6
+2024-12-13 23:15:20.511 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 702a8a38-8e85-e0af-47b4-fd3af184a7fd
+2024-12-13 23:15:21.039 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 702a8a38-8e85-e0af-47b4-fd3af184a7fd
+2024-12-13 23:15:21.059 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 331eae1c-d8f1-1113-fdba-db3e8e7adc7b
+2024-12-13 23:15:24.021 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 331eae1c-d8f1-1113-fdba-db3e8e7adc7b
+2024-12-13 23:15:24.032 [http-nio-8080-exec-9] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 6ee1365d-1038-b3f0-1fe4-66f33288ef8c
+2024-12-13 23:15:27.517 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 6ee1365d-1038-b3f0-1fe4-66f33288ef8c
+2024-12-13 23:15:27.530 [http-nio-8080-exec-10] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: c61a1000-dcda-470f-d27c-06162f581b9a
+2024-12-13 23:15:29.081 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: c61a1000-dcda-470f-d27c-06162f581b9a
+2024-12-13 23:15:29.094 [http-nio-8080-exec-2] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 9053d550-976e-023b-329a-785e0dc3917b
+2024-12-13 23:15:35.948 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 9053d550-976e-023b-329a-785e0dc3917b
+2024-12-13 23:15:35.966 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 6fcca136-1f7b-7dc7-96b8-dedc76b7a2a5
+2024-12-13 23:15:45.339 [http-nio-8080-exec-5] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 6fcca136-1f7b-7dc7-96b8-dedc76b7a2a5
+2024-12-13 23:17:13.131 [http-nio-8080-exec-6] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: 4178f6ce-ec26-4025-188b-5ee3752d55e2
+2024-12-13 23:17:23.534 [http-nio-8080-exec-9] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: 4178f6ce-ec26-4025-188b-5ee3752d55e2
+2024-12-13 23:17:23.550 [http-nio-8080-exec-8] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 3c414a2a-65ff-79be-54bf-813ddf98bf5f
+2024-12-13 23:17:34.339 [http-nio-8080-exec-3] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:23DHD
+2024-12-13 23:17:40.893 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 100
+2024-12-13 23:17:40.896 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 99
+2024-12-13 23:17:40.896 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：99，RequestID: 3bb0d690-ce4b-45b8-80bf-5c7383230d7a
+2024-12-13 23:17:40.905 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50841, eventId=3, section=A區, quantity=1
+2024-12-13 23:17:40.909 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=3, Section=A區, Quantity=1, RequestId=3bb0d690-ce4b-45b8-80bf-5c7383230d7a
+2024-12-13 23:17:40.919 [http-nio-8080-exec-8] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50841, orderStatus=付款中)
+2024-12-13 23:17:40.920 [http-nio-8080-exec-8] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 23:17:40.957 [http-nio-8080-exec-10] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50841, 用戶名: ruka, 請求ID: {}
+2024-12-13 23:17:42.713 [http-nio-8080-exec-2] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50841, 用戶名: ruka, 請求ID: {}
+2024-12-13 23:18:12.065 [http-nio-8080-exec-4] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 3c414a2a-65ff-79be-54bf-813ddf98bf5f
+2024-12-13 23:18:12.081 [http-nio-8080-exec-5] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: deae77d1-45cd-5d7d-5a8c-88fadb930f00
+2024-12-13 23:18:34.717 [http-nio-8080-exec-3] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: deae77d1-45cd-5d7d-5a8c-88fadb930f00
+2024-12-13 23:18:34.730 [http-nio-8080-exec-7] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: 790a137b-8ed4-5219-57b2-f839bb41e96d
+2024-12-13 23:19:34.758 [http-nio-8080-exec-6] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: 790a137b-8ed4-5219-57b2-f839bb41e96d
+2024-12-13 23:19:47.114 [http-nio-8080-exec-1] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:8XKYD
+2024-12-13 23:19:51.357 [http-nio-8080-exec-4] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				開啟WEBSOCKET: 2b4357c8-ab49-b9ab-bb49-11a54d419969
+2024-12-13 23:19:51.978 [http-nio-8080-exec-5] INFO  c.e.d.c.w.TrafficWebSocketHandler -
+				關閉WEBSOCKET: 2b4357c8-ab49-b9ab-bb49-11a54d419969
+2024-12-13 23:19:51.989 [http-nio-8080-exec-3] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket connected: caa37a40-51f1-5a8b-f6d9-586a02c4f7f4
+2024-12-13 23:20:00.571 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				Redis 無庫存記錄，從資料庫初始化，庫存: 997
+2024-12-13 23:20:00.573 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.c.TicketStockService -
+				目前剩餘票數: 996
+2024-12-13 23:20:00.574 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  c.e.d.s.s.SalesServiceImpl -
+				購票成功，剩餘庫存：996，RequestID: 15a3a636-9c83-4a5c-9e45-1154e587d344
+2024-12-13 23:20:00.585 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.r.s.SalesRespositoryJdbcImpl -
+				參數: orderId=50842, eventId=1, section=A區, quantity=1
+2024-12-13 23:20:00.593 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  c.e.d.c.EventController -
+				訂單創建成功: UserId=18, EventId=1, Section=A區, Quantity=1, RequestId=15a3a636-9c83-4a5c-9e45-1154e587d344
+2024-12-13 23:20:00.596 [http-nio-8080-exec-8] INFO  c.e.d.r.o.OrderRepositoryJdbcImpl -
+				已搜尋到訂單OrderDto(orderId=50842, orderStatus=付款中)
+2024-12-13 23:20:00.597 [http-nio-8080-exec-8] INFO  c.e.d.c.w.OrderStatusWebSocketHandler -
+				WebSocket 連接關閉。
+2024-12-13 23:20:00.632 [http-nio-8080-exec-10] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50842, 用戶名: ruka, 請求ID: {}
+2024-12-13 23:20:03.771 [http-nio-8080-exec-1] INFO  c.e.d.s.o.OrderServiceImpl -
+				獲取訂單摘要, 訂單ID: 50842, 用戶名: ruka, 請求ID: {}
+2024-12-13 23:20:06.166 [http-nio-8080-exec-7] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:RRB6W
+2024-12-13 23:20:14.490 [http-nio-8080-exec-10] INFO  c.e.d.c.U.CaptchaController -
+				產生的驗證碼:RMKYR
+2024-12-13 23:21:14.562 [http-nio-8080-exec-1] INFO  c.e.d.c.w.RequestLogWebSocketHandler -
+				Request Log WebSocket closed: caa37a40-51f1-5a8b-f6d9-586a02c4f7f4

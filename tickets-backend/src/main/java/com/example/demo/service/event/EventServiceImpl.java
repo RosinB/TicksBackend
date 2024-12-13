@@ -64,7 +64,6 @@ public class EventServiceImpl implements EventService {
 
 
 	@Override
-	@Cacheable(key = "T(com.example.demo.util.CacheKeys.Event).getSectionQuantityKey(#eventId, #section)")
 	public Integer getQuantity(String section, Integer eventId) {
 		
 	
