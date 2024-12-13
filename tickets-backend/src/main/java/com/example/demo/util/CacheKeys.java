@@ -48,6 +48,7 @@ public class CacheKeys {
 		 	public static final String USERS_IPS="user:ips:";
 		 	public static final String SUSPICIOUS_USERS="user:susicious:";
 		 	public static final String TRAFFIC_RECORD="traffic:record:";
+		 	public static final String TOTAL_DAY_TRAFFIC="total_traffic_day";
 		 	
 	 }
 	 

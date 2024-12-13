@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.adminPanel.dto.traffic.TrafficRecordDto;
 import com.example.demo.util.CacheKeys;
 import com.example.demo.util.RedisService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,28 +21,6 @@ public class TrafficServiceImpl implements TrafficService{
 
 	private final RedisService redisService;
 	
-	@Override
-	public List<TrafficRecordDto> getTrafficRecord(Integer eventId,int start, int end) {
-
-		String cachekey=CacheKeys.util.TRAFFIC_RECORD;
-		
-	    List<String> records = redisService.listRange(cachekey, start, end);
-	
-	  
-	    return records.stream()
-	            .map(record -> {
-	                try {
-	                    TrafficRecordDto dto = new ObjectMapper().readValue(record, TrafficRecordDto.class);
-	                    return dto;
-	                } catch (Exception e) {
-	                    log.error("轉換失敗，原因: {}", e.getMessage());
-	                    log.error("失敗的記錄內容: {}", record);
-	                    return null;
-	                }
-	            })
-	            .filter(Objects::nonNull)
-	            .collect(Collectors.toList());
-	}
 
 	
 	

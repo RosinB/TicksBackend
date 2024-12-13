@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.adminPanel.dto.traffic.TrafficRecordDto;
 import com.example.demo.adminPanel.service.traffic.TrafficService;
 import com.example.demo.util.ApiResponse;
 
@@ -24,17 +23,17 @@ public class TrafficController {
 	
 	private final TrafficService trafficService;
 	
-	
-	@GetMapping("/all")
-	public ResponseEntity<ApiResponse<Object>> getAllTrafficRecord(
-						@RequestParam("start") Integer start,
-						@RequestParam("end") Integer end,
-						@RequestParam("eventId") Integer eventId){
-		List<TrafficRecordDto> dto=
-		trafficService.getTrafficRecord(eventId, start, end);
-		
-		return ResponseEntity.ok(ApiResponse.success("21", dto));
-	}
+//	
+//	@GetMapping("/all")
+//	public ResponseEntity<ApiResponse<Object>> getAllTrafficRecord(
+//						@RequestParam("start") Integer start,
+//						@RequestParam("end") Integer end,
+//						@RequestParam("eventId") Integer eventId){
+//		List<TrafficRecordDto> dto=
+//		trafficService.getTrafficRecord(eventId, start, end);
+//		
+//		return ResponseEntity.ok(ApiResponse.success("21", dto));
+//	}
 	
 	
 

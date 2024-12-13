@@ -13,7 +13,13 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import com.example.demo.adminPanel.dto.traffic.TrafficDto;
+import com.example.demo.adminPanel.service.common.TrafficRecordService;
+import com.example.demo.adminPanel.service.ml.UserRequestAnalyzer;
+import com.example.demo.adminPanel.service.traffic.TrafficDtoBuilder;
 import com.example.demo.common.config.RabbitMQConfig;
+import com.example.demo.common.websocket.RequestLogWebSocketHandler;
+import com.example.demo.common.websocket.TrafficStatsService;
+
 import java.io.IOException;
 import java.util.UUID;
 
@@ -21,10 +27,11 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class RequestStatisticsFilter extends OncePerRequestFilter {
-    private final JwtUtil jwtUtil;
+    private final TrafficDtoBuilder trafficDtoBuilder;
     private final RabbitTemplate rabbitTemplate;
-    private static final String UNKNOWN = "unknown";
-    
+    private final TrafficStatsService trafficStatsService;
+    private final RequestLogWebSocketHandler requestLogWebSocketHandler;
+    private final UserRequestAnalyzer userRequestAnalyzer;
     @Override
     protected void doFilterInternal(HttpServletRequest request, 
                                   HttpServletResponse response, 
@@ -34,83 +41,35 @@ public class RequestStatisticsFilter extends OncePerRequestFilter {
         request.setAttribute("requestId", requestId);
 
         try {
-            // 在處理請求前收集資料
-            TrafficDto trafficData = buildTrafficData(request, requestId, startTime);
-            
-            filterChain.doFilter(request, response);
-            // 計算執行時間
-            long endTime = System.currentTimeMillis();
-            long executionTime = endTime - startTime;
-            // 請求完成後更新狀態
-            trafficData.setSuccess(response.getStatus() >= 200 && response.getStatus() < 300);
-            if (!trafficData.isSuccess()) {
-                trafficData.setErrorMessage("HTTP Status: " + response.getStatus());
-            }
-            trafficData.setExecutionTime(executionTime);  // 設置執行時間（毫秒）
+        	
+            trafficStatsService.recordRequest();
 
-            // 發送到 RabbitMQ
+            TrafficDto trafficData = trafficDtoBuilder.buildFromRequest(request, requestId);
+            request.setAttribute("trafficData", trafficData);
+
+            filterChain.doFilter(request, response);
+            
+            // 更新完成時間
+            updateResponseInfo(trafficData, response, System.currentTimeMillis() - startTime);
+            
             rabbitTemplate.convertAndSend(
-                RabbitMQConfig.EXCHANGE_NAME, 
+                RabbitMQConfig.EXCHANGE_NAME,
                 RabbitMQConfig.TRAFFIC_ROUTING_KEY,
                 trafficData
             );
-            
+
         } catch (Exception e) {
-            log.error("Error in RequestStatisticsFilter", e);
+            log.error("Traffic statistics error", e);
             filterChain.doFilter(request, response);
         }
     }
     
-    private TrafficDto buildTrafficData(HttpServletRequest request, String requestId, long timestamp) {
-        return TrafficDto.builder()
-            .requestId(requestId)
-            .timestamp(timestamp)
-            .userName(getUserName(request))  // 傳入 request 參數
-            .requestType("WEB")      // 可以根據需求設置
-            .ipAddress(getClientIp(request))
-            .userAgent(request.getHeader("User-Agent"))
-            .deviceType(determineDeviceType(request.getHeader("User-Agent")))
-            .sessionId(request.getSession(false) != null ? request.getSession().getId() : null)
-            .requestMethod(request.getMethod())
-            .requestUrl(request.getRequestURI())
-            .referrer(request.getHeader("Referer"))
-            .build();
-    }
     
-    private String getUserName(HttpServletRequest request) {
-        String token = request.getHeader("Authorization");
-        if (token != null) {
-            try {
-                return jwtUtil.getUserNameFromHeader(token);
-            } catch (Exception e) {
-                log.debug("Token parsing failed: {}", e.getMessage());
-            }
+    private void updateResponseInfo(TrafficDto trafficData, HttpServletResponse response, long executionTime) {
+        trafficData.setExecutionTime(executionTime);
+        trafficData.setSuccess(response.getStatus() >= 200 && response.getStatus() < 300);
+        if (!trafficData.isSuccess()) {
+            trafficData.setErrorMessage("HTTP Status: " + response.getStatus());
         }
-        return UNKNOWN;
-    }
-
-    
-    private String getClientIp(HttpServletRequest request) {
-        String ip = request.getHeader("X-Forwarded-For");
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("X-Real-IP");
-        }
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        // 如果是多個代理，取第一個 IP
-        if (ip != null && ip.contains(",")) {
-            ip = ip.split(",")[0];
-        }
-        return ip;
-    }
-    
-    private String determineDeviceType(String userAgent) {
-        if (userAgent == null) return "UNKNOWN";
-        userAgent = userAgent.toLowerCase();
-        if (userAgent.contains("mobile") || userAgent.contains("android") || userAgent.contains("iphone")) {
-            return "MOBILE";
-        }
-        return "DESKTOP";
     }
 }

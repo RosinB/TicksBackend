@@ -2,11 +2,12 @@ package com.example.demo.controller;
 
 
 import java.util.UUID;
-
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.adminPanel.dto.traffic.TrafficDto;
 import com.example.demo.adminPanel.service.common.TrafficRecordService;
+import com.example.demo.adminPanel.service.traffic.TrafficDtoBuilder;
 import com.example.demo.common.config.RabbitMQConfig;
 import com.example.demo.common.exception.UserIsNotVerifiedException;
 import com.example.demo.common.filter.JwtUtil;
@@ -48,14 +50,14 @@ public class SalesController {
 	private final RabbitTemplate rabbitTemplate;
 	private final RedisService redisService;
 	private final JwtUtil jwtUtil;
+    private final TrafficDtoBuilder trafficDtoBuilder;
+
 //=======================處理售票狀況============================== 這在tiecketsales
 	@PostMapping("/goticket/area/buy")
-
 	public ResponseEntity<ApiResponse<Object>> postBuyTicket(@RequestBody PostTicketSalesDto data,
 			HttpServletRequest request) {
 			String requestId = (String) request.getAttribute("requestId");
 			data.setRequestId(requestId);
-			System.out.println("這是butticket的"+requestId);
 			String captcha=redisService.get(CacheKeys.util.CAPTCHA_PREFIX+data.getUserName(), String.class);
 
 			if (ConstantList.CAPTCHA) {
@@ -64,11 +66,24 @@ public class SalesController {
 			        return handleCaptchaError(data.getUserName());
 			    }
 			}
-		
+
+	       
 			// 發送購票請求到 RabbitMQ
 			rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.TICKET_ROUTING_KEY, 
 					data);
 			
+			
+		    TrafficDto trafficData = (TrafficDto) request.getAttribute("trafficData");
+		    trafficData.setRequestType("BUY_TICKET");
+	        trafficData.setEventId(data.getEventId());
+	        trafficData.setTicketType(data.getSection());
+	        trafficData.setTicketQuantity(data.getQuantity());
+			
+			
+			
+			
+			
+		
 
 			return ResponseEntity.ok(ApiResponse.success("購票請求已提交，正在處理", requestId));
 		
@@ -177,7 +192,7 @@ public class SalesController {
 	
 	
 	
-	
+   
 	
 	
 	
