@@ -13,6 +13,7 @@ import com.example.demo.model.dto.orders.OrderDto;
 import com.example.demo.model.dto.orders.RefundOrder;
 import com.example.demo.repository.order.OrderRepositoryJdbc;
 import com.example.demo.repository.sales.SalesRepositoryJdbc;
+import com.example.demo.service.common.EmailService;
 import com.example.demo.service.common.RefundService;
 import com.example.demo.service.user.UserService;
 import com.example.demo.util.CacheKeys;
@@ -34,7 +35,7 @@ public class OrderServiceImpl implements OrderService{
 	private final RedisService redisService;
 	private final OrderRepositoryJdbc orderRepositoryJdbc;
 	private final RefundService refundService;
-
+	private final EmailService emailService;
 	
 	public Map<String, Object> getTicketStatus(String requestId) {
 		
@@ -119,6 +120,7 @@ public class OrderServiceImpl implements OrderService{
 	    OrderAstractDto dto = validateAndGetOrder(orderId);
 
 		dto.setUserName(userName);
+		emailService.sendOrderEmail(dto, userName);
 	    log.info("獲取訂單摘要, 訂單ID: {}, 用戶名: {}, 請求ID: {}", orderId, userName);
 
 		return dto;

@@ -49,7 +49,8 @@ public class CacheKeys {
 		 	public static final String SUSPICIOUS_USERS="user:susicious:";
 		 	public static final String TRAFFIC_RECORD="traffic:record:";
 		 	public static final String TOTAL_DAY_TRAFFIC="total_traffic_day";
-		 	
+		 	public static final String BLOCK="blocked_users";
 	 }
+	 
 	 
 }

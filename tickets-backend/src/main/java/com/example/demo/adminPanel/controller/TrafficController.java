@@ -1,6 +1,7 @@
 package com.example.demo.adminPanel.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,20 +21,35 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class TrafficController {
-	
 	private final TrafficService trafficService;
 	
-//	
-//	@GetMapping("/all")
-//	public ResponseEntity<ApiResponse<Object>> getAllTrafficRecord(
-//						@RequestParam("start") Integer start,
-//						@RequestParam("end") Integer end,
-//						@RequestParam("eventId") Integer eventId){
-//		List<TrafficRecordDto> dto=
-//		trafficService.getTrafficRecord(eventId, start, end);
-//		
-//		return ResponseEntity.ok(ApiResponse.success("21", dto));
-//	}
+	@GetMapping("/block/{userName}")
+	public ResponseEntity<ApiResponse<Object>> blockUser(@PathVariable("userName")
+											String userName){
+		
+		trafficService.blockUserName(userName);
+		
+		return ResponseEntity.ok(ApiResponse.success("封鎖成功", userName));
+	}
+	
+	
+	@GetMapping("/unblock/{userName}")
+	public ResponseEntity<ApiResponse<Object>> unblockUser(@PathVariable("userName")
+											String userName){
+		
+		trafficService.unblockUserName(userName);
+		
+		return ResponseEntity.ok(ApiResponse.success("解鎖成功", userName));
+	}
+	
+	@GetMapping("/block/all")
+	public ResponseEntity<ApiResponse<Object>> getblockUser(){
+
+		Set<String> name =trafficService.getBlockedUserNames();
+
+		return ResponseEntity.ok(ApiResponse.success("獲得成功", name));
+}
+	
 	
 	
 

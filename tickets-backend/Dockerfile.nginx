@@ -1,0 +1,21 @@
+FROM openresty/openresty:alpine
+
+# 安裝必要套件
+RUN apk add --no-cache \
+    git \
+    perl \
+    curl \
+    gcc \
+    musl-dev \
+    make \
+    && opm get SkyLothar/lua-resty-jwt
+
+# 創建符號連接，將 OpenResty 的配置目錄鏈接到標準的 Nginx 目錄
+RUN rm -rf /etc/nginx && \
+    ln -sf /usr/local/openresty/nginx/conf /etc/nginx
+
+# 清理
+RUN apk del git gcc musl-dev make
+
+# 設定工作目錄
+WORKDIR /etc/nginx

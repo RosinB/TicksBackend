@@ -23,21 +23,26 @@ services:
 
   # Nginx
   nginx:
-    image: nginx:alpine
-    container_name: nginx  
-    ports:
-      - "80:80"
-    volumes:
-        - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-        - ./nginx/conf.d:/etc/nginx/conf.d:ro 
-        - ./nginx/logs:/var/log/nginx    # 新增：日誌掛載
-        - ./nginx/cache:/var/cache/nginx  # cache
-    environment:
-        - TZ=Asia/Taipei  
-        - LANG=C.UTF-8   
-        - LC_ALL=C.UTF-8    
-    networks:
-        - app-network
+      build:
+          context: .
+          dockerfile: Dockerfile.nginx
+      container_name: nginx
+      ports:
+          - "80:80"
+      volumes:
+          - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+          - ./nginx/conf.d/http:/etc/nginx/conf.d/http:ro
+          - ./nginx/conf.d/server:/etc/nginx/conf.d/server:ro
+          - ./nginx/logs:/var/log/nginx
+          - ./nginx/cache:/var/cache/nginx
+      environment:
+          - TZ=Asia/Taipei
+          - LANG=C.UTF-8
+          - LC_ALL=C.UTF-8
+          - JWT_SECRET=bXlfc3VwZXJfc2VjcmV0X2tleV9mb3JfdGlja2V0X3N5c3RlbQ==
+
+      networks:
+          - app-network
 
 
 

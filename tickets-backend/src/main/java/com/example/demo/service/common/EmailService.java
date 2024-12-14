@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.dto.orders.OrderAstractDto;
 import com.example.demo.repository.user.UserRepositoryJdbc;
 import com.example.demo.service.user.UserService;
 import com.example.demo.util.CacheKeys;
@@ -29,6 +30,67 @@ public class EmailService {
 	@Autowired
 	private UserService userService;
 
+	
+	public void sendOrderEmail(OrderAstractDto dto,String userName) {
+		String userEmail = userService.getEmail(userName);
+
+		try {
+			String emailContent = """
+					親愛的 %s 您好,
+
+					感謝您購買音樂會門票！以下是您的訂單明細：
+
+					訂單資訊
+					------------------
+					訂單編號：#%d
+					活動名稱：%s
+					訂單時間：%s
+					訂單狀態：%s
+
+					座位資訊
+					------------------
+					區域：%s
+					座位：%s
+					總金額：NT$ %d
+
+					重要提醒
+					------------------
+					1. 請在演出當天提前到場
+					2. 入場時請出示有效證件
+					3. 如有任何問題，請聯繫客服
+
+					祝您觀賞愉快！
+
+					此為系統自動發送郵件，請勿直接回覆。
+					""".formatted(
+					    dto.getUserName(),
+					    dto.getOrderId(),
+					    dto.getEventName(),
+					    dto.getOrderDateTime().toString(),
+					    dto.getOrderStatus(),
+					    dto.getOrderSection(),
+					    dto.getSeatsDisplay(),
+					    dto.getOrderPrice()
+					);
+			
+			
+			Gmail service = GmailOAuthSender.getGmailService();
+			GmailOAuthSender.sendMessage(service, "me", GmailOAuthSender.createEmail(
+					userEmail, 
+					String.format("訂單確認 - %s (#%d)", dto.getEventName(), dto.getOrderId()), 
+					emailContent)
+
+			);
+			log.info("重設密碼信已成功寄出 {}", userEmail);
+		} catch (Exception e) {
+			log.warn("郵件發送失敗", e);
+			throw new RuntimeException("郵件發送失敗", e);
+		}
+		
+	}
+	
+	
+	
 	public void sendVerificationEmail(String userName) {
 		String code = CaptchaUtils.generateNumericCaptcha(6);
 		String userEmail = userService.getEmail(userName);

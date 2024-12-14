@@ -50,7 +50,6 @@ public class SalesController {
 	private final RabbitTemplate rabbitTemplate;
 	private final RedisService redisService;
 	private final JwtUtil jwtUtil;
-    private final TrafficDtoBuilder trafficDtoBuilder;
 
 //=======================處理售票狀況============================== 這在tiecketsales
 	@PostMapping("/goticket/area/buy")
@@ -156,7 +155,7 @@ public class SalesController {
 
 		} catch (UserIsNotVerifiedException e) {
 			log.info(e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error(400, "使用者沒有認證", "使用者沒有認證"));
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ApiResponse.error(401, "使用者沒有認證", "使用者沒有認證"));
 		}
 
 	}
