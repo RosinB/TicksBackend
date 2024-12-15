@@ -25,5 +25,7 @@ public class EventPicDto {
 	
 	private LocalTime eventSalesTime;
 	
+	private String eventPerformer;
+	
 	
 }

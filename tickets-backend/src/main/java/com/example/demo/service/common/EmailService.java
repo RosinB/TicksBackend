@@ -92,25 +92,45 @@ public class EmailService {
 	
 	
 	public void sendVerificationEmail(String userName) {
-		String code = CaptchaUtils.generateNumericCaptcha(6);
-		String userEmail = userService.getEmail(userName);
+	    String code = CaptchaUtils.generateNumericCaptcha(6);
+	    String userEmail = userService.getEmail(userName);
+	    String verificationKey = String.format(CacheKeys.User.VERIFICATION_CODE, userName, userEmail);
+	    
+	    redisService.saveWithExpire(verificationKey, code, 5, TimeUnit.MINUTES);
 
-		String verificationKey = String.format(CacheKeys.User.VERIFICATION_CODE, userName, userEmail);
-
-		redisService.saveWithExpire(verificationKey, code, 5, TimeUnit.MINUTES);
-
-		try {
-			Gmail service = GmailOAuthSender.getGmailService();
-			// 收件人者email "me"是關鍵字 不用改
-			GmailOAuthSender.sendMessage(service, "me",
-					GmailOAuthSender.createEmail(userEmail, "信箱認證", "信箱驗證碼:" + code));
-
-			log.info("認證信已成功寄出{}", userEmail);
-		} catch (Exception e) {
-			log.warn("郵件發送失敗", e);
-			throw new RuntimeException("郵件發送失敗", e);
-		}
-
+	    try {
+	        Gmail service = GmailOAuthSender.getGmailService();
+	        GmailOAuthSender.sendMessage(
+	            service, 
+	            "me",
+	            GmailOAuthSender.createEmail(
+	                userEmail, 
+	                "電子郵件驗證通知", 
+	                """
+	                親愛的 %s 您好，
+	                
+	                感謝您的註冊！請使用以下驗證碼完成電子郵件驗證：
+	                
+	                驗證碼：%s
+	                
+	                請注意：
+	                • 驗證碼有效期限為 5 分鐘
+	                • 請勿將驗證碼分享給他人
+	                • 如果您沒有進行相關操作，請忽略此郵件
+	                
+	                為了確保您的帳戶安全，請儘快完成驗證程序。
+	                
+	                若有任何問題，請隨時與我們的客服團隊聯繫。
+	                
+	                此為系統自動發送的電子郵件，請勿直接回覆。
+	                """.formatted(userName, code)
+	            )
+	        );
+	        log.info("認證信已成功寄出 {}", userEmail);
+	    } catch (Exception e) {
+	        log.warn("郵件發送失敗", e);
+	        throw new RuntimeException("郵件發送失敗", e);
+	    }
 	}
 
 	public String verificationEmail(String code, String userName) {
@@ -131,27 +151,39 @@ public class EmailService {
 	}
 
 	public void sendPasswordResetEmail(String userName, String email) {
-		String token = UUID.randomUUID().toString();
-		saveTokenToRedis(userName, token);
+	    String token = UUID.randomUUID().toString();
+	    saveTokenToRedis(userName, token);
 
-		try {
-
-			Gmail service = GmailOAuthSender.getGmailService();
-			GmailOAuthSender.sendMessage(service, "me", GmailOAuthSender.createEmail(email, "重設密碼", """
-					重設密碼:
-					請去以下網址重設:
-						http://localhost:3000/forgetpassword/reset/%s
-
-					         這是您的重設密碼url，有效期限10分鐘。
-					   """.formatted(token))
-
-			);
-			log.info("重設密碼信已成功寄出 {}", email);
-		} catch (Exception e) {
-			log.warn("郵件發送失敗", e);
-			throw new RuntimeException("郵件發送失敗", e);
-		}
-
+	    try {
+	        Gmail service = GmailOAuthSender.getGmailService();
+	        GmailOAuthSender.sendMessage(
+	            service, 
+	            "me", 
+	            GmailOAuthSender.createEmail(
+	                email, 
+	                "密碼重設通知", 
+	                """
+	                親愛的用戶 %s 您好，
+	                
+	                我們收到了您的密碼重設請求。請點擊以下連結進行密碼重設：
+	                http://localhost:3000/forgetpassword/reset/%s
+	                
+	                請注意：
+	                • 此連結的有效期限為10分鐘
+	                • 如果您並未要求重設密碼，請忽略此信件
+	                • 為了帳戶安全，請勿將此連結分享給他人
+	                
+	                若有任何問題，請隨時與我們的客服團隊聯繫。
+	                
+	                此為系統自動發送的電子郵件，請勿直接回覆。
+	                """.formatted(userName,token)
+	            )
+	        );
+	        log.info("重設密碼信已成功寄出 {}", email);
+	    } catch (Exception e) {
+	        log.warn("郵件發送失敗", e);
+	        throw new RuntimeException("郵件發送失敗", e);
+	    }
 	}
 
 	private void clearUserCaches(String userName) {

@@ -108,7 +108,6 @@ WHERE			e.event_id = ?
 		
 	from 			event e
 
-	where  			e.event_status='即將舉辦'
 			
 	""".trim();
 		static final String FIND_REALTIME_TICKET_BY_ID="""

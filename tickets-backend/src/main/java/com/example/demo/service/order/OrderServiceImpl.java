@@ -42,16 +42,18 @@ public class OrderServiceImpl implements OrderService{
         // 檢查是否存在對應的記錄
 		String redisStatus = redisService.get(CacheKeys.Order.ORDER_PREFIX+requestId,String.class);
 		
+	 
 	    if ("FAILED".equals(redisStatus)) {
 	        return Map.of(
 	            "status", "錯誤",
-	            "errorMessage", "購票失敗"
+	            "errorMessage", "購票失敗：票務不足"  // 加入更具體的錯誤訊息
 	        );
 	    }
-	    
 	  
 		Optional<OrderDto> optionalOrder = orderRepositoryJdbc.findOrderDtoByRequestId(requestId);
 
+			
+		
 		if (optionalOrder.isEmpty()) {
 		    return Map.of("status", "輪尋中");
 		}

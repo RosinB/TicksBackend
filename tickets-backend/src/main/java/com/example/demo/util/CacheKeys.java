@@ -50,6 +50,7 @@ public class CacheKeys {
 		 	public static final String TRAFFIC_RECORD="traffic:record:";
 		 	public static final String TOTAL_DAY_TRAFFIC="total_traffic_day";
 		 	public static final String BLOCK="blocked_users";
+		 	public static final String BLOCK_IPS="blocked_ips";
 	 }
 	 
 	 

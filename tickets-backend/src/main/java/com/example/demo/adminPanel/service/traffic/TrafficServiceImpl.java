@@ -32,8 +32,7 @@ public class TrafficServiceImpl implements TrafficService {
 
 	@Override
 	public void unblockUserName(String userName) {
-
-		
+	
 		redisService.srem(CacheKeys.util.BLOCK, userName);
 		log.info("使用者已經解封{}", userName);
 
@@ -43,6 +42,14 @@ public class TrafficServiceImpl implements TrafficService {
 	public Set<String> getBlockedUserNames() {
         return redisService.sMembers(CacheKeys.util.BLOCK);
 
+	}
+
+	@Override
+	public void blockIpAddress(String ipAddress) {
+		redisService.sadd(CacheKeys.util.BLOCK_IPS, ipAddress);
+		log.info("使用者{}已經被封鎖", ipAddress);
+
+		
 	}
 	
 	

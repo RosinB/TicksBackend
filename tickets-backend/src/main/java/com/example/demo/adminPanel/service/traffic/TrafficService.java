@@ -9,5 +9,6 @@ public interface TrafficService {
 	void blockUserName(String userName);
 	void unblockUserName(String userName);
 	Set<String> getBlockedUserNames();
-	
+	void blockIpAddress(String ipAddress);
+
 }

@@ -38,26 +38,24 @@ public class TicketSalesConsumer {
     public void handleMessage(PostTicketSalesDto tickets) {
     	  String requestId = tickets.getRequestId();
           String orderStatusKey = "order:" + requestId;
-          try {
+         
               // 檢查是否已處理
               if (redisService.exists(orderStatusKey)) {
                   return; // 已處理，直接返回
               }
-              
-             
+              try {
+                  salesService.buyTicket(tickets);
+                  redisService.saveWithExpire(orderStatusKey, "付款中", 10, TimeUnit.MINUTES);
 
-              salesService.buyTicket(tickets);
+			} catch (Exception e) {
+			}
               
-              redisService.saveWithExpire(orderStatusKey, "付款中", 10, TimeUnit.MINUTES);
-          } catch (Exception e) {
-         
-              
-          }
+    }}
           
           
           
     	
-            }
+            
         
     
-}
+

@@ -1,7 +1,7 @@
 package com.example.demo.service.sales;
 
 import java.util.List;
-
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -21,6 +21,8 @@ import com.example.demo.service.common.TicketStockService;
 import com.example.demo.service.event.EventService;
 import com.example.demo.service.order.OrderService;
 import com.example.demo.service.user.UserService;
+import com.example.demo.util.CacheKeys;
+import com.example.demo.util.RedisService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
@@ -38,6 +40,7 @@ public class SalesServiceImpl implements SalesService {
 	private final SeatService seatService;
 	private final OrderService orderSerivce;
 	private final EventService eventService;
+	private final RedisService redisService;
 	
 	public SalesServiceImpl(SalesRepositoryJdbc salesRepositoryJdbc, 
 			TicketStockService ticketStockService,
@@ -46,6 +49,7 @@ public class SalesServiceImpl implements SalesService {
 			UserService userService,
 			SeatService seatService, 
 			OrderService orderSerivce,
+			RedisService redisService,
 			EventService eventService) {
 		this.ticketStockService = ticketStockService;
 		this.salesRepositoryJdbc = salesRepositoryJdbc;
@@ -54,6 +58,7 @@ public class SalesServiceImpl implements SalesService {
 		this.userService = userService;
 		this.orderSerivce = orderSerivce;
 		this.eventService=eventService;
+		this.redisService=redisService;
 		this.rabbitTemplate.setMessageConverter(messageConverter);
 
 	}
@@ -66,13 +71,21 @@ public class SalesServiceImpl implements SalesService {
 		Integer eventId = tickets.getEventId();
 		String section = tickets.getSection();
 		Integer quantity = tickets.getQuantity();
-		
+		String requestId=tickets.getRequestId();
 		try {
-
+			//初始化
 			Integer currentStock = ticketStockService.ensureStockInRedis(eventId, section);
 
 			if (currentStock < quantity) {
-				throw new RuntimeException("庫存不足，購票失敗！當前庫存:" + currentStock);
+				redisService.saveWithExpire(
+			            CacheKeys.Order.ORDER_PREFIX + requestId, 
+			            "FAILED", 
+			            10, 
+			            TimeUnit.MINUTES
+			        );
+			        log.warn("購票失敗 - 庫存不足，當前庫存:{}，需求數量:{}，RequestID: {}", 
+			            currentStock, quantity, requestId);
+			        throw new RuntimeException("票務不足");
 			}
 
 			Long remainingStock = ticketStockService.decrementTicketStock(eventId, section, quantity);

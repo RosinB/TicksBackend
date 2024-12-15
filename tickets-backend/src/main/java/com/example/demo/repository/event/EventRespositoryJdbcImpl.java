@@ -39,6 +39,7 @@ public class EventRespositoryJdbcImpl implements EventRespositoryJdbc {
 	               e.event_date as eventDate,
 	               e.event_time as eventTime,
 	               e.event_name as eventName,
+				   e.event_performer AS eventPerformer,
 	               e.event_salestime as eventSalesTime,
 	               e.event_salesdate as eventSalesDate
 	        from pic p

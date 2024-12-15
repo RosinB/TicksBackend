@@ -32,6 +32,14 @@ public class TrafficController {
 		return ResponseEntity.ok(ApiResponse.success("封鎖成功", userName));
 	}
 	
+	@GetMapping("/block/ip/{ipAddress}")
+	public ResponseEntity<ApiResponse<Object>> blockIp(@PathVariable("ipAddress")
+											String ipAddress){
+		
+		trafficService.blockIpAddress(ipAddress);
+		
+		return ResponseEntity.ok(ApiResponse.success("封鎖成功", ipAddress));
+	}
 	
 	@GetMapping("/unblock/{userName}")
 	public ResponseEntity<ApiResponse<Object>> unblockUser(@PathVariable("userName")
