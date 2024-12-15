@@ -8,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="ticket")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,7 +32,6 @@ public class Ticket {
 	@Column(name="ticket_remaining")
 	private Integer ticketRemaining;
 	
-	@Column(name = "ticket_isAvailable")
 	private Boolean ticketIsAvailable =true;
 	
 	
