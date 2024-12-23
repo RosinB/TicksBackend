@@ -10,12 +10,12 @@
 技術架構
 該網站採用了以下主要技術組件:
 
-前端: React
-後端: Spring Boot
-緩存: Redis
-消息隊列: RabbitMQ
-反向代理: Nginx
-資料庫: MySQL
+前端: <span style="color:#0074D9">React</span>
+後端: <span style="color:#2ECC40">Spring Boot</span>
+緩存: <span style="color:#FF851B">Redis</span>
+消息隊列: <span style="color:#B10DC9">RabbitMQ</span>
+反向代理: <span style="color:#39CCCC">Nginx</span>
+資料庫: <span style="color:#AAAAAA">MySQL</span>
 
 各組件在系統中扮演的角色如下:
 
@@ -32,13 +32,13 @@ Nginx + Lua:
 
 多 IP 檢測:同一用戶名超過 3 個 IP 判定為異常。
 高頻檢測:1 分鐘超過 100 次請求判定為異常。
-動態封鎖:將異常用戶記錄至 Redis,並同步到 Nginx。
+動態封鎖:將異常用戶記錄至 <span style="color:#FF851B">Redis</span>,並同步到 <span style="color:#39CCCC">Nginx</span>。
 
 
 身份驗證:
 
-使用 JWT 進行用戶認證授權。
-透過 Kaptcha 圖形驗證碼增強安全性。
+使用 <span style="color:#2ECC40">JWT</span> 進行用戶認證授權。
+透過 <span style="color:#FFDC00">Kaptcha</span> 圖形驗證碼增強安全性。
 
 
 
@@ -61,5 +61,3 @@ API 管理:
 
 可透過用戶名和 IP 封鎖異常使用者。
 被封鎖用戶在全站任何頁面都會導向黑畫面。
-
-
